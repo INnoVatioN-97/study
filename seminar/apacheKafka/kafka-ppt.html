@@ -1,0 +1,1327 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kafka Interactive Presentation - PointCrush</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    />
+    <style>
+      :root {
+        --toss-blue: #0064ff;
+        --toss-gray: #202632;
+        --background-light: #f9fafb;
+        --text-primary: #202632;
+        --text-secondary: #4a5568;
+        --card-bg: #ffffff;
+        --border-color: #e2e8f0;
+        --danger-color: #ef4444;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family:
+          'Pretendard',
+          -apple-system,
+          BlinkMacSystemFont,
+          system-ui,
+          Roboto,
+          'Helvetica Neue',
+          'Segoe UI',
+          'Apple SD Gothic Neo',
+          'Noto Sans KR',
+          'Malgun Gothic',
+          'Apple Color Emoji',
+          'Segoe UI Emoji',
+          'Segoe UI Symbol',
+          sans-serif;
+        background-color: var(--background-light);
+        color: var(--text-primary);
+        overflow-x: hidden;
+      }
+      .container-snap {
+        scroll-snap-type: y mandatory;
+        overflow-y: scroll;
+        height: 100vh;
+        margin-left: 60px;
+      }
+      .slide {
+        width: calc(100vw - 60px);
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 4rem;
+        scroll-snap-align: start;
+        position: relative;
+      }
+      h1 {
+        font-size: 4.5rem;
+        line-height: 1.1;
+        font-weight: 900;
+      }
+      h2 {
+        font-size: 3.5rem;
+        line-height: 1.2;
+        font-weight: 800;
+      }
+      h3 {
+        font-size: 1.875rem;
+        line-height: 2.25rem;
+        font-weight: 700;
+      }
+      h4 {
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+        font-weight: 600;
+      }
+      .slide-number {
+        position: absolute;
+        bottom: 2rem;
+        right: 2rem;
+        font-size: 1rem;
+        font-weight: 500;
+        color: #94a3b8;
+      }
+      .card {
+        background-color: var(--card-bg);
+        padding: 2rem;
+        border-radius: 1rem;
+        border: 1px solid var(--border-color);
+        box-shadow:
+          0 4px 6px -1px rgb(0 0 0 / 0.1),
+          0 2px 4px -2px rgb(0 0 0 / 0.1);
+        transition: all 0.3s ease;
+      }
+      .card:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow:
+          0 20px 25px -5px rgb(0 0 0 / 0.1),
+          0 8px 10px -6px rgb(0 0 0 / 0.1);
+        background-image: linear-gradient(
+          to top right,
+          var(--card-bg),
+          #f0f6ff
+        );
+      }
+      .tab {
+        cursor: pointer;
+        padding: 0.75rem 1.5rem;
+        transition: all 0.2s;
+        border-bottom: 3px solid transparent;
+        font-weight: 600;
+        color: var(--text-secondary);
+      }
+      .tab.active {
+        color: var(--toss-blue);
+        border-bottom-color: var(--toss-blue);
+      }
+      .chart-container {
+        position: relative;
+        width: 100%;
+        max-width: 450px;
+        height: 300px;
+      }
+      #fullscreen-btn {
+        position: fixed;
+        top: 1.5rem;
+        right: 1.5rem;
+        z-index: 100;
+        cursor: pointer;
+        background-color: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.2s;
+      }
+      #fullscreen-btn:hover {
+        background-color: #f1f5f9;
+      }
+      #fullscreen-btn svg {
+        width: 20px;
+        height: 20px;
+        stroke: var(--text-secondary);
+      }
+      #side-nav {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        width: 60px;
+        background-color: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        border-right: 1px solid var(--border-color);
+        z-index: 50;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .nav-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #cbd5e1;
+        margin: 8px 0;
+        transition: all 0.3s ease;
+        position: relative;
+      }
+      .nav-dot.active {
+        background-color: var(--toss-blue);
+        transform: scale(1.5);
+      }
+      .nav-dot .tooltip {
+        position: absolute;
+        left: 150%;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: var(--toss-gray);
+        color: white;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+      }
+      .nav-dot:hover .tooltip {
+        opacity: 1;
+        visibility: visible;
+      }
+      .revealable {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.6s ease-out,
+          transform 0.6s ease-out;
+      }
+      .revealable.revealed {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .flow-animation-container {
+        position: relative;
+      }
+      .message-flow {
+        position: absolute;
+        top: 20px;
+        left: 10%;
+        background-color: var(--toss-gray);
+        color: white;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-family: monospace;
+        opacity: 0;
+        white-space: nowrap;
+      }
+      .slide.active .message-flow {
+        animation: flow 4s ease-in-out forwards;
+      }
+      @keyframes flow {
+        0% {
+          opacity: 0;
+          transform: translateX(0);
+        }
+        10% {
+          opacity: 1;
+        }
+        40% {
+          transform: translateX(220%);
+        }
+        50% {
+          transform: translateX(220%);
+        }
+        90% {
+          transform: translateX(450%);
+        }
+        100% {
+          opacity: 0;
+          transform: translateX(450%);
+        }
+      }
+
+      .sim-box {
+        border: 2px solid var(--border-color);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.5s ease;
+      }
+      .sim-box.waiting {
+        border-color: var(--danger-color);
+        background-color: #fee2e2;
+        animation: pulse 1s infinite;
+      }
+      .sim-box.failed {
+        border-color: var(--danger-color);
+        background-color: #fee2e2;
+      }
+      @keyframes pulse {
+        50% {
+          background-color: #fecaca;
+        }
+      }
+
+      .arrow-container {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .arrow-line {
+        height: 3px;
+        transform-origin: left;
+        transform: scaleX(0);
+      }
+      .arrow-head {
+        position: absolute;
+        right: -2px;
+        top: -5px;
+        width: 0;
+        height: 0;
+        border-top: 7px solid transparent;
+        border-bottom: 7px solid transparent;
+        border-left-width: 12px;
+        opacity: 0;
+      }
+      .arrow-line.blue {
+        background-color: var(--toss-blue);
+      }
+      .arrow-head.blue {
+        border-left-color: var(--toss-blue);
+      }
+      .arrow-line.red {
+        background-color: var(--danger-color);
+      }
+      .arrow-head.red {
+        border-left-color: var(--danger-color);
+      }
+
+      .slide.active .arrow-container.admin-req .arrow-line {
+        animation: spread 1s 0.5s forwards;
+      }
+      .slide.active .arrow-container.admin-req .arrow-head {
+        animation: show-head 0.1s 1.5s forwards;
+      }
+      .slide.active .arrow-container.user-req .arrow-line {
+        animation: spread 0.5s 2s forwards;
+      }
+      .slide.active .arrow-container.user-req .arrow-head {
+        animation: show-head 0.1s 2.5s forwards;
+      }
+      .slide.active .arrow-container.api-fail .arrow-line {
+        animation: spread 0.5s 2.8s forwards;
+      }
+      .slide.active .arrow-container.api-fail .arrow-head {
+        animation: show-head 0.1s 3.3s forwards;
+      }
+
+      @keyframes spread {
+        to {
+          transform: scaleX(1);
+        }
+      }
+      @keyframes show-head {
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav id="side-nav"></nav>
+
+    <button id="fullscreen-btn" title="전체 화면 토글">
+      <svg
+        id="fs-enter-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="2"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15"
+        />
+      </svg>
+      <svg
+        id="fs-exit-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="2"
+        stroke="currentColor"
+        class="hidden"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M9 9V4.5M9 9H4.5M9 9L3.75 3.75M9 15v4.5M9 15H4.5M9 15l-5.25 5.25M15 9h4.5M15 9V4.5M15 9l5.25-5.25M15 15h4.5M15 15v4.5m0-4.5l5.25 5.25"
+        />
+      </svg>
+    </button>
+
+    <main class="container-snap">
+      <div id="slide-1" class="slide text-center">
+        <h1 class="revealable" style="color: var(--toss-blue)">
+          함께 성장하는 크롤링 인프라
+        </h1>
+        <p
+          class="mt-4 text-2xl text-slate-600 revealable"
+          style="transition-delay: 0.1s"
+        >
+          Kafka 아키텍처 리뷰 및 학습 가이드
+        </p>
+        <div
+          class="mt-12 text-xl text-slate-500 max-w-3xl leading-relaxed revealable"
+          style="transition-delay: 0.2s"
+        >
+          안녕하세요. 오늘 기술 세미나의 목표는 제가 현재 담당하고 있는 크롤링
+          인프라에 대한 소개와, 이 인프라를 지탱하는 핵심 기술인 Kafka에 대해
+          알아보는 시간을 갖는 것입니다. 이를 통해 팀원들이 시스템을 함께
+          이해하고 발전시켜 나갈 수 있는 기반을 마련하고자 합니다.
+        </div>
+        <div class="slide-number">1 / 15</div>
+      </div>
+
+      <div id="slide-2" class="slide">
+        <h2 class="text-center mb-12 revealable">
+          "카프카가 없었다면?" #1:
+          <span style="color: var(--danger-color)">병목 현상</span>
+        </h2>
+        <div class="w-full max-w-5xl">
+          <p
+            class="text-center text-lg text-slate-500 mb-8 revealable"
+            style="transition-delay: 0.1s"
+          >
+            **상황:** Tor를 사용하는 느린 SEO 크롤링 100건이 **동시에**
+            요청되었습니다.
+          </p>
+          <div class="grid grid-cols-3 items-center gap-8">
+            <div
+              id="bottleneck-admin"
+              class="sim-box text-center revealable"
+              style="transition-delay: 0.2s"
+            >
+              <h4>어드민 API</h4>
+            </div>
+            <div class="relative">
+              <div class="arrow-container admin-req">
+                <div class="arrow-line blue"></div>
+                <div class="arrow-head blue"></div>
+              </div>
+            </div>
+            <div
+              id="bottleneck-crawler"
+              class="sim-box text-center revealable"
+              style="transition-delay: 0.4s"
+            >
+              <h4>크롤링 서버 (동기)</h4>
+            </div>
+          </div>
+          <div class="grid grid-cols-3 items-center gap-8 mt-12">
+            <div
+              class="sim-box text-center revealable"
+              style="transition-delay: 0.5s"
+            >
+              <h4>어드민 사용자</h4>
+            </div>
+            <div class="relative h-12">
+              <div class="arrow-container user-req" style="top: 15px">
+                <div class="arrow-line blue"></div>
+                <div class="arrow-head blue"></div>
+              </div>
+              <div
+                class="arrow-container api-fail"
+                style="top: 35px; transform: translateY(-50%) rotate(180deg)"
+              >
+                <div class="arrow-line red"></div>
+                <div class="arrow-head red"></div>
+              </div>
+            </div>
+            <div
+              id="bottleneck-api-placeholder"
+              class="sim-box text-center revealable"
+              style="
+                transition-delay: 0.6s;
+                border-style: dashed;
+                color: #94a3b8;
+              "
+            >
+              <h4>(어드민 API 응답 대기)</h4>
+            </div>
+          </div>
+        </div>
+        <p
+          class="mt-12 text-center text-lg text-slate-500 max-w-3xl revealable"
+          style="transition-delay: 0.7s"
+        >
+          크롤링 서버가 응답할 때까지 어드민 API는 **블로킹(Blocking)**됩니다.
+          이 때문에 어드민 사용자의 다른 요청까지 처리하지 못하고 **장애가
+          전파**됩니다.
+        </p>
+        <div class="slide-number">2 / 15</div>
+      </div>
+
+      <div id="slide-3" class="slide">
+        <h2 class="text-center mb-12 revealable">
+          "카프카가 없었다면?" #2:
+          <span style="color: var(--danger-color)">단일 실패 지점</span>
+        </h2>
+        <div class="w-full max-w-5xl">
+          <p
+            class="text-center text-lg text-slate-500 mb-8 revealable"
+            style="transition-delay: 0.1s"
+          >
+            **상황:** 단 하나뿐인 크롤링 서버 인스턴스에 예기치 않은 에러가
+            발생했습니다.
+          </p>
+          <div class="grid grid-cols-3 items-center gap-8">
+            <div
+              class="sim-box text-center revealable"
+              style="transition-delay: 0.2s"
+            >
+              <h4>어드민 API</h4>
+            </div>
+            <div class="relative">
+              <div class="arrow-container admin-req">
+                <div class="arrow-line blue"></div>
+                <div class="arrow-head blue"></div>
+              </div>
+            </div>
+            <div
+              id="fault-crawler"
+              class="sim-box text-center revealable"
+              style="transition-delay: 0.4s"
+            >
+              <h4>크롤링 서버</h4>
+              <p class="text-sm text-slate-500"><span>정상 동작 중</span></p>
+            </div>
+          </div>
+        </div>
+        <p
+          class="mt-12 text-center text-lg text-slate-500 max-w-3xl revealable"
+          style="transition-delay: 0.5s"
+        >
+          만약 크롤링 서버가 다운된다면, 복구 전까지 **모든 크롤링 관련 기능이
+          중단**됩니다. 이는 서비스의 핵심 기능이 단 하나의 컴포넌트에 의존하는
+          **단일 실패 지점(SPOF)** 문제입니다.
+        </p>
+        <div class="slide-number">3 / 15</div>
+      </div>
+
+      <div id="slide-4" class="slide">
+        <h2 class="text-center mb-12 revealable">
+          해결책:
+          <span style="color: var(--toss-blue)">시스템의 숨통 틔우기</span>
+        </h2>
+        <div class="flex items-center gap-8">
+          <div class="text-center revealable" style="transition-delay: 0.1s">
+            <h3 class="mb-4">강한 결합</h3>
+            <div class="card p-8">
+              <p>서버 ↔ 크롤러</p>
+              <p>서버 ↔ 알림</p>
+              <p>서버 ↔ etc...</p>
+            </div>
+            <p class="mt-4 text-slate-500">한 곳의 장애가 전체로 전파</p>
+          </div>
+          <div class="text-center revealable" style="transition-delay: 0.2s">
+            <img
+              src="https://placehold.co/150x150/f0f6ff/0064FF?text=Event+Hub"
+              alt="Event Hub Concept"
+              class="rounded-full mx-auto"
+              onerror="this.onerror=null;this.src='https://placehold.co/150x150/e2e8f0/4a5568?text=Image';"
+            />
+            <div
+              class="text-5xl font-bold my-4"
+              style="color: var(--toss-blue)"
+            >
+              &rarr;
+            </div>
+          </div>
+          <div class="text-center revealable" style="transition-delay: 0.3s">
+            <h3 class="mb-4">느슨한 결합</h3>
+            <div class="card p-8">
+              <p>
+                서버 &rarr;
+                <span class="font-bold" style="color: var(--toss-blue)"
+                  >이벤트</span
+                >
+                &larr; 크롤러
+              </p>
+              <p>
+                서버 &rarr;
+                <span class="font-bold" style="color: var(--toss-blue)"
+                  >이벤트</span
+                >
+                &larr; 알림
+              </p>
+              <p>
+                서버 &rarr;
+                <span class="font-bold" style="color: var(--toss-blue)"
+                  >이벤트</span
+                >
+                &larr; etc...
+              </p>
+            </div>
+            <p class="mt-4 text-slate-500">독립적인 개발, 배포, 확장</p>
+          </div>
+        </div>
+        <p
+          class="mt-12 text-center text-lg text-slate-500 max-w-3xl revealable"
+          style="transition-delay: 0.4s"
+        >
+          이러한 문제를 해결하는 것이 바로 '디커플링'입니다. 중간에 **메시지
+          큐**라는 완충 지대를 두어, 서버와 크롤러가 서로의 상태에 영향을 받지
+          않도록 하는 것이죠. 이것이 우리 시스템 안정성의 핵심입니다.
+        </p>
+        <div class="slide-number">4 / 15</div>
+      </div>
+
+      <div id="slide-5" class="slide">
+        <h2 class="text-center mb-12 revealable">
+          메시지 큐, 그 다양한 선택지
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl">
+          <div class="card revealable" style="transition-delay: 0.1s">
+            <div class="flex items-center gap-4 mb-4">
+              <img
+                src="https://velog.velcdn.com/images/hyensukim/post/982900dc-1b5c-47e5-9478-74dc9fe2fd99/image.png"
+                alt="RabbitMQ Logo"
+                class="rounded-lg w-16 h-16 object-contain"
+              />
+              <h3 style="color: var(--toss-blue)">
+                유사 기술들: RabbitMQ, SQS 등
+              </h3>
+            </div>
+            <ul class="mt-4 list-disc list-inside space-y-2 text-slate-600">
+              <li>주로 '작업 큐' 관리에 중점을 둡니다.</li>
+              <li>복잡한 라우팅 규칙을 제공하기도 합니다.</li>
+              <li>일반적으로 메시지는 소비되면 사라집니다.</li>
+            </ul>
+          </div>
+          <div
+            class="card border-2 revealable"
+            style="
+              transition-delay: 0.2s;
+              border-color: var(--toss-blue);
+              box-shadow: 0 10px 15px -3px rgba(0, 100, 255, 0.1);
+            "
+          >
+            <div class="flex items-center gap-4 mb-4">
+              <img
+                src="https://storage.googleapis.com/static.fastcampus.co.kr/prod/uploads/202312/162433-1018/frame-1410115074.png"
+                alt="Kafka Logo"
+                class="rounded-lg w-16 h-16 object-contain"
+              />
+              <h3 style="color: var(--toss-blue)">우리 시스템의 Kafka</h3>
+            </div>
+            <ul class="mt-4 list-disc list-inside space-y-2 text-slate-600">
+              <li>대용량 데이터 스트림 처리에 최적화되어 있습니다.</li>
+              <li>**핵심 장점: 이벤트 저장소 역할.**</li>
+              <li>
+                메시지를 디스크에 저장하여 장애 발생 시 재처리가 가능합니다.
+              </li>
+            </ul>
+          </div>
+        </div>
+        <p
+          class="mt-12 text-center text-lg text-slate-500 max-w-3xl revealable"
+          style="transition-delay: 0.3s"
+        >
+          우리 시스템은 여러 메시지 큐 기술 중 Kafka를 채택했습니다. 그 덕분에
+          대규모 크롤링 요청을 안정적으로 처리하고, 문제가 발생했을 때 데이터를
+          유실하지 않고 다시 처리할 수 있는 능력을 갖추게 되었습니다.
+        </p>
+        <div class="slide-number">5 / 15</div>
+      </div>
+
+      <div id="slide-6" class="slide">
+        <h2 class="text-center mb-12 revealable">
+          핵심 개념:
+          <span style="color: var(--toss-blue)">카프카의 구성 요소</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl">
+          <div class="card revealable" style="transition-delay: 0.1s">
+            <h4>이벤트 (Event) & 토픽 (Topic)</h4>
+            <p class="mt-2 text-slate-500">
+              "어떤 일이 일어났다"는 기록. 이 이벤트들이 모여 특정 주제의
+              '토픽'을 이룹니다.
+            </p>
+            <p class="mt-4 text-sm bg-slate-100 p-3 rounded-md">
+              <strong>비유:</strong> 토픽은 '컴퓨터 과학'이라는 주제의 책,
+              이벤트는 그 책의 한 페이지입니다.
+            </p>
+          </div>
+          <div class="card revealable" style="transition-delay: 0.2s">
+            <h4>파티션 (Partition) & 오프셋 (Offset)</h4>
+            <p class="mt-2 text-slate-500">
+              토픽은 여러 '파티션'으로 나뉘어 병렬 처리를 가능하게 합니다.
+              파티션 내 메시지의 순서는 '오프셋'으로 보장됩니다.
+            </p>
+            <p class="mt-4 text-sm bg-slate-100 p-3 rounded-md">
+              <strong>비유:</strong> 파티션은 책의 '챕터', 오프셋은 챕터 안의
+              '페이지 번호'입니다.
+            </p>
+          </div>
+          <div class="card revealable" style="transition-delay: 0.3s">
+            <h4>프로듀서 (Producer) & 브로커 (Broker)</h4>
+            <p class="mt-2 text-slate-500">
+              프로듀서는 이벤트를 생성하여 브로커(Kafka 서버)에게 보냅니다.
+            </p>
+            <p class="mt-4 text-sm bg-slate-100 p-3 rounded-md">
+              <strong>비유:</strong> 프로듀서는 책의 '저자', 브로커는 책을
+              보관하는 '사서'입니다.
+            </p>
+          </div>
+          <div class="card revealable" style="transition-delay: 0.4s">
+            <h4>컨슈머 (Consumer) & 컨슈머 그룹</h4>
+            <p class="mt-2 text-slate-500">
+              컨슈머는 브로커로부터 이벤트를 가져와 처리합니다. 여러 컨슈머가
+              '그룹'을 이뤄 작업을 분담합니다.
+            </p>
+            <p class="mt-4 text-sm bg-slate-100 p-3 rounded-md">
+              <strong>비유:</strong> 컨슈머 그룹은 책을 나눠 읽는 '스터디
+              그룹'입니다.
+            </p>
+          </div>
+        </div>
+        <div class="slide-number">6 / 15</div>
+      </div>
+
+      <div id="slide-7" class="slide">
+        <h2 class="text-center mb-12 revealable">
+          아키텍처 엿보기:
+          <span style="color: var(--toss-blue)">현재 우리 시스템</span>
+        </h2>
+        <div
+          class="flex flex-col md:flex-row items-center gap-12 w-full max-w-6xl"
+        >
+          <div
+            class="card flex-1 text-center revealable"
+            style="transition-delay: 0.1s"
+          >
+            <h3>인프라 구성</h3>
+            <p class="text-4xl font-black mt-4" style="color: var(--toss-blue)">
+              1 <span class="text-2xl font-bold text-slate-700">Producer</span>
+            </p>
+            <p class="text-4xl font-black mt-2" style="color: var(--toss-blue)">
+              1 <span class="text-2xl font-bold text-slate-700">Broker</span>
+            </p>
+            <p class="text-4xl font-black mt-2" style="color: var(--toss-blue)">
+              29
+              <span class="text-2xl font-bold text-slate-700">Consumers</span>
+            </p>
+          </div>
+          <div class="card flex-1 revealable" style="transition-delay: 0.2s">
+            <h4 class="text-center mb-4">Consumer 역할 분배</h4>
+            <div class="chart-container mx-auto">
+              <canvas id="consumerDonutChart"></canvas>
+            </div>
+          </div>
+          <div class="card flex-1 revealable" style="transition-delay: 0.3s">
+            <h4 class="text-center mb-4">토픽별 할당 현황</h4>
+            <div class="chart-container mx-auto">
+              <canvas id="consumerBarChart"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="slide-number">7 / 15</div>
+      </div>
+
+      <div id="slide-8" class="slide">
+        <h2 class="text-center mb-12 revealable">
+          워크플로우 1: <span style="color: var(--toss-blue)">작업의 시작</span>
+        </h2>
+        <div
+          class="max-w-4xl w-full card revealable"
+          style="transition-delay: 0.1s"
+        >
+          <div
+            class="flex items-center gap-8 justify-center flow-animation-container"
+          >
+            <div class="message-flow">{"taskId": "abc-123", "url": "..."}</div>
+            <div class="text-center">
+              <p class="text-2xl font-bold">Express 서버</p>
+              <p class="text-slate-500">(요청 접수)</p>
+            </div>
+            <div class="text-4xl font-bold" style="color: var(--toss-blue)">
+              &rarr;
+            </div>
+            <div class="text-center">
+              <p class="text-2xl font-bold">NestJS 프로듀서</p>
+              <p class="text-slate-500">(API 호출)</p>
+            </div>
+            <div class="text-4xl font-bold" style="color: var(--toss-blue)">
+              &rarr;
+            </div>
+            <div class="text-center">
+              <p class="text-2xl font-bold">Kafka Broker</p>
+              <p class="text-slate-500">(이벤트 발행)</p>
+            </div>
+          </div>
+          <div class="mt-8">
+            <h4 style="color: var(--toss-blue)">1단계: 작업 요청 및 발행</h4>
+            <p class="mt-2 text-slate-600">
+              Express 서버가 요청을 받으면, NestJS 프로듀서에게 API를
+              호출합니다. 프로듀서는 해당 토픽으로 이벤트를 발행(emit)하고 즉시
+              응답합니다. 이를 'Fire-and-Forget'이라 하며, 서버가 긴 크롤링
+              작업을 기다리지 않게 해줍니다.
+            </p>
+          </div>
+        </div>
+        <div class="slide-number">8 / 15</div>
+      </div>
+
+      <div id="slide-9" class="slide">
+        <h2 class="text-center mb-12 revealable">
+          워크플로우 2:
+          <span style="color: var(--toss-blue)">처리 및 보고</span>
+        </h2>
+        <div
+          class="max-w-4xl w-full card revealable"
+          style="transition-delay: 0.1s"
+        >
+          <div class="flex items-center gap-8 justify-center">
+            <div class="text-center">
+              <p class="text-2xl font-bold">NestJS 컨슈머</p>
+              <p class="text-slate-500">(크롤링 수행)</p>
+            </div>
+            <div class="text-4xl font-bold" style="color: var(--toss-blue)">
+              &rarr;
+            </div>
+            <div class="text-center">
+              <p class="text-2xl font-bold">Express 서버</p>
+              <p class="text-slate-500">(API 콜백)</p>
+            </div>
+            <div class="text-4xl font-bold" style="color: var(--toss-blue)">
+              &rarr;
+            </div>
+            <div class="text-center">
+              <p class="text-2xl font-bold">DB & 다음 단계</p>
+              <p class="text-slate-500">(결과 저장)</p>
+            </div>
+          </div>
+          <div class="mt-8">
+            <h4 style="color: var(--toss-blue)">
+              2단계: 작업 처리 및 완료 보고
+            </h4>
+            <p class="mt-2 text-slate-600">
+              컨슈머 그룹의 워커가 작업을 처리한 후, 카프카가 아닌 Express
+              서버의 API를 직접 호출하여 결과를 보고합니다. 이 '비대칭 통신
+              패턴'은 작업 결과가 중앙 서버에 확실히 기록되었음을 보장하는
+              신뢰성 높은 방법입니다.
+            </p>
+          </div>
+        </div>
+        <div class="slide-number">9 / 15</div>
+      </div>
+
+      <div id="slide-10" class="slide">
+        <h2 class="text-center mb-12 revealable">
+          데이터는 어떻게 분배될까?:
+          <span style="color: var(--toss-blue)">파티셔닝 전략</span>
+        </h2>
+        <div
+          class="card max-w-4xl w-full revealable"
+          style="transition-delay: 0.1s"
+        >
+          <div class="flex justify-center border-b border-slate-200 mb-6">
+            <div id="tab-round-robin" class="tab active">라운드-로빈</div>
+            <div id="tab-key-based" class="tab">키 기반</div>
+            <div id="tab-custom" class="tab">커스텀</div>
+          </div>
+          <div id="content-round-robin" class="tab-content">
+            <h4 style="color: var(--toss-blue)">라운드-로빈 (기본 전략)</h4>
+            <p class="mt-2 text-slate-600">
+              메시지에 별도의 키가 없을 때 사용되며, 파티션에 순서대로 균등하게
+              분배됩니다. 처리량 극대화에 유리합니다.
+            </p>
+            <p class="mt-4 bg-blue-50 text-blue-700 p-3 rounded-md">
+              <strong>포인트크러쉬 적용:</strong> 현재 우리 시스템은 이 방식을
+              사용하여 모든 컨슈머에게 작업을 최대한 균등하게 분배하고 있습니다.
+            </p>
+          </div>
+          <div id="content-key-based" class="tab-content hidden">
+            <h4 style="color: var(--toss-blue)">
+              키 기반 해시 (Hash Partitioning)
+            </h4>
+            <p class="mt-2 text-slate-600">
+              메시지 키의 해시 값을 계산하여 특정 파티션에 할당합니다. 동일한
+              키를 가진 메시지는 항상 동일한 파티션으로 전송되어 처리 순서가
+              보장됩니다.
+            </p>
+            <p class="mt-4 text-sm bg-slate-100 p-3 rounded-md">
+              <strong>사용 예시:</strong> 사용자 ID를 키로 사용하면, 한 사용자의
+              모든 활동 로그를 순서대로 처리할 수 있습니다.
+            </p>
+          </div>
+          <div id="content-custom" class="tab-content hidden">
+            <h4 style="color: var(--toss-blue)">
+              커스텀 파티셔너 (Custom Partitioner)
+            </h4>
+            <p class="mt-2 text-slate-600">
+              개발자가 직접 파티션 할당 로직을 구현하는 방식입니다. 특정
+              비즈니스 규칙에 따라 데이터를 분배할 때 사용됩니다.
+            </p>
+            <p class="mt-4 text-sm bg-slate-100 p-3 rounded-md">
+              <strong>사용 예시:</strong> VIP 고객의 요청은 전용 파티션으로 보내
+              더 빠르게 처리하도록 할 수 있습니다.
+            </p>
+          </div>
+        </div>
+        <div class="slide-number">10 / 15</div>
+      </div>
+
+      <div id="slide-11" class="slide">
+        <h2 class="text-center mb-12 revealable">
+          신뢰성의 비밀 1:
+          <span style="color: var(--toss-blue)">전송 보장 수준</span>
+        </h2>
+        <div
+          class="card max-w-4xl w-full revealable"
+          style="transition-delay: 0.1s"
+        >
+          <div class="flex justify-center border-b border-slate-200 mb-6">
+            <div id="tab-at-most" class="tab active">
+              최대 한 번 (At-Most-Once)
+            </div>
+            <div id="tab-at-least" class="tab">최소 한 번 (At-Least-Once)</div>
+            <div id="tab-exactly" class="tab">정확히 한 번 (Exactly-Once)</div>
+          </div>
+          <div id="content-at-most" class="tab-content">
+            <h4 style="color: var(--toss-blue)">최대 한 번 (At-Most-Once)</h4>
+            <p class="mt-2 text-slate-600">
+              메시지를 보내고 성공 여부를 확인하지 않습니다. 속도는 가장
+              빠르지만, 네트워크 장애 시 메시지가 유실될 수 있습니다.
+            </p>
+            <p class="mt-4 bg-blue-50 text-blue-700 p-3 rounded-md">
+              <strong>포인트크러쉬 적용:</strong> 현재 우리 프로듀서의 `emit`
+              방식은 여기에 해당합니다. 빠른 응답 속도를 얻는 대신, 드물게 작업
+              유실 가능성이 존재합니다.
+            </p>
+          </div>
+          <div id="content-at-least" class="tab-content hidden">
+            <h4 class="text-orange-500">최소 한 번 (At-Least-Once)</h4>
+            <p class="mt-2 text-slate-600">
+              성공 응답(ack)을 받을 때까지 재전송합니다. 데이터 유실은 없지만,
+              중복 처리 가능성이 있습니다. 대부분의 신뢰성 있는 시스템의
+              기본값입니다.
+            </p>
+          </div>
+          <div id="content-exactly" class="tab-content hidden">
+            <h4 class="text-green-500">정확히 한 번 (Exactly-Once)</h4>
+            <p class="mt-2 text-slate-600">
+              데이터의 유실이나 중복 없이 정확히 한 번만 처리됨을 보장합니다.
+              멱등성 프로듀서 설정을 통해 달성할 수 있습니다.
+            </p>
+          </div>
+        </div>
+        <div class="slide-number">11 / 15</div>
+      </div>
+
+      <div id="slide-12" class="slide">
+        <h2 class="text-center mb-12 revealable">
+          신뢰성의 비밀 2:
+          <span style="color: var(--toss-blue)">수동 커밋의 힘</span>
+        </h2>
+        <div
+          class="card max-w-4xl w-full revealable"
+          style="transition-delay: 0.1s"
+        >
+          <h3 class="mb-4">"작업 완료"의 진짜 의미</h3>
+          <p class="text-slate-600 mb-4">
+            컨슈머에게 '작업 완료'란, 크롤링 성공이 아니라 '서버가 결과를
+            성공적으로 받았다고 확인해 준 시점'을 의미합니다. 이 시점을 제어하기
+            위해 수동 오프셋 커밋을 사용합니다.
+          </p>
+          <div
+            class="bg-slate-800 text-white p-4 rounded-lg text-sm overflow-x-auto"
+          >
+            <pre><code class="language-js">
+// 1. 메시지 처리 (크롤링)
+const result = await doCrawling(message);
+
+// 2. 서버에 결과 보고 (API 콜백)
+const report = await reportToServer(result);
+
+// 3. 서버 응답 성공 시에만 오프셋 커밋
+if (report.success) {
+  await consumer.commitOffsets();
+}
+// 4. 실패 시 커밋하지 않음 (재처리 유도)
+                    </code></pre>
+          </div>
+          <p class="mt-4 text-slate-500">
+            이 패턴은 어떤 단계에서든 오류가 발생해도 작업이 유실되지 않고
+            안전하게 재처리될 수 있도록 보장하는 핵심 로직입니다.
+          </p>
+        </div>
+        <div class="slide-number">12 / 15</div>
+      </div>
+
+      <div id="slide-13" class="slide">
+        <h2 class="text-center mb-12 revealable">
+          시스템 상태 측정하기:
+          <span style="color: var(--toss-blue)">컨슈머 랙</span>
+        </h2>
+        <div
+          class="card max-w-4xl w-full revealable"
+          style="transition-delay: 0.1s"
+        >
+          <h3 class="mb-4">컨슈머 랙 (Consumer Lag) 이란?</h3>
+          <p class="text-slate-600 mb-6">
+            프로듀서가 마지막으로 발행한 메시지의 오프셋과, 컨슈머 그룹이
+            마지막으로 처리한 메시지의 오프셋 간의 차이를 의미합니다. 즉,
+            **처리해야 할 작업이 얼마나 밀려있는지**를 나타내는 핵심 모니터링
+            지표입니다.
+          </p>
+          <div class="text-center p-6 bg-slate-50 rounded-lg">
+            <p>랙이 0에 가까우면 &rarr; 시스템이 원활하게 동작 중</p>
+            <p>
+              랙이 계속 증가하면 &rarr; 컨슈머의 처리 속도가 프로듀서를 따라가지
+              못하는 상태 (장애 또는 증설 필요)
+            </p>
+          </div>
+          <p class="mt-6 bg-yellow-50 text-yellow-800 p-3 rounded-md">
+            <strong>현재 우리의 한계:</strong> 프로듀서가 응답을 기다리지 않는
+            `emit` 방식을 사용하고 있어, UI for Kafka 대시보드에서 컨슈머 랙이
+            `N/A`로 표시됩니다. 이는 현재 시스템의 제약 사항이며, 모니터링
+            고도화를 위해 앞으로 개선해야 할 지점입니다.
+          </p>
+        </div>
+        <div class="slide-number">13 / 15</div>
+      </div>
+
+      <div id="slide-14" class="slide">
+        <h2 class="text-center mb-12 revealable">
+          현황 리뷰:
+          <span style="color: var(--toss-blue)">장점과 기술 부채</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl">
+          <div class="card revealable" style="transition-delay: 0.1s">
+            <h3 class="mb-4" style="color: var(--toss-blue)">
+              무릎을 탁 친 순간 (Pros)
+            </h3>
+            <div class="space-y-4">
+              <div>
+                <h4>✅ 위기 대응 능력 (탄력적 확장성)</h4>
+                <p class="mt-1 text-slate-600">
+                  최근 미션 등록이 급증했을 때, 컨슈머 인스턴스를 몇 대 추가하는
+                  것만으로 시스템 중단 없이 트래픽을 감당해냈습니다.
+                </p>
+              </div>
+              <div>
+                <h4>✅ 용이한 디버깅 (로그 영속성)</h4>
+                <p class="mt-1 text-slate-600">
+                  카프카는 처리된 이벤트를 보관하므로, 특정 작업 실패 시 UI
+                  대시보드를 통해 해당 메시지를 다시 보며 원인을 분석하기
+                  용이합니다.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="card revealable" style="transition-delay: 0.2s">
+            <div class="flex items-start gap-4">
+              <h3 class="mb-4 text-orange-500">개선이 필요한 지점 (Cons)</h3>
+            </div>
+            <div class="space-y-4 mt-4">
+              <div>
+                <h4>⚠️ '깜깜이' 운영 (랙 확인 불가)</h4>
+                <p class="mt-1 text-slate-600">
+                  현재 프로듀서의 `emit` 방식 때문에 컨슈머가 얼마나
+                  밀려있는지(랙)를 확인할 수 없어, 직관적인 부하 모니터링이
+                  어렵습니다.
+                </p>
+              </div>
+              <div>
+                <h4>⚠️ 되돌릴 수 없는 파티션 설정</h4>
+                <p class="mt-1 text-slate-600">
+                  과거에 순위 크롤링 토픽의 파티션이 잘못 증설되어, 현재 컨슈머
+                  수와 파티션 할당 비율이 맞지 않는 리소스 낭비가 발생하고
+                  있습니다.
+                </p>
+              </div>
+              <div>
+                <h4>⚠️ 외부 의존성으로 인한 장애</h4>
+                <p class="mt-1 text-slate-600">
+                  SEO 크롤링에 사용되는 Tor IP 갱신 과정에서 타임아웃이
+                  발생하면, 해당 컨슈머 전체가 장애로 이어지는 경우가 있습니다.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="slide-number">14 / 15</div>
+      </div>
+
+      <div id="slide-15" class="slide text-center">
+        <h2 class="mb-12 revealable">
+          우리의 과제: <span style="color: var(--toss-blue)">TODO List</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl w-full">
+          <div class="card text-left revealable" style="transition-delay: 0.1s">
+            <h4 style="color: var(--toss-blue)">1. 프로듀서 리팩토링</h4>
+            <p class="mt-1 text-slate-600">
+              `emit` 방식에서 `send` 방식으로 전환하여 `acks` 설정 및 멱등성
+              확보 방안을 모색합니다.
+            </p>
+          </div>
+          <div class="card text-left revealable" style="transition-delay: 0.2s">
+            <h4 style="color: var(--toss-blue)">
+              2. 토픽 마이그레이션 전략 수립
+            </h4>
+            <p class="mt-1 text-slate-600">
+              파티션 수가 잘못된 토픽의 데이터를 신규 토픽으로 이전하고, 기존
+              토픽을 제거하는 장기적 계획을 수립합니다.
+            </p>
+          </div>
+          <div class="card text-left revealable" style="transition-delay: 0.3s">
+            <h4 style="color: var(--toss-blue)">
+              3. Dead Letter Queue (DLQ) 도입
+            </h4>
+            <p class="mt-1 text-slate-600">
+              반복적으로 실패하는 메시지를 별도 토픽으로 분리하여, 전체 시스템의
+              안정성을 향상시킵니다.
+            </p>
+          </div>
+          <div class="card text-left revealable" style="transition-delay: 0.4s">
+            <h4 style="color: var(--toss-blue)">4. 모니터링 고도화</h4>
+            <p class="mt-1 text-slate-600">
+              컨슈머 랙(Lag)을 정밀하게 추적하고 임계치 초과 시 알림을 받는
+              시스템을 구축합니다.
+            </p>
+          </div>
+        </div>
+        <div class="slide-number">15 / 15</div>
+      </div>
+    </main>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const TOSS_BLUE = '#0064FF';
+        const TOSS_GRAY = '#202632';
+        const slides = document.querySelectorAll('.slide');
+        const sideNav = document.getElementById('side-nav');
+
+        // Create side navigation
+        slides.forEach((slide) => {
+          const dot = document.createElement('a');
+          dot.href = `#${slide.id}`;
+          dot.classList.add('nav-dot');
+
+          const tooltip = document.createElement('span');
+          tooltip.classList.add('tooltip');
+          tooltip.textContent = slide
+            .querySelector('h1, h2')
+            .innerText.split('\n')[0];
+          dot.appendChild(tooltip);
+
+          sideNav.appendChild(dot);
+        });
+        const navDots = document.querySelectorAll('.nav-dot');
+
+        // Fullscreen functionality
+        const fullscreenBtn = document.getElementById('fullscreen-btn');
+        const enterIcon = document.getElementById('fs-enter-icon');
+        const exitIcon = document.getElementById('fs-exit-icon');
+
+        function toggleFullscreen() {
+          try {
+            if (!document.fullscreenElement) {
+              document.documentElement.requestFullscreen();
+            } else if (document.exitFullscreen) {
+              document.exitFullscreen();
+            }
+          } catch (err) {
+            console.error(
+              'Fullscreen API is not supported or is disallowed by permissions policy.',
+              err,
+            );
+          }
+        }
+        fullscreenBtn.addEventListener('click', toggleFullscreen);
+        document.addEventListener('fullscreenchange', () => {
+          const isFullscreen = !!document.fullscreenElement;
+          enterIcon.classList.toggle('hidden', isFullscreen);
+          exitIcon.classList.toggle('hidden', !isFullscreen);
+        });
+
+        // Tab functionality
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+        tabs.forEach((tab) => {
+          tab.addEventListener('click', () => {
+            tabs.forEach((t) => t.classList.remove('active'));
+            tabContents.forEach((c) => c.classList.add('hidden'));
+            tab.classList.add('active');
+            const targetId = 'content-' + tab.id.substring('tab-'.length);
+            const targetContent = document.getElementById(targetId);
+            if (targetContent) {
+              targetContent.classList.remove('hidden');
+            }
+          });
+        });
+
+        // Intersection Observer for animations and nav
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              const elements = entry.target.querySelectorAll('.revealable');
+              const id = entry.target.getAttribute('id');
+              if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                elements.forEach((el) => el.classList.add('revealed'));
+
+                const activeDot = document.querySelector(
+                  `.nav-dot[href="#${id}"]`,
+                );
+                if (activeDot) {
+                  navDots.forEach((dot) => dot.classList.remove('active'));
+                  activeDot.classList.add('active');
+                }
+
+                if (id === 'slide-2') {
+                  setTimeout(() => {
+                    const adminServer =
+                      document.getElementById('bottleneck-admin');
+                    if (adminServer) adminServer.classList.add('waiting');
+                  }, 1600);
+                }
+
+                if (id === 'slide-3') {
+                  setTimeout(() => {
+                    const crawlerServer =
+                      document.getElementById('fault-crawler');
+                    if (crawlerServer) {
+                      crawlerServer.classList.add('failed');
+                      const statusText = crawlerServer.querySelector('span');
+                      if (statusText) statusText.textContent = '장애 발생';
+                    }
+                  }, 2000);
+                }
+              } else {
+                entry.target.classList.remove('active');
+                if (id === 'slide-2') {
+                  const adminServer =
+                    document.getElementById('bottleneck-admin');
+                  if (adminServer) adminServer.classList.remove('waiting');
+                }
+                if (id === 'slide-3') {
+                  const crawlerServer =
+                    document.getElementById('fault-crawler');
+                  if (crawlerServer) {
+                    crawlerServer.classList.remove('failed');
+                    const statusText = crawlerServer.querySelector('span');
+                    if (statusText) statusText.textContent = '정상 동작 중';
+                  }
+                }
+              }
+            });
+          },
+          { threshold: 0.6 },
+        );
+
+        slides.forEach((slide) => observer.observe(slide));
+
+        // Charts
+        Chart.defaults.color = TOSS_GRAY;
+        Chart.defaults.font.family = 'Pretendard';
+
+        const consumerData = {
+          labels: ['최초 순위 정보', '상품 상세 정보(SEO)', '순위 갱신 정보'],
+          datasets: [
+            {
+              label: 'Consumer 할당',
+              data: [19, 6, 4],
+              backgroundColor: [
+                TOSS_BLUE,
+                'rgba(0, 100, 255, 0.7)',
+                'rgba(0, 100, 255, 0.4)',
+              ],
+              borderColor: '#fff',
+              borderWidth: 4,
+            },
+          ],
+        };
+
+        new Chart(
+          document.getElementById('consumerDonutChart').getContext('2d'),
+          {
+            type: 'doughnut',
+            data: consumerData,
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: {
+                  display: true,
+                  position: 'bottom',
+                  labels: { padding: 20 },
+                },
+                tooltip: {
+                  callbacks: { label: (ctx) => `${ctx.label}: ${ctx.raw}대` },
+                },
+              },
+            },
+          },
+        );
+
+        new Chart(
+          document.getElementById('consumerBarChart').getContext('2d'),
+          {
+            type: 'bar',
+            data: {
+              labels: ['최초 순위', 'SEO', '순위 갱신'],
+              datasets: [
+                {
+                  label: '할당된 Consumer 수',
+                  data: [19, 6, 4],
+                  backgroundColor: [
+                    TOSS_BLUE,
+                    'rgba(0, 100, 255, 0.7)',
+                    'rgba(0, 100, 255, 0.4)',
+                  ],
+                  borderRadius: 5,
+                },
+              ],
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              scales: {
+                x: { grid: { color: '#e2e8f0' }, ticks: { color: TOSS_GRAY } },
+                y: {
+                  beginAtZero: true,
+                  grid: { color: '#e2e8f0' },
+                  ticks: { color: TOSS_GRAY },
+                },
+              },
+              plugins: { legend: { display: false } },
+            },
+          },
+        );
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>포인트크러쉬 Kafka 아키텍처 인포그래픽</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    />
+    <style>
+      :root {
+        --toss-blue: #0064ff;
+        --toss-gray: #202632;
+        --background-light: #f9fafb;
+        --text-primary: #202632;
+        --text-secondary: #4a5568;
+        --card-bg: #ffffff;
+        --border-color: #e2e8f0;
+      }
+      body {
+        font-family: 'Pretendard', sans-serif;
+        background-color: var(--background-light);
+        color: var(--text-primary);
+      }
+      .section-title {
+        color: var(--toss-blue);
+        font-weight: 800;
+        font-size: 2.25rem;
+        line-height: 2.5rem;
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+      .card {
+        background-color: var(--card-bg);
+        padding: 2rem;
+        border-radius: 1rem;
+        border: 1px solid var(--border-color);
+        box-shadow:
+          0 4px 6px -1px rgb(0 0 0 / 0.1),
+          0 2px 4px -2px rgb(0 0 0 / 0.1);
+      }
+      .kpi-card {
+        background-color: var(--toss-blue);
+        color: white;
+        padding: 1.5rem;
+        border-radius: 1rem;
+        text-align: center;
+      }
+      .flow-box {
+        border: 2px solid var(--border-color);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        text-align: center;
+        font-weight: 600;
+      }
+      .flow-arrow {
+        color: #9ca3af;
+        font-size: 2rem;
+        line-height: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="max-w-4xl mx-auto p-8">
+      <!-- Header -->
+      <header class="text-center my-16">
+        <h1 class="text-5xl font-black" style="color: var(--toss-blue)">
+          포인트크러쉬 크롤링의 심장
+        </h1>
+        <p class="text-3xl font-bold mt-2" style="color: var(--toss-gray)">
+          Kafka 아키텍처 한눈에 보기
+        </p>
+      </header>
+
+      <!-- Section 1: The Problem -->
+      <section class="my-20">
+        <h2 class="section-title">1. Kafka가 없었다면?</h2>
+        <div class="card">
+          <h3 class="text-xl font-bold text-center mb-6">
+            동기 처리의 병목 현상 시뮬레이션
+          </h3>
+          <div class="flex items-center gap-4">
+            <div class="text-center w-1/4">
+              <img
+                src="https://placehold.co/80x80/fef2f2/ef4444?text=OVERLOAD"
+                class="rounded-full mx-auto mb-2"
+              />
+              <p class="font-bold">크롤링 서버</p>
+            </div>
+            <div class="text-2xl font-bold" style="color: var(--danger-color)">
+              &rarr;
+            </div>
+            <div
+              class="text-center w-2/4 border-2 border-dashed p-4 rounded-lg border-red-400 bg-red-50"
+            >
+              <p class="font-bold">포인트크러쉬 어드민 서버</p>
+              <p class="text-sm text-red-600">(크롤링 응답 대기중...)</p>
+            </div>
+            <div class="text-2xl font-bold" style="color: var(--danger-color)">
+              &rarr;
+            </div>
+            <div class="text-center w-1/4">
+              <img
+                src="https://placehold.co/80x80/fef2f2/ef4444?text=TIMEOUT"
+                class="rounded-full mx-auto mb-2"
+              />
+              <p class="font-bold">어드민 사용자</p>
+            </div>
+          </div>
+          <p class="mt-6 text-center text-slate-600">
+            하나의 느린 크롤링 작업이 서버 전체를 마비시켜, 관련 없는 다른
+            기능까지 장애를 일으킬 수 있습니다.
+          </p>
+        </div>
+      </section>
+
+      <!-- Section 2: Our Architecture -->
+      <section class="my-20">
+        <h2 class="section-title">2. 현재 인프라 현황</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="kpi-card">
+            <p class="text-5xl font-black">1</p>
+            <p class="text-lg font-bold mt-1">Producer</p>
+          </div>
+          <div class="kpi-card">
+            <p class="text-5xl font-black">1</p>
+            <p class="text-lg font-bold mt-1">Broker</p>
+          </div>
+          <div class="kpi-card">
+            <p class="text-5xl font-black">29</p>
+            <p class="text-lg font-bold mt-1">Consumers</p>
+          </div>
+        </div>
+        <div class="card mt-8">
+          <h3 class="text-xl font-bold text-center mb-4">Consumer 역할 분배</h3>
+          <div class="h-64 w-full max-w-md mx-auto">
+            <canvas id="consumerDonutChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: How it works -->
+      <section class="my-20">
+        <h2 class="section-title">3. 워크플로우</h2>
+        <div class="space-y-4">
+          <div class="flow-box">1. 어드민: 크롤링 요청</div>
+          <div class="text-center flow-arrow">&darr;</div>
+          <div class="flow-box bg-blue-50 border-blue-300">
+            2. 프로듀서: Kafka에 이벤트 발행 (Fire-and-Forget)
+          </div>
+          <div class="text-center flow-arrow">&darr;</div>
+          <div class="flow-box">3. 컨슈머: 이벤트 수신 및 크롤링 수행</div>
+          <div class="text-center flow-arrow">&darr;</div>
+          <div class="flow-box bg-blue-50 border-blue-300">
+            4. 컨슈머: 어드민 API로 결과 보고 (콜백)
+          </div>
+          <div class="text-center flow-arrow">&darr;</div>
+          <div class="flow-box">5. 어드민: 결과 저장 및 다음 단계 진행</div>
+        </div>
+      </section>
+
+      <!-- Section 4: Core Concepts -->
+      <section class="my-20">
+        <h2 class="section-title">4. 핵심 개념 요약</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          <div>
+            <img
+              src="https://placehold.co/100x100/f0f6ff/0064FF?text=Topic"
+              class="rounded-full mx-auto mb-2"
+            />
+            <h4 class="font-bold">토픽 & 파티션</h4>
+            <p class="text-sm text-slate-600">
+              데이터를 주제별로 나누고(토픽), 병렬 처리를 위해
+              분할(파티션)합니다.
+            </p>
+          </div>
+          <div>
+            <img
+              src="https://placehold.co/100x100/f0f6ff/0064FF?text=Producer"
+              class="rounded-full mx-auto mb-2"
+            />
+            <h4 class="font-bold">프로듀서</h4>
+            <p class="text-sm text-slate-600">
+              데이터(이벤트)를 생성하여 토픽에 전송하는 역할입니다.
+            </p>
+          </div>
+          <div>
+            <img
+              src="https://placehold.co/100x100/f0f6ff/0064FF?text=Consumer"
+              class="rounded-full mx-auto mb-2"
+            />
+            <h4 class="font-bold">컨슈머</h4>
+            <p class="text-sm text-slate-600">
+              토픽의 데이터를 가져와 처리(크롤링)하는 역할입니다.
+            </p>
+          </div>
+          <div>
+            <img
+              src="https://placehold.co/100x100/f0f6ff/0064FF?text=Group"
+              class="rounded-full mx-auto mb-2"
+            />
+            <h4 class="font-bold">컨슈머 그룹</h4>
+            <p class="text-sm text-slate-600">
+              여러 컨슈머를 묶어 작업을 병렬로 분담 처리합니다.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 5: The Reality -->
+      <section class="my-20">
+        <h2 class="section-title">5. 운영 현황: 장점과 과제</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="card">
+            <h3 class="text-xl font-bold mb-4" style="color: var(--toss-blue)">
+              👍 장점 (Pros)
+            </h3>
+            <ul class="space-y-4 list-disc list-inside">
+              <li>
+                <span class="font-bold">탄력적 확장성:</span> 트래픽 급증 시
+                컨슈머 인스턴스만 추가하여 유연하게 대응 가능.
+              </li>
+              <li>
+                <span class="font-bold">운영 가시성:</span> UI 대시보드를 통해
+                메시지 흐름을 추적하고 디버깅하기 용이.
+              </li>
+              <li>
+                <span class="font-bold">로그 영속성:</span> 처리된 이벤트가
+                보관되어, 장애 발생 시 원인 분석 및 재처리가 가능.
+              </li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3 class="text-xl font-bold mb-4 text-orange-500">
+              🤔 과제 (Cons)
+            </h3>
+            <ul class="space-y-4 list-disc list-inside">
+              <li>
+                <span class="font-bold">'깜깜이' 운영:</span> `emit` 방식으로
+                인해 컨슈머 랙(부하)을 직관적으로 확인하기 어려움.
+              </li>
+              <li>
+                <span class="font-bold">되돌릴 수 없는 파티션:</span> 과거에
+                잘못 설정된 파티션 수 때문에 리소스 낭비 발생.
+              </li>
+              <li>
+                <span class="font-bold">외부 의존성:</span> Tor IP 갱신 과정의
+                타임아웃이 컨슈머 장애로 이어지는 경우 발생.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="text-center my-16 border-t pt-8">
+        <p class="font-bold" style="color: var(--toss-blue)">
+          향후 과제: 프로듀서 리팩토링, 토픽 마이그레이션, DLQ 도입, 모니터링
+          고도화
+        </p>
+        <p class="text-slate-500 mt-2">FocaskENM - Kafka Technical Seminar</p>
+      </footer>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const TOSS_BLUE = '#0064FF';
+        const TOSS_GRAY = '#202632';
+
+        Chart.defaults.font.family = 'Pretendard';
+        Chart.defaults.color = TOSS_GRAY;
+
+        const consumerData = {
+          labels: ['최초 순위 정보', '상품 상세 정보(SEO)', '순위 갱신 정보'],
+          datasets: [
+            {
+              label: 'Consumer 할당',
+              data: [19, 6, 4],
+              backgroundColor: [
+                TOSS_BLUE,
+                'rgba(0, 100, 255, 0.7)',
+                'rgba(0, 100, 255, 0.4)',
+              ],
+              borderColor: '#fff',
+              borderWidth: 4,
+            },
+          ],
+        };
+
+        new Chart(
+          document.getElementById('consumerDonutChart').getContext('2d'),
+          {
+            type: 'doughnut',
+            data: consumerData,
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: {
+                legend: {
+                  display: true,
+                  position: 'bottom',
+                  labels: { padding: 20 },
+                },
+                tooltip: {
+                  callbacks: {
+                    label: (ctx) => `${ctx.label}: ${ctx.raw}대`,
+                  },
+                },
+              },
+            },
+          },
+        );
+      });
+    </script>
+  </body>
+</html>
