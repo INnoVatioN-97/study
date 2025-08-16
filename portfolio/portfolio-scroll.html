@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>고영일 | 백엔드 개발자 포트폴리오</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" as="style" crossorigin
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"/>
+    <!-- Chosen Palette: Custom Dark Theme -->
+    <!-- Application Structure Plan: 사용자가 세로 스크롤을 통해 순차적으로 콘텐츠를 탐색하는 단일 페이지 구조를 채택했습니다. 이 방식은 이야기의 흐름을 자연스럽게 따라가도록 유도합니다. 화면 왼쪽에는 스크롤 위치에 따라 현재 섹션을 알려주는 인디케이터와, 마우스 호버 시 나타나는 사이드 내비게이션을 추가하여 사용자가 전체 구조 내에서 자신의 위치를 쉽게 파악하고 원하는 정보로 빠르게 이동할 수 있도록 설계했습니다. -->
+    <!-- Visualization & Content Choices: 1) 핵심 성과: 숫자 카운트업 애니메이션(Vanilla JS)으로 첫인상을 극대화. 2) 아키텍처 다이어그램: HTML/Tailwind로 직접 구현하여 SVG/이미지 제약사항 준수 및 웹 성능 확보. 3) Kafka 아키텍처: '스크롤리텔링' 개념을 차용한 단계별 애니메이션(Vanilla JS)으로 복잡한 정보를 쉽게 전달. 4) 기술 스택: 클릭 시 관련 프로젝트를 하이라이트하는 인터랙션(Vanilla JS)으로 기술과 경험의 연결성을 시각적으로 강조. 이 모든 선택은 정적인 정보를 동적인 경험으로 전환하여 사용자의 참여와 이해를 높이기 위해 이루어졌습니다. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            color: rgba(238, 238, 238, 0.9);
+            background-color: #222831;
+        }
+
+        .portfolio-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 6rem 2rem;
+            width: 100%;
+        }
+
+        .text-title {
+            color: #EEEEEE;
+        }
+
+        .text-body {
+            color: rgba(238, 238, 238, 0.9);
+        }
+
+        .text-secondary {
+            color: rgba(238, 238, 238, 0.7);
+        }
+
+        .bg-card {
+            background-color: #393E46;
+        }
+
+        .accent-teal {
+            color: #00ADB5;
+        }
+
+        .bg-accent-teal {
+            background-color: #00ADB5;
+        }
+
+        .border-accent-teal {
+            border-color: #00ADB5;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: #00ADB5;
+            color: #EEEEEE;
+        }
+
+        .btn-primary:hover {
+            background-color: #EEEEEE;
+            color: #222831;
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            border-color: #00ADB5;
+            color: #00ADB5;
+        }
+
+        .btn-secondary:hover {
+            background-color: #00ADB5;
+            color: #EEEEEE;
+            transform: scale(1.05);
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltip-text {
+            visibility: hidden;
+            width: 140px;
+            background-color: #000000;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 0;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -70px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .kafka-diagram-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .kafka-diagram-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tech-icon {
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .tech-icon:hover, .tech-icon.active {
+            background-color: #00ADB5;
+            color: #222831;
+            transform: scale(1.1);
+        }
+
+        .tech-tag {
+            background-color: #4A5568;
+            color: #EEEEEE;
+        }
+
+        .diagram-element-bg {
+            background-color: #4A5568;
+        }
+
+        #scroll-indicator {
+            position: fixed;
+            left: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 50;
+            pointer-events: none;
+        }
+
+        #indicator-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #EEEEEE;
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+
+        #indicator-text.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        #side-nav {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            background-color: rgba(57, 62, 70, 0.9);
+            backdrop-filter: blur(5px);
+            padding: 1rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+            opacity: 0;
+            transform: translate(-100%, -50%);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        #side-nav-hover-area:hover + #side-nav, #side-nav:hover {
+            opacity: 1;
+            transform: translate(0, -50%);
+        }
+
+        #side-nav-hover-area {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 50px;
+            height: 100%;
+            z-index: 99;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 0.5rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 0.25rem;
+            color: #EEEEEE;
+            font-weight: 500;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .nav-link.active, .nav-link:hover {
+            background-color: #00ADB5;
+            color: #222831;
+        }
+    </style>
+</head>
+<body class="w-screen">
+
+<div id="side-nav-hover-area"></div>
+<nav id="side-nav">
+    <ul>
+        <li><a href="#intro" class="nav-link">Intro</a></li>
+        <li><a href="#tech-stack" class="nav-link">Tech Stack</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#pocaskem" class="nav-link" style="padding-left: 2rem;">PocaskE&M</a></li>
+        <li><a href="#growinglab" class="nav-link" style="padding-left: 2rem;">그로잉랩</a></li>
+        <li><a href="#concent" class="nav-link" style="padding-left: 2rem;">Concent</a></li>
+        <li><a href="#brickmate" class="nav-link" style="padding-left: 2rem;">브릭메이트</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+</nav>
+
+<div id="scroll-indicator">
+    <span id="indicator-text"></span>
+</div>
+
+<main id="portfolio-container" class="relative w-full">
+    <!-- Section 1: Intro -->
+    <section id="intro" class="portfolio-section" data-title="Intro">
+        <div class="text-center">
+            <h1 class="text-5xl md:text-6xl font-bold mb-4 text-title">고영일</h1>
+            <p class="text-2xl md:text-3xl font-light mb-8 text-title">견고하고 성능 높은 백엔드 시스템을 구축합니다.</p>
+            <p class="max-w-3xl mx-auto text-lg text-secondary mb-12">
+                4년차 백엔드 개발자로서 Spring Boot, NestJS, Kafka에 특화되어 있습니다. 높은 트래픽 환경에서 시스템 성능 최적화, 인프라 비용 절감, 확장 가능한 솔루션 아키텍처
+                설계 경험을 보유하고 있습니다.
+            </p>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 max-w-4xl mx-auto">
+                <div class="tooltip p-4 bg-card border border-gray-700 rounded-lg">
+                    <h3 class="text-xl font-semibold text-secondary">API 응답 속도</h3>
+                    <p class="text-4xl font-bold accent-teal my-2"><span class="counter" data-target="96.7">0</span>% 단축
+                    </p>
+                    <span class="tooltip-text">그로잉랩 프로젝트</span>
+                </div>
+                <div class="tooltip p-4 bg-card border border-gray-700 rounded-lg">
+                    <h3 class="text-xl font-semibold text-secondary">클라우드 비용</h3>
+                    <p class="text-4xl font-bold accent-teal my-2"><span class="counter" data-target="76.6">0</span>% 절감
+                    </p>
+                    <span class="tooltip-text">Concent 프로젝트</span>
+                </div>
+                <div class="tooltip p-4 bg-card border border-gray-700 rounded-lg">
+                    <h3 class="text-xl font-semibold text-secondary">DB 안정성</h3>
+                    <p class="text-4xl font-bold accent-teal my-2">데드락 해결</p>
+                    <span class="tooltip-text">PocaskE&M 프로젝트</span>
+                </div>
+                <div class="tooltip p-4 bg-card border border-gray-700 rounded-lg">
+                    <h3 class="text-xl font-semibold text-secondary">레거시 개선</h3>
+                    <p class="text-4xl font-bold accent-teal my-2">협업 경험</p>
+                    <span class="tooltip-text">브릭메이트 프로젝트</span>
+                </div>
+            </div>
+
+            <div class="mt-16">
+                <h3 class="text-2xl font-bold text-title mb-6">목차</h3>
+                <div class="flex justify-center flex-wrap gap-4">
+                    <a href="#tech-stack" class="btn btn-primary">기술 스택</a>
+                    <a href="#projects" class="btn btn-primary">프로젝트 경험</a>
+                    <a href="#contact" class="btn btn-primary">소개 및 연락처</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Tech Stack -->
+    <section id="tech-stack" class="portfolio-section" data-title="Tech Stack">
+        <div class="w-full max-w-6xl my-auto bg-card p-8 rounded-lg shadow-lg">
+            <h2 class="text-4xl font-bold text-center mb-4 text-title">기술 스택</h2>
+            <p class="text-xl text-secondary text-center mb-12">프로젝트 목표 달성을 위해 사용한 기술들입니다. 아이콘을 클릭하여 관련 프로젝트를 확인해
+                보세요.</p>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-semibold border-b-2 border-accent-teal pb-2 mb-4 text-title">
+                            Languages</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="tech-icon p-2 px-4 border border-accent-teal rounded-full" data-tech="Java">Java</span>
+                            <span class="tech-icon p-2 px-4 border border-accent-teal rounded-full"
+                                  data-tech="TypeScript / JavaScript">TypeScript / JavaScript</span>
+                            <span class="tech-icon p-2 px-4 border border-accent-teal rounded-full" data-tech="Python">Python</span>
+                        </div>
+                    </div>
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-semibold border-b-2 border-accent-teal pb-2 mb-4 text-title">
+                            Backend</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="tech-icon p-2 px-4 border border-accent-teal rounded-full"
+                                  data-tech="Spring Boot">Spring Boot</span>
+                            <span class="tech-icon p-2 px-4 border border-accent-teal rounded-full" data-tech="NestJS">NestJS</span>
+                            <span class="tech-icon p-2 px-4 border border-accent-teal rounded-full"
+                                  data-tech="JPA">JPA</span>
+                            <span class="tech-icon p-2 px-4 border border-accent-teal rounded-full" data-tech="TypeORM">TypeORM</span>
+                        </div>
+                    </div>
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-semibold border-b-2 border-accent-teal pb-2 mb-4 text-title">Database &
+                            Caching</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="tech-icon p-2 px-4 border border-accent-teal rounded-full" data-tech="MySQL">MySQL</span>
+                            <span class="tech-icon p-2 px-4 border border-accent-teal rounded-full" data-tech="Redis">Redis</span>
+                            <span class="tech-icon p-2 px-4 border border-accent-teal rounded-full" data-tech="MongoDB">MongoDB</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-semibold border-b-2 border-accent-teal pb-2 mb-4 text-title">DevOps &
+                            Cloud</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="tech-icon p-2 px-4 border border-accent-teal rounded-full" data-tech="Docker">Docker</span>
+                            <span class="tech-icon p-2 px-4 border border-accent-teal rounded-full" data-tech="Jenkins">Jenkins</span>
+                            <span class="tech-icon p-2 px-4 border border-accent-teal rounded-full"
+                                  data-tech="AWS">AWS</span>
+                            <span class="tech-icon p-2 px-4 border border-accent-teal rounded-full"
+                                  data-tech="TencentCloud">TencentCloud</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-800 rounded-lg p-8">
+                    <h3 class="text-2xl font-bold mb-4 text-title">관련 프로젝트</h3>
+                    <div id="tech-projects" class="space-y-4">
+                        <p class="text-secondary">기술 아이콘을 클릭하면 사용된 프로젝트가 여기에 표시됩니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Projects Hub -->
+    <section id="projects" class="portfolio-section" data-title="Projects">
+        <div class="w-full max-w-7xl text-center">
+            <h2 class="text-4xl font-bold mb-4 text-title">주요 프로젝트</h2>
+            <p class="text-xl text-secondary mb-12">제가 마주했던 도전과, 그것을 해결하며 만들어낸 가치를 소개합니다.</p>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-card border border-gray-700 rounded-lg p-6 flex flex-col text-left">
+                    <h3 class="text-2xl font-bold mb-2 text-title">PocaskE&M</h3>
+                    <p class="text-lg accent-teal font-semibold mb-4">실시간 광고 플랫폼 안정성 확보</p>
+                    <p class="text-body flex-grow">대규모 트래픽으로 인한 DB 데드락 문제를 해결하고, 클라우드의 한계를 극복하기 위해 온프레미스 인프라를 직접 설계 및
+                        구축했습니다.</p>
+                    <a href="#pocaskem" class="btn btn-primary mt-6 self-start">자세히 보기</a>
+                </div>
+                <div class="bg-card border border-gray-700 rounded-lg p-6 flex flex-col text-left">
+                    <h3 class="text-2xl font-bold mb-2 text-title">그로잉랩</h3>
+                    <p class="text-lg accent-teal font-semibold mb-4">금융 데이터 플랫폼 성능 최적화</p>
+                    <p class="text-body flex-grow">MB단위의 단일 JSON 데이터 처리 구조를 RDB 기반으로 재설계하여 페이지 로딩 속도를 3초에서 100ms로 극적으로
+                        개선했습니다.</p>
+                    <a href="#growinglab" class="btn btn-primary mt-6 self-start">자세히 보기</a>
+                </div>
+                <div class="bg-card border border-gray-700 rounded-lg p-6 flex flex-col text-left">
+                    <h3 class="text-2xl font-bold mb-2 text-title">Concent 주식회사</h3>
+                    <p class="text-lg accent-teal font-semibold mb-4">소셜 미디어 앱 인프라 비용 절감</p>
+                    <p class="text-body flex-grow">비효율적인 영상 업로드 방식을 HLS 스트리밍 구조로 전환하여 월간 S3 스토리지 비용을 60만원에서 14만원으로
+                        절감했습니다.</p>
+                    <a href="#concent" class="btn btn-primary mt-6 self-start">자세히 보기</a>
+                </div>
+                <div class="bg-card border border-gray-700 rounded-lg p-6 flex flex-col text-left">
+                    <h3 class="text-2xl font-bold mb-2 text-title">브릭메이트</h3>
+                    <p class="text-lg accent-teal font-semibold mb-4">대규모 커머스 플랫폼 고도화</p>
+                    <p class="text-body flex-grow">롯데홈쇼핑에 파견되어 대규모 레거시 시스템을 유지보수하며, 대기업의 개발 프로세스와 협업 방식을 체득했습니다.</p>
+                    <a href="#brickmate" class="btn btn-primary mt-6 self-start">자세히 보기</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Project Detail - PocaskE&M -->
+    <section id="pocaskem" class="portfolio-section" data-title="PocaskE&M">
+        <div class="w-full max-w-6xl bg-card p-8 rounded-lg shadow-lg">
+            <h2 class="text-4xl font-bold mb-2 text-title">PocaskE&M: 실시간 광고 플랫폼 안정성 확보</h2>
+            <p class="text-lg text-secondary mb-8">퍼포먼스 마케팅 광고 솔루션 '포인트 크러쉬'의 기능 개발 및 유지보수를 담당했습니다.</p>
+
+            <div class="grid md:grid-cols-2 gap-8 border-y border-gray-700 py-6 my-8">
+                <div>
+                    <h4 class="text-lg font-bold mb-2 text-title">주요 담당 분야</h4>
+                    <ul class="list-disc list-inside space-y-2 text-body">
+                        <li>Express 기반 리워드 앱 서버 개발 및 운영</li>
+                        <li>기존 Kafka 기반 크롤링 인프라 유지보수 및 고도화</li>
+                        <li>Spring Boot 기반 배치 서버 개발</li>
+                        <li>실시간 통계 시스템 데이터 파이프라인 설계</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-2 text-title">사용 기술</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-tag text-xs font-semibold px-2.5 py-0.5 rounded-full">Express</span>
+                        <span class="tech-tag text-xs font-semibold px-2.5 py-0.5 rounded-full">NestJS</span>
+                        <span class="tech-tag text-xs font-semibold px-2.5 py-0.5 rounded-full">Spring Boot</span>
+                        <span class="tech-tag text-xs font-semibold px-2.5 py-0.5 rounded-full">JPA</span>
+                        <span class="tech-tag text-xs font-semibold px-2.5 py-0.5 rounded-full">Kafka</span>
+                        <span class="tech-tag text-xs font-semibold px-2.5 py-0.5 rounded-full">Redis</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-title">도전 과제</h3>
+                    <ul class="list-disc list-inside space-y-2 text-lg text-body">
+                        <li><span class="font-semibold text-title">DB 데드락:</span> WAS 6대, 각 8개 프로세스(총 48개 클러스터)에서 발생하는
+                            동시 요청으로 인한 DB 데드락
+                        </li>
+                        <li><span class="font-semibold text-title">인프라 한계:</span> 클라우드 환경의 제약으로 인한 크롤링 속도 저하 및 잦은 IP 차단
+                            문제
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-title">해결 방안</h3>
+                    <ul class="list-disc list-inside space-y-2 text-lg text-body">
+                        <li><span class="font-semibold text-title">이벤트 큐 도입:</span> Redis를 활용하여 쓰기 작업을 비동기 벌크 처리 방식으로
+                            전환, DB 부하 분산 및 데드락 해결
+                        </li>
+                        <li><span class="font-semibold text-title">온프레미스 인프라 구축:</span> Tor 기반 IP 우회 로직을 포함한 크롤링 인프라를 직접
+                            구축하여 데이터 수집 안정성 확보
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-16 bg-gray-800 p-8 rounded-lg">
+                <h3 class="text-2xl font-bold mb-4 text-center text-title">기술 공유: Apache Kafka 세미나</h3>
+                <p class="text-lg text-secondary mb-6 max-w-4xl mx-auto text-center">안정적인 대규모 데이터 처리를 위해 도입한 Kafka는 저희
+                    서비스의 핵심 기술 중 하나입니다. 이 기술에 대한 팀원들의 이해를 높이고 현재 적용된 아키텍처를 공유하기 위해 내부 기술 세미나를 진행했습니다.</p>
+                <div class="text-center mb-8">
+                    <a href="https://innovation-97.github.io/study/seminar/apacheKafka/kafka-ppt.html" target="_blank"
+                       class="btn btn-primary inline-block">세미나 자료 보기</a>
+                </div>
+                <div id="kafka-diagram"
+                     class="relative min-h-[250px] flex items-center justify-center space-x-2 md:space-x-4 p-4 md:p-8 border border-gray-700 rounded-lg mb-6 bg-card">
+                    <div class="kafka-diagram-item" data-step="1">
+                        <div class="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center diagram-element-bg rounded-full flex-col">
+                            <span class="text-3xl md:text-4xl">📝</span>
+                            <span class="font-bold text-sm md:text-base text-title">Producer</span>
+                        </div>
+                    </div>
+                    <div class="kafka-diagram-item text-3xl md:text-4xl font-thin text-gray-500" data-step="2">→</div>
+                    <div class="kafka-diagram-item" data-step="2">
+                        <div class="w-24 h-24 md:w-32 md:h-32 flex items-center justify-center diagram-element-bg rounded-lg flex-col">
+                            <span class="text-3xl md:text-4xl">📚</span>
+                            <span class="font-bold text-sm md:text-base text-title">Topic</span>
+                        </div>
+                    </div>
+                    <div class="kafka-diagram-item text-3xl md:text-4xl font-thin text-gray-500" data-step="3">→</div>
+                    <div class="kafka-diagram-item" data-step="3">
+                        <div class="w-24 h-24 md:w-32 md:h-32 flex items-center justify-center bg-accent-teal rounded-lg flex-col">
+                            <span class="text-3xl md:text-4xl">🏢</span>
+                            <span class="font-bold text-sm md:text-base text-title">Broker</span>
+                        </div>
+                    </div>
+                    <div class="kafka-diagram-item text-3xl md:text-4xl font-thin text-gray-500" data-step="4">→</div>
+                    <div class="kafka-diagram-item" data-step="4">
+                        <div class="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center diagram-element-bg rounded-full flex-col">
+                            <span class="text-3xl md:text-4xl">📥</span>
+                            <span class="font-bold text-sm md:text-base text-title">Consumer</span>
+                        </div>
+                    </div>
+                </div>
+                <p id="kafka-caption"
+                   class="text-lg h-8 transition-opacity duration-300 text-center text-secondary"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Project Detail - 그로잉랩 -->
+    <section id="growinglab" class="portfolio-section" data-title="그로잉랩">
+        <div class="w-full max-w-6xl my-auto bg-card p-8 rounded-lg shadow-lg">
+            <h2 class="text-4xl font-bold mb-2 text-title">그로잉랩: 금융 데이터 플랫폼 성능 최적화</h2>
+            <p class="text-lg text-secondary mb-8">개인 투자자를 위한 데이터 분석 플랫폼 '버틀러'의 백엔드, 관리자 페이지, 모바일 앱 개발을 담당했습니다.</p>
+
+            <div class="grid md:grid-cols-2 gap-8 border-y border-gray-700 py-6 my-8">
+                <div>
+                    <h4 class="text-lg font-bold mb-2 text-title">주요 담당 분야</h4>
+                    <ul class="list-disc list-inside space-y-2 text-body">
+                        <li>Express/Hapi 레거시 백엔드를 NestJS(TypeORM)로 마이그레이션</li>
+                        <li>Github Packages를 활용한 공통 TypeORM 모델 라이브러리 개발</li>
+                        <li>React 기반 관리자 페이지 기능 개발</li>
+                        <li>React Native 기반 하이브리드 앱(iOS/Android) 개발</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-2 text-title">사용 기술</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-tag text-xs font-semibold px-2.5 py-0.5 rounded-full">NestJS</span>
+                        <span class="tech-tag text-xs font-semibold px-2.5 py-0.5 rounded-full">TypeORM</span>
+                        <span class="tech-tag text-xs font-semibold px-2.5 py-0.5 rounded-full">React</span>
+                        <span class="tech-tag text-xs font-semibold px-2.5 py-0.5 rounded-full">React Native</span>
+                        <span class="tech-tag text-xs font-semibold px-2.5 py-0.5 rounded-full">MySQL</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-title">도전 과제</h3>
+                    <ul class="list-disc list-inside space-y-2 text-lg text-body">
+                        <li><span class="font-semibold text-title">느린 로딩 속도:</span> S3에서 대용량 모놀리식 JSON 파일을 로드하는 구조로 인한
+                            3초 이상의 응답 시간
+                        </li>
+                        <li><span class="font-semibold text-title">유지보수성 저하:</span> Express, Hapi로 분산된 레거시 백엔드 구조</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-title">해결 방안</h3>
+                    <ul class="list-disc list-inside space-y-2 text-lg text-body">
+                        <li><span class="font-semibold text-title">API 분리:</span> 모놀리식 JSON 구조를 RDB 기반의 도메인별 API로 분리하여
+                            로딩 속도를 100ms대로 개선
+                        </li>
+                        <li><span class="font-semibold text-title">백엔드 통합:</span> 분산된 백엔드를 NestJS로 통합 마이그레이션하여 개발 생산성 및
+                            유지보수성 향상
+                        </li>
+                        <li><span class="font-semibold text-title">코드 재사용:</span> Github Packages를 도입하여 공통 TypeORM 모델을
+                            라이브러리화하고 코드 중복 제거
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Project Detail - Concent -->
+    <section id="concent" class="portfolio-section" data-title="Concent">
+        <div class="w-full max-w-6xl my-auto bg-card p-8 rounded-lg shadow-lg">
+            <h2 class="text-4xl font-bold mb-2 text-title">Concent: 소셜 미디어 앱 인프라 비용 절감</h2>
+            <p class="text-lg text-secondary mb-8">말풍선 기반 소셜미디어 앱 'PerMirth'의 백엔드와 React Native 클라이언트 개발을 담당했습니다.</p>
+
+            <div class="grid md:grid-cols-2 gap-8 border-y border-gray-700 py-6 my-8">
+                <div>
+                    <h4 class="text-lg font-bold mb-2 text-title">주요 담당 분야</h4>
+                    <ul class="list-disc list-inside space-y-2 text-body">
+                        <li>HLS 스트리밍 도입을 통한 S3 비용 최적화</li>
+                        <li>React Native 기반 앱 클라이언트 개발</li>
+                        <li>CodePush를 활용한 앱 실시간 업데이트 적용</li>
+                        <li>FFMPEG를 이용한 모바일 영상 인코딩 기능 구현</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-2 text-title">사용 기술</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-tag text-xs font-semibold px-2.5 py-0.5 rounded-full">Spring Boot</span>
+                        <span class="tech-tag text-xs font-semibold px-2.5 py-0.5 rounded-full">JPA</span>
+                        <span class="tech-tag text-xs font-semibold px-2.5 py-0.5 rounded-full">React Native</span>
+                        <span class="tech-tag text-xs font-semibold px-2.5 py-0.5 rounded-full">MongoDB</span>
+                        <span class="tech-tag text-xs font-semibold px-2.5 py-0.5 rounded-full">AWS S3</span>
+                        <span class="tech-tag text-xs font-semibold px-2.5 py-0.5 rounded-full">CodePush</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-title">도전 과제</h3>
+                    <p class="text-lg text-body">원본 영상 업로드 방식으로 인해 월간 청구되는 S3 비용 <span
+                            class="inline-block font-bold text-5xl accent-teal mx-2">60만원</span>은 스타트업에게 상당한 재정적
+                        부담이었습니다.</p>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-title">해결 방안</h3>
+                    <p class="text-lg text-body">HLS(HTTP Live Streaming) 기반 스트리밍 구조를 도입했습니다. 원본 영상을 업로드하는 대신, 영상을 .m3u8
+                        플레이리스트와 .ts 세그먼트 파일로 분할하여 업로드하도록 전환하여 스토리지 사용량과 트래픽 비용을 최적화했습니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: Project Detail - Brickmate -->
+    <section id="brickmate" class="portfolio-section" data-title="브릭메이트">
+        <div class="w-full max-w-6xl my-auto bg-card p-8 rounded-lg shadow-lg">
+            <h2 class="text-4xl font-bold mb-2 text-title">브릭메이트: 롯데홈쇼핑 플랫폼 고도화</h2>
+            <p class="text-lg text-secondary mb-8">롯데홈쇼핑에 고객사 파견 근무하며 대규모 레거시 커머스 플랫폼의 유지보수 및 기능 개발을 담당했습니다.</p>
+
+            <div class="grid md:grid-cols-2 gap-8 border-y border-gray-700 py-6 my-8">
+                <div>
+                    <h4 class="text-lg font-bold mb-2 text-title">주요 경험</h4>
+                    <ul class="list-disc list-inside space-y-2 text-body">
+                        <li>대기업의 표준 개발 프로세스 및 스크럼 방식 체득</li>
+                        <li>명확하게 구분된 역할과 책임을 기반으로 한 협업 방식 학습</li>
+                        <li>레거시 시스템 분석 및 안정적인 유지보수 역량 강화</li>
+                        <li>대규모 트래픽 환경에서의 장애 대응 및 이슈 관리 경험</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-bold mb-2 text-title">사용 기술</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tech-tag text-xs font-semibold px-2.5 py-0.5 rounded-full">Spring Boot</span>
+                        <span class="tech-tag text-xs font-semibold px-2.5 py-0.5 rounded-full">JSP</span>
+                        <span class="tech-tag text-xs font-semibold px-2.5 py-0.5 rounded-full">jQuery</span>
+                        <span class="tech-tag text-xs font-semibold px-2.5 py-0.5 rounded-full">MyBatis</span>
+                        <span class="tech-tag text-xs font-semibold px-2.5 py-0.5 rounded-full">MySQL</span>
+                    </div>
+                </div>
+            </div>
+            <p class="text-lg text-body">신입 개발자 시기에 경험한 이 프로젝트는 기술적 성장보다는, 대규모 조직이 어떻게 협업하고 시스템을 안정적으로 운영하는지에 대한 귀중한
+                인사이트를 얻는 기회였습니다. 이때 배운 체계적인 협업 방식과 책임감은 이후 스타트업 환경에서 주도적으로 프로젝트를 이끌어 나가는 데 튼튼한 기반이 되었습니다.</p>
+        </div>
+    </section>
+
+    <!-- Section 7: About & Contact -->
+    <section id="contact" class="portfolio-section" data-title="Contact">
+        <div class="text-center my-auto max-w-3xl">
+            <h2 class="text-4xl font-bold mb-4 text-title">함께 성장할 기회를 기다립니다.</h2>
+            <p class="text-xl text-secondary mb-8">문제를 끝까지 파고들어 실질적인 개선을 만들어내는 것에 큰 보람을 느낍니다. 저의 경험과 기술이 귀사의 비즈니스에 기여할 수
+                있다고 확신합니다.</p>
+            <p class="text-xl text-secondary mb-12">언제든지 편하게 연락 주세요.</p>
+
+            <div class="mt-12 w-full max-w-lg mx-auto">
+                <table class="w-full text-left text-lg">
+                    <tbody>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-4 font-bold text-secondary w-1/4">Email</td>
+                        <td class="py-4"><a href="mailto:koyoungil97@gmail.com"
+                                            class="hover:accent-teal font-semibold text-title">koyoungil97@gmail.com</a>
+                        </td>
+                    </tr>
+                    <tr class="border-b border-gray-700">
+                        <td class="py-4 font-bold text-secondary">GitHub</td>
+                        <td class="py-4"><a href="https://github.com/INnoVatioN-97" target="_blank"
+                                            class="hover:accent-teal font-semibold text-title">github.com/INnoVatioN-97</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="py-4 font-bold text-secondary">Phone</td>
+                        <td class="py-4"><span class="font-semibold text-title">+82-10-5283-4392</span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const sections = document.querySelectorAll('.portfolio-section');
+        const indicatorText = document.getElementById('indicator-text');
+        const navLinks = document.querySelectorAll('.nav-link');
+        let indicatorTimeout;
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const navLink = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+                if (entry.isIntersecting) {
+                    const newTitle = entry.target.getAttribute('data-title');
+
+                    indicatorText.textContent = newTitle;
+                    indicatorText.classList.add('show');
+
+                    clearTimeout(indicatorTimeout);
+                    indicatorTimeout = setTimeout(() => {
+                        indicatorText.classList.remove('show');
+                    }, 1500);
+
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    if (navLink) navLink.classList.add('active');
+
+                    if (entry.target.id === 'intro') {
+                        startCounters();
+                    }
+                    if (entry.target.id === 'pocaskem') {
+                        startKafkaAnimation();
+                    }
+                } else {
+                    if (navLink) navLink.classList.remove('active');
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        function startCounters() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                if (counter.dataset.counted) return;
+                counter.dataset.counted = true;
+
+                const target = +counter.getAttribute('data-target');
+                const duration = 1500;
+                const increment = target / (duration / 10);
+
+                let current = 0;
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.innerText = current.toFixed(1);
+                        setTimeout(updateCounter, 10);
+                    } else {
+                        counter.innerText = target.toFixed(1);
+                    }
+                };
+                updateCounter();
+            });
+        }
+
+        let kafkaAnimationTimeout;
+
+        function startKafkaAnimation() {
+            const items = document.querySelectorAll('.kafka-diagram-item');
+            const caption = document.getElementById('kafka-caption');
+            const captions = [
+                "1. Producer가 데이터를 생성합니다.",
+                "2. 데이터(메시지)는 Topic으로 전송됩니다.",
+                "3. Broker 클러스터가 데이터를 분산 저장합니다.",
+                "4. Consumer 그룹이 데이터를 가져와 처리합니다."
+            ];
+            let step = 0;
+
+            clearTimeout(kafkaAnimationTimeout);
+            items.forEach(item => item.classList.remove('visible'));
+            caption.textContent = '';
+
+            function showNextStep() {
+                step++;
+                if (step > 4) {
+                    step = 0;
+                    items.forEach(item => item.classList.remove('visible'));
+                    setTimeout(showNextStep, 1000);
+                    return;
+                }
+
+                const currentItems = document.querySelectorAll(`.kafka-diagram-item[data-step="${step}"]`);
+                currentItems.forEach(item => item.classList.add('visible'));
+
+                if (captions[step - 1]) {
+                    caption.textContent = captions[step - 1];
+                }
+
+                kafkaAnimationTimeout = setTimeout(showNextStep, 1500);
+            }
+
+            showNextStep();
+        }
+
+        const techData = {
+            'Java': ['그로잉랩', 'Concent', '브릭메이트'],
+            'TypeScript / JavaScript': ['PocaskE&M', '그로잉랩', 'Concent', '브릭메이트'],
+            'Python': ['PocaskE&M'],
+            'Spring Boot': ['PocaskE&M', 'Concent', '브릭메이트'],
+            'NestJS': ['PocaskE&M', '그로잉랩'],
+            'JPA': ['PocaskE&M', 'Concent'],
+            'TypeORM': ['그로잉랩'],
+            'MySQL': ['PocaskE&M', '그로잉랩', '브릭메이트'],
+            'Redis': ['PocaskE&M', '그로잉랩'],
+            'MongoDB': ['Concent'],
+            'Docker': ['PocaskE&M', '그로잉랩'],
+            'Jenkins': ['PocaskE&M'],
+            'AWS': ['그로잉랩', 'Concent'],
+            'TencentCloud': ['PocaskE&M']
+        };
+
+        const techIcons = document.querySelectorAll('.tech-icon');
+        const techProjectsContainer = document.getElementById('tech-projects');
+
+        techIcons.forEach(icon => {
+            icon.addEventListener('click', () => {
+                techIcons.forEach(i => i.classList.remove('active'));
+                icon.classList.add('active');
+
+                const techName = icon.dataset.tech;
+                const projects = techData[techName] || [];
+
+                if (projects.length > 0) {
+                    techProjectsContainer.innerHTML = projects.map(p => `
+                            <div class="bg-gray-800 p-4 rounded-md shadow-sm">
+                                <p class="font-bold text-lg text-title">${p}</p>
+                            </div>
+                        `).join('');
+                } else {
+                    techProjectsContainer.innerHTML = '<p class="text-secondary">관련 프로젝트 정보가 없습니다.</p>';
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
