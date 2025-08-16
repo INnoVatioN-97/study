@@ -341,7 +341,7 @@
                     </div>
                 </div>
                 <div class="bg-gray-800 rounded-lg p-8">
-                    <h3 class="text-2xl font-bold mb-4 text-title">관련 회사</h3>
+                    <h3 class="text-2xl font-bold mb-4 text-title">관련 프로젝트</h3>
                     <div id="tech-projects" class="space-y-4">
                         <p class="text-secondary">기술 아이콘을 클릭하면 사용된 프로젝트가 여기에 표시됩니다.</p>
                     </div>
@@ -438,6 +438,46 @@
                             구축하여 데이터 수집 안정성 확보
                         </li>
                     </ul>
+                </div>
+            </div>
+
+            <div class="mt-12">
+                <h3 class="text-center text-2xl font-bold mb-6 text-title">Before & After: 아키텍처 개선</h3>
+                <div class="grid md:grid-cols-2 gap-8 items-start">
+                    <div class="border border-gray-700 rounded-lg p-4 bg-gray-800">
+                        <h4 class="text-xl font-semibold text-center mb-4 text-title">Before: 직접 DB 접근</h4>
+                        <div class="flex flex-col items-center space-y-2 text-sm">
+                            <div class="bg-gray-600 border-gray-500 border p-3 rounded-lg w-48 text-center text-title">
+                                클라이언트 요청
+                            </div>
+                            <div class="font-bold text-2xl text-secondary">↓</div>
+                            <div class="bg-gray-600 border-gray-500 border p-3 rounded-lg w-48 text-center text-title">
+                                API 서버 (동시 처리)
+                            </div>
+                            <div class="font-bold text-2xl text-secondary">↓</div>
+                            <div class="bg-red-500 text-white p-3 rounded-lg w-48 text-center font-bold">DB 병목 & 데드락
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border border-gray-700 rounded-lg p-4 bg-gray-800">
+                        <h4 class="text-xl font-semibold text-center mb-4 text-title">After: 이벤트 큐 도입</h4>
+                        <div class="flex flex-col items-center space-y-2 text-sm text-title">
+                            <div class="bg-gray-600 border-gray-500 border p-3 rounded-lg w-48 text-center">클라이언트 요청
+                            </div>
+                            <div class="font-bold text-2xl text-secondary">↓</div>
+                            <div class="bg-gray-600 border-gray-500 border p-3 rounded-lg w-48 text-center">API 서버</div>
+                            <div class="font-bold text-2xl text-secondary">↓</div>
+                            <div class="bg-accent-teal border-teal-400 border p-3 rounded-lg w-48 text-center font-bold">
+                                Redis 이벤트 큐
+                            </div>
+                            <div class="font-bold text-2xl text-secondary">↓</div>
+                            <div class="bg-gray-600 border-gray-500 border p-3 rounded-lg w-48 text-center">배치 프로세서
+                            </div>
+                            <div class="font-bold text-2xl text-secondary">↓</div>
+                            <div class="bg-green-500 text-white p-3 rounded-lg w-48 text-center font-bold">안정적인 DB 쓰기
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -680,19 +720,37 @@
                     }, 1500);
 
                     navLinks.forEach(link => link.classList.remove('active'));
-                    if (navLink) navLink.classList.add('active');
+                    if (navLink) {
+                        // For project details, highlight the main "Projects" link as well
+                        if (['pocaskem', 'growinglab', 'concent', 'brickmate'].includes(entry.target.id)) {
+                            document.querySelector('.nav-link[href="#projects"]').classList.add('active');
+                        }
+                        navLink.classList.add('active');
+                    }
+
 
                     if (entry.target.id === 'intro') {
                         startCounters();
-                    }
-                    if (entry.target.id === 'pocaskem') {
-                        startKafkaAnimation();
                     }
                 } else {
                     if (navLink) navLink.classList.remove('active');
                 }
             });
         }, observerOptions);
+
+        const kafkaDiagram = document.getElementById('kafka-diagram');
+        const kafkaObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    startKafkaAnimation();
+                    kafkaObserver.unobserve(entry.target);
+                }
+            });
+        }, {threshold: 0.5});
+
+        if (kafkaDiagram) {
+            kafkaObserver.observe(kafkaDiagram);
+        }
 
         sections.forEach(section => {
             observer.observe(section);
