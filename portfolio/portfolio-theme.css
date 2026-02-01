@@ -16,6 +16,16 @@
 
     --color-accent: #3182f6; /* Toss Blue */
     --color-border: #333d4b; /* Subtle Dark Border */
+
+    /* Typography Sizes (Global Variables) */
+    --fs-display: 3rem; /* Main Cover Title */
+    --fs-h2: 2.25rem; /* Page Headers (text-4xl equiv) */
+    --fs-h3: 1.25rem; /* Card Titles (text-xl equiv) */
+    --fs-h4: 1.15rem; /* Subtitles */
+    --fs-body: 1rem; /* Standard readability */
+    /* --fs-body: 0.95rem; Standard readability */
+    --fs-sm: 0.95rem; /* List items, details */
+    --fs-xs: 0.85rem; /* Dates, tags, badges */
 }
 
 /* General Styles */
@@ -24,6 +34,7 @@ body {
     color: var(--color-text-body);
     background-color: var(--color-bg-main);
     margin: 0;
+    font-size: var(--fs-body);
 }
 
 /* Strict Page/Slide Layout */
@@ -76,6 +87,16 @@ body {
     word-break: keep-all;
 }
 
+.text-sm {
+    font-size: var(--fs-sm) !important;
+}
+.text-xs {
+    font-size: var(--fs-xs) !important;
+}
+.text-lg {
+    font-size: 1.125rem !important;
+} /* Minor adjustment for subtitles */
+
 .bg-card {
     background-color: var(--color-bg-card);
 }
@@ -122,27 +143,29 @@ body {
 
 /* Typography Scaling */
 h1 {
-    font-size: 3rem !important;
+    font-size: var(--fs-display) !important;
     line-height: 1.1;
     margin-bottom: 1rem;
 }
 h2 {
-    font-size: 2rem !important;
+    font-size: var(--fs-h2) !important;
     margin-bottom: 2rem;
 }
 h3 {
-    font-size: 1.25rem !important;
+    font-size: var(--fs-h3) !important;
     margin-bottom: 0.5rem;
 }
 h4 {
-    font-size: 1rem !important;
+    font-size: var(--fs-h4) !important;
     margin-bottom: 0.25rem;
 }
 p,
 li {
-    font-size: 0.9rem;
+    font-size: var(--fs-body);
     line-height: 1.5;
 }
+
+/* Override specifics handled by utilities if needed, but basic tags set defaults */
 
 .tech-icon-large {
     font-size: 2.5rem;
@@ -156,7 +179,7 @@ li {
     border-radius: 9999px; /* Fully rounded (Chip style) */
     background-color: #333d4b; /* Darker than card, lighter than bg-main */
     color: #f2f4f6; /* Bright text */
-    font-size: 0.8rem;
+    font-size: var(--fs-xs); /* Use variable */
     font-weight: 500;
     margin-right: 0.35rem;
     margin-bottom: 0.35rem;
