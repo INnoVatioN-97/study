@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>고영일 | 5년 차 백엔드 개발자 포트폴리오 (PDF)</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            rel="stylesheet"
+            as="style"
+            crossorigin
+            href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+        />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
+
+        <style>
+            /* General Styles */
+            body {
+                font-family: 'Pretendard', sans-serif;
+                color: #e2e8f0;
+                background-color: #1a202c;
+                margin: 0;
+                /* overflow-x: hidden; */ /* Removing hidden to allow print to work properly if needed, but keeping generally */
+            }
+
+            /* 
+                Strict Page/Slide Layout for PDF 
+                User Request: "Absolutely adhere to height"
+            */
+            .portfolio-page {
+                position: relative;
+                width: 100vw; /* Standard A4 Landscape ratio or Screen */
+                height: 100vh; /* Strict height */
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 2.5rem; /* Tighter padding to fit content */
+                box-sizing: border-box;
+                page-break-after: always;
+                break-after: page;
+                background-color: #1a202c;
+                border-bottom: none;
+                overflow: hidden; /* Cut off if too long to force layout discipline */
+            }
+
+            /* Print Specifics */
+            @media print {
+                @page {
+                    size: landscape;
+                    margin: 0;
+                }
+                body {
+                    -webkit-print-color-adjust: exact;
+                    print-color-adjust: exact;
+                    background-color: #1a202c;
+                }
+                .portfolio-page {
+                    height: 100vh;
+                    width: 100vw;
+                    page-break-after: always;
+                    break-after: page;
+                }
+            }
+
+            /* Design System (Matching portfolio-scroll.html) */
+            .text-title {
+                color: #edf2f7;
+            }
+            .text-body {
+                color: #e2e8f0;
+                word-break: keep-all;
+            }
+            .text-secondary {
+                color: #a0aec0;
+                word-break: keep-all;
+            }
+            .bg-card {
+                background-color: #2d3748;
+            }
+            .bg-sub {
+                background-color: #171923;
+            }
+            .accent-cyan {
+                color: #00e5ff;
+            }
+            .border-accent-cyan {
+                border-color: #00e5ff;
+            }
+
+            /* Card Styles */
+            .card-box {
+                background-color: #2d3748;
+                border: 1px solid #4a5568;
+                border-radius: 0.5rem;
+                padding: 1.25rem; /* Reduced padding */
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            }
+            .card-box-sub {
+                background-color: #171923;
+                border: 1px solid #4a5568;
+                border-radius: 0.5rem;
+                padding: 1rem; /* Compact padding */
+            }
+
+            /* Layout Grids */
+            .grid-2 {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem; /* Tighter gap */
+                width: 100%;
+                max-width: 1200px;
+            }
+            .grid-4 {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 1.5rem;
+                width: 100%;
+            }
+
+            /* Typography Scaling */
+            h1 {
+                font-size: 3rem !important;
+                line-height: 1.1;
+                margin-bottom: 1rem;
+            }
+            h2 {
+                font-size: 2rem !important;
+                margin-bottom: 2rem;
+            }
+            h3 {
+                font-size: 1.25rem !important;
+                margin-bottom: 0.5rem;
+            }
+            h4 {
+                font-size: 1rem !important;
+                margin-bottom: 0.25rem;
+            }
+            p,
+            li {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+            /* Smaller base font to fit dense info */
+
+            .tech-icon-large {
+                font-size: 2.5rem;
+                color: #a0aec0;
+            }
+            .badge {
+                display: inline-block;
+                padding: 0.25rem 0.5rem;
+                border-radius: 0.25rem;
+                background-color: #4a5568;
+                color: #e2e8f0;
+                font-size: 0.75rem;
+                margin-right: 0.25rem;
+                margin-bottom: 0.25rem;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Slide 1: Intro / Summary -->
+        <section class="portfolio-page">
+            <div class="flex flex-col items-center text-center max-w-5xl">
+                <div class="mb-2">
+                    <!-- Optional: Add a subtle profile image placeholder or layout if desired, keeping text focus for now as per previous -->
+                </div>
+                <h1 class="text-title font-bold">고영일</h1>
+                <h2 class="text-secondary font-light mb-6">문제를 구조적으로 해결하는 5년 차 백엔드 개발자</h2>
+                <div
+                    class="max-w-4xl mx-auto mb-10 text-lg text-body space-y-4 text-left bg-card p-6 rounded-lg border border-gray-600"
+                >
+                    <p>
+                        기능 구현보다
+                        <strong class="text-accent-cyan">운영 중 반복되는 문제를 구조적으로 제거</strong>하는 데
+                        집중해왔습니다. 대규모 트래픽 환경에서 DB 데드락, 성능 병목, 비용 급증 문제를 직접 해결하며 API
+                        응답 속도 개선과 인프라 비용 최적화를 수행했습니다.
+                    </p>
+                    <p>
+                        Spring Boot와 Node.js를 주력으로 광고 솔루션과 데이터 수집 서비스를 개발·운영했으며, 최근에는
+                        <strong class="text-accent-cyan">클라우드·온프레미스 혼합 아키텍처</strong>를 도입해 인프라
+                        비용을 76% 절감했습니다.
+                    </p>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-4 gap-6 w-full">
+                    <div class="card-box text-center">
+                        <h3 class="text-secondary font-semibold text-base">API 응답 속도</h3>
+                        <p class="text-3xl font-bold accent-cyan my-1">
+                            96%<span class="text-lg text-gray-400"> 개선</span>
+                        </p>
+                        <p class="text-xs text-secondary mt-1">3s → 100ms</p>
+                    </div>
+                    <div class="card-box text-center">
+                        <h3 class="text-secondary font-semibold text-base">인프라 비용</h3>
+                        <p class="text-3xl font-bold accent-cyan my-1">
+                            76%<span class="text-lg text-gray-400"> 절감</span>
+                        </p>
+                        <p class="text-xs text-secondary mt-1">월 3000만 → 최적화</p>
+                    </div>
+                    <div class="card-box text-center">
+                        <h3 class="text-secondary font-semibold text-base">DB 안정성</h3>
+                        <p class="text-3xl font-bold accent-cyan my-1">Deadlock</p>
+                        <p class="text-xs text-secondary mt-1">이벤트 큐 도입으로 해결</p>
+                    </div>
+                    <div class="card-box text-center">
+                        <h3 class="text-secondary font-semibold text-base">생산성</h3>
+                        <p class="text-3xl font-bold accent-cyan my-1">Automation</p>
+                        <p class="text-xs text-secondary mt-1">n8n / AI 워크플로우</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 2: Core Projects Overview -->
+        <section class="portfolio-page">
+            <div class="w-full max-w-7xl h-full flex flex-col justify-center">
+                <h2 class="text-title font-bold text-center mb-8">핵심 경력 요약</h2>
+                <div class="grid-2 h-[70vh]">
+                    <!-- Row 1 -->
+                    <div class="card-box flex flex-col">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-title font-bold text-xl">PocaskE&M</h3>
+                            <span class="text-xs text-secondary border border-gray-600 px-2 py-1 rounded"
+                                >2024.11 - 현재</span
+                            >
+                        </div>
+                        <p class="accent-cyan font-semibold mb-3 text-sm">풀스택 개발 매니저 (글로벌 애드테크)</p>
+                        <ul class="list-disc list-inside text-sm text-secondary space-y-1 flex-grow">
+                            <li>광고 리워드 앱 'Pokit' 및 솔루션 '포인트 크러쉬' 개발</li>
+                            <li>Kafka 기반 크롤링 인프라 고도화 및 이원화</li>
+                            <li>대규모 트래픽 광고 시스템 안정성 확보</li>
+                        </ul>
+                    </div>
+                    <div class="card-box flex flex-col">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-title font-bold text-xl">그로잉랩</h3>
+                            <span class="text-xs text-secondary border border-gray-600 px-2 py-1 rounded"
+                                >2023.04 - 2024.08</span
+                            >
+                        </div>
+                        <p class="accent-cyan font-semibold mb-3 text-sm">백엔드 개발팀 (투자비서 버틀러)</p>
+                        <ul class="list-disc list-inside text-sm text-secondary space-y-1 flex-grow">
+                            <li>투자 정보 서비스 '버틀러' 백엔드 및 앱 개발</li>
+                            <li>Express → NestJS 마이그레이션 주도</li>
+                            <li>금융 데이터 수집 파이프라인 성능 96% 최적화</li>
+                        </ul>
+                    </div>
+                    <!-- Row 2 -->
+                    <div class="card-box flex flex-col">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-title font-bold text-xl">Concent</h3>
+                            <span class="text-xs text-secondary border border-gray-600 px-2 py-1 rounded"
+                                >2022.06 - 2023.04</span
+                            >
+                        </div>
+                        <p class="accent-cyan font-semibold mb-3 text-sm">풀스택 개발팀 (소셜 미디어)</p>
+                        <ul class="list-disc list-inside text-sm text-secondary space-y-1 flex-grow">
+                            <li>소셜 미디어 앱 'PerMirth' 풀스택 개발</li>
+                            <li>HLS 스트리밍 도입으로 인프라 비용 76% 절감</li>
+                            <li>CodePush 기반 핫픽스 파이프라인 구축</li>
+                        </ul>
+                    </div>
+                    <div class="card-box flex flex-col">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-title font-bold text-xl">브릭메이트</h3>
+                            <span class="text-xs text-secondary border border-gray-600 px-2 py-1 rounded"
+                                >2021.12 - 2022.06</span
+                            >
+                        </div>
+                        <p class="accent-cyan font-semibold mb-3 text-sm">백엔드 개발 (커머스/SI)</p>
+                        <ul class="list-disc list-inside text-sm text-secondary space-y-1 flex-grow">
+                            <li>롯데홈쇼핑 대규모 레거시 커머스 플랫폼 유지보수</li>
+                            <li>터널 공사 현장 자동화 시스템 1인 풀스택 개발</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: PocaskE&M Detail (Updated with Resume) -->
+        <section class="portfolio-page">
+            <div class="w-full max-w-7xl h-full flex flex-col justify-center">
+                <div class="flex items-end gap-4 mb-6 border-b border-gray-700 pb-4">
+                    <h2 class="text-title font-bold m-0">PocaskE&M</h2>
+                    <span class="text-lg text-secondary pb-1">광고 솔루션 및 데이터 인프라 고도화</span>
+                </div>
+
+                <div class="grid-2 h-full max-h-[75vh]">
+                    <!-- Left Col -->
+                    <div class="flex flex-col gap-4 h-full">
+                        <div class="card-box-sub flex-1">
+                            <h3 class="text-title font-bold mb-2">광고 리워드 앱 'Pokit' (앱인토스 입점)</h3>
+                            <div class="flex flex-wrap gap-2 mb-2">
+                                <span class="badge">Spring Boot</span>
+                                <span class="badge">MyBatis</span>
+                                <span class="badge">Redis</span>
+                            </div>
+                            <ul class="list-disc list-inside space-y-2 text-sm text-body">
+                                <li><strong>앱인토스 미니앱 입점</strong>을 통해 송출 광고 건수 폭발적 증가 대응</li>
+                                <li>
+                                    기프티콘 및 NPay 포인트 교환 모듈 개발 및 <strong>포인트 적립 시스템 설계</strong>
+                                </li>
+                                <li>자사 리워드앱 & 미니앱 동시 대응을 위한 적립 시스템 이원화 적용</li>
+                            </ul>
+                        </div>
+                        <div class="card-box-sub flex-1">
+                            <h3 class="text-title font-bold mb-2">광고 솔루션 '포인트 크러쉬' 안정화</h3>
+                            <div class="flex flex-wrap gap-2 mb-2">
+                                <span class="badge">Express</span>
+                                <span class="badge">Redis Queue</span>
+                            </div>
+                            <ul class="list-disc list-inside space-y-2 text-sm text-body">
+                                <li>
+                                    일일 광고 10만 → 50만 건 급증 상황에서 <strong>DB 데드락 해결</strong> (Redis 큐
+                                    도입)
+                                </li>
+                                <li>동기 처리되던 부가 프로세스를 <strong>비동기 벌크 처리</strong>로 전환</li>
+                                <li>피크 타임 DB CPU 사용률 90% → 안정적 수준으로 감소</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Right Col -->
+                    <div class="flex flex-col gap-4 h-full">
+                        <div class="card-box-sub flex-1">
+                            <h3 class="text-title font-bold mb-2">Kafka 기반 크롤링 인프라 고도화</h3>
+                            <div class="flex flex-wrap gap-2 mb-2">
+                                <span class="badge">Apache Kafka</span>
+                                <span class="badge">Mac Mini Server</span>
+                                <span class="badge">UI for Kafka</span>
+                            </div>
+                            <ul class="list-disc list-inside space-y-2 text-sm text-body">
+                                <li><strong>클라우드·온프레미스(Mac) 하이브리드 아키텍처</strong> 설계로 비용 절감</li>
+                                <li>Tor 기반 IP 우회 로직 구성 및 크롤링 Consumer 최적화</li>
+                                <li>고성능 온프레미스 서버 도입으로 <strong>시간당 처리량 증대</strong></li>
+                                <li>
+                                    Emit 방식을 <strong>Send + Manual Commit</strong>으로 전환하여 메시지 유실 원천 차단
+                                </li>
+                                <li><strong>UI for Apache Kafka</strong> 도입: 메시지 흐름 가시성 확보</li>
+                            </ul>
+                        </div>
+                        <div class="card-box-sub flex-1">
+                            <h3 class="text-title font-bold mb-2">실시간 통계 및 장애 대응</h3>
+                            <ul class="list-disc list-inside space-y-2 text-sm text-body">
+                                <li>Spring Boot 배치 서버로 광고 소비량/이상 징후 실시간 감지</li>
+                                <li>장애 감지·대응 시간 단축으로 운영 안정성 향상</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: GrowingLab Detail (Updated with Resume) -->
+        <section class="portfolio-page">
+            <div class="w-full max-w-7xl h-full flex flex-col justify-center">
+                <div class="flex items-end gap-4 mb-6 border-b border-gray-700 pb-4">
+                    <h2 class="text-title font-bold m-0">그로잉랩</h2>
+                    <span class="text-lg text-secondary pb-1">투자 정보 서비스 '버틀러'</span>
+                </div>
+
+                <div class="grid-2 h-full max-h-[70vh]">
+                    <div class="card-box-sub h-full">
+                        <h3 class="text-title font-bold mb-2">레거시 마이그레이션 (Express → NestJS)</h3>
+                        <p class="accent-cyan font-semibold mb-3 text-xs">안정성 및 유지보수성 확보</p>
+                        <ul class="list-disc list-inside space-y-2 text-sm text-body">
+                            <li>
+                                Express/Hapi 기반의 파편화된 백엔드를 <strong>NestJS + TypeORM</strong>으로 전면 통합
+                            </li>
+                            <li>
+                                <strong>GitHub Packages</strong>로 TypeORM 공통 엔티티 모듈화 적용 → 스키마 불일치 해소
+                            </li>
+                            <li>순수 JS 코드를 <strong>TypeScript</strong>로 전환하여 타입 안정성 확보</li>
+                            <li>관리자/사용자/데이터 서버를 공통 스택으로 통합하여 개발 복잡도 감소</li>
+                        </ul>
+                    </div>
+
+                    <div class="flex flex-col gap-4 h-full">
+                        <div class="card-box-sub flex-1">
+                            <h3 class="text-title font-bold mb-2">데이터 파이프라인 성능 96% 개선</h3>
+                            <ul class="list-disc list-inside space-y-2 text-sm text-body">
+                                <li>
+                                    S3 대용량 JSON 파일 서빙 구조를 <strong>도메인별 RDB 테이블</strong>로 마이그레이션
+                                </li>
+                                <li>기업 상세 데이터 조회 속도: <strong>3초 → 100ms</strong> 단축</li>
+                                <li>프론트엔드의 대규모 파싱 로직을 백엔드로 이전하여 클라이언트 체감 성능 향상</li>
+                            </ul>
+                        </div>
+                        <div class="card-box-sub flex-1">
+                            <h3 class="text-title font-bold mb-2">하이브리드 앱(React Native) 개발</h3>
+                            <ul class="list-disc list-inside space-y-2 text-sm text-body">
+                                <li><strong>React Native</strong> 기반 하이브리드 앱 개발 및 스토어 출시 전담</li>
+                                <li>DART 공시, Yahoo Finance 등 외부 금융 데이터 수집 로직 구현</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Concent & Brickmate (Split or Condensed) -> Condensed for brevity in PPT -->
+        <section class="portfolio-page">
+            <div class="w-full max-w-7xl h-full flex flex-col justify-center">
+                <h2 class="text-title font-bold mb-8 text-center">기타 주요 프로젝트</h2>
+
+                <div class="grid-2 h-[75vh]">
+                    <!-- Concent -->
+                    <div class="card-box flex flex-col h-full bg-card">
+                        <h3 class="text-2xl font-bold mb-2 text-title">Concent (PerMirth)</h3>
+                        <p class="text-secondary mb-4 text-sm">소셜 미디어 앱 풀스택 개발</p>
+
+                        <div class="flex flex-col gap-4 flex-grow">
+                            <div class="p-3 bg-gray-900 rounded border border-gray-700 flex-1">
+                                <h4 class="font-bold text-accent-cyan mb-1">인프라 비용 76% 절감</h4>
+                                <ul class="list-disc list-inside text-sm text-body">
+                                    <li>원본 영상 업로드를 <strong>FFmpeg 기반 HLS 스트리밍</strong>으로 전환</li>
+                                    <li>월간 AWS S3 비용 60만 원 → 14만 원 절감</li>
+                                    <li>CloudFront 캐싱 및 S3 수명 주기 정책 최적화</li>
+                                </ul>
+                            </div>
+                            <div class="p-3 bg-gray-900 rounded border border-gray-700 flex-1">
+                                <h4 class="font-bold text-accent-cyan mb-1">앱 배포 효율화</h4>
+                                <ul class="list-disc list-inside text-sm text-body">
+                                    <li><strong>CodePush</strong> 도입: 심사 없이 즉시 핫픽스 배포 (수일 → 수분)</li>
+                                    <li>GitHub Actions CI/CD 파이프라인 구축</li>
+                                    <li>RN 코드베이스 JS → TS 전환 및 테스트플라이트/앱스토어 배포 전담</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Brickmate -->
+                    <div class="card-box flex flex-col h-full bg-card">
+                        <h3 class="text-2xl font-bold mb-2 text-title">브릭메이트</h3>
+                        <p class="text-secondary mb-4 text-sm">SI 및 솔루션 개발</p>
+
+                        <div class="flex flex-col gap-4 flex-grow">
+                            <div class="p-3 bg-gray-900 rounded border border-gray-700 flex-1">
+                                <h4 class="font-bold text-accent-cyan mb-1">롯데홈쇼핑 iTOO (파견)</h4>
+                                <ul class="list-disc list-inside text-sm text-body">
+                                    <li>Spring Boot + JSP 대규모 레거시 플랫폼 기능 확장</li>
+                                    <li>주문/결제/장바구니 핵심 로직 유지보수</li>
+                                    <li>대기업 개발 프로세스 및 장애 대응 경험</li>
+                                </ul>
+                            </div>
+                            <div class="p-3 bg-gray-900 rounded border border-gray-700 flex-1">
+                                <h4 class="font-bold text-accent-cyan mb-1">Smart RMR (1인 개발)</h4>
+                                <ul class="list-disc list-inside text-sm text-body">
+                                    <li>AI 기반 터널 막장 지반 분석 서비스</li>
+                                    <li>현장 불안정 네트워크 대응: <strong>로컬/원격 DB 비동기 동기화</strong></li>
+                                    <li>Android 앱, Web 대시보드, 서버 풀스택 개발</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Education & Awards & Certs (NEW) -->
+        <section class="portfolio-page">
+            <div class="w-full max-w-7xl h-full flex flex-col justify-center">
+                <h2 class="text-title font-bold mb-8 text-center">교육 / 수상 / 자격증</h2>
+
+                <div class="grid-2 h-full max-h-[60vh]">
+                    <!-- Left: Education & Certs -->
+                    <div class="flex flex-col gap-6">
+                        <div class="card-box">
+                            <h3 class="text-xl font-bold text-title mb-4 border-b border-gray-600 pb-2">
+                                🎓 Education
+                            </h3>
+                            <ul class="space-y-4">
+                                <li>
+                                    <div class="flex justify-between">
+                                        <span class="font-bold text-body">명지전문대학 (심화과정)</span>
+                                        <span class="text-sm text-secondary">2021.03 - 2022.02</span>
+                                    </div>
+                                    <p class="text-sm text-secondary">전자공학과 공학사 (학사학위)</p>
+                                </li>
+                                <li>
+                                    <div class="flex justify-between">
+                                        <span class="font-bold text-body">명지전문대학</span>
+                                        <span class="text-sm text-secondary">2016.03 - 2021.02</span>
+                                    </div>
+                                    <p class="text-sm text-secondary">전자공학과 공업전문학사</p>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="card-box">
+                            <h3 class="text-xl font-bold text-title mb-4 border-b border-gray-600 pb-2">
+                                📜 Certificates & Language
+                            </h3>
+                            <ul class="space-y-2">
+                                <li class="flex justify-between">
+                                    <span class="font-bold text-body">정보처리산업기사</span>
+                                    <span class="text-sm text-secondary">한국산업인력공단 (2021.12)</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span class="font-bold text-body">영어</span>
+                                    <span class="text-sm text-secondary">일상 회화 가능</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Right: Awards & Projects -->
+                    <div class="card-box h-full">
+                        <h3 class="text-xl font-bold text-title mb-4 border-b border-gray-600 pb-2">
+                            🏆 Awards & Activities
+                        </h3>
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-bold text-body text-lg"
+                                        >서울시 캠퍼스타운 사업단 (창업 프로그램)</span
+                                    >
+                                    <span class="text-sm text-secondary">2022</span>
+                                </div>
+                                <p class="text-sm accent-cyan font-semibold mb-1">
+                                    미디어 커머스형 청년창업 프로그램 3등
+                                </p>
+                                <p class="text-sm text-secondary">
+                                    스마트 공장 수화물 카트 (SSAC) 데모 웹페이지 개발 및 영상 출품
+                                </p>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-bold text-body text-lg">캡스톤디자인 경진대회 장려상</span>
+                                    <span class="text-sm text-secondary">2020</span>
+                                </div>
+                                <p class="text-sm text-body mb-2">순수 Java 네이티브 앱 개발 (MVVM 초기 형태 적용)</p>
+                                <ul class="list-disc list-inside text-sm text-secondary space-y-1">
+                                    <li>Cloud Vision API 기반 OCR 연동 및 폴더 자동 분류 로직 구현</li>
+                                    <li>이미지 처리 비동기 전환으로 UI 블로킹 해결</li>
+                                    <li>SQLite 기반 키워드 매칭 스키마 설계</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Tech Stack (Updated) -->
+        <section class="portfolio-page">
+            <div class="w-full max-w-6xl bg-card p-10 rounded-lg shadow-lg text-center my-auto">
+                <h2 class="text-title font-bold mb-8 text-4xl">기술 스택</h2>
+                <div class="grid grid-cols-2 gap-8 text-left max-w-5xl mx-auto">
+                    <div>
+                        <h3 class="text-lg font-bold text-title mb-4 border-b border-gray-600 pb-2">
+                            Languages & Mobile
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-gray-700 px-3 py-1 rounded">Java</span>
+                            <span class="bg-gray-700 px-3 py-1 rounded">TypeScript</span>
+                            <span class="bg-gray-700 px-3 py-1 rounded">JavaScript</span>
+                            <span class="bg-gray-700 px-3 py-1 rounded text-accent-cyan font-bold">React Native</span>
+                            <span class="bg-gray-700 px-3 py-1 rounded">Python</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-title mb-4 border-b border-gray-600 pb-2">
+                            Backend Frameworks
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-gray-700 px-3 py-1 rounded text-accent-cyan font-bold">Spring Boot</span>
+                            <span class="bg-gray-700 px-3 py-1 rounded text-accent-cyan font-bold">NestJS</span>
+                            <span class="bg-gray-700 px-3 py-1 rounded">Express</span>
+                            <span class="bg-gray-700 px-3 py-1 rounded">JPA/Hibernate</span>
+                            <span class="bg-gray-700 px-3 py-1 rounded">MyBatis</span>
+                            <span class="bg-gray-700 px-3 py-1 rounded">TypeORM</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-title mb-4 border-b border-gray-600 pb-2">
+                            Infrastructure & DB
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-gray-700 px-3 py-1 rounded font-bold text-accent-cyan">Kafka (Hybrid)</span>
+                            <span class="bg-gray-700 px-3 py-1 rounded">Redis</span>
+                            <span class="bg-gray-700 px-3 py-1 rounded">MySQL</span>
+                            <span class="bg-gray-700 px-3 py-1 rounded">MongoDB</span>
+                            <span class="bg-gray-700 px-3 py-1 rounded">AWS (S3/EC2)</span>
+                            <span class="bg-gray-700 px-3 py-1 rounded">GitHub Actions</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-title mb-4 border-b border-gray-600 pb-2">
+                            AX (AI & Automation)
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-gray-700 px-3 py-1 rounded font-bold text-accent-cyan">n8n Workflow</span>
+                            <span class="bg-gray-700 px-3 py-1 rounded">Cursor/Gemini CLI</span>
+                            <span class="bg-gray-700 px-3 py-1 rounded">Hotfix Automation</span>
+                            <span class="bg-gray-700 px-3 py-1 rounded">Claude/GPT-4</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8: Contact -->
+        <section class="portfolio-page">
+            <div class="text-center w-full max-w-4xl my-auto">
+                <h2 class="text-title font-bold mb-6 text-4xl">함께 성장할 기회를 기다립니다.</h2>
+                <p class="text-secondary text-xl mb-12">
+                    기술을 통해 비즈니스 문제를 해결하고 성과를 만들어내는 과정에 큰 보람을 느낍니다. <br />
+                    저의 경험과 역량이 귀사의 성장에 기여할 수 있다고 확신합니다.
+                </p>
+                <div class="bg-card border border-gray-600 p-8 rounded-lg max-w-xl mx-auto">
+                    <div class="space-y-4 text-left">
+                        <div class="flex border-b border-gray-600 pb-4">
+                            <span class="text-secondary font-bold w-24">Email</span>
+                            <span class="text-title font-semibold">koyoungil97@gmail.com</span>
+                        </div>
+                        <div class="flex border-b border-gray-600 pb-4">
+                            <span class="text-secondary font-bold w-24">GitHub</span>
+                            <span class="text-title font-semibold">github.com/INnoVatioN-97</span>
+                        </div>
+                        <div class="flex">
+                            <span class="text-secondary font-bold w-24">Blog</span>
+                            <span class="text-title font-semibold">zero-sand-box.tistory.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
