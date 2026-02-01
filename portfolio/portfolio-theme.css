@@ -5,17 +5,17 @@
  */
 
 :root {
-    /* --- COLOR PALETTE DEFINITION --- */
-    --color-bg-main: #1a202c; /* Main Page Background */
-    --color-bg-card: #2d3748; /* Primary Card Background */
-    --color-bg-sub: #171923; /* Inner/Sub Card Background (Darker) */
+    /* --- TDS STYLE DARK THEME --- */
+    --color-bg-main: #101010; /* Toss Dark Background */
+    --color-bg-card: #202022; /* Toss Dark Card Surface */
+    --color-bg-sub: #2c2c2e; /* Lighter Sub-surface */
 
-    --color-text-title: #edf2f7; /* Headings (Bright White/Gray) */
-    --color-text-body: #e2e8f0; /* Body Text */
-    --color-text-secondary: #a0aec0; /* Muted/Secondary Text */
+    --color-text-title: #ffffff; /* Pure White */
+    --color-text-body: #e5e8eb; /* Light Grey Text */
+    --color-text-secondary: #8b95a1; /* Muted Grey (TDS Grey) */
 
-    --color-accent: #00e5ff; /* Primary Accent (Cyan) */
-    --color-border: #4a5568; /* Borders */
+    --color-accent: #3182f6; /* Toss Blue */
+    --color-border: #333d4b; /* Subtle Dark Border */
 }
 
 /* General Styles */
