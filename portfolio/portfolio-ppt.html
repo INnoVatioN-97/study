@@ -13,151 +13,9 @@
         />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
 
-        <style>
-            /* General Styles */
-            body {
-                font-family: 'Pretendard', sans-serif;
-                color: #e2e8f0;
-                background-color: #1a202c;
-                margin: 0;
-                /* overflow-x: hidden; */ /* Removing hidden to allow print to work properly if needed, but keeping generally */
-            }
-
-            /* 
-                Strict Page/Slide Layout for PDF 
-                User Request: "Absolutely adhere to height"
-            */
-            .portfolio-page {
-                position: relative;
-                width: 100vw; /* Standard A4 Landscape ratio or Screen */
-                height: 100vh; /* Strict height */
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                padding: 2.5rem; /* Tighter padding to fit content */
-                box-sizing: border-box;
-                page-break-after: always;
-                break-after: page;
-                background-color: #1a202c;
-                border-bottom: none;
-                overflow: hidden; /* Cut off if too long to force layout discipline */
-            }
-
-            /* Print Specifics */
-            @media print {
-                @page {
-                    size: landscape;
-                    margin: 0;
-                }
-                body {
-                    -webkit-print-color-adjust: exact;
-                    print-color-adjust: exact;
-                    background-color: #1a202c;
-                }
-                .portfolio-page {
-                    height: 100vh;
-                    width: 100vw;
-                    page-break-after: always;
-                    break-after: page;
-                }
-            }
-
-            /* Design System (Matching portfolio-scroll.html) */
-            .text-title {
-                color: #edf2f7;
-            }
-            .text-body {
-                color: #e2e8f0;
-                word-break: keep-all;
-            }
-            .text-secondary {
-                color: #a0aec0;
-                word-break: keep-all;
-            }
-            .bg-card {
-                background-color: #2d3748;
-            }
-            .bg-sub {
-                background-color: #171923;
-            }
-            .accent-cyan {
-                color: #00e5ff;
-            }
-            .border-accent-cyan {
-                border-color: #00e5ff;
-            }
-
-            /* Card Styles */
-            .card-box {
-                background-color: #2d3748;
-                border: 1px solid #4a5568;
-                border-radius: 0.5rem;
-                padding: 1.25rem; /* Reduced padding */
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-            }
-            .card-box-sub {
-                background-color: #171923;
-                border: 1px solid #4a5568;
-                border-radius: 0.5rem;
-                padding: 1rem; /* Compact padding */
-            }
-
-            /* Layout Grids */
-            .grid-2 {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 1.5rem; /* Tighter gap */
-                width: 100%;
-                max-width: 1200px;
-            }
-            .grid-4 {
-                display: grid;
-                grid-template-columns: repeat(4, 1fr);
-                gap: 1.5rem;
-                width: 100%;
-            }
-
-            /* Typography Scaling */
-            h1 {
-                font-size: 3rem !important;
-                line-height: 1.1;
-                margin-bottom: 1rem;
-            }
-            h2 {
-                font-size: 2rem !important;
-                margin-bottom: 2rem;
-            }
-            h3 {
-                font-size: 1.25rem !important;
-                margin-bottom: 0.5rem;
-            }
-            h4 {
-                font-size: 1rem !important;
-                margin-bottom: 0.25rem;
-            }
-            p,
-            li {
-                font-size: 0.9rem;
-                line-height: 1.5;
-            }
-            /* Smaller base font to fit dense info */
-
-            .tech-icon-large {
-                font-size: 2.5rem;
-                color: #a0aec0;
-            }
-            .badge {
-                display: inline-block;
-                padding: 0.25rem 0.5rem;
-                border-radius: 0.25rem;
-                background-color: #4a5568;
-                color: #e2e8f0;
-                font-size: 0.75rem;
-                margin-right: 0.25rem;
-                margin-bottom: 0.25rem;
-            }
-        </style>
+        <!-- SHARED CONFIG & THEME -->
+        <script src="./portfolio-config.js"></script>
+        <link rel="stylesheet" href="./portfolio-theme.css" />
     </head>
     <body>
         <!-- Slide 1: Intro / Summary -->
@@ -169,7 +27,7 @@
                 <h1 class="text-title font-bold">고영일</h1>
                 <h2 class="text-secondary font-light mb-6">문제를 구조적으로 해결하는 5년 차 백엔드 개발자</h2>
                 <div
-                    class="max-w-4xl mx-auto mb-10 text-lg text-body space-y-4 text-left bg-card p-6 rounded-lg border border-gray-600"
+                    class="max-w-4xl mx-auto mb-10 text-lg text-body space-y-4 text-left bg-card p-6 rounded-lg border border-default"
                 >
                     <p>
                         기능 구현보다
@@ -223,7 +81,7 @@
                     <div class="card-box flex flex-col">
                         <div class="flex justify-between items-start mb-2">
                             <h3 class="text-title font-bold text-xl">PocaskE&M</h3>
-                            <span class="text-xs text-secondary border border-gray-600 px-2 py-1 rounded"
+                            <span class="text-xs text-secondary border border-default px-2 py-1 rounded"
                                 >2024.11 - 현재</span
                             >
                         </div>
@@ -237,7 +95,7 @@
                     <div class="card-box flex flex-col">
                         <div class="flex justify-between items-start mb-2">
                             <h3 class="text-title font-bold text-xl">그로잉랩</h3>
-                            <span class="text-xs text-secondary border border-gray-600 px-2 py-1 rounded"
+                            <span class="text-xs text-secondary border border-default px-2 py-1 rounded"
                                 >2023.04 - 2024.08</span
                             >
                         </div>
@@ -252,7 +110,7 @@
                     <div class="card-box flex flex-col">
                         <div class="flex justify-between items-start mb-2">
                             <h3 class="text-title font-bold text-xl">Concent</h3>
-                            <span class="text-xs text-secondary border border-gray-600 px-2 py-1 rounded"
+                            <span class="text-xs text-secondary border border-default px-2 py-1 rounded"
                                 >2022.06 - 2023.04</span
                             >
                         </div>
@@ -266,7 +124,7 @@
                     <div class="card-box flex flex-col">
                         <div class="flex justify-between items-start mb-2">
                             <h3 class="text-title font-bold text-xl">브릭메이트</h3>
-                            <span class="text-xs text-secondary border border-gray-600 px-2 py-1 rounded"
+                            <span class="text-xs text-secondary border border-default px-2 py-1 rounded"
                                 >2021.12 - 2022.06</span
                             >
                         </div>
@@ -283,7 +141,7 @@
         <!-- Slide 3: PocaskE&M Detail (Updated with Resume) -->
         <section class="portfolio-page">
             <div class="w-full max-w-7xl h-full flex flex-col justify-center">
-                <div class="flex items-end gap-4 mb-6 border-b border-gray-700 pb-4">
+                <div class="flex items-end gap-4 mb-6 border-b border-default pb-4">
                     <h2 class="text-title font-bold m-0">PocaskE&M</h2>
                     <span class="text-lg text-secondary pb-1">광고 솔루션 및 데이터 인프라 고도화</span>
                 </div>
@@ -357,7 +215,7 @@
         <!-- Slide 4: GrowingLab Detail (Updated with Resume) -->
         <section class="portfolio-page">
             <div class="w-full max-w-7xl h-full flex flex-col justify-center">
-                <div class="flex items-end gap-4 mb-6 border-b border-gray-700 pb-4">
+                <div class="flex items-end gap-4 mb-6 border-b border-default pb-4">
                     <h2 class="text-title font-bold m-0">그로잉랩</h2>
                     <span class="text-lg text-secondary pb-1">투자 정보 서비스 '버틀러'</span>
                 </div>
@@ -413,7 +271,7 @@
                         <p class="text-secondary mb-4 text-sm">소셜 미디어 앱 풀스택 개발</p>
 
                         <div class="flex flex-col gap-4 flex-grow">
-                            <div class="p-3 bg-gray-900 rounded border border-gray-700 flex-1">
+                            <div class="p-3 bg-sub rounded border border-default flex-1">
                                 <h4 class="font-bold text-accent-cyan mb-1">인프라 비용 76% 절감</h4>
                                 <ul class="list-disc list-inside text-sm text-body">
                                     <li>원본 영상 업로드를 <strong>FFmpeg 기반 HLS 스트리밍</strong>으로 전환</li>
@@ -421,7 +279,7 @@
                                     <li>CloudFront 캐싱 및 S3 수명 주기 정책 최적화</li>
                                 </ul>
                             </div>
-                            <div class="p-3 bg-gray-900 rounded border border-gray-700 flex-1">
+                            <div class="p-3 bg-sub rounded border border-default flex-1">
                                 <h4 class="font-bold text-accent-cyan mb-1">앱 배포 효율화</h4>
                                 <ul class="list-disc list-inside text-sm text-body">
                                     <li><strong>CodePush</strong> 도입: 심사 없이 즉시 핫픽스 배포 (수일 → 수분)</li>
@@ -438,7 +296,7 @@
                         <p class="text-secondary mb-4 text-sm">SI 및 솔루션 개발</p>
 
                         <div class="flex flex-col gap-4 flex-grow">
-                            <div class="p-3 bg-gray-900 rounded border border-gray-700 flex-1">
+                            <div class="p-3 bg-sub rounded border border-default flex-1">
                                 <h4 class="font-bold text-accent-cyan mb-1">롯데홈쇼핑 iTOO (파견)</h4>
                                 <ul class="list-disc list-inside text-sm text-body">
                                     <li>Spring Boot + JSP 대규모 레거시 플랫폼 기능 확장</li>
@@ -446,7 +304,7 @@
                                     <li>대기업 개발 프로세스 및 장애 대응 경험</li>
                                 </ul>
                             </div>
-                            <div class="p-3 bg-gray-900 rounded border border-gray-700 flex-1">
+                            <div class="p-3 bg-sub rounded border border-default flex-1">
                                 <h4 class="font-bold text-accent-cyan mb-1">Smart RMR (1인 개발)</h4>
                                 <ul class="list-disc list-inside text-sm text-body">
                                     <li>AI 기반 터널 막장 지반 분석 서비스</li>
@@ -469,9 +327,7 @@
                     <!-- Left: Education & Certs -->
                     <div class="flex flex-col gap-6">
                         <div class="card-box">
-                            <h3 class="text-xl font-bold text-title mb-4 border-b border-gray-600 pb-2">
-                                🎓 Education
-                            </h3>
+                            <h3 class="text-xl font-bold text-title mb-4 border-b border-default pb-2">🎓 Education</h3>
                             <ul class="space-y-4">
                                 <li>
                                     <div class="flex justify-between">
@@ -491,7 +347,7 @@
                         </div>
 
                         <div class="card-box">
-                            <h3 class="text-xl font-bold text-title mb-4 border-b border-gray-600 pb-2">
+                            <h3 class="text-xl font-bold text-title mb-4 border-b border-default pb-2">
                                 📜 Certificates & Language
                             </h3>
                             <ul class="space-y-2">
@@ -509,7 +365,7 @@
 
                     <!-- Right: Awards & Projects -->
                     <div class="card-box h-full">
-                        <h3 class="text-xl font-bold text-title mb-4 border-b border-gray-600 pb-2">
+                        <h3 class="text-xl font-bold text-title mb-4 border-b border-default pb-2">
                             🏆 Awards & Activities
                         </h3>
                         <div class="space-y-6">
@@ -552,52 +408,60 @@
                 <h2 class="text-title font-bold mb-8 text-4xl">기술 스택</h2>
                 <div class="grid grid-cols-2 gap-8 text-left max-w-5xl mx-auto">
                     <div>
-                        <h3 class="text-lg font-bold text-title mb-4 border-b border-gray-600 pb-2">
+                        <h3 class="text-lg font-bold text-title mb-4 border-b border-default pb-2">
                             Languages & Mobile
                         </h3>
                         <div class="flex flex-wrap gap-2">
-                            <span class="bg-gray-700 px-3 py-1 rounded">Java</span>
-                            <span class="bg-gray-700 px-3 py-1 rounded">TypeScript</span>
-                            <span class="bg-gray-700 px-3 py-1 rounded">JavaScript</span>
-                            <span class="bg-gray-700 px-3 py-1 rounded text-accent-cyan font-bold">React Native</span>
-                            <span class="bg-gray-700 px-3 py-1 rounded">Python</span>
+                            <span class="bg-border-default px-3 py-1 rounded">Java</span>
+                            <span class="bg-border-default px-3 py-1 rounded">TypeScript</span>
+                            <span class="bg-border-default px-3 py-1 rounded">JavaScript</span>
+                            <span class="bg-border-default px-3 py-1 rounded text-accent-cyan font-bold"
+                                >React Native</span
+                            >
+                            <span class="bg-border-default px-3 py-1 rounded">Python</span>
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-lg font-bold text-title mb-4 border-b border-gray-600 pb-2">
+                        <h3 class="text-lg font-bold text-title mb-4 border-b border-default pb-2">
                             Backend Frameworks
                         </h3>
                         <div class="flex flex-wrap gap-2">
-                            <span class="bg-gray-700 px-3 py-1 rounded text-accent-cyan font-bold">Spring Boot</span>
-                            <span class="bg-gray-700 px-3 py-1 rounded text-accent-cyan font-bold">NestJS</span>
-                            <span class="bg-gray-700 px-3 py-1 rounded">Express</span>
-                            <span class="bg-gray-700 px-3 py-1 rounded">JPA/Hibernate</span>
-                            <span class="bg-gray-700 px-3 py-1 rounded">MyBatis</span>
-                            <span class="bg-gray-700 px-3 py-1 rounded">TypeORM</span>
+                            <span class="bg-border-default px-3 py-1 rounded text-accent-cyan font-bold"
+                                >Spring Boot</span
+                            >
+                            <span class="bg-border-default px-3 py-1 rounded text-accent-cyan font-bold">NestJS</span>
+                            <span class="bg-border-default px-3 py-1 rounded">Express</span>
+                            <span class="bg-border-default px-3 py-1 rounded">JPA/Hibernate</span>
+                            <span class="bg-border-default px-3 py-1 rounded">MyBatis</span>
+                            <span class="bg-border-default px-3 py-1 rounded">TypeORM</span>
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-lg font-bold text-title mb-4 border-b border-gray-600 pb-2">
+                        <h3 class="text-lg font-bold text-title mb-4 border-b border-default pb-2">
                             Infrastructure & DB
                         </h3>
                         <div class="flex flex-wrap gap-2">
-                            <span class="bg-gray-700 px-3 py-1 rounded font-bold text-accent-cyan">Kafka (Hybrid)</span>
-                            <span class="bg-gray-700 px-3 py-1 rounded">Redis</span>
-                            <span class="bg-gray-700 px-3 py-1 rounded">MySQL</span>
-                            <span class="bg-gray-700 px-3 py-1 rounded">MongoDB</span>
-                            <span class="bg-gray-700 px-3 py-1 rounded">AWS (S3/EC2)</span>
-                            <span class="bg-gray-700 px-3 py-1 rounded">GitHub Actions</span>
+                            <span class="bg-border-default px-3 py-1 rounded font-bold text-accent-cyan"
+                                >Kafka (Hybrid)</span
+                            >
+                            <span class="bg-border-default px-3 py-1 rounded">Redis</span>
+                            <span class="bg-border-default px-3 py-1 rounded">MySQL</span>
+                            <span class="bg-border-default px-3 py-1 rounded">MongoDB</span>
+                            <span class="bg-border-default px-3 py-1 rounded">AWS (S3/EC2)</span>
+                            <span class="bg-border-default px-3 py-1 rounded">GitHub Actions</span>
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-lg font-bold text-title mb-4 border-b border-gray-600 pb-2">
+                        <h3 class="text-lg font-bold text-title mb-4 border-b border-default pb-2">
                             AX (AI & Automation)
                         </h3>
                         <div class="flex flex-wrap gap-2">
-                            <span class="bg-gray-700 px-3 py-1 rounded font-bold text-accent-cyan">n8n Workflow</span>
-                            <span class="bg-gray-700 px-3 py-1 rounded">Cursor/Gemini CLI</span>
-                            <span class="bg-gray-700 px-3 py-1 rounded">Hotfix Automation</span>
-                            <span class="bg-gray-700 px-3 py-1 rounded">Claude/GPT-4</span>
+                            <span class="bg-border-default px-3 py-1 rounded font-bold text-accent-cyan"
+                                >n8n Workflow</span
+                            >
+                            <span class="bg-border-default px-3 py-1 rounded">Cursor/Gemini CLI</span>
+                            <span class="bg-border-default px-3 py-1 rounded">Hotfix Automation</span>
+                            <span class="bg-border-default px-3 py-1 rounded">Claude/GPT-4</span>
                         </div>
                     </div>
                 </div>
@@ -612,13 +476,13 @@
                     기술을 통해 비즈니스 문제를 해결하고 성과를 만들어내는 과정에 큰 보람을 느낍니다. <br />
                     저의 경험과 역량이 귀사의 성장에 기여할 수 있다고 확신합니다.
                 </p>
-                <div class="bg-card border border-gray-600 p-8 rounded-lg max-w-xl mx-auto">
+                <div class="bg-card border border-default p-8 rounded-lg max-w-xl mx-auto">
                     <div class="space-y-4 text-left">
-                        <div class="flex border-b border-gray-600 pb-4">
+                        <div class="flex border-b border-default pb-4">
                             <span class="text-secondary font-bold w-24">Email</span>
                             <span class="text-title font-semibold">koyoungil97@gmail.com</span>
                         </div>
-                        <div class="flex border-b border-gray-600 pb-4">
+                        <div class="flex border-b border-default pb-4">
                             <span class="text-secondary font-bold w-24">GitHub</span>
                             <span class="text-title font-semibold">github.com/INnoVatioN-97</span>
                         </div>
