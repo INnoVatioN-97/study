@@ -226,8 +226,68 @@ li {
     color: var(--color-text-secondary);
     font-weight: 500;
 }
-.list-row .value {
-    color: var(--color-text-title);
+
+/* --- TDS Polish Additions --- */
+
+/* 1. Soft Badge */
+.badge-soft {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.35rem 0.75rem;
+    border-radius: 6px; /* Slightly softer than chip */
+    background-color: rgba(49, 130, 246, 0.15); /* TDS Blue low opacity */
+    color: #5593f7; /* Slightly lighter blue for dark mode readability */
+    font-size: var(--fs-xs);
     font-weight: 600;
-    text-align: right;
+    margin-right: 0.35rem;
+    margin-bottom: 0.35rem;
+    transition: all 0.2s ease;
+}
+
+/* 2. Interactive Card */
+.card-interactive {
+    background-color: var(--color-bg-card);
+    border: 1px solid transparent; /* Hidden border normally */
+    border-radius: 1rem; /* More rounded */
+    padding: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: default;
+}
+.card-interactive:hover {
+    transform: translateY(-4px);
+    background-color: #262629; /* Slightly lighter on hover */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* 3. Hero Numbers */
+.text-hero-num {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1;
+    /* Gradient Text */
+    background: linear-gradient(135deg, #3182f6 0%, #00c6ff 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+.text-hero-unit {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    margin-left: 0.25rem;
+    vertical-align: baseline;
+    -webkit-text-fill-color: var(--color-text-secondary); /* Reset override */
+}
+
+/* 4. Date Capsule */
+.capsule-date {
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+    border-radius: 9999px;
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--color-text-secondary);
+    font-size: 0.8rem;
+    font-weight: 500;
 }
