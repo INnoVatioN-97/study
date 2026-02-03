@@ -2,22 +2,22 @@
 
 :root {
     /* Brand Colors */
-    --color-brand: #0066ff; /* Vibrant Azure Blue */
-    --color-brand-dark: #0052cc;
+    --color-brand: #4b77d8; /* New Palette Blue */
+    --color-brand-dark: #3b66c4;
 
     /* Backgrounds */
     --color-bg-slide: #ffffff;
     --color-bg-cover: var(--color-brand);
-    --color-bg-sub: #f4f6f8; /* Very light grey for areas */
+    --color-bg-sub: #f4f6f8; /* Keep light bg for readability */
 
     /* Text Colors */
-    --color-text-title: #191f28; /* Pitch Black */
-    --color-text-body: #4e5968; /* Readable Grey */
-    --color-text-meta: #8b95a1; /* Light Grey for dates/labels */
+    --color-text-title: #2a2a2a; /* New Palette Dark Grey */
+    --color-text-body: #2a2a2a;
+    --color-text-meta: #767676; /* Adjusted for contrast */
     --color-text-on-brand: #ffffff;
 
     /* Borders */
-    --color-border: #e5e8eb;
+    --color-border: #cdced1; /* New Palette Light Grey */
 
     /* Typography Scale */
     --fs-display: 3.5rem;
