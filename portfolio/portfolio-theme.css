@@ -5,27 +5,27 @@
  */
 
 :root {
-    /* --- TDS STYLE DARK THEME --- */
-    --color-bg-main: #101010; /* Toss Dark Background */
-    --color-bg-card: #202022; /* Toss Dark Card Surface */
-    --color-bg-sub: #2c2c2e; /* Lighter Sub-surface */
+    /* --- TDS STYLE LIGHT THEME --- */
+    --color-bg-main: #f2f4f6; /* Toss Light Grey Background */
+    --color-bg-card: #ffffff; /* White Card Surface */
+    --color-bg-sub: #f9fafb; /* Very Light Grey for Sub-surface */
 
-    --color-text-title: #ffffff; /* Pure White */
-    --color-text-body: #e5e8eb; /* Light Grey Text */
-    --color-text-secondary: #8b95a1; /* Muted Grey (TDS Grey) */
+    --color-text-title: #000000; /* Pure Black for Headings */
+    --color-text-body: #191f28; /* Grey 900 (Nearly Black) for Body */
+    --color-text-secondary: #4e5968; /* Grey 700 (Dark Grey, Readable) */
 
     --color-accent: #3182f6; /* Toss Blue */
-    --color-border: #333d4b; /* Subtle Dark Border */
+    --color-border: #eaecee; /* Light Grey Border */
 
-    /* Typography Sizes (Global Variables) */
-    --fs-display: 3rem; /* Main Cover Title */
-    --fs-h2: 2.25rem; /* Page Headers (text-4xl equiv) */
-    --fs-h3: 1.25rem; /* Card Titles (text-xl equiv) */
-    --fs-h4: 1.15rem; /* Subtitles */
-    --fs-body: 1rem; /* Standard readability */
+    /* Typography Sizes (Global Variables) - INCREASED FOR READABILITY */
+    --fs-display: 3.5rem; /* Main Cover Title (Was 3rem) */
+    --fs-h2: 2.5rem; /* Page Headers (Was 2.25rem) */
+    --fs-h3: 1.5rem; /* Card Titles (Was 1.25rem) */
+    --fs-h4: 1.25rem; /* Subtitles (Was 1.15rem) */
+    --fs-body: 1.15rem; /* Standard Body Text (Was 1rem) */
     /* --fs-body: 0.95rem; Standard readability */
-    --fs-sm: 0.95rem; /* List items, details */
-    --fs-xs: 0.85rem; /* Dates, tags, badges */
+    --fs-sm: 1.05rem; /* List items, details (Was 0.95rem) */
+    --fs-xs: 0.95rem; /* Dates, tags, badges (Was 0.85rem) */
 }
 
 /* General Styles */
@@ -40,19 +40,15 @@ body {
 /* Strict Page/Slide Layout */
 .portfolio-page {
     position: relative;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100vh; /* Slide Full Height */
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 2.5rem;
+    align-items: center; /* Center Content */
+    padding: 3rem 4rem; /* Reduced padding (Was 4rem 6rem) to fill space */
     box-sizing: border-box;
     page-break-after: always;
-    break-after: page;
-    background-color: var(--color-bg-main);
-    border-bottom: none;
-    overflow: hidden;
+    overflow: hidden; /* Prevent spillover */
 }
 
 /* Print Specifics */
@@ -179,13 +175,13 @@ li {
     justify-content: center;
     padding: 0.35rem 0.75rem;
     border-radius: 9999px; /* Fully rounded (Chip style) */
-    background-color: #333d4b; /* Darker than card, lighter than bg-main */
-    color: #f2f4f6; /* Bright text */
+    background-color: #f0f4f9; /* Light Grey Background */
+    color: #4e5968; /* Dark Grey Text */
     font-size: var(--fs-xs); /* Use variable */
     font-weight: 500;
     margin-right: 0.35rem;
     margin-bottom: 0.35rem;
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+    border: 1px solid rgba(0, 0, 0, 0.05); /* Subtle border */
     transition: all 0.2s ease;
 }
 
@@ -237,7 +233,7 @@ li {
     padding: 0.35rem 0.75rem;
     border-radius: 6px; /* Slightly softer than chip */
     background-color: rgba(49, 130, 246, 0.15); /* TDS Blue low opacity */
-    color: #5593f7; /* Slightly lighter blue for dark mode readability */
+    color: var(--color-accent); /* Use main accent color for better contrast on white */
     font-size: var(--fs-xs);
     font-weight: 600;
     margin-right: 0.35rem;
@@ -256,8 +252,8 @@ li {
 }
 .card-interactive:hover {
     transform: translateY(-4px);
-    background-color: #262629; /* Slightly lighter on hover */
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3);
+    background-color: #ffffff; /* White on hover */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1); /* Softer shadow for light mode */
 }
 
 /* 3. Hero Numbers */
@@ -286,7 +282,7 @@ li {
     display: inline-block;
     padding: 0.25rem 0.6rem;
     border-radius: 9999px;
-    background-color: rgba(255, 255, 255, 0.08);
+    background-color: rgba(0, 0, 0, 0.05);
     color: var(--color-text-secondary);
     font-size: 0.8rem;
     font-weight: 500;
