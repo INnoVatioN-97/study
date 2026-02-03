@@ -48,7 +48,7 @@
                     <!-- Profile Header -->
                     <div class="flex items-center gap-6">
                         <div class="w-32 h-32 rounded-full overflow-hidden border-2 border-brand">
-                            <img src="../ingredients/face.jpg" alt="Profile" class="w-full h-full object-cover" />
+                            <img src="../images/face.jpg" alt="Profile" class="w-full h-full object-cover" />
                         </div>
                         <div>
                             <p class="text-xl text-gray-500 mb-1">안녕하세요,</p>
@@ -285,87 +285,208 @@
             </div>
         </section>
 
-        <!-- Slide 3: Project 1 Title Slide (Blue BG) -->
+        <!-- Slide 3: Pocask E&M Section Cover -->
         <section class="ppt-slide type-section">
-            <span class="text-sm opacity-70 absolute top-12 left-16 tracking-widest">PROJECT.01</span>
+            <span class="text-sm opacity-70 absolute top-12 left-16 tracking-widest">COMPANY.01</span>
 
             <div class="text-center z-10">
-                <!-- Company Name Badge -->
                 <div class="inline-block border border-white/30 px-4 py-1 rounded-full text-lg mb-6 tracking-wide">
-                    Company: Pocask E&M
+                    2024.11 - NOW
                 </div>
-                <h2 class="section-title text-8xl mb-4">AdTech<br />Platform</h2>
-                <p class="section-desc">글로벌 광고 송출 플랫폼 고도화</p>
+                <h2 class="section-title text-8xl mb-4">Pocask E&M</h2>
+                <p class="section-desc">AdTech Platform & Data Infrastructure</p>
             </div>
 
-            <!-- Large Outline Number -->
             <div class="absolute right-16 top-1/2 -translate-y-1/2 text-[15rem] font-thin opacity-20 select-none">
                 01
             </div>
 
-            <!-- Bottom Info -->
             <div class="absolute bottom-12 right-16 text-right opacity-80 text-sm">
-                <p class="mb-1">2024.11 - NOW</p>
-                <div class="flex justify-end gap-4">
-                    <span>Backend 1명</span>
-                    <span>Frontend 1명</span>
+                <div class="flex justify-end gap-4 text-base">
+                    <span>Point Crush</span>
+                    <span>Pokit</span>
+                    <span>Infra & Data</span>
                 </div>
             </div>
         </section>
 
-        <!-- Slide 4: Project 1 Content (White BG, 2-Col) -->
+        <!-- Slide 4: Point Crush -->
         <section class="ppt-slide type-content">
             <div class="content-grid-2">
-                <!-- Left: Text -->
                 <div class="flex flex-col justify-center h-full">
-                    <!-- Added h-full -->
-                    <!-- Breadcrumb / Meta -->
                     <div class="flex items-center gap-2 mb-4 text-sm text-gray-500 font-medium">
                         <span class="text-brand">Pocask E&M</span>
                         <span>/</span>
-                        <span>Backend & DevOps</span>
+                        <span>Ad Solution</span>
                     </div>
 
-                    <h2 class="project-title text-4xl mb-2">AdTech Platform</h2>
-                    <!-- Adjusted size -->
-                    <h3 class="project-subtitle text-xl mb-6">광고 송출 시스템 고도화</h3>
+                    <h2 class="project-title text-4xl mb-2">Point Crush</h2>
+                    <h3 class="project-subtitle text-xl mb-6">광고 솔루션 안정화 & 트래픽 제어</h3>
 
                     <div class="project-desc text-sm leading-relaxed mb-6">
-                        <!-- Adjusted size/spacing -->
                         <p class="mb-3">
-                            앱인토스 미니앱 입점을 통해 폭발적으로 증가한 트래픽(5배)을 안정적으로 처리하기 위한 시스템
-                            고도화 프로젝트입니다.
+                            포인트 적립을 위한 광고 솔루션 'Point Crush'의 백엔드 안정화 작업을 주도했습니다.
                         </p>
-                        <p>
-                            Spring Boot 기반의 배치 시스템을 구축하여 광고 소비량을 실시간으로 집계하고, Kafka 이벤트를
-                            도입하여 데이터 정합성을 확보했습니다.
-                        </p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-600">
+                            <li>
+                                일 50만 건 이상의 광고 트래픽 처리 중 발생하던 <strong>DB Deadlock 이슈 해결</strong>
+                            </li>
+                            <li><strong>Redis Queue</strong>를 도입하여 트래픽 스파이크를 제어하고 처리 순서를 보장</li>
+                            <li>동기식 로직을 <strong>비동기 Bulk Insert</strong>로 전환하여 DB 부하 감소</li>
+                        </ul>
                     </div>
 
-                    <!-- Tech Stack Section (New) -->
                     <div class="mb-6">
                         <h4 class="text-xs font-bold text-gray-400 mb-3 uppercase tracking-wider">Tech Stack</h4>
                         <div class="flex flex-wrap gap-2">
-                            <!-- Simple Text Badges -->
                             <span
                                 class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
-                                >Java 17</span
+                                >Express</span
                             >
                             <span
                                 class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
-                                >Spring Boot 3.2</span
+                                >Redis (Queue)</span
                             >
+                            <span
+                                class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
+                                >MySQL</span
+                            >
+                        </div>
+                    </div>
+
+                    <div class="mt-auto">
+                        <h4 class="text-xs font-bold text-brand mb-3 uppercase tracking-wider">Contribution</h4>
+                        <div class="progress-item">
+                            <span class="progress-label">Traffic Opt</span>
+                            <div class="progress-track"><div class="progress-fill" style="width: 100%"></div></div>
+                            <span class="progress-val">100</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="h-full flex flex-col gap-4">
+                    <div class="visual-box flex-1 bg-gray-50">
+                        <div class="text-center">
+                            <p class="text-gray-400 mb-2">Traffic Control Flow</p>
+                            <div
+                                class="w-16 h-16 bg-gray-200 rounded-full mx-auto flex items-center justify-center text-2xl"
+                            >
+                                🚦
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Pokit -->
+        <section class="ppt-slide type-content">
+            <div class="content-grid-2">
+                <div class="flex flex-col justify-center h-full">
+                    <div class="flex items-center gap-2 mb-4 text-sm text-gray-500 font-medium">
+                        <span class="text-brand">Pocask E&M</span>
+                        <span>/</span>
+                        <span>Reward App</span>
+                    </div>
+
+                    <h2 class="project-title text-4xl mb-2">Pokit</h2>
+                    <h3 class="project-subtitle text-xl mb-6">리워드 앱 포인트 시스템 침 포인트 교환</h3>
+
+                    <div class="project-desc text-sm leading-relaxed mb-6">
+                        <p class="mb-3">
+                            자사 리워드 앱 'Pokit'의 앱인토스 입점과 함께 폭증한 트래픽 및 포인트 트랜잭션을 처리하기
+                            위한 시스템을 개발했습니다.
+                        </p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-600">
+                            <li><strong>포인트 적립 시스템 이원화</strong> (자사 앱 vs 미니앱) 설계 및 구현</li>
+                            <li>외부 제휴처(NPay 등) 포인트 교환 모듈 개발 및 연동</li>
+                            <li>분산 락(Redisson)을 활용한 포인트 동시성 제어</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-6">
+                        <h4 class="text-xs font-bold text-gray-400 mb-3 uppercase tracking-wider">Tech Stack</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
+                                >Spring Boot</span
+                            >
+                            <span
+                                class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
+                                >JPA / QueryDSL</span
+                            >
+                            <span
+                                class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
+                                >MySQL</span
+                            >
+                            <span
+                                class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
+                                >Redis</span
+                            >
+                        </div>
+                    </div>
+
+                    <div class="mt-auto">
+                        <h4 class="text-xs font-bold text-brand mb-3 uppercase tracking-wider">Contribution</h4>
+                        <div class="progress-item">
+                            <span class="progress-label">Point System</span>
+                            <div class="progress-track"><div class="progress-fill" style="width: 100%"></div></div>
+                            <span class="progress-val">100</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="h-full flex flex-col gap-4">
+                    <div class="visual-box flex-1 bg-gray-50">
+                        <div class="text-center">
+                            <p class="text-gray-400 mb-2">Reward Architecture</p>
+                            <div
+                                class="w-16 h-16 bg-gray-200 rounded-full mx-auto flex items-center justify-center text-2xl"
+                            >
+                                🎁
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Infra & Data -->
+        <section class="ppt-slide type-content">
+            <div class="content-grid-2">
+                <div class="flex flex-col justify-center h-full">
+                    <div class="flex items-center gap-2 mb-4 text-sm text-gray-500 font-medium">
+                        <span class="text-brand">Pocask E&M</span>
+                        <span>/</span>
+                        <span>Infrastructure</span>
+                    </div>
+
+                    <h2 class="project-title text-4xl mb-2">Infra & Data</h2>
+                    <h3 class="project-subtitle text-xl mb-6">하이브리드 크롤링 파이프라인</h3>
+
+                    <div class="project-desc text-sm leading-relaxed mb-6">
+                        <p class="mb-3">비용 효율적인 대규모 크롤링 및 데이터 처리를 위한 인프라를 구축했습니다.</p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-600">
+                            <li><strong>AWS & Mac Mini 하이브리드 클러스터</strong> 구축 (비용 절감)</li>
+                            <li><strong>Tor Network</strong> 기반 IP 로테이션 시스템 구축으로 차단 우회</li>
+                            <li>Kafka 기반 데이터 파이프라인 및 Spring Batch 집계 시스템 운영</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-6">
+                        <h4 class="text-xs font-bold text-gray-400 mb-3 uppercase tracking-wider">Tech Stack</h4>
+                        <div class="flex flex-wrap gap-2">
                             <span
                                 class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
                                 >Kafka</span
                             >
                             <span
                                 class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
-                                >Redis</span
+                                >Spring Batch</span
                             >
                             <span
                                 class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
-                                >MySQL 8</span
+                                >Tor</span
                             >
                             <span
                                 class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
@@ -378,30 +499,20 @@
                         </div>
                     </div>
 
-                    <!-- Contribution -->
                     <div class="mt-auto">
                         <h4 class="text-xs font-bold text-brand mb-3 uppercase tracking-wider">Contribution</h4>
-
                         <div class="progress-item">
-                            <span class="progress-label">Architecture</span>
-                            <div class="progress-track"><div class="progress-fill" style="width: 100%"></div></div>
-                            <span class="progress-val">100</span>
-                        </div>
-                        <div class="progress-item">
-                            <span class="progress-label">Backend API</span>
+                            <span class="progress-label">Infra Design</span>
                             <div class="progress-track"><div class="progress-fill" style="width: 100%"></div></div>
                             <span class="progress-val">100</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Right: Visual -->
                 <div class="h-full flex flex-col gap-4">
-                    <!-- Main Visual -->
-                    <div class="visual-box flex-1 bg-gray-100">
-                        <!-- Placeholder Image -->
+                    <div class="visual-box flex-1 bg-gray-50">
                         <div class="text-center">
-                            <p class="text-gray-400 mb-2">Architecture Diagram</p>
+                            <p class="text-gray-400 mb-2">Hybrid Pipeline</p>
                             <div
                                 class="w-16 h-16 bg-gray-200 rounded-full mx-auto flex items-center justify-center text-2xl"
                             >
@@ -413,58 +524,49 @@
             </div>
         </section>
 
-        <!-- Slide 5: Project 2 Title Slide (Blue BG) -->
+        <!-- Slide 7: Growing Lab Section Cover -->
         <section class="ppt-slide type-section">
-            <span class="text-sm opacity-70 absolute top-12 left-16 tracking-widest">PROJECT.02</span>
-
+            <span class="text-sm opacity-70 absolute top-12 left-16 tracking-widest">COMPANY.02</span>
             <div class="text-center z-10">
-                <!-- Company Name Badge -->
                 <div class="inline-block border border-white/30 px-4 py-1 rounded-full text-lg mb-6 tracking-wide">
-                    Company: Growing Lab
+                    2023.04 - 2024.08
                 </div>
-                <h2 class="section-title text-8xl mb-4">Butler</h2>
-                <p class="section-desc">투자 정보 서비스 버틀러</p>
+                <h2 class="section-title text-8xl mb-4">Growing Lab</h2>
+                <p class="section-desc">Investing Information Platform 'Butler'</p>
             </div>
-
             <div class="absolute right-16 top-1/2 -translate-y-1/2 text-[15rem] font-thin opacity-20 select-none">
                 02
             </div>
-
             <div class="absolute bottom-12 right-16 text-right opacity-80 text-sm">
-                <p class="mb-1">2023.04 - 2024.08</p>
-                <div class="flex justify-end gap-4">
-                    <span>Backend 3명</span>
-                    <span>App 1명</span>
+                <div class="flex justify-end gap-4 text-base">
+                    <span>Backend Migration</span>
+                    <span>Hybrid App Launch</span>
                 </div>
             </div>
         </section>
 
-        <!-- Slide 6: Project 2 Content (White BG) -->
+        <!-- Slide 8: Growing Lab - Backend Migration -->
         <section class="ppt-slide type-content">
             <div class="content-grid-2">
-                <!-- Left: Text -->
                 <div class="flex flex-col justify-center h-full">
-                    <!-- Breadcrumb / Meta -->
                     <div class="flex items-center gap-2 mb-4 text-sm text-gray-500 font-medium">
                         <span class="text-brand">Growing Lab</span>
                         <span>/</span>
-                        <span>Backend & Mobile App</span>
+                        <span>Backend Engineering</span>
                     </div>
-
-                    <h2 class="project-title text-4xl mb-2">Butler</h2>
-                    <h3 class="project-subtitle text-xl mb-6">서비스 마이그레이션 & 앱 런칭</h3>
-
+                    <h2 class="project-title text-4xl mb-2">Service Migration</h2>
+                    <h3 class="project-subtitle text-xl mb-6">레거시 청산 및 성능 최적화</h3>
                     <div class="project-desc text-sm leading-relaxed mb-6">
                         <p class="mb-3">
-                            기존 Express 레거시 시스템을 NestJS + TypeORM 구조로 전면 개편하여 유지보수성을 높였습니다.
+                            Express/Hapi 기반의 레거시 시스템을 <strong>NestJS + TypeORM</strong> 아키텍처로
+                            마이그레이션하여 유지보수성을 확보했습니다.
                         </p>
-                        <p>
-                            또한 React Native를 도입하여 웹 서비스만 존재하던 버틀러의 모바일 앱(iOS/Android)을
-                            성공적으로 런칭했습니다.
-                        </p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-600">
+                            <li>분산된 비즈니스 로직을 Layered Architecture로 재설계</li>
+                            <li>대용량 조회 API 쿼리 튜닝으로 응답속도 <strong>96% 단축 (3s → 100ms)</strong></li>
+                            <li>테스트 코드 도입 및 CI/CD 파이프라인 구축</li>
+                        </ul>
                     </div>
-
-                    <!-- Tech Stack Section (New) -->
                     <div class="mb-6">
                         <h4 class="text-xs font-bold text-gray-400 mb-3 uppercase tracking-wider">Tech Stack</h4>
                         <div class="flex flex-wrap gap-2">
@@ -482,40 +584,91 @@
                             >
                             <span
                                 class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
+                                >Redis</span
+                            >
+                        </div>
+                    </div>
+                    <div class="mt-auto">
+                        <h4 class="text-xs font-bold text-brand mb-3 uppercase tracking-wider">Contribution</h4>
+                        <div class="progress-item">
+                            <span class="progress-label">Refactoring</span>
+                            <div class="progress-track"><div class="progress-fill" style="width: 100%"></div></div>
+                            <span class="progress-val">100</span>
+                        </div>
+                        <div class="progress-item">
+                            <span class="progress-label">Perf Tuning</span>
+                            <div class="progress-track"><div class="progress-fill" style="width: 100%"></div></div>
+                            <span class="progress-val">100</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="h-full flex flex-col gap-4">
+                    <div class="visual-box flex-1 bg-gray-50">
+                        <div class="text-center">
+                            <p class="text-gray-400 mb-2">Optimized Architecture</p>
+                            <div
+                                class="w-16 h-16 bg-gray-200 rounded-full mx-auto flex items-center justify-center text-2xl"
+                            >
+                                ⚡
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 9: Growing Lab - Hybrid App Launch -->
+        <section class="ppt-slide type-content">
+            <div class="content-grid-2">
+                <div class="flex flex-col justify-center h-full">
+                    <div class="flex items-center gap-2 mb-4 text-sm text-gray-500 font-medium">
+                        <span class="text-brand">Growing Lab</span>
+                        <span>/</span>
+                        <span>Mobile App</span>
+                    </div>
+                    <h2 class="project-title text-4xl mb-2">Hybrid App Launch</h2>
+                    <h3 class="project-subtitle text-xl mb-6">서비스 앱 전환 및 확장</h3>
+                    <div class="project-desc text-sm leading-relaxed mb-6">
+                        <p class="mb-3">
+                            웹 페이지만 존재하던 버틀러 서비스를 <strong>React Native</strong> 기반의 하이브리드 앱으로
+                            개발하여 iOS/Android 스토어에 런칭했습니다.
+                        </p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-600">
+                            <li>웹뷰(WebView)와 네이티브 모듈 하이브리드 통신 구현</li>
+                            <li><strong>CodePush</strong> 도입으로 앱 심사 없이 즉각적인 핫픽스 대응 체계 마련</li>
+                            <li>앱 전용 푸시 알림 및 딥링크 시스템 구축</li>
+                        </ul>
+                    </div>
+                    <div class="mb-6">
+                        <h4 class="text-xs font-bold text-gray-400 mb-3 uppercase tracking-wider">Tech Stack</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
                                 >React Native</span
                             >
                             <span
                                 class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
                                 >CodePush</span
                             >
+                            <span
+                                class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
+                                >Firebase (FCM)</span
+                            >
                         </div>
                     </div>
-
                     <div class="mt-auto">
-                        <h4 class="text-xs font-bold text-brand mb-3 uppercase tracking-wider">Tech Strategy</h4>
+                        <h4 class="text-xs font-bold text-brand mb-3 uppercase tracking-wider">Contribution</h4>
                         <div class="progress-item">
-                            <span class="progress-label">Migration</span>
-                            <div class="progress-track"><div class="progress-fill" style="width: 100%"></div></div>
-                            <span class="progress-val">100</span>
-                        </div>
-                        <div class="progress-item">
-                            <span class="progress-label">Perf Tuning</span>
-                            <div class="progress-track"><div class="progress-fill" style="width: 90%"></div></div>
-                            <span class="progress-val">90</span>
-                        </div>
-                        <div class="progress-item">
-                            <span class="progress-label">App Dev</span>
+                            <span class="progress-label">App Development</span>
                             <div class="progress-track"><div class="progress-fill" style="width: 100%"></div></div>
                             <span class="progress-val">100</span>
                         </div>
                     </div>
                 </div>
-
-                <!-- Right: Visual -->
                 <div class="h-full flex flex-col gap-4">
-                    <div class="visual-box flex-1 bg-gray-100">
+                    <div class="visual-box flex-1 bg-gray-50">
                         <div class="text-center">
-                            <p class="text-gray-400 mb-2">Butler App Screens</p>
+                            <p class="text-gray-400 mb-2">App Store Launch</p>
                             <div
                                 class="w-16 h-16 bg-gray-200 rounded-full mx-auto flex items-center justify-center text-2xl"
                             >
@@ -523,6 +676,261 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 10: Concent Title -->
+        <section class="ppt-slide type-section">
+            <span class="text-sm opacity-70 absolute top-12 left-16 tracking-widest">COMPANY.03</span>
+            <div class="text-center z-10">
+                <div class="inline-block border border-white/30 px-4 py-1 rounded-full text-lg mb-6 tracking-wide">
+                    2022.06 - 2023.04
+                </div>
+                <h2 class="section-title text-8xl mb-4">Concent CO.</h2>
+                <p class="section-desc">Social Media Platform 'PerMirth'</p>
+            </div>
+            <div class="absolute right-16 top-1/2 -translate-y-1/2 text-[15rem] font-thin opacity-20 select-none">
+                03
+            </div>
+            <div class="absolute bottom-12 right-16 text-right opacity-80 text-sm">
+                <div class="flex justify-end gap-4 text-base">
+                    <span>Video Cost Opt</span>
+                    <span>Cloud Ops</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 11: Concent Content -->
+        <section class="ppt-slide type-content">
+            <div class="content-grid-2">
+                <div class="flex flex-col justify-center h-full">
+                    <div class="flex items-center gap-2 mb-4 text-sm text-gray-500 font-medium">
+                        <span class="text-brand">Concent CO.</span>
+                        <span>/</span>
+                        <span>Infrastructure</span>
+                    </div>
+                    <h2 class="project-title text-4xl mb-2">PerMirth</h2>
+                    <h3 class="project-subtitle text-xl mb-6">인프라 최적화 & 비용 절감</h3>
+                    <div class="project-desc text-sm leading-relaxed mb-6">
+                        <p class="mb-3">동영상 소셜 앱의 트래픽 비용 문제를 해결하고 배포 파이프라인을 구축했습니다.</p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-600">
+                            <li>
+                                HLS 스트리밍 & CloudFront 도입으로 인프라 비용 <strong>76% 절감 (60→14만원)</strong>
+                            </li>
+                            <li><strong>GitHub Actions</strong> 기반의 CI/CD 및 CodePush 배포 자동화</li>
+                        </ul>
+                    </div>
+                    <div class="mb-6">
+                        <h4 class="text-xs font-bold text-gray-400 mb-3 uppercase tracking-wider">Tech Stack</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
+                                >AWS (S3/CF/EC2)</span
+                            >
+                            <span
+                                class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
+                                >Node.js</span
+                            >
+                            <span
+                                class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
+                                >FFmpeg</span
+                            >
+                            <span
+                                class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
+                                >React Native</span
+                            >
+                        </div>
+                    </div>
+                    <div class="mt-auto">
+                        <h4 class="text-xs font-bold text-brand mb-3 uppercase tracking-wider">Contribution</h4>
+                        <div class="progress-item">
+                            <span class="progress-label">Infra Optimization</span>
+                            <div class="progress-track"><div class="progress-fill" style="width: 100%"></div></div>
+                            <span class="progress-val">100</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="h-full flex flex-col gap-4">
+                    <div class="visual-box flex-1 bg-gray-50">
+                        <div class="text-center">
+                            <p class="text-gray-400 mb-2">HLS Streaming Flow</p>
+                            <div
+                                class="w-16 h-16 bg-gray-200 rounded-full mx-auto flex items-center justify-center text-2xl"
+                            >
+                                ☁️
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 12: BrickMate Title -->
+        <section class="ppt-slide type-section">
+            <span class="text-sm opacity-70 absolute top-12 left-16 tracking-widest">COMPANY.04</span>
+            <div class="text-center z-10">
+                <div class="inline-block border border-white/30 px-4 py-1 rounded-full text-lg mb-6 tracking-wide">
+                    2022.01 - 2022.06
+                </div>
+                <h2 class="section-title text-8xl mb-4">BrickMate</h2>
+                <p class="section-desc">SI & Solution Development</p>
+            </div>
+            <div class="absolute right-16 top-1/2 -translate-y-1/2 text-[15rem] font-thin opacity-20 select-none">
+                04
+            </div>
+            <div class="absolute bottom-12 right-16 text-right opacity-80 text-sm">
+                <div class="flex justify-end gap-4 text-base">
+                    <span>Lotte Home Shopping</span>
+                    <span>Smart RMR</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 13: BrickMate - Lotte -->
+        <section class="ppt-slide type-content">
+            <div class="content-grid-2">
+                <div class="flex flex-col justify-center h-full">
+                    <div class="flex items-center gap-2 mb-4 text-sm text-gray-500 font-medium">
+                        <span class="text-brand">BrickMate</span>
+                        <span>/</span>
+                        <span>SI Project</span>
+                    </div>
+                    <h2 class="project-title text-4xl mb-2">Lotte Home Shopping</h2>
+                    <h3 class="project-subtitle text-xl mb-6">차세대 iTOO 프로젝트 파견</h3>
+                    <div class="project-desc text-sm leading-relaxed mb-6">
+                        <p class="mb-3">
+                            롯데홈쇼핑 차세대 쇼핑 플랫폼 iTOO 구축 프로젝트에 파견되어 레거시 시스템을 안정적으로
+                            운영했습니다.
+                        </p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-600">
+                            <li>대규모 커머스 시스템의 <strong>주문/결제 프로세스</strong> 유지보수</li>
+                            <li>JSP/Oracle 기반의 레거시 코드, MyBatis 쿼리 분석 및 최적화</li>
+                            <li>이벤트/프로모션 로직 개발 지원</li>
+                        </ul>
+                    </div>
+                    <div class="mb-6">
+                        <h4 class="text-xs font-bold text-gray-400 mb-3 uppercase tracking-wider">Tech Stack</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
+                                >Spring Boot</span
+                            >
+                            <span
+                                class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
+                                >Oracle</span
+                            >
+                            <span
+                                class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
+                                >JSP</span
+                            >
+                        </div>
+                    </div>
+                    <div class="mt-auto">
+                        <h4 class="text-xs font-bold text-brand mb-3 uppercase tracking-wider">Contribution</h4>
+                        <div class="progress-item">
+                            <span class="progress-label">Legacy Maint</span>
+                            <div class="progress-track"><div class="progress-fill" style="width: 80%"></div></div>
+                            <span class="progress-val">80</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="h-full flex flex-col gap-4">
+                    <div class="visual-box flex-1 bg-gray-50 flex flex-col gap-4 p-6 w-full items-stretch">
+                        <div
+                            class="flex-1 relative rounded-xl overflow-hidden shadow-sm border border-gray-100 group w-full bg-white"
+                        >
+                            <img
+                                src="../images/LotteHomeShopping.svg"
+                                alt="Lotte Home Shopping"
+                                class="absolute inset-0 w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-105"
+                            />
+                        </div>
+                        <div
+                            class="flex-1 relative rounded-xl overflow-hidden shadow-sm border border-gray-100 group w-full bg-white"
+                        >
+                            <img
+                                src="../images/iTOO.jpg"
+                                alt="iTOO Project"
+                                class="absolute inset-0 w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 14: BrickMate - Smart RMR -->
+        <section class="ppt-slide type-content">
+            <div class="content-grid-2">
+                <div class="flex flex-col justify-center h-full">
+                    <div class="flex items-center gap-2 mb-4 text-sm text-gray-500 font-medium">
+                        <span class="text-brand">BrickMate</span>
+                        <span>/</span>
+                        <span>Solution R&D</span>
+                    </div>
+                    <h2 class="project-title text-4xl mb-2">Smart RMR</h2>
+                    <h3 class="project-subtitle text-xl mb-6">터널 안전 관제 솔루션</h3>
+                    <div class="project-desc text-sm leading-relaxed mb-6">
+                        <p class="mb-3">AI 기반 터널 막장 지반 분석 솔루션을 1인 풀스택으로 개발했습니다.</p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-600">
+                            <li>현장 작업자용 <strong>Android 앱</strong> (이미지 촬영/업로드) 개발</li>
+                            <li>관리자용 <strong>Web 대시보드</strong> (Next.js) 및 백엔드 API 서버 구축</li>
+                            <li>지반 등급 분석 데이터 시각화 및 리포팅 기능 구현</li>
+                        </ul>
+                    </div>
+                    <div class="mb-6">
+                        <h4 class="text-xs font-bold text-gray-400 mb-3 uppercase tracking-wider">Tech Stack</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
+                                >Android (Java)</span
+                            >
+                            <span
+                                class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
+                                >Node.js</span
+                            >
+                            <span
+                                class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
+                                >PostgreSQL</span
+                            >
+                        </div>
+                    </div>
+                    <div class="mt-auto">
+                        <h4 class="text-xs font-bold text-brand mb-3 uppercase tracking-wider">Contribution</h4>
+                        <div class="progress-item">
+                            <span class="progress-label">Full Stack</span>
+                            <div class="progress-track"><div class="progress-fill" style="width: 100%"></div></div>
+                            <span class="progress-val">100</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="h-full flex flex-col gap-4">
+                    <div class="visual-box flex-1 bg-gray-50">
+                        <div class="text-center">
+                            <p class="text-gray-400 mb-2">Tunnel Safety Solution</p>
+                            <div
+                                class="w-16 h-16 bg-gray-200 rounded-full mx-auto flex items-center justify-center text-2xl"
+                            >
+                                👷
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 11: Closing (Blue BG) -->
+        <section class="ppt-slide type-cover">
+            <div class="cover-content text-center">
+                <p class="cover-subtitle mb-8 text-white/80">
+                    지금까지,<br />
+                    문제를 해결하는 개발자였습니다.
+                </p>
+                <h1 class="cover-title mb-12">THANK YOU</h1>
+
+                <div class="inline-block border border-white/30 px-8 py-3 rounded-full bg-white/10 backdrop-blur-sm">
+                    <p class="text-xl font-bold">koyoungil97@gmail.com</p>
                 </div>
             </div>
         </section>
