@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>고영일 | Portfolio 2.0 (Renewal Preview)</title>
+        <title>고영일 | Portfolio 2.0 (Kim Byul Style Ref)</title>
         <script src="https://cdn.tailwindcss.com"></script>
         <link
             rel="stylesheet"
@@ -11,210 +11,247 @@
             crossorigin
             href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
         />
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
-        <script src="./portfolio-config.js"></script>
-        <link rel="stylesheet" href="./portfolio-theme.css" />
-        <style>
-            /* 2.0 Specific Layout Utilities */
-            .slide-container {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                height: 100vh;
-                padding: 4rem 6rem;
-                page-break-after: always;
-                box-sizing: border-box;
-            }
-            .slide-header {
-                margin-bottom: 3rem;
-                border-bottom: 2px solid var(--color-border);
-                padding-bottom: 1.5rem;
-            }
-            /* ZigZag Pattern */
-            .zigzag-row {
-                display: flex;
-                align-items: center;
-                gap: 4rem;
-                height: 100%;
-            }
-            .zigzag-row.reverse {
-                flex-direction: row-reverse;
-            }
-            .zigzag-content {
-                flex: 1;
-            }
-            .zigzag-visual {
-                flex: 1;
-                background-color: var(--color-bg-sub);
-                border-radius: 1rem;
-                height: 400px; /* Placeholder Height */
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border: 1px dashed var(--color-text-secondary);
-                color: var(--color-text-secondary);
-            }
-        </style>
+        <!-- New Reference Theme -->
+        <link rel="stylesheet" href="./portfolio-theme-ref.css" />
     </head>
     <body>
-        <!-- Slide 1: Cover / Intro -->
-        <section class="slide-container text-center">
-            <div class="my-auto">
-                <h1 class="text-display font-bold mb-4">고영일</h1>
-                <h2 class="text-h2 font-light text-secondary mb-12">
-                    문제를 구조적으로 해결하는<br />5년 차 백엔드 개발자
-                </h2>
-                <div class="max-w-3xl mx-auto text-h4 leading-relaxed text-secondary2">
-                    <p>
-                        "기능 구현을 넘어,
-                        <strong class="text-accent">운영 중 반복되는 문제를 구조적으로 제거</strong>하는 데 집중합니다."
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 2: Key Metrics (Why Me?) -->
-        <section class="slide-container">
-            <div class="slide-header">
-                <h2 class="text-h2 font-bold">핵심 성과 (Key Metrics)</h2>
-                <p class="text-h4 text-secondary">비즈니스 임팩트를 만들어낸 주요 수치입니다.</p>
-            </div>
-            <div class="grid grid-cols-2 gap-8 h-full pb-20">
-                <div class="card-box flex flex-col justify-center items-center text-center">
-                    <h3 class="text-h3 text-secondary mb-4">API 응답 속도 개선</h3>
-                    <div class="text-hero-num mb-2">96<span class="text-hero-unit">%</span></div>
-                    <p class="text-h4 font-bold text-body">3s → 100ms 단축</p>
-                    <p class="text-sm text-secondary mt-2">대용량 JSON 파싱 구조를 RDB로 마이그레이션</p>
-                </div>
-                <div class="card-box flex flex-col justify-center items-center text-center">
-                    <h3 class="text-h3 text-secondary mb-4">인프라 비용 절감</h3>
-                    <div class="text-hero-num mb-2">76<span class="text-hero-unit">%</span></div>
-                    <p class="text-h4 font-bold text-body">월 60만 → 14만 원</p>
-                    <p class="text-sm text-secondary mt-2">On-Premise + Cloud 하이브리드 아키텍처 전환</p>
-                </div>
-                <div class="card-box flex flex-col justify-center items-center text-center">
-                    <h3 class="text-h3 text-secondary mb-4">시스템 안정성</h3>
-                    <div class="text-hero-num mb-2">Deadlock</div>
-                    <p class="text-h4 font-bold text-body">0건 (제로화)</p>
-                    <p class="text-sm text-secondary mt-2">Redis Queue 도입으로 트래픽 폭주 대응</p>
-                </div>
-                <div class="card-box flex flex-col justify-center items-center text-center">
-                    <h3 class="text-h3 text-secondary mb-4">업무 자동화</h3>
-                    <div class="text-hero-num mb-2">Automation</div>
-                    <p class="text-h4 font-bold text-body">반복 업무 제거</p>
-                    <p class="text-sm text-secondary mt-2">n8n 기반 사내 업무 자동화 파이프라인 구축</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 3: Tech Stack -->
-        <section class="slide-container">
-            <div class="slide-header">
-                <h2 class="text-h2 font-bold">기술 스택 (Tech Stack)</h2>
-            </div>
-            <div class="grid grid-cols-3 gap-8">
-                <!-- Placeholder for Tech Stack Content -->
-                <div class="card-box bg-sub p-8">
-                    <h3 class="text-h3 font-bold mb-4">Backend Main</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="badge">Java</span>
-                        <span class="badge">Spring Boot</span>
-                        <span class="badge">NestJS</span>
-                        <span class="badge">Node.js</span>
-                    </div>
-                </div>
-                <div class="card-box bg-sub p-8">
-                    <h3 class="text-h3 font-bold mb-4">Infrastructure</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="badge">AWS</span>
-                        <span class="badge">Kafka</span>
-                        <span class="badge">Docker</span>
-                    </div>
-                </div>
-                <div class="card-box bg-sub p-8">
-                    <h3 class="text-h3 font-bold mb-4">Database</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="badge">MySQL</span>
-                        <span class="badge">Redis</span>
-                        <span class="badge">MongoDB</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 4: Project 1 (Zig-Zag Left) -->
-        <section class="slide-container">
-            <div class="zigzag-row">
-                <div class="zigzag-content">
-                    <h2 class="text-display font-bold mb-2">Pocask E&M</h2>
-                    <p class="text-h3 text-accent mb-6">글로벌 애드테크 플랫폼 개발 매니저</p>
-                    <div class="card-box mb-6 p-6">
-                        <h4 class="text-h4 font-bold mb-4">주요 성과</h4>
-                        <ul class="list-disc list-inside space-y-2 text-body">
-                            <li><strong>앱인토스 미니앱 입점</strong>을 통해 송출 광고 건수 폭발적 증가 대응</li>
-                            <li>
-                                <strong>Spring Boot 배치 서버</strong>로 광고 소비량/이상 징후
-                                <strong>실시간 감지</strong>
-                            </li>
-                            <li>Kafka 도입으로 <strong>이벤트 파이프라인 고도화</strong></li>
-                        </ul>
-                    </div>
-                    <div class="flex gap-2">
-                        <span class="badge-soft">Spring Boot</span>
-                        <span class="badge-soft">Kafka</span>
-                        <span class="badge-soft">Redis</span>
-                    </div>
-                </div>
-                <div class="zigzag-visual">
-                    <!-- Placeholder for Project Image / Architecture Diagram -->
-                    Visual Area (Architecture Diagram)
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 5: Project 2 (Zig-Zag Right) -->
-        <section class="slide-container">
-            <div class="zigzag-row reverse">
-                <div class="zigzag-content">
-                    <h2 class="text-display font-bold mb-2">그로잉랩</h2>
-                    <p class="text-h3 text-accent mb-6">투자 정보 서비스 '버틀러' 백엔드 개발</p>
-                    <div class="card-box mb-6 p-6">
-                        <h4 class="text-h4 font-bold mb-4">주요 성과</h4>
-                        <ul class="list-disc list-inside space-y-2 text-body">
-                            <li>Express → <strong>NestJS 마이그레이션</strong> 주도</li>
-                            <li>데이터 파이프라인 개선으로 <strong>조회 속도 96% 단축</strong> (3s -> 100ms)</li>
-                            <li><strong>React Native</strong> 기반 하이브리드 앱 개발 및 출시</li>
-                        </ul>
-                    </div>
-                    <div class="flex gap-2">
-                        <span class="badge-soft">NestJS</span>
-                        <span class="badge-soft">TypeORM</span>
-                        <span class="badge-soft">React Native</span>
-                    </div>
-                </div>
-                <div class="zigzag-visual">
-                    <!-- Placeholder for Project Image / Architecture Diagram -->
-                    Visual Area (App Screen / Flow)
-                </div>
-            </div>
-        </section>
-
-        <!-- ... More Projects ... -->
-
-        <!-- Slide: Contact -->
-        <section class="slide-container">
-            <div class="slide-header">
-                <h2 class="text-h2 font-bold">Contact</h2>
-            </div>
-            <div
-                class="bg-card rounded-2xl p-12 border border-default flex flex-col justify-center items-center text-center h-full max-h-[60vh] my-auto"
-            >
-                <h3 class="text-h2 font-bold mb-6">함께 성장하고 싶습니다.</h3>
-                <p class="text-body text-xl mb-12">
-                    복잡한 문제를 기술로 해결하는 과정을 즐깁니다.<br />
-                    커피챗도 언제나 환영합니다.
+        <!-- Slide 1: Cover (Blue BG) -->
+        <section class="ppt-slide type-cover">
+            <div class="cover-content">
+                <p class="cover-subtitle">
+                    문제를 구조적으로 해결하는<br />
+                    백엔드 개발자
                 </p>
-                <a href="mailto:youngil.ko97@gmail.com" class="btn-primary text-xl px-10 py-5">이메일 보내기</a>
+                <h1 class="cover-title">
+                    고영일<br />
+                    PORTFOLIO
+                </h1>
+            </div>
+            <div class="cover-meta md:block hidden">
+                <!-- Position Absolute Bottom Left -->
+                <p>CONTACT ME</p>
+                <p class="font-bold mt-2">youngil.ko97@gmail.com</p>
+                <p>010. 1234. 5678</p>
+            </div>
+            <!-- Year Range (Right Side style as per ref if needed, or keep clean) -->
+            <div style="position: absolute; bottom: 3rem; right: 4rem; text-align: right; opacity: 0.6">
+                <p class="text-xl font-bold">2020 - 2026</p>
+                <p class="text-sm">BACKEND DEV</p>
+            </div>
+        </section>
+
+        <!-- Slide 2: Key Metrics (White BG, Blue Accents) -->
+        <section class="ppt-slide type-content">
+            <div class="content-grid-2">
+                <!-- Left: Title Area -->
+                <div class="flex flex-col justify-center">
+                    <h2 class="project-title text-black">Key Metrics</h2>
+                    <p class="project-subtitle text-gray-500 mb-8">
+                        비즈니스 임팩트를 증명하는<br />핵심 성과 지표입니다.
+                    </p>
+                    <div class="space-y-4 text-gray-600">
+                        <p>
+                            단순한 기능 구현을 넘어,
+                            <strong class="text-blue-600">비용 절감</strong>과
+                            <strong class="text-blue-600">성능 최적화</strong>를 통해 비즈니스의 성장에 직접적으로
+                            기여합니다.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right: Metrics Grid -->
+                <!-- User Ref didn't show this, but I'll adapt the 'Project List' style to Metrics -->
+                <div class="grid grid-cols-2 gap-4 my-auto">
+                    <!-- Metric 1 -->
+                    <div class="border border-gray-200 p-8 rounded-lg hover:border-blue-500 transition-colors">
+                        <p class="text-gray-500 text-sm mb-2">API Response Time</p>
+                        <h3 class="text-5xl font-bold text-blue-600 mb-2">96%</h3>
+                        <p class="font-bold text-black">단축 (3s -> 100ms)</p>
+                    </div>
+                    <!-- Metric 2 -->
+                    <div class="border border-gray-200 p-8 rounded-lg hover:border-blue-500 transition-colors">
+                        <p class="text-gray-500 text-sm mb-2">Infra Cost</p>
+                        <h3 class="text-5xl font-bold text-blue-600 mb-2">76%</h3>
+                        <p class="font-bold text-black">절감 (월 60 -> 14만)</p>
+                    </div>
+                    <!-- Metric 3 -->
+                    <div class="border border-gray-200 p-8 rounded-lg hover:border-blue-500 transition-colors">
+                        <p class="text-gray-500 text-sm mb-2">System Stability</p>
+                        <h3 class="text-5xl font-bold text-blue-600 mb-2">0건</h3>
+                        <p class="font-bold text-black">Deadlock 발생</p>
+                    </div>
+                    <!-- Metric 4 -->
+                    <div class="border border-gray-200 p-8 rounded-lg hover:border-blue-500 transition-colors">
+                        <p class="text-gray-500 text-sm mb-2">Automation</p>
+                        <h3 class="text-5xl font-bold text-blue-600 mb-2">Auto</h3>
+                        <p class="font-bold text-black">반복 업무 제거</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: Project 1 Title Slide (Blue BG) -->
+        <section class="ppt-slide type-section">
+            <span class="text-sm opacity-70 absolute top-12 left-16 tracking-widest">PROJECT.01</span>
+
+            <div class="text-center z-10">
+                <h2 class="section-title text-8xl mb-4">Pocask E&M</h2>
+                <p class="section-desc">글로벌 애드테크 플랫폼 개발 매니저</p>
+            </div>
+
+            <!-- Large Outline Number -->
+            <div class="absolute right-16 top-1/2 -translate-y-1/2 text-[15rem] font-thin opacity-20 select-none">
+                01
+            </div>
+
+            <!-- Bottom Info -->
+            <div class="absolute bottom-12 right-16 text-right opacity-80 text-sm">
+                <p class="mb-1">2024.11 - NOW</p>
+                <div class="flex justify-end gap-4">
+                    <span>Backend 1명</span>
+                    <span>Frontend 1명</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: Project 1 Content (White BG, 2-Col) -->
+        <section class="ppt-slide type-content">
+            <div class="content-grid-2">
+                <!-- Left: Text -->
+                <div class="flex flex-col justify-center">
+                    <h2 class="project-title">Pocask E&M</h2>
+                    <h3 class="project-subtitle">광고 송출 시스템 고도화</h3>
+
+                    <div class="project-desc">
+                        <p class="mb-4">
+                            앱인토스 미니앱 입점을 통해 폭발적으로 증가한 트래픽(5배)을 안정적으로 처리하기 위한 시스템
+                            고도화 프로젝트입니다.
+                        </p>
+                        <p>
+                            Spring Boot 기반의 배치 시스템을 구축하여 광고 소비량을 실시간으로 집계하고, Kafka 이벤트를
+                            도입하여 데이터 정합성을 확보했습니다.
+                        </p>
+                    </div>
+
+                    <!-- Contribution / Tech Stack Bars -->
+                    <div class="mt-auto">
+                        <h4 class="text-sm font-bold text-blue-600 mb-3 uppercase tracking-wider">Contribution</h4>
+
+                        <div class="progress-item">
+                            <span class="progress-label">Architecture</span>
+                            <div class="progress-track"><div class="progress-fill" style="width: 100%"></div></div>
+                            <span class="progress-val">100</span>
+                        </div>
+                        <div class="progress-item">
+                            <span class="progress-label">Backend API</span>
+                            <div class="progress-track"><div class="progress-fill" style="width: 100%"></div></div>
+                            <span class="progress-val">100</span>
+                        </div>
+                        <div class="progress-item">
+                            <span class="progress-label">Deployment</span>
+                            <div class="progress-track"><div class="progress-fill" style="width: 80%"></div></div>
+                            <span class="progress-val">80</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Visual -->
+                <div class="h-full flex flex-col gap-4">
+                    <!-- Main Visual -->
+                    <div class="visual-box flex-1 bg-gray-100">
+                        <!-- Placeholder Image -->
+                        <div class="text-center">
+                            <p class="text-gray-400 mb-2">Architecture Diagram</p>
+                            <div
+                                class="w-16 h-16 bg-gray-200 rounded-full mx-auto flex items-center justify-center text-2xl"
+                            >
+                                🏗️
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sub Visual (Optional, or just one big one) -->
+                    <div class="h-1/3 flex gap-4">
+                        <div class="visual-box flex-1 bg-gray-50 text-sm p-4">Spring Boot / Kafka Pipeline</div>
+                        <div class="visual-box flex-1 bg-gray-50 text-sm p-4">Monitoring Dashboard</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: Project 2 Title Slide (Blue BG) -->
+        <section class="ppt-slide type-section">
+            <span class="text-sm opacity-70 absolute top-12 left-16 tracking-widest">PROJECT.02</span>
+
+            <div class="text-center z-10">
+                <h2 class="section-title text-8xl mb-4">Growing Lab</h2>
+                <p class="section-desc">버틀러: 투자 정보 서비스</p>
+            </div>
+
+            <div class="absolute right-16 top-1/2 -translate-y-1/2 text-[15rem] font-thin opacity-20 select-none">
+                02
+            </div>
+
+            <div class="absolute bottom-12 right-16 text-right opacity-80 text-sm">
+                <p class="mb-1">2023.04 - 2024.08</p>
+                <div class="flex justify-end gap-4">
+                    <span>Backend 3명</span>
+                    <span>App 1명</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Project 2 Content (White BG) -->
+        <section class="ppt-slide type-content">
+            <div class="content-grid-2">
+                <!-- Left: Text -->
+                <div class="flex flex-col justify-center">
+                    <h2 class="project-title">Butler</h2>
+                    <h3 class="project-subtitle">NestJS 마이그레이션 & 앱 개발</h3>
+
+                    <div class="project-desc">
+                        <p class="mb-4">
+                            기존 Express 레거시 시스템을 NestJS + TypeORM 구조로 전면 개편하여 유지보수성을 높였습니다.
+                        </p>
+                        <p class="mb-4">
+                            또한 React Native를 도입하여 웹 서비스만 존재하던 버틀러의 모바일 앱(iOS/Android)을
+                            성공적으로 런칭했습니다.
+                        </p>
+                    </div>
+
+                    <div class="mt-auto">
+                        <h4 class="text-sm font-bold text-blue-600 mb-3 uppercase tracking-wider">Tech Strategy</h4>
+                        <!-- Using Badges instead of bars for variety? Or Stick to bars? Let's stick to bars for consistency with Ref -->
+                        <div class="progress-item">
+                            <span class="progress-label">Migration</span>
+                            <div class="progress-track"><div class="progress-fill" style="width: 100%"></div></div>
+                            <span class="progress-val">100</span>
+                        </div>
+                        <div class="progress-item">
+                            <span class="progress-label">Perf Tuning</span>
+                            <div class="progress-track"><div class="progress-fill" style="width: 90%"></div></div>
+                            <span class="progress-val">90</span>
+                        </div>
+                        <div class="progress-item">
+                            <span class="progress-label">App Dev</span>
+                            <div class="progress-track"><div class="progress-fill" style="width: 100%"></div></div>
+                            <span class="progress-val">100</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Visual -->
+                <div class="h-full flex flex-col gap-4">
+                    <div class="visual-box flex-1 bg-gray-100">
+                        <div class="text-center">
+                            <p class="text-gray-400 mb-2">Butler App Screens</p>
+                            <div
+                                class="w-16 h-16 bg-gray-200 rounded-full mx-auto flex items-center justify-center text-2xl"
+                            >
+                                📱
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </body>
