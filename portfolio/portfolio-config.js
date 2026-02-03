@@ -10,7 +10,8 @@ tailwind.config = {
                 'text-title': 'var(--color-text-title)',
                 'text-body': 'var(--color-text-body)',
                 'text-secondary': 'var(--color-text-secondary)',
-                accent: 'var(--color-accent)',
+                accent: 'var(--color-accent)', // Legacy
+                brand: 'var(--color-brand)', // Portfolio 2.0 Main Color
                 'border-default': 'var(--color-border)',
             },
         },
