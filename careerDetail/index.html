@@ -512,32 +512,33 @@
                     <div style="width: 100%; display: flex; justify-content: space-between; margin-bottom: 8px">
                         <div>
                             <span class="company-name">Concent CO. (콘센트)</span>
-                            <span class="company-role">소셜 미디어 'PerMirth' / Full Stack</span>
+                            <span class="company-role">반려동물 숏폼 플랫폼 'PetMirth' / Full Stack</span>
                         </div>
                         <span class="company-period">2022.06 - 2023.04</span>
                     </div>
                     <div class="tech-stack" style="margin: 0; width: 100%">
-                        <span class="tech-tag">Spring Boot</span>
-                        <span class="tech-tag">AWS (CloudFront, S3)</span>
-                        <span class="tech-tag">FFmpeg</span>
                         <span class="tech-tag">React Native</span>
+                        <span class="tech-tag">NestJS</span>
+                        <span class="tech-tag">AWS S3</span>
+                        <span class="tech-tag">FFmpeg (Mobile)</span>
+                        <span class="tech-tag">React Query</span>
                     </div>
                 </div>
 
                 <div class="project-item">
-                    <div class="project-title">동영상 소셜 미디어 인프라 최적화</div>
+                    <div class="project-title">반려동물 입양 숏폼 플랫폼 개발</div>
                     <div class="project-meta">2022.06 - 2023.04 | 기여도: 100%</div>
 
                     <div class="metrics-grid" style="margin-left: 0">
                         <div class="metric-card">
-                            <div class="metric-label">Bandwidth Cost</div>
-                            <div class="metric-value">월 60만원 → 14만원</div>
-                            <div class="metric-change">▼ 76% 절감</div>
+                            <div class="metric-label">Infra Cost</div>
+                            <div class="metric-value">Client Processing</div>
+                            <div class="metric-change">비용 최소화</div>
                         </div>
                         <div class="metric-card">
-                            <div class="metric-label">Pipeline</div>
-                            <div class="metric-value">CI/CD 구축</div>
-                            <div class="metric-change">업무 자동화</div>
+                            <div class="metric-label">UX</div>
+                            <div class="metric-value">Infinite Scroll</div>
+                            <div class="metric-change">Prefetching</div>
                         </div>
                     </div>
 
@@ -547,12 +548,7 @@
                         </div>
                         <ul class="solution-list" style="margin-left: 0">
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>영상 트래픽 비용 부담:</strong> S3를 통한 단순 파일 전송 방식으로 인해 트래픽
-                                비용이 높고, 재생 로딩 속도가 느려 사용자 불만이 제기됨.
-                            </li>
-                            <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>수동 배포의 비효율:</strong> FTP 등을 이용한 수동 배포 방식으로 인해 실수
-                                가능성이 높고 시간이 오래 소요됨.
+                                <strong>비즈니스 피벗 및 비용 효율화 이슈:</strong> 일반 숏폼에서 반려동물 입양 플랫폼으로 피벗(Pivot)하는 과정에서, 초기 유저 규모(100명 미만) 대비 과도한 서버 트랜스코딩 비용이 발생하여 스타트업에 맞는 효율적 아키텍처가 절실함.
                             </li>
                         </ul>
                     </div>
@@ -561,16 +557,15 @@
                         <div class="detail-label">의사결정 및 해결과정 (Decision & Solution)</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>스트리밍 프로토콜(HLS) 및 CDN 도입:</strong>
+                                <strong>Client-Side 분산 트랜스코딩 (Mobile FFmpeg):</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    FFmpeg를 이용해 영상을 HLS(.m3u8)로 트랜스코딩하고 CloudFront를 통해 전송. 대역폭
-                                    효율을 높이고 버퍼링 없는 재생 환경 구현.
+                                    고비용의 미디어 서버(EC2/MediaConvert) 대신, 모바일 기기의 컴퓨팅 파워를 활용해 클라이언트단에서 HLS 변환 후 S3로 업로드하는 'Serverless Video Pipeline'을 구축.
                                 </div>
                             </li>
                             <li>
-                                <strong>GitHub Actions CI/CD 구축:</strong>
+                                <strong>React Query 기반의 Infinite Scroll & Prefetching:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    빌드 및 배포 과정을 자동화하여 개발 생산성을 높이고 배포 안정성을 확보.
+                                    끊김 없는 시청 경험을 위해 뷰포트의 3/4 지점에서 다음 영상을 미리 로딩(Prefetch)하고 캐싱 처리. 썸네일 우선 노출 전략을 병행하여 초기 로딩 체감 속도를 개선.
                                 </div>
                             </li>
                         </ul>
@@ -580,9 +575,9 @@
                         <div class="detail-label">성과 및 결과 (Result)</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>운영 비용 최적화:</strong>
+                                <strong>운영 비용 최적화 및 고품질 스트리밍 구현:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    동영상 전송 비용을 76% 절감하여 스타트업의 자금 운영 효율성에 기여.
+                                    별도의 스트리밍 서버 없이 S3 스토리지 비용만으로 HLS 스트리밍 환경을 구축하여 비용을 70% 이상 절감.(서비스 종료로 입양 기능은 미구현)
                                 </div>
                             </li>
                         </ul>
