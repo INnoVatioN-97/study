@@ -615,14 +615,14 @@
 
                     <div class="metrics-grid" style="margin-left: 0">
                         <div class="metric-card">
-                            <div class="metric-label">Role</div>
-                            <div class="metric-value">1인 100% 개발</div>
-                            <div class="metric-change">Full Stack</div>
+                            <div class="metric-label">Network</div>
+                            <div class="metric-value">Offline-First</div>
+                            <div class="metric-change">데이터 보장</div>
                         </div>
                         <div class="metric-card">
-                            <div class="metric-label">Platform</div>
-                            <div class="metric-value">App + Web</div>
-                            <div class="metric-change">통합 구축</div>
+                            <div class="metric-label">Optimization</div>
+                            <div class="metric-value">Native Compress</div>
+                            <div class="metric-change">전송 최적화</div>
                         </div>
                     </div>
 
@@ -632,8 +632,7 @@
                         </div>
                         <ul class="solution-list" style="margin-left: 0">
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>터널 안전 관리의 디지털화 필요:</strong> 터널 막장 시공 시 지반 분석 데이터를
-                                수기로 관리하던 방식을 탈피하고, 실시간 안전 관제가 가능한 디지털 솔루션 도입 필요.
+                                <strong>터널 막장(Blind End)의 통신 단절:</strong> LTE/WiFi 신호가 닿지 않는 지하 깊은 곳에서 작업이 이루어져 실시간 데이터 전송이 불가능함.
                             </li>
                         </ul>
                     </div>
@@ -642,17 +641,15 @@
                         <div class="detail-label">의사결정 및 해결과정 (Decision & Solution)</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>현장 중심의 Android 앱 개발:</strong>
+                                <strong>Offline-First 동기화 아키텍처 (SQLite):</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    현장 작업자들이 손쉽게 지반 이미지를 촬영하고 업로드할 수 있도록 Native Android
-                                    (Java) 앱을 개발하여 데이터 수집 효율성 증대.
+                                    작업 데이터를 단말기 내부 SQLite에 우선 저장하고, 통신 가능 구역 진입 시 백그라운드 폴링(Polling)을 통해 서버(RDS)와 데이터를 동기화하여 유실을 원천 차단.
                                 </div>
                             </li>
                             <li>
-                                <strong>관리자 Web 대시보드 및 분석 서버 구축:</strong>
+                                <strong>Native 이미지 압축 프로세싱:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    Next.js(프론트엔드)와 Node.js(백엔드)를 활용하여 수집된 데이터를 시각화하고, 지반
-                                    등급을 자동으로 리포팅하는 관리자 시스템 구축.
+                                    고해상도 현장 사진의 효율적 업로드를 위해 Android Native 레벨에서 리사이징 및 압축 알고리즘을 적용, 제한된 네트워크 환경에서의 전송 성공률 제고.
                                 </div>
                             </li>
                         </ul>
@@ -662,10 +659,9 @@
                         <div class="detail-label">성과 및 결과 (Result)</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>성공적인 솔루션 납품:</strong>
+                                <strong>현장 맞춤형 솔루션 구축:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    1인 개발로 모바일 앱, 웹 대시보드, 백엔드 서버를 모두 구축하여 클라이언트 요구사항을
-                                    100% 충족하는 솔루션 제공.
+                                    네트워크 제약을 극복한 앱 개발로 현장 작업 리포팅 시간을 단축하고 안전 데이터의 정합성을 확보. (1인 풀스택 개발)
                                 </div>
                             </li>
                         </ul>
@@ -674,14 +670,19 @@
 
                 <!-- Project 2: iTOO -->
                 <div class="project-item" style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px">
-                    <div class="project-title">롯데홈쇼핑 차세대 플랫폼 'iTOO' 구축 지원</div>
-                    <div class="project-meta">2022.01 - 2022.06 | 기여도: 70%</div>
+                    <div class="project-title">롯데홈쇼핑 차세대 플랫폼 'iTOO' 구축 파견</div>
+                    <div class="project-meta">2022.01 - 2022.06 | 기여도: 30% (Frontend Support)</div>
 
                     <div class="metrics-grid" style="margin-left: 0">
                         <div class="metric-card">
-                            <div class="metric-label">Launch</div>
-                            <div class="metric-value">기능 이식 100%</div>
-                            <div class="metric-change">성공적 오픈</div>
+                            <div class="metric-label">Environment</div>
+                            <div class="metric-value">On-Site</div>
+                            <div class="metric-change">폐쇄망 협업</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Role</div>
+                            <div class="metric-value">UI/API Integration</div>
+                            <div class="metric-change">규격 준수</div>
                         </div>
                     </div>
 
@@ -691,8 +692,7 @@
                         </div>
                         <ul class="solution-list" style="margin-left: 0">
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>촉박한 런칭 일정:</strong> 차세대 플랫폼 오픈이 임박한 시점에서 기존
-                                라이브커머스(Wyd)의 핵심 기능들이 아직 이식되지 않은 상황.
+                                <strong>보안 규정에 따른 온사이트 개발:</strong> 외부 접속이 차단된 대기업 폐쇄망 환경 이슈로 베트남 개발센터와의 협업이 불가능하여 긴급 파견 투입.
                             </li>
                         </ul>
                     </div>
@@ -701,16 +701,9 @@
                         <div class="detail-label">의사결정 및 해결과정 (Decision & Solution)</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>API 마이그레이션 및 최적화:</strong>
+                                <strong>UI 퍼블리싱 및 API 연동 (파견 지원):</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    기존 Legacy API의 로직을 분석하여 신규 플랫폼 환경(iTOO)에 맞게 재개발 및 이식 수행.
-                                </div>
-                            </li>
-                            <li>
-                                <strong>QA 버그 수정 및 대응:</strong>
-                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    오픈 직전 집중적인 QA 기간 동안 50건 이상의 버그를 신속하게 수정하여 플랫폼 품질
-                                    확보.
+                                    보안상 폐쇄된 환경에서 디자인 가이드라인을 준수한 UI 화면을 구현하고, 백엔드 API와의 바인딩 작업을 수행. 대규모 프로젝트의 협업 프로세스(Git Flow, QA)를 경험.
                                 </div>
                             </li>
                         </ul>
@@ -720,14 +713,15 @@
                         <div class="detail-label">성과 및 결과 (Result)</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>프로젝트 성공적 완수:</strong>
+                                <strong>프로젝트 안정화 기여:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    정해진 기한 내에 필수 기능을 모두 이식하고 안정적인 런칭을 지원하여 고객사 신뢰
-                                    확보.
+                                    급박한 일정 속에서 할당된 UI 모듈 개발을 완수하여 전체 프로젝트 일정 준수에 기여.
                                 </div>
                             </li>
                         </ul>
                     </div>
+                </div>
+
                 </div>
             </div>
         </section>
