@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <!-- PAGE 1: Intro + Pocask E&M (Part 1) -->
+        <!-- PAGE 1: Intro + Pocask E&M (Infra) -->
         <section class="page">
             <!-- Header -->
             <header>
@@ -23,25 +23,28 @@
                 </div>
             </header>
 
-            <!-- Summary -->
-            <div class="summary-text">
-                <p>
-                    비즈니스 임팩트를 최우선으로 생각하는 4년차 백엔드 개발자입니다. 단순한 기능 구현을 넘어, 인프라
-                    비용 75% 절감 및 API 성능 96% 개선 등 정량적인 성과를 만들어내는 데 강점이 있습니다. 스타트업
-                    환경에서 주도적으로 시스템을 설계하고, 레거시 마이그레이션을 성공적으로 이끈 경험이 있습니다.
-                </p>
-            </div>
-
             <h2 class="section-title">Work Experience</h2>
 
             <!-- Pocask E&M -->
             <div class="company-block">
-                <div class="company-header">
-                    <div>
-                        <span class="company-name">Pocask E&M (포캐스크 이앤엠)</span>
-                        <span class="company-role">글로벌 에드테크 사업실 / Backend Lead</span>
+                <div class="company-header" style="flex-wrap: wrap; margin-bottom: 8px">
+                    <div style="width: 100%; display: flex; justify-content: space-between; margin-bottom: 8px">
+                        <div>
+                            <span class="company-name">Pocask E&M (포캐스크 이앤엠)</span>
+                            <span class="company-role">글로벌 에드테크 사업실 / Backend Lead</span>
+                        </div>
+                        <span class="company-period">2024.11 - Present</span>
                     </div>
-                    <span class="company-period">2024.11 - Present</span>
+                    <!-- Company Tech Stack (Aggregated) -->
+                    <div class="tech-stack" style="margin: 0; width: 100%">
+                        <span class="tech-tag">Kafka</span>
+                        <span class="tech-tag">Spring Batch</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">Redis</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">AWS ECS</span>
+                    </div>
                 </div>
 
                 <!-- Project: Infra & Data -->
@@ -49,7 +52,22 @@
                     <div class="project-title">AdTech 인프라 비용 절감 및 데이터 파이프라인 구축</div>
                     <div class="project-meta">2024.11 - 2025.01 | 기여도: 100% (Solo)</div>
 
-                    <div class="context-box">
+                    <!-- Metrics (Result Hook) -->
+                    <div class="metrics-grid" style="margin-left: 0">
+                        <div class="metric-card">
+                            <div class="metric-label">Infra Cost</div>
+                            <div class="metric-value">월 3,200만원 → 800만원</div>
+                            <div class="metric-change">▼ 75% 절감</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Crawling Success</div>
+                            <div class="metric-value">IP 차단 빈번 → 99% 성공</div>
+                            <div class="metric-change">안정성 확보</div>
+                        </div>
+                    </div>
+
+                    <!-- Context & Challenge (Why) -->
+                    <div class="context-box" style="margin-left: 0">
                         <div class="detail-content">
                             <strong>[Background]</strong> 글로벌 광고 중개를 위해 대규모 크롤링이 필수적인 상황에서 AWS
                             인프라 비용이 과다 발생하고 있었습니다.<br />
@@ -58,7 +76,8 @@
                         </div>
                     </div>
 
-                    <div class="detail-section">
+                    <!-- Actions (How) -->
+                    <div class="detail-section" style="padding-left: 0">
                         <div class="detail-label">Key Actions</div>
                         <ul class="solution-list">
                             <li>
@@ -75,27 +94,6 @@
                             </li>
                         </ul>
                     </div>
-
-                    <div class="metrics-grid">
-                        <div class="metric-card">
-                            <div class="metric-label">Infra Cost</div>
-                            <div class="metric-value">월 3,200만원 → 800만원</div>
-                            <div class="metric-change">▼ 75% 절감</div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-label">Crawling Success</div>
-                            <div class="metric-value">IP 차단 빈번 → 99% 성공</div>
-                            <div class="metric-change">안정성 확보</div>
-                        </div>
-                    </div>
-
-                    <div class="tech-stack">
-                        <span class="tech-tag">Kafka</span>
-                        <span class="tech-tag">Spring Batch</span>
-                        <span class="tech-tag">Docker</span>
-                        <span class="tech-tag">AWS ECS</span>
-                        <span class="tech-tag">Tor Network</span>
-                    </div>
                 </div>
             </div>
         </section>
@@ -106,9 +104,9 @@
 
             <!-- Pocask (Project 2) -->
             <div class="company-block">
-                <div class="company-header" style="border-bottom: none; margin-bottom: 0">
+                <div class="company-header" style="border-bottom: 1px dashed #e5e7eb; margin-bottom: 20px">
                     <div>
-                        <span class="company-name" style="font-size: 14px; color: #666">Pocask E&M (Cont.)</span>
+                        <span class="company-name" style="font-size: 16px; color: #4b5563">Pocask E&M (Cont.)</span>
                     </div>
                 </div>
 
@@ -117,7 +115,20 @@
                     <div class="project-title">광고 솔루션 'Point Crush' 트래픽 제어 및 안정화</div>
                     <div class="project-meta">2024.11 - 2025.01 | 기여도: 100% (Backend Lead)</div>
 
-                    <div class="context-box">
+                    <div class="metrics-grid" style="margin-left: 0">
+                        <div class="metric-card">
+                            <div class="metric-label">Deadlock</div>
+                            <div class="metric-value">잦은 발생 → 0건</div>
+                            <div class="metric-change">완전 해결</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Throughput</div>
+                            <div class="metric-value">처리량 300% 증가</div>
+                            <div class="metric-change">성능 최적화</div>
+                        </div>
+                    </div>
+
+                    <div class="context-box" style="margin-left: 0">
                         <div class="detail-content">
                             <strong>[Background]</strong> 포인트 적립형 광고 솔루션의 사용자 유입 폭증으로 시스템 부하가
                             발생했습니다.<br />
@@ -126,7 +137,7 @@
                         </div>
                     </div>
 
-                    <div class="detail-section">
+                    <div class="detail-section" style="padding-left: 0">
                         <div class="detail-label">Key Actions</div>
                         <ul class="solution-list">
                             <li>
@@ -143,36 +154,27 @@
                             </li>
                         </ul>
                     </div>
-
-                    <div class="metrics-grid">
-                        <div class="metric-card">
-                            <div class="metric-label">Deadlock</div>
-                            <div class="metric-value">잦은 발생 → 0건</div>
-                            <div class="metric-change">완전 해결</div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-label">Throughput</div>
-                            <div class="metric-value">처리량 300% 증가</div>
-                            <div class="metric-change">성능 최적화</div>
-                        </div>
-                    </div>
-
-                    <div class="tech-stack">
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">Redis</span>
-                        <span class="tech-tag">MySQL</span>
-                    </div>
                 </div>
             </div>
 
             <!-- Growing Lab -->
             <div class="company-block">
-                <div class="company-header">
-                    <div>
-                        <span class="company-name">Growing Lab (그로잉랩)</span>
-                        <span class="company-role">투자 정보 플랫폼 'Butler' / Backend Engineer</span>
+                <div class="company-header" style="flex-wrap: wrap; margin-bottom: 8px">
+                    <div style="width: 100%; display: flex; justify-content: space-between; margin-bottom: 8px">
+                        <div>
+                            <span class="company-name">Growing Lab (그로잉랩)</span>
+                            <span class="company-role">투자 정보 플랫폼 'Butler' / Backend Engineer</span>
+                        </div>
+                        <span class="company-period">2023.04 - 2024.08</span>
                     </div>
-                    <span class="company-period">2023.04 - 2024.08</span>
+                    <!-- Company Tech Stack -->
+                    <div class="tech-stack" style="margin: 0; width: 100%">
+                        <span class="tech-tag">NestJS</span>
+                        <span class="tech-tag">TypeORM</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">React Native</span>
+                        <span class="tech-tag">AWS</span>
+                    </div>
                 </div>
 
                 <!-- Project -->
@@ -180,7 +182,20 @@
                     <div class="project-title">서비스 고도화 및 레거시 시스템 마이그레이션</div>
                     <div class="project-meta">2023.04 - 2024.08 | 기여도: 100%</div>
 
-                    <div class="context-box">
+                    <div class="metrics-grid" style="margin-left: 0">
+                        <div class="metric-card">
+                            <div class="metric-label">API Latency</div>
+                            <div class="metric-value">3s → 100ms</div>
+                            <div class="metric-change">▼ 96% 단축</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Platform</div>
+                            <div class="metric-value">Web Only → App 런칭</div>
+                            <div class="metric-change">채널 확장</div>
+                        </div>
+                    </div>
+
+                    <div class="context-box" style="margin-left: 0">
                         <div class="detail-content">
                             <strong>[Background]</strong> 초기 스타트업 단계의 레거시 시스템 유지보수 비용 증가 및
                             확장성 한계.<br />
@@ -189,7 +204,7 @@
                         </div>
                     </div>
 
-                    <div class="detail-section">
+                    <div class="detail-section" style="padding-left: 0">
                         <div class="detail-label">Key Actions</div>
                         <ul class="solution-list">
                             <li>
@@ -205,26 +220,6 @@
                             </li>
                         </ul>
                     </div>
-
-                    <div class="metrics-grid">
-                        <div class="metric-card">
-                            <div class="metric-label">API Latency</div>
-                            <div class="metric-value">3s → 100ms</div>
-                            <div class="metric-change">▼ 96% 단축</div>
-                        </div>
-                        <div class="metric-card">
-                            <div class="metric-label">Platform</div>
-                            <div class="metric-value">Web Only → App 런칭</div>
-                            <div class="metric-change">채널 확장</div>
-                        </div>
-                    </div>
-
-                    <div class="tech-stack">
-                        <span class="tech-tag">NestJS</span>
-                        <span class="tech-tag">TypeORM</span>
-                        <span class="tech-tag">PostgreSQL</span>
-                        <span class="tech-tag">React Native</span>
-                    </div>
                 </div>
             </div>
         </section>
@@ -235,19 +230,36 @@
 
             <!-- Concent CO. -->
             <div class="company-block">
-                <div class="company-header">
-                    <div>
-                        <span class="company-name">Concent CO. (콘센트)</span>
-                        <span class="company-role">소셜 미디어 'PerMirth' / Full Stack</span>
+                <div class="company-header" style="flex-wrap: wrap; margin-bottom: 8px">
+                    <div style="width: 100%; display: flex; justify-content: space-between; margin-bottom: 8px">
+                        <div>
+                            <span class="company-name">Concent CO. (콘센트)</span>
+                            <span class="company-role">소셜 미디어 'PerMirth' / Full Stack</span>
+                        </div>
+                        <span class="company-period">2022.06 - 2023.04</span>
                     </div>
-                    <span class="company-period">2022.06 - 2023.04</span>
+                    <!-- Company Tech Stack -->
+                    <div class="tech-stack" style="margin: 0; width: 100%">
+                        <span class="tech-tag">Spring Boot</span>
+                        <span class="tech-tag">AWS</span>
+                        <span class="tech-tag">FFmpeg</span>
+                        <span class="tech-tag">MySQL</span>
+                    </div>
                 </div>
 
                 <div class="project-item">
                     <div class="project-title">동영상 소셜 미디어 인프라 최적화</div>
                     <div class="project-meta">2022.06 - 2023.04 | 기여도: 100%</div>
 
-                    <div class="context-box">
+                    <div class="metrics-grid" style="margin-left: 0">
+                        <div class="metric-card">
+                            <div class="metric-label">Bandwidth Cost</div>
+                            <div class="metric-value">월 60만원 → 14만원</div>
+                            <div class="metric-change">▼ 76% 절감</div>
+                        </div>
+                    </div>
+
+                    <div class="context-box" style="margin-left: 0">
                         <div class="detail-content">
                             <strong>[Background]</strong> 동영상 기반 SNS 트래픽 증가로 인한 대역폭 비용 급증.<br />
                             <span class="challenge-text">[Challenge]</span> 비효율적 미디어 전송 방식 및 수동 배포로
@@ -255,7 +267,7 @@
                         </div>
                     </div>
 
-                    <div class="detail-section">
+                    <div class="detail-section" style="padding-left: 0">
                         <div class="detail-label">Key Actions</div>
                         <ul class="solution-list">
                             <li>
@@ -265,38 +277,33 @@
                             <li><strong>CI/CD 구축:</strong> GitHub Actions 기반 빌드/배포 자동화</li>
                         </ul>
                     </div>
-
-                    <div class="metrics-grid">
-                        <div class="metric-card">
-                            <div class="metric-label">Bandwidth Cost</div>
-                            <div class="metric-value">월 60만원 → 14만원</div>
-                            <div class="metric-change">▼ 76% 절감</div>
-                        </div>
-                    </div>
-
-                    <div class="tech-stack">
-                        <span class="tech-tag">Spring Boot</span>
-                        <span class="tech-tag">AWS</span>
-                        <span class="tech-tag">FFmpeg</span>
-                    </div>
                 </div>
             </div>
 
             <!-- BrickMate -->
             <div class="company-block">
-                <div class="company-header">
-                    <div>
-                        <span class="company-name">BrickMate (브릭메이트)</span>
-                        <span class="company-role">Development Dept. / Developer</span>
+                <div class="company-header" style="flex-wrap: wrap; margin-bottom: 8px">
+                    <div style="width: 100%; display: flex; justify-content: space-between; margin-bottom: 8px">
+                        <div>
+                            <span class="company-name">BrickMate (브릭메이트)</span>
+                            <span class="company-role">Development Dept. / Developer</span>
+                        </div>
+                        <span class="company-period">2022.01 - 2022.06</span>
                     </div>
-                    <span class="company-period">2022.01 - 2022.06</span>
+                    <!-- Company Tech Stack -->
+                    <div class="tech-stack" style="margin: 0; width: 100%">
+                        <span class="tech-tag">Spring Boot</span>
+                        <span class="tech-tag">Oracle</span>
+                        <span class="tech-tag">JSP</span>
+                        <span class="tech-tag">Linux</span>
+                    </div>
                 </div>
 
                 <div class="project-item">
                     <div class="project-title">롯데홈쇼핑 차세대 플랫폼 'iTOO' 구축 지원</div>
                     <div class="project-meta">2022.01 - 2022.06 | 기여도: 70%</div>
 
-                    <div class="context-box">
+                    <div class="context-box" style="margin-left: 0">
                         <div class="detail-content">
                             <strong>[Background]</strong> 롯데홈쇼핑 차세대 플랫폼 런칭 임박, 기존 서비스(Wyd) 기능 이식
                             필요.<br />
@@ -305,7 +312,7 @@
                         </div>
                     </div>
 
-                    <div class="detail-section">
+                    <div class="detail-section" style="padding-left: 0">
                         <div class="detail-label">Key Actions</div>
                         <ul class="solution-list">
                             <li>
@@ -317,12 +324,6 @@
                                 연동 100% 완료
                             </li>
                         </ul>
-                    </div>
-
-                    <div class="tech-stack">
-                        <span class="tech-tag">Spring Boot</span>
-                        <span class="tech-tag">Oracle</span>
-                        <span class="tech-tag">JSP</span>
                     </div>
                 </div>
             </div>
