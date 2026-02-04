@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
-        <!-- PAGE 1: Intro + Pocask E&M (Infra) -->
+        <!-- PAGE 1: Intro + Pocask E&M (Part 1) -->
         <section class="page">
             <!-- Header -->
             <header>
@@ -38,21 +38,24 @@
                     <!-- Company Tech Stack (Aggregated) -->
                     <div class="tech-stack" style="margin: 0; width: 100%">
                         <span class="tech-tag">Kafka</span>
-                        <span class="tech-tag">Spring Batch</span>
-                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">NestJS</span>
+                        <span class="tech-tag">Spring Boot (@Scheduled)</span>
+                        <span class="tech-tag">JPA / QueryDSL</span>
+                        <span class="tech-tag">Express (Node.js)</span>
                         <span class="tech-tag">Redis</span>
                         <span class="tech-tag">MySQL</span>
                         <span class="tech-tag">Docker</span>
                         <span class="tech-tag">AWS ECS</span>
+                        <span class="tech-tag">Tor Network</span>
                     </div>
                 </div>
 
-                <!-- Project: Infra & Data -->
+                <!-- Project 1: Infra & Data -->
                 <div class="project-item">
                     <div class="project-title">AdTech 인프라 비용 절감 및 데이터 파이프라인 구축</div>
                     <div class="project-meta">2024.11 - 2025.01 | 기여도: 100% (Solo)</div>
 
-                    <!-- Metrics (Result Hook) -->
+                    <!-- Metrics -->
                     <div class="metrics-grid" style="margin-left: 0">
                         <div class="metric-card">
                             <div class="metric-label">Infra Cost</div>
@@ -61,12 +64,12 @@
                         </div>
                         <div class="metric-card">
                             <div class="metric-label">Crawling Success</div>
-                            <div class="metric-value">IP 차단 빈번 → 99% 성공</div>
+                            <div class="metric-value">IP 차단 빈번 → 99.9% 성공</div>
                             <div class="metric-change">안정성 확보</div>
                         </div>
                     </div>
 
-                    <!-- Context & Challenge (Detailed) -->
+                    <!-- Context & Problem -->
                     <div class="context-box" style="margin-left: 0">
                         <div class="detail-label" style="color: #4b5563; margin-bottom: 6px">
                             상황 및 문제점 (Context & Problem)
@@ -85,7 +88,7 @@
                         </ul>
                     </div>
 
-                    <!-- Actions (Detailed) -->
+                    <!-- Decision & Solution -->
                     <div class="detail-section" style="padding-left: 0">
                         <div class="detail-label">의사결정 및 해결과정 (Decision & Solution)</div>
                         <ul class="solution-list">
@@ -106,17 +109,17 @@
                                 </div>
                             </li>
                             <li>
-                                <strong>이벤트 기반 비동기 파이프라인(Kafka + Spring Batch) 도입:</strong>
+                                <strong>이벤트 기반 비동기 파이프라인(NestJS + Kafka):</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    기존의 동기식 크롤링 구조를 Producer-Consumer 패턴으로 분리. 수집 요청(Producer)과
-                                    실제 수행(Consumer)을 Kafka로 중개하여, 특정 노드 장애 발생 시에도 데이터 유실 없이
-                                    재처리가 가능하도록 결함 내성(Fault Tolerance)을 확보.
+                                    NestJS 기반의 마이크로서비스가 Producer-Consumer 패턴으로 크롤링을 수행하며 Kafka로
+                                    데이터를 중개함. 수집된 데이터의 일일 집계 및 리포팅 작업은 Spring Boot(@Scheduled)
+                                    기반의 통계 서버가 수행하는 이원화 구조로 안정성 확보.
                                 </div>
                             </li>
                         </ul>
                     </div>
 
-                    <!-- Results (Detailed) -->
+                    <!-- Result -->
                     <div class="detail-section" style="padding-left: 0">
                         <div class="detail-label">성과 및 결과 (Result)</div>
                         <ul class="solution-list">
@@ -140,11 +143,10 @@
             </div>
         </section>
 
-        <!-- PAGE 2: Pocask (Project 2) + Growing Lab -->
+        <!-- PAGE 2: Pocask (Part 2) -->
         <section class="page">
             <h2 class="section-title">Work Experience (Cont.)</h2>
 
-            <!-- Pocask (Project 2) -->
             <div class="company-block">
                 <div class="company-header" style="border-bottom: 1px dashed #e5e7eb; margin-bottom: 20px">
                     <div>
@@ -152,7 +154,7 @@
                     </div>
                 </div>
 
-                <!-- Project: Point Crush -->
+                <!-- Project 2: Point Crush -->
                 <div class="project-item">
                     <div class="project-title">광고 솔루션 'Point Crush' 트래픽 제어 및 안정화</div>
                     <div class="project-meta">2024.11 - 2025.01 | 기여도: 100% (Backend Lead)</div>
@@ -171,35 +173,135 @@
                     </div>
 
                     <div class="context-box" style="margin-left: 0">
-                        <div class="detail-content">
-                            <strong>[Background]</strong> 포인트 적립형 광고 솔루션의 사용자 유입 폭증으로 시스템 부하가
-                            발생했습니다.<br />
-                            <span class="challenge-text">[Challenge]</span> 동시 접속 증가 시 DB Deadlock 빈번 발생 및
-                            동기식 처리 구조의 한계로 인한 응답 지연 심각.
+                        <div class="detail-label" style="color: #4b5563; margin-bottom: 6px">
+                            상황 및 문제점 (Context & Problem)
                         </div>
+                        <ul class="solution-list" style="margin-left: 0">
+                            <li style="padding-left: 12px; margin-bottom: 4px">
+                                <strong>트래픽 스파이크로 인한 장애:</strong> 특정 시간대 광고 참여 유저가 폭증(DAU
+                                10만+)하면서 DB Connection Pool 고갈 및 Deadlock이 빈번하게 발생.
+                            </li>
+                            <li style="padding-left: 12px; margin-bottom: 4px">
+                                <strong>동시성 이슈:</strong> 포인트 지급 로직에서 Race Condition 발생으로 인한 중복
+                                지급 데이터 오차 발견.
+                            </li>
+                        </ul>
                     </div>
 
                     <div class="detail-section" style="padding-left: 0">
-                        <div class="detail-label">Key Actions</div>
+                        <div class="detail-label">의사결정 및 해결과정 (Decision & Solution)</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>비동기 큐 도입:</strong> Redis Queue를 활용하여 트래픽 스파이크 완충 및 순차
-                                처리 보장
+                                <strong>비동기 큐(Redis Queue) 도입으로 트래픽 완충:</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    요청을 즉시 DB에 반영하는 대신 Redis Queue에 적재 후 Worker가 소비하는 구조로 변경.
+                                    트래픽 피크 시에도 DB 부하를 일정하게 제어하는 Throttling 구현.
+                                </div>
                             </li>
                             <li>
-                                <strong>DB 부하 분산:</strong> 건별 Insert를 비동기 Bulk Insert로 전환하여 DB I/O 부하
-                                감소
+                                <strong>Bulk Insert 최적화:</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    건별로 수행되던 Insert 쿼리를 배치 단위 Bulk Insert로 최적화하여 DB RTT(Round Trip
+                                    Time) 및 I/O 부하를 획기적으로 감소시킴.
+                                </div>
                             </li>
                             <li>
-                                <strong>동시성 제어:</strong> Redisson 분산 락 적용으로 포인트 중복 지급 무결성 이슈
-                                차단
+                                <strong>Redisson 분산 락 적용:</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    유저 ID 기반의 분산 락(Spin Lock 방식)을 적용하여 동시 다발적인 포인트 요청에도
+                                    데이터 정합성을 100% 보장.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-section" style="padding-left: 0">
+                        <div class="detail-label">성과 및 결과 (Result)</div>
+                        <ul class="solution-list">
+                            <li>
+                                <strong>시스템 안정성 확보:</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    Deadlock 발생 건수 0건 달성 및 피크 시간대 API 응답 속도 균일화로 사용자 경험 개선.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Project 3: Pokit -->
+                <div class="project-item" style="margin-top: 40px; border-top: 1px solid #eee; padding-top: 30px">
+                    <div class="project-title">리워드 앱 'Pokit' 포인트 시스템 및 교환 모듈 개발</div>
+                    <div class="project-meta">2024.11 - 2025.01 | 기여도: 100% (System Design)</div>
+
+                    <div class="metrics-grid" style="margin-left: 0">
+                        <div class="metric-card">
+                            <div class="metric-label">Integration</div>
+                            <div class="metric-value">앱인토스 입점</div>
+                            <div class="metric-change">채널 확장</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Accuracy</div>
+                            <div class="metric-value">정산 오차 0%</div>
+                            <div class="metric-change">무결성 보장</div>
+                        </div>
+                    </div>
+
+                    <div class="context-box" style="margin-left: 0">
+                        <div class="detail-label" style="color: #4b5563; margin-bottom: 6px">
+                            상황 및 문제점 (Context & Problem)
+                        </div>
+                        <ul class="solution-list" style="margin-left: 0">
+                            <li style="padding-left: 12px; margin-bottom: 4px">
+                                <strong>채널 확장에 따른 아키텍처 한계:</strong> 자사 앱 전용으로 설계된 레거시 포인트
+                                시스템이 '토스 미니앱' 입점과 함께 발생하는 대규모 제휴 트랜잭션을 수용하기 어려운 구조.
+                            </li>
+                            <li style="padding-left: 12px; margin-bottom: 4px">
+                                <strong>외부 연동 복잡성:</strong> NPay 등 다양한 제휴처와의 포인트 교환 시 트랜잭션
+                                실패나 타임아웃 처리가 미흡하여 정산 불일치 위험 존재.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-section" style="padding-left: 0">
+                        <div class="detail-label">의사결정 및 해결과정 (Decision & Solution)</div>
+                        <ul class="solution-list">
+                            <li>
+                                <strong>포인트 시스템 이원화 설계:</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    '자사 앱 포인트'와 '제휴 포인트'의 생명주기를 분리하여 관리하는 이원화 아키텍처
+                                    설계. 상호 교환 로직을 모듈화하여 확장성을 확보.
+                                </div>
+                            </li>
+                            <li>
+                                <strong>외부 제휴처 연동 표준화:</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    Adapter 패턴을 적용하여 NPay 등 다양한 포인트 교환 API 연동을 표준화하고, 보상
+                                    트랜잭션(Saga Pattern Idea)을 구현하여 정합성 보장.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-section" style="padding-left: 0">
+                        <div class="detail-label">성과 및 결과 (Result)</div>
+                        <ul class="solution-list">
+                            <li>
+                                <strong>성공적인 플랫폼 확장 및 매출 증대:</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    토스 미니앱 입점을 완벽하게 지원하여 신규 유입 트래픽을 안정적으로 소화, 포인트 교환
+                                    활성화를 통한 매출 증대 기여.
+                                </div>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Growing Lab -->
+        <!-- PAGE 3: Growing Lab -->
+        <section class="page">
+            <h2 class="section-title">Work Experience (Cont.)</h2>
+
             <div class="company-block">
                 <div class="company-header" style="flex-wrap: wrap; margin-bottom: 8px">
                     <div style="width: 100%; display: flex; justify-content: space-between; margin-bottom: 8px">
@@ -209,17 +311,18 @@
                         </div>
                         <span class="company-period">2023.04 - 2024.08</span>
                     </div>
-                    <!-- Company Tech Stack -->
                     <div class="tech-stack" style="margin: 0; width: 100%">
                         <span class="tech-tag">NestJS</span>
                         <span class="tech-tag">TypeORM</span>
                         <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Redis</span>
                         <span class="tech-tag">React Native</span>
-                        <span class="tech-tag">AWS</span>
+                        <span class="tech-tag">CodePush</span>
+                        <span class="tech-tag">Firebase (FCM)</span>
                     </div>
                 </div>
 
-                <!-- Project -->
+                <!-- Project 1: App Launch -->
                 <div class="project-item">
                     <div class="project-title">서비스 고도화 및 레거시 시스템 마이그레이션</div>
                     <div class="project-meta">2023.04 - 2024.08 | 기여도: 100%</div>
@@ -231,34 +334,121 @@
                             <div class="metric-change">▼ 96% 단축</div>
                         </div>
                         <div class="metric-card">
-                            <div class="metric-label">Platform</div>
-                            <div class="metric-value">Web Only → App 런칭</div>
-                            <div class="metric-change">채널 확장</div>
+                            <div class="metric-label">Architecture</div>
+                            <div class="metric-value">Express → NestJS</div>
+                            <div class="metric-change">현대화</div>
                         </div>
                     </div>
 
                     <div class="context-box" style="margin-left: 0">
-                        <div class="detail-content">
-                            <strong>[Background]</strong> 초기 스타트업 단계의 레거시 시스템 유지보수 비용 증가 및
-                            확장성 한계.<br />
-                            <span class="challenge-text">[Challenge]</span> 비즈니스 로직 파편화로 기능 확장 난항,
-                            복잡한 쿼리로 주요 API 응답 속도 3초 이상 소요.
+                        <div class="detail-label" style="color: #4b5563; margin-bottom: 6px">
+                            상황 및 문제점 (Context & Problem)
                         </div>
+                        <ul class="solution-list" style="margin-left: 0">
+                            <li style="padding-left: 12px; margin-bottom: 4px">
+                                <strong>레거시 코드의 기술 부채:</strong> 초기 Express/Hapi 기반 코드가 구조 없이
+                                작성되어 유지보수가 어렵고, 비즈니스 로직이 파편화되어 기능 확장이 불가능한 상태.
+                            </li>
+                            <li style="padding-left: 12px; margin-bottom: 4px">
+                                <strong>성능 저하:</strong> 복잡한 연관 관계를 가진 쿼리가 최적화 없이 실행되어 주요 API
+                                응답 시간이 3초를 초과, 사용자 이탈의 주원인이 됨.
+                            </li>
+                        </ul>
                     </div>
 
                     <div class="detail-section" style="padding-left: 0">
-                        <div class="detail-label">Key Actions</div>
+                        <div class="detail-label">의사결정 및 해결과정 (Decision & Solution)</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>아키텍처 전환:</strong> Express/Hapi → NestJS + TypeORM (Layered Arch) 이관으로
-                                유지보수성 확보
+                                <strong>NestJS 기반 Layered Arhcitecture 도입:</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    명확한 책임 분리를 위해 NestJS + TypeORM으로 아키텍처를 전면 교체.
+                                    Controller-Service-Repository 패턴을 적용하여 코드 재사용성과 테스트 용이성 확보.
+                                </div>
                             </li>
                             <li>
-                                <strong>쿼리 최적화:</strong> 실행 계획(Explain) 분석 및 인덱스 튜닝, 쿼리 리팩토링 수행
+                                <strong>쿼리 최적화 및 튜닝:</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    실행 계획(Explain) 분석을 통해 Full Table Scan을 Index Scan으로 개선하고, N+1 문제를
+                                    해결하여 조회 성능을 극대화.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-section" style="padding-left: 0">
+                        <div class="detail-label">성과 및 결과 (Result)</div>
+                        <ul class="solution-list">
+                            <li>
+                                <strong>압도적인 성능 개선 및 유지보수성 확보:</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    API 응답 속도를 100ms 미만으로 단축하여 사용자 경험을 획기적으로 개선하고, 신규 개발
+                                    온보딩 시간을 단축.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Project 2 (App Launch) -->
+                <div class="project-item" style="margin-top: 40px; border-top: 1px solid #eee; padding-top: 30px">
+                    <div class="project-title">버틀러 하이브리드 앱 런칭 (iOS/Android)</div>
+                    <div class="project-meta">2023.04 - 2024.08 | 기여도: 100%</div>
+
+                    <div class="metrics-grid" style="margin-left: 0">
+                        <div class="metric-card">
+                            <div class="metric-label">Platform</div>
+                            <div class="metric-value">App Store 런칭</div>
+                            <div class="metric-change">채널 확장</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Deployment</div>
+                            <div class="metric-value">CodePush 적용</div>
+                            <div class="metric-change">즉시 배포</div>
+                        </div>
+                    </div>
+
+                    <div class="context-box" style="margin-left: 0">
+                        <div class="detail-label" style="color: #4b5563; margin-bottom: 6px">
+                            상황 및 문제점 (Context & Problem)
+                        </div>
+                        <ul class="solution-list" style="margin-left: 0">
+                            <li style="padding-left: 12px; margin-bottom: 4px">
+                                <strong>모바일 접근성 부재:</strong> 웹 기반 서비스만으로는 푸시 알림 등 적극적인 리텐션
+                                마케팅이 불가능하여 모바일 앱 니즈가 강력히 대두됨.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-section" style="padding-left: 0">
+                        <div class="detail-label">의사결정 및 해결과정 (Decision & Solution)</div>
+                        <ul class="solution-list">
+                            <li>
+                                <strong>React Native 하이브리드 앱 개발:</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    기존 웹 자원을 활용하기 위해 WebView와 Native Modules를 연동하는 하이브리드 방식
+                                    채택. 개발 리소스를 최소화하며 양대 마켓 런칭 성공.
+                                </div>
                             </li>
                             <li>
-                                <strong>모바일 확장:</strong> React Native 하이브리드 앱 개발 및 CodePush 배포
-                                파이프라인 구축
+                                <strong>CodePush 기반 배포 파이프라인 구축:</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    앱 심사 대기 시간 없이 JavaScript 번들만 즉시 업데이트할 수 있는 CodePush를 도입하여
+                                    버그 픽스 및 기능 배포 속도 혁신.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-section" style="padding-left: 0">
+                        <div class="detail-label">성과 및 결과 (Result)</div>
+                        <ul class="solution-list">
+                            <li>
+                                <strong>성공적인 모바일 시장 진입:</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    안드로이드/iOS 스토어 런칭을 통해 사용자 접점을 확대하고, 푸시 알림을 통한 리텐션
+                                    증대 기반 마련.
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -266,7 +456,7 @@
             </div>
         </section>
 
-        <!-- PAGE 3: Concent + BrickMate -->
+        <!-- PAGE 4: Concent + BrickMate -->
         <section class="page">
             <h2 class="section-title">Work Experience (Cont.)</h2>
 
@@ -280,12 +470,11 @@
                         </div>
                         <span class="company-period">2022.06 - 2023.04</span>
                     </div>
-                    <!-- Company Tech Stack -->
                     <div class="tech-stack" style="margin: 0; width: 100%">
                         <span class="tech-tag">Spring Boot</span>
-                        <span class="tech-tag">AWS</span>
+                        <span class="tech-tag">AWS (CloudFront, S3)</span>
                         <span class="tech-tag">FFmpeg</span>
-                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">React Native</span>
                     </div>
                 </div>
 
@@ -299,24 +488,57 @@
                             <div class="metric-value">월 60만원 → 14만원</div>
                             <div class="metric-change">▼ 76% 절감</div>
                         </div>
-                    </div>
-
-                    <div class="context-box" style="margin-left: 0">
-                        <div class="detail-content">
-                            <strong>[Background]</strong> 동영상 기반 SNS 트래픽 증가로 인한 대역폭 비용 급증.<br />
-                            <span class="challenge-text">[Challenge]</span> 비효율적 미디어 전송 방식 및 수동 배포로
-                            인한 운영 비효율.
+                        <div class="metric-card">
+                            <div class="metric-label">Pipeline</div>
+                            <div class="metric-value">CI/CD 구축</div>
+                            <div class="metric-change">업무 자동화</div>
                         </div>
                     </div>
 
+                    <div class="context-box" style="margin-left: 0">
+                        <div class="detail-label" style="color: #4b5563; margin-bottom: 6px">
+                            상황 및 문제점 (Context & Problem)
+                        </div>
+                        <ul class="solution-list" style="margin-left: 0">
+                            <li style="padding-left: 12px; margin-bottom: 4px">
+                                <strong>영상 트래픽 비용 부담:</strong> S3를 통한 단순 파일 전송 방식으로 인해 트래픽
+                                비용이 높고, 재생 로딩 속도가 느려 사용자 불만이 제기됨.
+                            </li>
+                            <li style="padding-left: 12px; margin-bottom: 4px">
+                                <strong>수동 배포의 비효율:</strong> FTP 등을 이용한 수동 배포 방식으로 인해 실수
+                                가능성이 높고 시간이 오래 소요됨.
+                            </li>
+                        </ul>
+                    </div>
+
                     <div class="detail-section" style="padding-left: 0">
-                        <div class="detail-label">Key Actions</div>
+                        <div class="detail-label">의사결정 및 해결과정 (Decision & Solution)</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>스트리밍 최적화:</strong> HLS 프로토콜 및 CDN(CloudFront) 도입으로 전송 효율
-                                극대화
+                                <strong>스트리밍 프로토콜(HLS) 및 CDN 도입:</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    FFmpeg를 이용해 영상을 HLS(.m3u8)로 트랜스코딩하고 CloudFront를 통해 전송. 대역폭
+                                    효율을 높이고 버퍼링 없는 재생 환경 구현.
+                                </div>
                             </li>
-                            <li><strong>CI/CD 구축:</strong> GitHub Actions 기반 빌드/배포 자동화</li>
+                            <li>
+                                <strong>GitHub Actions CI/CD 구축:</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    빌드 및 배포 과정을 자동화하여 개발 생산성을 높이고 배포 안정성을 확보.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-section" style="padding-left: 0">
+                        <div class="detail-label">성과 및 결과 (Result)</div>
+                        <ul class="solution-list">
+                            <li>
+                                <strong>운영 비용 최적화:</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    동영상 전송 비용을 76% 절감하여 스타트업의 자금 운영 효율성에 기여.
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -332,12 +554,10 @@
                         </div>
                         <span class="company-period">2022.01 - 2022.06</span>
                     </div>
-                    <!-- Company Tech Stack -->
                     <div class="tech-stack" style="margin: 0; width: 100%">
                         <span class="tech-tag">Spring Boot</span>
-                        <span class="tech-tag">Oracle</span>
+                        <span class="tech-tag">MySQL</span>
                         <span class="tech-tag">JSP</span>
-                        <span class="tech-tag">Linux</span>
                     </div>
                 </div>
 
@@ -345,25 +565,54 @@
                     <div class="project-title">롯데홈쇼핑 차세대 플랫폼 'iTOO' 구축 지원</div>
                     <div class="project-meta">2022.01 - 2022.06 | 기여도: 70%</div>
 
-                    <div class="context-box" style="margin-left: 0">
-                        <div class="detail-content">
-                            <strong>[Background]</strong> 롯데홈쇼핑 차세대 플랫폼 런칭 임박, 기존 서비스(Wyd) 기능 이식
-                            필요.<br />
-                            <span class="challenge-text">[Challenge]</span> 촉박한 일정 내 레거시 API 분석 및 신규
-                            플랫폼 포팅 완수 필요.
+                    <div class="metrics-grid" style="margin-left: 0">
+                        <div class="metric-card">
+                            <div class="metric-label">Launch</div>
+                            <div class="metric-value">기능 이식 100%</div>
+                            <div class="metric-change">성공적 오픈</div>
                         </div>
                     </div>
 
+                    <div class="context-box" style="margin-left: 0">
+                        <div class="detail-label" style="color: #4b5563; margin-bottom: 6px">
+                            상황 및 문제점 (Context & Problem)
+                        </div>
+                        <ul class="solution-list" style="margin-left: 0">
+                            <li style="padding-left: 12px; margin-bottom: 4px">
+                                <strong>촉박한 런칭 일정:</strong> 차세대 플랫폼 오픈이 임박한 시점에서 기존
+                                라이브커머스(Wyd)의 핵심 기능들이 아직 이식되지 않은 상황.
+                            </li>
+                        </ul>
+                    </div>
+
                     <div class="detail-section" style="padding-left: 0">
-                        <div class="detail-label">Key Actions</div>
+                        <div class="detail-label">의사결정 및 해결과정 (Decision & Solution)</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>API 마이그레이션:</strong> 기존 라이브커머스(Wyd) 핵심 API를 분석하여 iTOO
-                                플랫폼으로 이식
+                                <strong>API 마이그레이션 및 최적화:</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    기존 Legacy API의 로직을 분석하여 신규 플랫폼 환경(iTOO)에 맞게 재개발 및 이식 수행.
+                                </div>
                             </li>
                             <li>
-                                <strong>품질 확보:</strong> 런칭 직전 QA 버그 수정 50건+ 및 잔여 페이지 퍼블리싱/API
-                                연동 100% 완료
+                                <strong>QA 버그 수정 및 대응:</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    오픈 직전 집중적인 QA 기간 동안 50건 이상의 버그를 신속하게 수정하여 플랫폼 품질
+                                    확보.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="detail-section" style="padding-left: 0">
+                        <div class="detail-label">성과 및 결과 (Result)</div>
+                        <ul class="solution-list">
+                            <li>
+                                <strong>프로젝트 성공적 완수:</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    정해진 기한 내에 필수 기능을 모두 이식하고 안정적인 런칭을 지원하여 고객사 신뢰
+                                    확보.
+                                </div>
                             </li>
                         </ul>
                     </div>
