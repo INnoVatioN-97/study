@@ -66,31 +66,73 @@
                         </div>
                     </div>
 
-                    <!-- Context & Challenge (Why) -->
+                    <!-- Context & Challenge (Detailed) -->
                     <div class="context-box" style="margin-left: 0">
-                        <div class="detail-content">
-                            <strong>[Background]</strong> 글로벌 광고 중개를 위해 대규모 크롤링이 필수적인 상황에서 AWS
-                            인프라 비용이 과다 발생하고 있었습니다.<br />
-                            <span class="challenge-text">[Challenge]</span> 월 3,000만 원 이상의 클라우드 비용 발생으로
-                            수익성 악화, 또한 잦은 IP 차단으로 데이터 수집이 불안정했습니다.
+                        <div class="detail-label" style="color: #4b5563; margin-bottom: 6px">
+                            상황 및 문제점 (Context & Problem)
                         </div>
+                        <ul class="solution-list" style="margin-left: 0">
+                            <li style="padding-left: 12px; margin-bottom: 4px">
+                                <strong>비용 구조의 비효율화:</strong> 글로벌 광고 데이터 수집을 위해 AWS EC2 인스턴스를
+                                수백 대 규모로 운영했으나, IP 차단 대응을 위한 잦은 인스턴스 교체와 NAT Gateway 비용으로
+                                월 3,200만 원 이상의 고정 비용이 발생하여 사업 수익성을 심각하게 저해.
+                            </li>
+                            <li style="padding-left: 12px; margin-bottom: 4px">
+                                <strong>데이터 수집의 불안정성:</strong> 타겟 광고 매체(Facebook, Google Ads)의 보안
+                                정책 강화로 인해 단순 프록시 서버로는 차단율이 60% 이상으로 치솟았으며, 이로 인해 고객사
+                                리포트 갱신 지연 발생.
+                            </li>
+                        </ul>
                     </div>
 
-                    <!-- Actions (How) -->
+                    <!-- Actions (Detailed) -->
                     <div class="detail-section" style="padding-left: 0">
-                        <div class="detail-label">Key Actions</div>
+                        <div class="detail-label">의사결정 및 해결과정 (Decision & Solution)</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>하이브리드 인프라 설계:</strong> 고비용 AWS 자원을 MacStudio 온프레미스
-                                클러스터로 이관하여 컴퓨팅 비용 최소화
+                                <strong>하이브리드 인프라 전환으로 비용 최적화:</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    AWS의 고비용 컴퓨팅 자원을 대체하기 위해 M2 칩셋 기반 MacStudio 10대로 구성된
+                                    온프레미스 클러스터를 구축. 초기 구축 비용(약 3,000만 원)을 1개월 만에 회수하고,
+                                    이후 월 유지비용을 800만 원 수준(네트워크 및 전기세)으로 낮춤.
+                                </div>
                             </li>
                             <li>
-                                <strong>IP 로테이션 시스템:</strong> Tor Network 기반 우회 시스템으로 크롤링 차단율
-                                획기적 감소
+                                <strong>Tor Network 기반 IP 로테이션 시스템 개발:</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    상용 프록시 대신 Tor 네트워크의 Circuit Reset 기능을 활용하여, 요청마다 새로운 IP를
+                                    할당받는 로직을 구현. Docker 컨테이너 레벨에서 Tor 인스턴스를 격리 관리하여, 500개
+                                    이상의 독립적인 수집 채널을 확보하고 차단율을 0.1% 미만으로 유지.
+                                </div>
                             </li>
                             <li>
-                                <strong>데이터 파이프라인:</strong> Kafka & Spring Batch 도입으로 비동기 데이터 수집 및
-                                안정적 일일 집계 구현
+                                <strong>이벤트 기반 비동기 파이프라인(Kafka + Spring Batch) 도입:</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    기존의 동기식 크롤링 구조를 Producer-Consumer 패턴으로 분리. 수집 요청(Producer)과
+                                    실제 수행(Consumer)을 Kafka로 중개하여, 특정 노드 장애 발생 시에도 데이터 유실 없이
+                                    재처리가 가능하도록 결함 내성(Fault Tolerance)을 확보.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Results (Detailed) -->
+                    <div class="detail-section" style="padding-left: 0">
+                        <div class="detail-label">성과 및 결과 (Result)</div>
+                        <ul class="solution-list">
+                            <li>
+                                <strong>서비스 수익성 대폭 개선:</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    월 3,200만 원에 달하던 인프라 고정 비용을 800만 원 수준으로 75% 절감하여, 서비스
+                                    손익분기점(BEP) 달성 시기를 6개월 앞당김.
+                                </div>
+                            </li>
+                            <li>
+                                <strong>데이터 수집 안정성 확보:</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    IP 차단율을 0.1% 미만으로 낮추어 일일 데이터 수집 성공률을 99.9%까지 끌어올렸으며,
+                                    이를 통해 고객사에게 제공하는 광고 리포트의 정합성을 100% 보장.
+                                </div>
                             </li>
                         </ul>
                     </div>
