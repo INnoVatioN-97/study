@@ -252,29 +252,30 @@
 
                     <div class="metrics-grid" style="margin-left: 0">
                         <div class="metric-card">
-                            <div class="metric-label">Integration</div>
+                            <div class="metric-label">Launch</div>
                             <div class="metric-value">앱인토스 입점</div>
                             <div class="metric-change">채널 확장</div>
                         </div>
                         <div class="metric-card">
-                            <div class="metric-label">Accuracy</div>
-                            <div class="metric-value">정산 오차 0%</div>
-                            <div class="metric-change">무결성 보장</div>
+                            <div class="metric-label">Architecture</div>
+                            <div class="metric-value">Dual Point System</div>
+                            <div class="metric-change">설계 최적화</div>
                         </div>
                     </div>
 
                     <div class="context-box" style="margin-left: 0">
                         <div class="detail-label" style="color: #4b5563; margin-bottom: 6px">
-                            상황 및 문제점 (Context & Problem)
+                            주요 과제 및 요구사항 (Key Challenges & Requirements)
                         </div>
                         <ul class="solution-list" style="margin-left: 0">
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>채널 확장에 따른 아키텍처 한계:</strong> 자사 앱 전용으로 설계된 레거시 포인트
-                                시스템이 '토스 미니앱' 입점과 함께 발생하는 대규모 제휴 트랜잭션을 수용하기 어려운 구조.
+                                <strong>초기 아키텍처 수립의 난이도:</strong> '앱인토스(외부 크레딧)'와 '자사 앱(내부
+                                DB)'이라는 상이한 환경을 동시에 지원해야 하는 복잡한 요구사항을 MVP 단계에서 효율적으로
+                                풀어낼 수 있는 설계 필요.
                             </li>
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>외부 연동 복잡성:</strong> NPay 등 다양한 제휴처와의 포인트 교환 시 트랜잭션
-                                실패나 타임아웃 처리가 미흡하여 정산 불일치 위험 존재.
+                                <strong>확장성을 고려한 선제적 설계:</strong> 향후 다양한 외부 제휴처(NPay 등) 연동이
+                                예정되어 있어, 초기 단계부터 유연한 확장이 가능한 구조(Interface/Adapter)가 요구됨.
                             </li>
                         </ul>
                     </div>
@@ -283,17 +284,24 @@
                         <div class="detail-label">의사결정 및 해결과정 (Decision & Solution)</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>포인트 시스템 이원화 설계:</strong>
+                                <strong>포인트 적립 시스템 이원화 설계:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    '자사 앱 포인트'와 '제휴 포인트'의 생명주기를 분리하여 관리하는 이원화 아키텍처
-                                    설계. 상호 교환 로직을 모듈화하여 확장성을 확보.
+                                    '앱인토스'는 별도 충전된 크레딧 소진(API), '자사 앱'은 내부 DB 갱신으로 분리
+                                    설계하여 각 플랫폼 최적화.
                                 </div>
                             </li>
                             <li>
-                                <strong>외부 제휴처 연동 표준화:</strong>
+                                <strong>외부 연동 안정성 확보 (Transaction & Retry):</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    Adapter 패턴을 적용하여 NPay 등 다양한 포인트 교환 API 연동을 표준화하고, 보상
-                                    트랜잭션(Saga Pattern Idea)을 구현하여 정합성 보장.
+                                    트랜잭션 롤백 및 재시도(Retry) 큐 메커니즘을 구현하여 자산 소실 위험 차단 (개발 완료
+                                    및 테스트 단계).
+                                </div>
+                            </li>
+                            <li>
+                                <strong>MVP 단계의 효율적인 확장성 고려:</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    복잡한 패턴(Over-engineering) 없이 Interface 수준의 추상화만 적용하여 개발 속도와
+                                    유연성 확보.
                                 </div>
                             </li>
                         </ul>
@@ -349,9 +357,9 @@
                             <div class="metric-change">▼ 96% 단축</div>
                         </div>
                         <div class="metric-card">
-                            <div class="metric-label">Architecture</div>
-                            <div class="metric-value">Express → NestJS</div>
-                            <div class="metric-change">현대화</div>
+                            <div class="metric-label">Migration</div>
+                            <div class="metric-value">Phased Migration</div>
+                            <div class="metric-change">무중단 전환</div>
                         </div>
                     </div>
 
@@ -361,12 +369,10 @@
                         </div>
                         <ul class="solution-list" style="margin-left: 0">
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>레거시 코드의 기술 부채:</strong> 초기 Express/Hapi 기반 코드가 구조 없이
-                                작성되어 유지보수가 어렵고, 비즈니스 로직이 파편화되어 기능 확장이 불가능한 상태.
+                                <strong>파편화된 서버 구조와 생산성 저하:</strong> Admin(Express), User/Data(Hapi) 등 3개의 서버가 상이한 기술 스택과 순수 JS로 파편화되어 로직 공유가 불가능하고 유지보수가 난해함.
                             </li>
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>성능 저하:</strong> 복잡한 연관 관계를 가진 쿼리가 최적화 없이 실행되어 주요 API
-                                응답 시간이 3초를 초과, 사용자 이탈의 주원인이 됨.
+                                <strong>비효율적인 데이터 구조로 인한 성능 이슈:</strong> 기업 전체 재무 데이터를 S3 내 단일 JSON 파일(MB 단위)로 관리하며, 요청 시마다 파일 다운로드 및 파싱으로 3초 이상의 지연 발생.
                             </li>
                         </ul>
                     </div>
@@ -375,17 +381,24 @@
                         <div class="detail-label">의사결정 및 해결과정 (Decision & Solution)</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>NestJS 기반 Layered Arhcitecture 도입:</strong>
+                                <strong>재무 데이터 정규화(Normalization) 및 API 설계:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    명확한 책임 분리를 위해 NestJS + TypeORM으로 아키텍처를 전면 교체.
-                                    Controller-Service-Repository 패턴을 적용하여 코드 재사용성과 테스트 용이성 확보.
+                                    S3 JSON 통신 방식을 폐기하고, 재무제표/주가 정보를 RDBMS 테이블로 완전 정규화 구축. 필요한 섹터 데이터만 조회하는 API를 제공하여 Payload와 Latency를 획기적으로 감축.
                                 </div>
                             </li>
                             <li>
-                                <strong>쿼리 최적화 및 튜닝:</strong>
+                                <strong>NestJS 통합 및 Entity 공통 모듈화 (GitHub Packages):</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    실행 계획(Explain) 분석을 통해 Full Table Scan을 Index Scan으로 개선하고, N+1 문제를
-                                    해결하여 조회 성능을 극대화.
+                                    3개 서버를 NestJS로 통일하고, 핵심 TypeORM Entity를 GitHub Packages 기반의 NPM 라이브러리로 분리하여 패키지화.
+                                </div>
+                            </li>
+                            <li>
+                                <strong>시스템 안정성을 위한 단계적 전환 (3개월):</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    기존 시스템을 일시에 교체하는 위험을 배제하고, 3단계에 걸쳐 안정적으로 이관함.<br>
+                                    1) <strong>초기:</strong> 레거시 유지 & 신규 서버 개발 (DB 미러링)<br>
+                                    2) <strong>중기:</strong> API 라우팅을 통해 트래픽 일부를 신규 서버로 전환 및 검증<br>
+                                    3) <strong>후기:</strong> 레거시 셧다운 및 신규 DB Source로 완전 전환
                                 </div>
                             </li>
                         </ul>
@@ -395,10 +408,15 @@
                         <div class="detail-label">성과 및 결과 (Result)</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>압도적인 성능 개선 및 유지보수성 확보:</strong>
+                                <strong>API 응답 속도 혁신 (3s → 100ms):</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    API 응답 속도를 100ms 미만으로 단축하여 사용자 경험을 획기적으로 개선하고, 신규 개발
-                                    온보딩 시간을 단축.
+                                    데이터 정규화 및 Payload 경량화를 통해 응답 속도를 96% 단축하고 사용자 경험 개선.
+                                </div>
+                            </li>
+                            <li>
+                                <strong>운영 효율성 극대화 (Entity 라이브러리화):</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    스키마 변경 시 코드 수정 없이 단순 패키지 버전 업데이트만으로 대응 가능한 구조를 완성하여, 추후 모노레포 도입의 기반을 마련함.
                                 </div>
                             </li>
                         </ul>
@@ -439,8 +457,7 @@
                         </div>
                         <ul class="solution-list" style="margin-left: 0">
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>모바일 접근성 부재:</strong> 웹 기반 서비스만으로는 푸시 알림 등 적극적인 리텐션
-                                마케팅이 불가능하여 모바일 앱 니즈가 강력히 대두됨.
+                                <strong>모바일 전용 기능의 부재:</strong> 웹 서비스만으로는 푸시 알림이나 생체 인증 같은 모바일 네이티브 기능을 제공할 수 없어 사용자 리텐션 확보에 한계가 있음.
                             </li>
                         </ul>
                     </div>
@@ -449,19 +466,26 @@
                         <div class="detail-label">의사결정 및 해결과정 (Decision & Solution)</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>React Native 하이브리드 앱 개발:</strong>
+                                <strong>React Native 하이브리드 앱 구축:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    기존 웹 자원을 활용하기 위해 WebView와 Native Modules를 연동하는 하이브리드 방식
-                                    채택. 개발 리소스를 최소화하며 양대 마켓 런칭 성공.
+                                    기존 웹 리소스를 최대한 활용하기 위해 Webview Wrapper 방식으로 앱을 개발하여 개발 공수를 최소화하고, 네이티브 기능(Push, Login)만 RN으로 구현.
                                 </div>
                             </li>
                             <li>
-                                <strong>CodePush 기반 배포 파이프라인 구축:</strong>
+                                <strong>푸시 알림 시스템(OneSignal) 도입:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    앱 심사 대기 시간 없이 JavaScript 번들만 즉시 업데이트할 수 있는 CodePush를 도입하여
-                                    버그 픽스 및 기능 배포 속도 혁신.
+                                    OneSignal을 연동하여 마케팅 및 알림 채널을 확보함. (초기 유저 2~3만 명 대상 리텐션 마케팅 기반 마련)
                                 </div>
                             </li>
+                            <li>
+                                <strong>CodePush를 통한 배포 파이프라인 최적화:</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    앱 스토어 심사 없이 변경 사항을 즉시 배포할 수 있는 CodePush를 도입하여 긴급 버그 수정 및 기능 업데이트 속도를 획기적으로 개선.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
                         </ul>
                     </div>
 
