@@ -45,10 +45,11 @@ body {
 }
 
 /* Header (Compact) */
+/* Header (Compact) */
 header {
-    margin-bottom: 25px;
+    margin-bottom: 15px;
     border-bottom: 2px solid var(--color-text-primary);
-    padding-bottom: 15px;
+    padding-bottom: 10px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -87,7 +88,7 @@ header {
     color: var(--color-accent);
     border-bottom: 1px solid var(--color-border);
     padding-bottom: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     letter-spacing: -0.01em;
 }
 
@@ -96,12 +97,12 @@ header {
     color: #374151;
     line-height: 1.6;
     text-align: justify;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 
 /* Experience Layout */
 .company-block {
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 
 .company-header {
@@ -132,7 +133,7 @@ header {
 
 /* Project Item - Tighter for fitting */
 .project-item {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     padding-left: 10px;
 }
 
