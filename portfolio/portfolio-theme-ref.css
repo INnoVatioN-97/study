@@ -1,5 +1,9 @@
 /* Portfolio Theme: V2 */
 
+html {
+    scroll-behavior: smooth;
+}
+
 :root {
     /* Brand Colors */
     --color-brand: #4b77d8; /* New Palette Blue */
