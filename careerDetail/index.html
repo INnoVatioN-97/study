@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>경력기술서 | 고영일</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <!-- PAGE 1: Intro + Pocask E&M (Part 1) -->
+        <section class="page">
+            <!-- Header -->
+            <header>
+                <div class="header-title">
+                    <h1>고영일 (Youngil Ko)</h1>
+                    <p>문제를 구조적으로 해결하는 백엔드 개발자</p>
+                </div>
+                <div class="header-contact">
+                    <a href="mailto:koyoungil97@gmail.com">koyoungil97@gmail.com</a>
+                    <a href="tel:01052834392">010. 5283. 4392</a>
+                    <a href="https://github.com/INnoVatioN-97" target="_blank">github.com/INnoVatioN-97</a>
+                    <a href="https://zero-sand-box.tistory.com" target="_blank">zero-sand-box.tistory.com</a>
+                </div>
+            </header>
+
+            <!-- Summary -->
+            <div class="summary-text">
+                <p>
+                    비즈니스 임팩트를 최우선으로 생각하는 4년차 백엔드 개발자입니다. 단순한 기능 구현을 넘어, 인프라
+                    비용 75% 절감 및 API 성능 96% 개선 등 정량적인 성과를 만들어내는 데 강점이 있습니다. 스타트업
+                    환경에서 주도적으로 시스템을 설계하고, 레거시 마이그레이션을 성공적으로 이끈 경험이 있습니다.
+                </p>
+            </div>
+
+            <h2 class="section-title">Work Experience</h2>
+
+            <!-- Pocask E&M -->
+            <div class="company-block">
+                <div class="company-header">
+                    <div>
+                        <span class="company-name">Pocask E&M (포캐스크 이앤엠)</span>
+                        <span class="company-role">글로벌 에드테크 사업실 / Backend Lead</span>
+                    </div>
+                    <span class="company-period">2024.11 - Present</span>
+                </div>
+
+                <!-- Project: Infra & Data -->
+                <div class="project-item">
+                    <div class="project-title">AdTech 인프라 비용 절감 및 데이터 파이프라인 구축</div>
+                    <div class="project-meta">2024.11 - 2025.01 | 기여도: 100% (Solo)</div>
+
+                    <div class="context-box">
+                        <div class="detail-content">
+                            <strong>[Background]</strong> 글로벌 광고 중개를 위해 대규모 크롤링이 필수적인 상황에서 AWS
+                            인프라 비용이 과다 발생하고 있었습니다.<br />
+                            <span class="challenge-text">[Challenge]</span> 월 3,000만 원 이상의 클라우드 비용 발생으로
+                            수익성 악화, 또한 잦은 IP 차단으로 데이터 수집이 불안정했습니다.
+                        </div>
+                    </div>
+
+                    <div class="detail-section">
+                        <div class="detail-label">Key Actions</div>
+                        <ul class="solution-list">
+                            <li>
+                                <strong>하이브리드 인프라 설계:</strong> 고비용 AWS 자원을 MacStudio 온프레미스
+                                클러스터로 이관하여 컴퓨팅 비용 최소화
+                            </li>
+                            <li>
+                                <strong>IP 로테이션 시스템:</strong> Tor Network 기반 우회 시스템으로 크롤링 차단율
+                                획기적 감소
+                            </li>
+                            <li>
+                                <strong>데이터 파이프라인:</strong> Kafka & Spring Batch 도입으로 비동기 데이터 수집 및
+                                안정적 일일 집계 구현
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-label">Infra Cost</div>
+                            <div class="metric-value">월 3,200만원 → 800만원</div>
+                            <div class="metric-change">▼ 75% 절감</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Crawling Success</div>
+                            <div class="metric-value">IP 차단 빈번 → 99% 성공</div>
+                            <div class="metric-change">안정성 확보</div>
+                        </div>
+                    </div>
+
+                    <div class="tech-stack">
+                        <span class="tech-tag">Kafka</span>
+                        <span class="tech-tag">Spring Batch</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">AWS ECS</span>
+                        <span class="tech-tag">Tor Network</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 2: Pocask (Project 2) + Growing Lab -->
+        <section class="page">
+            <h2 class="section-title">Work Experience (Cont.)</h2>
+
+            <!-- Pocask (Project 2) -->
+            <div class="company-block">
+                <div class="company-header" style="border-bottom: none; margin-bottom: 0">
+                    <div>
+                        <span class="company-name" style="font-size: 14px; color: #666">Pocask E&M (Cont.)</span>
+                    </div>
+                </div>
+
+                <!-- Project: Point Crush -->
+                <div class="project-item">
+                    <div class="project-title">광고 솔루션 'Point Crush' 트래픽 제어 및 안정화</div>
+                    <div class="project-meta">2024.11 - 2025.01 | 기여도: 100% (Backend Lead)</div>
+
+                    <div class="context-box">
+                        <div class="detail-content">
+                            <strong>[Background]</strong> 포인트 적립형 광고 솔루션의 사용자 유입 폭증으로 시스템 부하가
+                            발생했습니다.<br />
+                            <span class="challenge-text">[Challenge]</span> 동시 접속 증가 시 DB Deadlock 빈번 발생 및
+                            동기식 처리 구조의 한계로 인한 응답 지연 심각.
+                        </div>
+                    </div>
+
+                    <div class="detail-section">
+                        <div class="detail-label">Key Actions</div>
+                        <ul class="solution-list">
+                            <li>
+                                <strong>비동기 큐 도입:</strong> Redis Queue를 활용하여 트래픽 스파이크 완충 및 순차
+                                처리 보장
+                            </li>
+                            <li>
+                                <strong>DB 부하 분산:</strong> 건별 Insert를 비동기 Bulk Insert로 전환하여 DB I/O 부하
+                                감소
+                            </li>
+                            <li>
+                                <strong>동시성 제어:</strong> Redisson 분산 락 적용으로 포인트 중복 지급 무결성 이슈
+                                차단
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-label">Deadlock</div>
+                            <div class="metric-value">잦은 발생 → 0건</div>
+                            <div class="metric-change">완전 해결</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Throughput</div>
+                            <div class="metric-value">처리량 300% 증가</div>
+                            <div class="metric-change">성능 최적화</div>
+                        </div>
+                    </div>
+
+                    <div class="tech-stack">
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">Redis</span>
+                        <span class="tech-tag">MySQL</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Growing Lab -->
+            <div class="company-block">
+                <div class="company-header">
+                    <div>
+                        <span class="company-name">Growing Lab (그로잉랩)</span>
+                        <span class="company-role">투자 정보 플랫폼 'Butler' / Backend Engineer</span>
+                    </div>
+                    <span class="company-period">2023.04 - 2024.08</span>
+                </div>
+
+                <!-- Project -->
+                <div class="project-item">
+                    <div class="project-title">서비스 고도화 및 레거시 시스템 마이그레이션</div>
+                    <div class="project-meta">2023.04 - 2024.08 | 기여도: 100%</div>
+
+                    <div class="context-box">
+                        <div class="detail-content">
+                            <strong>[Background]</strong> 초기 스타트업 단계의 레거시 시스템 유지보수 비용 증가 및
+                            확장성 한계.<br />
+                            <span class="challenge-text">[Challenge]</span> 비즈니스 로직 파편화로 기능 확장 난항,
+                            복잡한 쿼리로 주요 API 응답 속도 3초 이상 소요.
+                        </div>
+                    </div>
+
+                    <div class="detail-section">
+                        <div class="detail-label">Key Actions</div>
+                        <ul class="solution-list">
+                            <li>
+                                <strong>아키텍처 전환:</strong> Express/Hapi → NestJS + TypeORM (Layered Arch) 이관으로
+                                유지보수성 확보
+                            </li>
+                            <li>
+                                <strong>쿼리 최적화:</strong> 실행 계획(Explain) 분석 및 인덱스 튜닝, 쿼리 리팩토링 수행
+                            </li>
+                            <li>
+                                <strong>모바일 확장:</strong> React Native 하이브리드 앱 개발 및 CodePush 배포
+                                파이프라인 구축
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-label">API Latency</div>
+                            <div class="metric-value">3s → 100ms</div>
+                            <div class="metric-change">▼ 96% 단축</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Platform</div>
+                            <div class="metric-value">Web Only → App 런칭</div>
+                            <div class="metric-change">채널 확장</div>
+                        </div>
+                    </div>
+
+                    <div class="tech-stack">
+                        <span class="tech-tag">NestJS</span>
+                        <span class="tech-tag">TypeORM</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">React Native</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 3: Concent + BrickMate -->
+        <section class="page">
+            <h2 class="section-title">Work Experience (Cont.)</h2>
+
+            <!-- Concent CO. -->
+            <div class="company-block">
+                <div class="company-header">
+                    <div>
+                        <span class="company-name">Concent CO. (콘센트)</span>
+                        <span class="company-role">소셜 미디어 'PerMirth' / Full Stack</span>
+                    </div>
+                    <span class="company-period">2022.06 - 2023.04</span>
+                </div>
+
+                <div class="project-item">
+                    <div class="project-title">동영상 소셜 미디어 인프라 최적화</div>
+                    <div class="project-meta">2022.06 - 2023.04 | 기여도: 100%</div>
+
+                    <div class="context-box">
+                        <div class="detail-content">
+                            <strong>[Background]</strong> 동영상 기반 SNS 트래픽 증가로 인한 대역폭 비용 급증.<br />
+                            <span class="challenge-text">[Challenge]</span> 비효율적 미디어 전송 방식 및 수동 배포로
+                            인한 운영 비효율.
+                        </div>
+                    </div>
+
+                    <div class="detail-section">
+                        <div class="detail-label">Key Actions</div>
+                        <ul class="solution-list">
+                            <li>
+                                <strong>스트리밍 최적화:</strong> HLS 프로토콜 및 CDN(CloudFront) 도입으로 전송 효율
+                                극대화
+                            </li>
+                            <li><strong>CI/CD 구축:</strong> GitHub Actions 기반 빌드/배포 자동화</li>
+                        </ul>
+                    </div>
+
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-label">Bandwidth Cost</div>
+                            <div class="metric-value">월 60만원 → 14만원</div>
+                            <div class="metric-change">▼ 76% 절감</div>
+                        </div>
+                    </div>
+
+                    <div class="tech-stack">
+                        <span class="tech-tag">Spring Boot</span>
+                        <span class="tech-tag">AWS</span>
+                        <span class="tech-tag">FFmpeg</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BrickMate -->
+            <div class="company-block">
+                <div class="company-header">
+                    <div>
+                        <span class="company-name">BrickMate (브릭메이트)</span>
+                        <span class="company-role">Development Dept. / Developer</span>
+                    </div>
+                    <span class="company-period">2022.01 - 2022.06</span>
+                </div>
+
+                <div class="project-item">
+                    <div class="project-title">롯데홈쇼핑 차세대 플랫폼 'iTOO' 구축 지원</div>
+                    <div class="project-meta">2022.01 - 2022.06 | 기여도: 70%</div>
+
+                    <div class="context-box">
+                        <div class="detail-content">
+                            <strong>[Background]</strong> 롯데홈쇼핑 차세대 플랫폼 런칭 임박, 기존 서비스(Wyd) 기능 이식
+                            필요.<br />
+                            <span class="challenge-text">[Challenge]</span> 촉박한 일정 내 레거시 API 분석 및 신규
+                            플랫폼 포팅 완수 필요.
+                        </div>
+                    </div>
+
+                    <div class="detail-section">
+                        <div class="detail-label">Key Actions</div>
+                        <ul class="solution-list">
+                            <li>
+                                <strong>API 마이그레이션:</strong> 기존 라이브커머스(Wyd) 핵심 API를 분석하여 iTOO
+                                플랫폼으로 이식
+                            </li>
+                            <li>
+                                <strong>품질 확보:</strong> 런칭 직전 QA 버그 수정 50건+ 및 잔여 페이지 퍼블리싱/API
+                                연동 100% 완료
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-stack">
+                        <span class="tech-tag">Spring Boot</span>
+                        <span class="tech-tag">Oracle</span>
+                        <span class="tech-tag">JSP</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
