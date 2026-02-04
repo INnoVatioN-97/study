@@ -30,7 +30,7 @@
                     <div style="width: 100%; display: flex; justify-content: space-between; margin-bottom: 8px">
                         <div>
                             <span class="company-name">Pocask E&M (포캐스크 이앤엠)</span>
-                            <span class="company-role">글로벌 에드테크 사업실 / Backend Lead</span>
+                            <span class="company-role">글로벌 에드테크 사업실 / Backend</span>
                         </div>
                         <span class="company-period">2024.11 - Present</span>
                     </div>
@@ -44,7 +44,7 @@
                         <span class="tech-tag">Redis</span>
                         <span class="tech-tag">MySQL</span>
                         <span class="tech-tag">Docker</span>
-                        <span class="tech-tag">AWS ECS</span>
+                        <span class="tech-tag">Tencent Cloud</span>
                         <span class="tech-tag">Tor Network</span>
                     </div>
                 </div>
@@ -58,13 +58,13 @@
                     <div class="metrics-grid" style="margin-left: 0">
                         <div class="metric-card">
                             <div class="metric-label">Infra Cost</div>
-                            <div class="metric-value">월 3,200만원 → 800만원</div>
-                            <div class="metric-change">▼ 75% 절감</div>
+                            <div class="metric-value">월 480만원 → 180만원</div>
+                            <div class="metric-change">▼ 62% 절감</div>
                         </div>
                         <div class="metric-card">
-                            <div class="metric-label">Crawling Success</div>
-                            <div class="metric-value">IP 차단 빈번 → 99.9% 성공</div>
-                            <div class="metric-change">안정성 확보</div>
+                            <div class="metric-label">Reliability</div>
+                            <div class="metric-value">Ghost Processing</div>
+                            <div class="metric-change">데이터 유실 0% 달성</div>
                         </div>
                     </div>
 
@@ -75,14 +75,14 @@
                         </div>
                         <ul class="solution-list" style="margin-left: 0">
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>비용 구조의 비효율화:</strong> 글로벌 광고 데이터 수집을 위해 AWS EC2 인스턴스를
-                                수백 대 규모로 운영했으나, IP 차단 대응을 위한 잦은 인스턴스 교체와 NAT Gateway 비용으로
-                                월 3,200만 원 이상의 고정 비용이 발생하여 사업 수익성을 심각하게 저해.
+                                <strong>Ghost Processing으로 인한 데이터 유실:</strong> 기존 시스템은 Kafka 메시지 수신
+                                즉시 Commit(Auto Commit)하고 로컬 Redis 큐에 적재하는 방식. 잦은 Tor 프로세스 프리징으로
+                                인스턴스 재시작 시 로컬 큐 데이터가 소실되었으나, 브로커는 '처리 완료'로 인식하여
+                                재처리가 불가능했음.
                             </li>
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>데이터 수집의 불안정성:</strong> 타겟 광고 매체(Facebook, Google Ads)의 보안
-                                정책 강화로 인해 단순 프록시 서버로는 차단율이 60% 이상으로 치솟았으며, 이로 인해 고객사
-                                리포트 갱신 지연 발생.
+                                <strong>클라우드 비용 및 차단 이슈:</strong> Tencent Cloud 비용 과다($3,308/월) 및 대형
+                                매체의 IP 차단율 증가로 수집 성공률 저하.
                             </li>
                         </ul>
                     </div>
@@ -92,27 +92,26 @@
                         <div class="detail-label">의사결정 및 해결과정 (Decision & Solution)</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>하이브리드 인프라 전환으로 비용 최적화:</strong>
+                                <strong>Kafka 컨슈머 아키텍처 재설계 (Reliability & Performance):</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    AWS의 고비용 컴퓨팅 자원을 대체하기 위해 M2 칩셋 기반 MacStudio 10대로 구성된
-                                    온프레미스 클러스터를 구축. 초기 구축 비용(약 3,000만 원)을 1개월 만에 회수하고,
-                                    이후 월 유지비용을 800만 원 수준(네트워크 및 전기세)으로 낮춤.
+                                    데이터 정합성을 위해 <strong>Manual Commit(처리 후 커밋)</strong> 방식으로 전환하여
+                                    유실을 원천 차단. 이로 인한 처리량 감소(Throughput)는 무거운 Puppeteer 로직을
+                                    경량화된 <strong>cURL/API 방식</strong>으로 최적화하여 상쇄함.
                                 </div>
                             </li>
                             <li>
-                                <strong>Tor Network 기반 IP 로테이션 시스템 개발:</strong>
+                                <strong>Observability 확보 및 스케일링 전략 수립:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    상용 프록시 대신 Tor 네트워크의 Circuit Reset 기능을 활용하여, 요청마다 새로운 IP를
-                                    할당받는 로직을 구현. Docker 컨테이너 레벨에서 Tor 인스턴스를 격리 관리하여, 500개
-                                    이상의 독립적인 수집 채널을 확보하고 차단율을 0.1% 미만으로 유지.
+                                    <strong>UI for Apache Kafka</strong>를 도입하여 블랙박스였던 Consumer Lag을
+                                    시각화함. '지속적인 Lag 증가'를 기준으로 하는 오토스케일링 정책을 수립하여 트래픽
+                                    스파이크(일시적 Lag 3,000건 등)에 유연하게 대응.
                                 </div>
                             </li>
                             <li>
-                                <strong>이벤트 기반 비동기 파이프라인(NestJS + Kafka):</strong>
+                                <strong>Hybrid Proxy 및 사내 유휴 장비 활용:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    NestJS 기반의 마이크로서비스가 Producer-Consumer 패턴으로 크롤링을 수행하며 Kafka로
-                                    데이터를 중개함. 수집된 데이터의 일일 집계 및 리포팅 작업은 Spring Boot(@Scheduled)
-                                    기반의 통계 서버가 수행하는 이원화 구조로 안정성 확보.
+                                    MacStudio 온프레미스 팜 구축으로 클라우드 비용을 최소화하고, Tor 쏠림 현상을 Hybrid
+                                    Proxy(주거용+무료)로 분산시켜 Tor 프로세스 프리징 빈도를 획기적으로 낮춤.
                                 </div>
                             </li>
                         </ul>
@@ -123,17 +122,16 @@
                         <div class="detail-label">성과 및 결과 (Result)</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>서비스 수익성 대폭 개선:</strong>
+                                <strong>데이터 유실률 0% 및 파이프라인 가시성 100% 확보:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    월 3,200만 원에 달하던 인프라 고정 비용을 800만 원 수준으로 75% 절감하여, 서비스
-                                    손익분기점(BEP) 달성 시기를 6개월 앞당김.
+                                    '처리 중 유실'을 완벽하게 방지하고, Consumer Lag 모니터링을 통해 장애 상황을 즉각
+                                    감지할 수 있는 안정적인 파이프라인 구축.
                                 </div>
                             </li>
                             <li>
-                                <strong>데이터 수집 안정성 확보:</strong>
+                                <strong>운영 비용 62% 절감 ($3,308 → $1,246):</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    IP 차단율을 0.1% 미만으로 낮추어 일일 데이터 수집 성공률을 99.9%까지 끌어올렸으며,
-                                    이를 통해 고객사에게 제공하는 광고 리포트의 정합성을 100% 보장.
+                                    인프라 최적화 및 안정화된 수집 로직을 통해 비용 효율성과 운영 안정성을 동시에 달성.
                                 </div>
                             </li>
                         </ul>
@@ -154,18 +152,18 @@
                 <!-- Project 2: Point Crush -->
                 <div class="project-item">
                     <div class="project-title">광고 솔루션 'Point Crush' 트래픽 제어 및 안정화</div>
-                    <div class="project-meta">2024.11 - 2025.01 | 기여도: 100% (Backend Lead)</div>
+                    <div class="project-meta">2024.11 - 2025.01 | 기여도: 100% (Backend)</div>
 
                     <div class="metrics-grid" style="margin-left: 0">
                         <div class="metric-card">
-                            <div class="metric-label">Deadlock</div>
-                            <div class="metric-value">잦은 발생 → 0건</div>
-                            <div class="metric-change">완전 해결</div>
+                            <div class="metric-label">DB Efficiency</div>
+                            <div class="metric-value">CPU 90% → 20~30% (Peak)</div>
+                            <div class="metric-change">안정화 성공</div>
                         </div>
                         <div class="metric-card">
-                            <div class="metric-label">Throughput</div>
-                            <div class="metric-value">처리량 300% 증가</div>
-                            <div class="metric-change">성능 최적화</div>
+                            <div class="metric-label">Cost Optimization</div>
+                            <div class="metric-value">DB Nodes 6대 → 3대</div>
+                            <div class="metric-change">비용 50% 절감</div>
                         </div>
                     </div>
 
@@ -175,12 +173,14 @@
                         </div>
                         <ul class="solution-list" style="margin-left: 0">
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>트래픽 스파이크로 인한 장애:</strong> 특정 시간대 광고 참여 유저가 폭증(DAU
-                                10만+)하면서 DB Connection Pool 고갈 및 Deadlock이 빈번하게 발생.
+                                <strong>로직 결합으로 인한 Deadlock:</strong> 광고 적립 로직 내에 전환율(CVR) 집계
+                                미들웨어가 강하게 결합되어 동시 다발적인 적립 요청 시 다수 테이블에 대한 락 경합 및
+                                데드락 빈번 발생.
                             </li>
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>동시성 이슈:</strong> 포인트 지급 로직에서 Race Condition 발생으로 인한 중복
-                                지급 데이터 오차 발견.
+                                <strong>병렬 개별 Upsert의 비효율성:</strong> 수천 건의 키워드 데이터를 `Promise.all`
+                                기반의 개별 Upsert로 처리하며 DB Connection Pool 고갈 및 인스턴스 부하 초래(CPU 사용률
+                                상시 90%).
                             </li>
                         </ul>
                     </div>
@@ -189,24 +189,25 @@
                         <div class="detail-label">의사결정 및 해결과정 (Decision & Solution)</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>비동기 큐(Redis Queue) 도입으로 트래픽 완충:</strong>
+                                <strong>Native Redis Queue(Pub/Sub) 구현을 통한 책임 분리:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    요청을 즉시 DB에 반영하는 대신 Redis Queue에 적재 후 Worker가 소비하는 구조로 변경.
-                                    트래픽 피크 시에도 DB 부하를 일정하게 제어하는 Throttling 구현.
+                                    코어 적립 로직은 '적립'만 담당하도록 단순화하고, 무거운 집계/리포팅 작업은 직접
+                                    구현한 Redis Queue를 이용하여 비동기로 분리. 시스템 간 강결합을 해소하여 트래픽
+                                    스파이크 시에도 핵심 기능의 가용성 유지.
                                 </div>
                             </li>
                             <li>
-                                <strong>Bulk Insert 최적화:</strong>
+                                <strong>100건 단위 Chunked Bulk Upsert 도입:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    건별로 수행되던 Insert 쿼리를 배치 단위 Bulk Insert로 최적화하여 DB RTT(Round Trip
-                                    Time) 및 I/O 부하를 획기적으로 감소시킴.
+                                    기존의 병렬 개별 요청 방식을 최적의 성능 지표인 100건 단위 벌크 처리로 전환. DB RTT
+                                    및 I/O 부하를 획기적으로 줄여 대용량 크롤링 데이터 적재 안정성 확보.
                                 </div>
                             </li>
                             <li>
-                                <strong>Redisson 분산 락 적용:</strong>
+                                <strong>레거시 쿼리 튜닝 및 불필요한 Join 제거:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    유저 ID 기반의 분산 락(Spin Lock 방식)을 적용하여 동시 다발적인 포인트 요청에도
-                                    데이터 정합성을 100% 보장.
+                                    성능 저하의 원인이 된 불필요한 Join 및 미사용 로직을 제거하여 쿼리 수준의 최적화
+                                    진행.
                                 </div>
                             </li>
                         </ul>
@@ -216,9 +217,17 @@
                         <div class="detail-label">성과 및 결과 (Result)</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>시스템 안정성 확보:</strong>
+                                <strong>DB 인프라 비용 50% 절감 및 시스템 안정성 극대화:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    Deadlock 발생 건수 0건 달성 및 피크 시간대 API 응답 속도 균일화로 사용자 경험 개선.
+                                    CPU 사용률을 상시 90%에서 피크 시 30% 미만으로 안정화. 이를 통해 클러스터링된 DB
+                                    인스턴스 수를 6대에서 3대로 축소하여 고정 비용 절감에 기여함.
+                                </div>
+                            </li>
+                            <li>
+                                <strong>기술 부채 해소 및 유지보수 효율 증대:</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    책임 분리를 통해 로직의 복잡도를 낮추고, 모니터링 가능한 구조로 개편하여 운영 및
+                                    신규 기능 추가의 용이성 확보.
                                 </div>
                             </li>
                         </ul>
