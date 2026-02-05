@@ -1,0 +1,322 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
+:root {
+    --font-main: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --color-text-primary: #000000;
+    --color-text-secondary: #333333;
+    --color-text-tertiary: #555555;
+    --color-border: #e0e0e0;
+    --color-bg-light: #ffffff; /* White only */
+    --a4-width: 210mm;
+    --a4-height: 297mm;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--color-text-primary);
+    line-height: 1.5;
+    background-color: #525659; /* PDF Viewer Background */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* THE PAGE CONTAINER */
+.page {
+    position: relative;
+    width: var(--a4-width);
+    height: var(--a4-height);
+    background-color: white;
+    margin-bottom: 20px;
+    padding: 10mm 10mm; /* Slightly more padding for breathing room in print */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header (Compact & Dry) */
+header {
+    margin-bottom: 12px;
+    border-bottom: 2px solid #000;
+    padding-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.header-title h1 {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 2px;
+    color: #000;
+}
+
+.header-title p {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+.header-contact {
+    text-align: right;
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+}
+
+.header-contact a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    display: block;
+}
+
+/* Skills Block (Dry List) */
+.skills-block {
+    margin-bottom: 16px;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 12px;
+}
+
+/* Section Common */
+.section-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #000;
+    border-bottom: 1px solid #000;
+    padding-bottom: 4px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+/* Experience Layout */
+.company-block {
+    margin-bottom: 16px;
+}
+
+.company-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.company-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: #000;
+}
+
+.company-role {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    margin-left: 8px;
+    font-weight: 500;
+}
+
+.company-period {
+    font-size: 13px;
+    color: var(--color-text-tertiary);
+    font-variant-numeric: tabular-nums;
+}
+
+/* Tech Stack - Text Based */
+.tech-stack {
+    margin-top: 4px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0; /* Handled by pseudo elements or margin */
+    font-size: 11px;
+    color: var(--color-text-tertiary);
+}
+
+.tech-tag {
+    /* No box styles */
+    background-color: transparent;
+    color: var(--color-text-tertiary);
+    padding: 0;
+    border: none;
+    margin-right: 6px;
+    font-weight: 500;
+}
+/* Add separators usually nicely done with commas or bullet */
+.tech-tag:not(:last-child)::after {
+    content: ',';
+}
+
+/* Project Item - Minimal */
+.project-item {
+    margin-bottom: 14px;
+    padding-left: 4px; /* Minimal indentation */
+}
+
+.project-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.project-title::before {
+    /* Square bullet for "dry" technical feel */
+    content: '';
+    display: block;
+    width: 4px;
+    height: 4px;
+    background-color: #000;
+}
+
+.project-meta {
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+    margin-bottom: 8px;
+    padding-left: 10px; /* Align with title text */
+}
+
+/* Metrics - Plain Text Grid */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed var(--color-border);
+}
+
+.metric-card {
+    /* Remove all card styling */
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+}
+
+.metric-label {
+    font-size: 11px;
+    color: var(--color-text-secondary);
+    font-weight: 700;
+    margin-bottom: 1px;
+    text-transform: uppercase;
+}
+
+.metric-value {
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+}
+
+.metric-change {
+    font-size: 12px;
+    color: #000; /* No accent color */
+    font-weight: 400;
+}
+
+/* Context/Details - Clean Text */
+.context-box {
+    /* Remove box styling */
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
+
+.detail-section {
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
+
+.detail-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    text-decoration: underline; /* Minimal separation */
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--color-border);
+}
+
+.solution-list {
+    list-style: none;
+    margin-left: 0;
+}
+
+.solution-list li {
+    font-size: 13px;
+    margin-bottom: 6px;
+    position: relative;
+    padding-left: 12px;
+    line-height: 1.5;
+}
+
+/* Strong text acts as inline headers */
+.solution-list li strong {
+    font-weight: 700;
+    color: #000;
+    margin-right: 4px;
+}
+
+.solution-list li::before {
+    content: '-'; /* Classic minimal lists */
+    position: absolute;
+    left: 0;
+    color: var(--color-text-tertiary);
+    font-weight: 400;
+}
+
+.solution-desc {
+    display: block; /* Ensure it wraps nicely */
+    font-size: 13px; /* Keep same size as main text for continuity */
+    color: var(--color-text-secondary);
+    margin-top: 1px;
+}
+
+/* Print Configuration */
+@media print {
+    @page {
+        size: A4 portrait;
+        margin: 0;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        background: white;
+    }
+
+    .page {
+        margin: 0;
+        box-shadow: none;
+        page-break-after: always;
+        break-after: page;
+        border: none;
+        height: auto;
+        min-height: 297mm;
+        padding: 10mm;
+    }
+
+    * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
