@@ -228,20 +228,10 @@ header {
     font-weight: 400;
 }
 
-/* Context/Details - Clean Text */
-.context-box {
-    /* Remove box styling */
-    background-color: transparent;
-    padding: 0;
-    border: none;
-    border-radius: 0;
-    margin-bottom: 10px;
-    padding-left: 10px;
-}
-
+/* Detail Section - Unified */
 .detail-section {
-    margin-bottom: 10px;
-    padding-left: 10px;
+    margin-bottom: 12px;
+    padding-left: 0; /* Align with left edge, remove distinct box padding */
 }
 
 .detail-label {
@@ -259,6 +249,7 @@ header {
 .solution-list {
     list-style: none;
     margin-left: 0;
+    padding-left: 0; /* Reset for custom spacing */
 }
 
 .solution-list li {

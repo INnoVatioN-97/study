@@ -86,11 +86,11 @@
                     <div class="project-title">AdTech 인프라 비용 절감 및 데이터 파이프라인 고도화</div>
                     <div class="project-meta">
                         2024.11 - 2025.01 | 기여도: 70%<br />
-                        <span style="color: #6b7280; font-size: 0.95em">Backend 1 (Self) / Advisory: Team Lead</span>
+                        <span style="color: #6b7280; font-size: 0.95em">Backend 1 / Team Lead 1</span>
                     </div>
 
                     <!-- Metrics -->
-                    <div class="metrics-grid" style="margin-left: 0">
+                    <!-- <div class="metrics-grid" style="margin-left: 0">
                         <div class="metric-card">
                             <div class="metric-label">Infra Cost</div>
                             <div class="metric-value">월 480만원 → 180만원</div>
@@ -101,10 +101,10 @@
                             <div class="metric-value">Ghost Processing</div>
                             <div class="metric-change">데이터 유실 0% 달성</div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- Context & Problem -->
-                    <div class="context-box">
+                    <div class="detail-section" style="padding-left: 0">
                         <div class="detail-label">상황 및 문제점</div>
                         <ul class="solution-list">
                             <li class="solution-item">
@@ -128,7 +128,7 @@
                     <div class="detail-section" style="padding-left: 0">
                         <div class="detail-label">의사결정 및 해결과정</div>
                         <ul class="solution-list">
-                            <li>
+                            <li class="solution-item">
                                 <strong>브로커 중심의 아키텍처 재설계</strong>
                                 <div class="solution-desc">
                                     불필요한 미들웨어(BullMQ)를 제거하고 메시지 전달 방식을
@@ -136,14 +136,14 @@
                                     가능해짐.
                                 </div>
                             </li>
-                            <li>
+                            <li class="solution-item">
                                 <strong>Observability 확보 및 스케일링 전략 수립</strong>
                                 <div class="solution-desc">
                                     <strong>Kafka UI 도입</strong>으로 블랙박스였던 Consumer Lag을 시각화.<br />
                                     'Lag 지속 증가' 시 즉시 스케일 아웃하는 정책을 수립하여 트래픽 스파이크에 대응.
                                 </div>
                             </li>
-                            <li>
+                            <li class="solution-item">
                                 <strong>Hybrid Proxy 및 사내 유휴 장비 활용</strong>
                                 <div class="solution-desc">
                                     사내 유휴 Mac장비를 온프레미스서버로 활용해 클라우드 비용 최소화.<br />
@@ -197,7 +197,7 @@
                     </div>
 
                     <!-- Metrics -->
-                    <div class="metrics-grid" style="margin-left: 0">
+                    <!-- <div class="metrics-grid" style="margin-left: 0">
                         <div class="metric-card">
                             <div class="metric-label">Efficiency</div>
                             <div class="metric-value">Weekly Auto</div>
@@ -208,10 +208,10 @@
                             <div class="metric-value">Data Driven</div>
                             <div class="metric-change">경쟁사 분석</div>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- Context & Problem -->
-                    <div class="context-box">
+                    <div class="detail-section" style="padding-left: 0">
                         <div class="detail-label">상황 및 문제점</div>
                         <ul class="solution-list">
                             <li class="solution-item">
@@ -284,13 +284,13 @@
                 <div class="project-item">
                     <div class="project-title">광고 솔루션 'Point Crush' 트래픽 제어 및 안정화</div>
                     <div class="project-meta">
-                        2024.11 - 2025.01 | 기여도: 100% (Backend)<br />
+                        2024.11 - 2025.01 | 기여도: 80% (Team Lead Advisory)<br />
                         <span style="color: #6b7280; font-size: 0.95em"
                             >Team Lead 1, Full Stack 4~6, PM 1, Designer 1</span
                         >
                     </div>
 
-                    <div class="metrics-grid" style="margin-left: 0">
+                    <!-- <div class="metrics-grid" style="margin-left: 0">
                         <div class="metric-card">
                             <div class="metric-label">DB Efficiency</div>
                             <div class="metric-value">CPU 90% → 20~30% (Peak)</div>
@@ -301,9 +301,9 @@
                             <div class="metric-value">DB Nodes 6대 → 3대</div>
                             <div class="metric-change">비용 50% 절감</div>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="context-box">
+                    <div class="detail-section" style="padding-left: 0">
                         <div class="detail-label">상황 및 문제점</div>
                         <ul class="solution-list">
                             <li class="solution-item">
@@ -344,7 +344,7 @@
                                 <strong>청크(Chunk) 단위의 벌크 업서트 도입</strong>
                                 <div class="solution-desc">
                                     개별 요청 방식을 <strong>100건 단위 청크 벌크 처리</strong>로 전환.<br />
-                                    DB RTT 및 I/O 오버헤드를 개선.
+                                    DB 연결 빈도를 최소화하여 대용량 데이터 처리 성능을 획기적으로 개선.
                                 </div>
                             </li>
                             <li>
@@ -395,7 +395,7 @@
                         >
                     </div>
 
-                    <div class="metrics-grid" style="margin-left: 0">
+                    <!-- <div class="metrics-grid" style="margin-left: 0">
                         <div class="metric-card">
                             <div class="metric-label">Launch</div>
                             <div class="metric-value">앱인토스 입점</div>
@@ -406,9 +406,9 @@
                             <div class="metric-value">Dual Point System</div>
                             <div class="metric-change">설계 최적화</div>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="context-box">
+                    <div class="detail-section" style="padding-left: 0">
                         <div class="detail-label">주요 과제 및 요구사항</div>
                         <ul class="solution-list">
                             <li class="solution-item">
@@ -465,7 +465,10 @@
                             <li>
                                 <strong>플랫폼 확장 및 매출 기여</strong>
                                 <div class="solution-desc">
-                                    토스 미니앱 입점을 지원하여 신규 트래픽 소화 및 매출 증대 기여.
+                                    토스 미니앱에 입점하여 신규 트래픽 소화 및 매출 증대 기여.
+                                    <br />
+                                    이를 통해 기존에 없던 매체로 유입된 새로운 모수 공급을 통해 송출 광고에 대한 효율
+                                    소폭 상승
                                 </div>
                             </li>
                         </ul>
@@ -506,7 +509,7 @@
                         >
                     </div>
 
-                    <div class="metrics-grid" style="margin-left: 0">
+                    <!-- <div class="metrics-grid" style="margin-left: 0">
                         <div class="metric-card">
                             <div class="metric-label">API Latency</div>
                             <div class="metric-value">3s → 100ms</div>
@@ -517,9 +520,9 @@
                             <div class="metric-value">Phased Migration</div>
                             <div class="metric-change">무중단 전환</div>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="context-box">
+                    <div class="detail-section" style="padding-left: 0">
                         <div class="detail-label">상황 및 문제점</div>
                         <ul class="solution-list">
                             <li class="solution-item">
@@ -613,7 +616,7 @@
                         <span style="color: #6b7280; font-size: 0.95em">App Dev 1 (Self) / Collaboration: PM 1</span>
                     </div>
 
-                    <div class="metrics-grid" style="margin-left: 0">
+                    <!-- <div class="metrics-grid" style="margin-left: 0">
                         <div class="metric-card">
                             <div class="metric-label">Platform</div>
                             <div class="metric-value">App Store 런칭</div>
@@ -624,9 +627,9 @@
                             <div class="metric-value">CodePush 적용</div>
                             <div class="metric-change">즉시 배포</div>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="context-box">
+                    <div class="detail-section" style="padding-left: 0">
                         <div class="detail-label">상황 및 문제점</div>
                         <ul class="solution-list">
                             <li class="solution-item">
@@ -639,7 +642,7 @@
                             <li class="solution-item">
                                 <strong>모바일 기능 부재</strong>
                                 <div class="solution-desc">
-                                    웹만으로는 푸시 알림, 생체 인증 등 네이티브 기능 제공 불가하여 리텐션 확보 한계.
+                                    웹만으로는 푸시 알림과 같은 네이티브 기능 제공 불가하여 리텐션 확보 한계.
                                 </div>
                             </li>
                         </ul>
@@ -717,7 +720,7 @@
                         >
                     </div>
 
-                    <div class="metrics-grid" style="margin-left: 0">
+                    <!-- <div class="metrics-grid" style="margin-left: 0">
                         <div class="metric-card">
                             <div class="metric-label">Infra Cost</div>
                             <div class="metric-value">Client Processing</div>
@@ -728,9 +731,9 @@
                             <div class="metric-value">Infinite Scroll</div>
                             <div class="metric-change">Prefetching</div>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="context-box">
+                    <div class="detail-section" style="padding-left: 0">
                         <div class="detail-label">상황 및 문제점</div>
                         <ul class="solution-list">
                             <li class="solution-item">
@@ -812,7 +815,7 @@
                         <span style="color: #6b7280; font-size: 0.95em">Developer 1 (Self), PM 1, Designer 1</span>
                     </div>
 
-                    <div class="metrics-grid" style="margin-left: 0">
+                    <!-- <div class="metrics-grid" style="margin-left: 0">
                         <div class="metric-card">
                             <div class="metric-label">Network</div>
                             <div class="metric-value">Offline-First</div>
@@ -823,9 +826,9 @@
                             <div class="metric-value">Native Compress</div>
                             <div class="metric-change">전송 최적화</div>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="context-box">
+                    <div class="detail-section" style="padding-left: 0">
                         <div class="detail-label">상황 및 문제점</div>
                         <ul class="solution-list">
                             <li class="solution-item">
@@ -884,7 +887,7 @@
                         >
                     </div>
 
-                    <div class="metrics-grid" style="margin-left: 0">
+                    <!-- <div class="metrics-grid" style="margin-left: 0">
                         <div class="metric-card">
                             <div class="metric-label">Environment</div>
                             <div class="metric-value">On-Site</div>
@@ -895,9 +898,9 @@
                             <div class="metric-value">UI/API Integration</div>
                             <div class="metric-change">규격 준수</div>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="context-box">
+                    <div class="detail-section" style="padding-left: 0">
                         <div class="detail-label">상황 및 문제점</div>
                         <ul class="solution-list">
                             <li class="solution-item">
