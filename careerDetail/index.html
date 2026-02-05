@@ -110,10 +110,9 @@
                         </div>
                         <ul class="solution-list" style="margin-left: 0">
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>Ghost Processing으로 인한 데이터 유실:</strong> 기존 시스템은 Kafka 메시지 수신
-                                즉시 Commit(Auto Commit)하고<br />로컬 Redis 큐에 적재하는 방식. 잦은 Tor 프로세스
-                                프리징으로 인스턴스 재시작 시 로컬 큐 데이터가 소실되었으나,<br />브로커는 '처리 완료'로
-                                인식하여 재처리가 불가능했음.
+                                <strong>비용 효율화의 기술적 난이도:</strong> 단순 기능 구현을 넘어,
+                                <strong>비용 절감과 데이터 정합성</strong>이라는 상충되는 목표(Trade-off)를 동시에
+                                달성해야 하는 아키텍처 재설계 과제.
                             </li>
                             <li style="padding-left: 12px; margin-bottom: 4px">
                                 <strong>클라우드 비용 및 차단 이슈:</strong> Tencent Cloud 비용 과다($3,308/월) 및 대형
@@ -127,27 +126,26 @@
                         <div class="detail-label">의사결정 및 해결과정 (Decision & Solution)</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>Kafka 컨슈머 아키텍처 재설계 (Reliability & Performance):</strong>
+                                <strong>Manual Commit 채택 (Reliability):</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    기존 인프라(Kafka)를 유지하되, 메시지 발행 구조상 멱등성 보장이 불가하여
-                                    <strong>Manual Commit</strong>을 채택.<br />
-                                    크롤링 실패 시에도 결과 리포팅이 필수적인 로직 특성을 반영하여 오토 커밋의 유실
-                                    위험을 방지함.
+                                    멱등성이 보장되지 않는 환경에서
+                                    <strong>Auto Commit을 해제하고 수동 커밋을 적용</strong>.<br />
+                                    크롤링 실패 시에도 결과 리포팅을 강제하여 데이터 정합성을 확보함.
                                 </div>
                             </li>
                             <li>
                                 <strong>Observability 확보 및 스케일링 전략 수립:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    <strong>UI for Apache Kafka</strong>를 도입하여 블랙박스였던 Consumer Lag을
-                                    시각화함. '지속적인 Lag 증가'를 기준으로 하는<br />스케일 아웃 정책을 수립하여
-                                    트래픽 스파이크(일시적 Lag 3,000건 등)에 유연하게 대응.
+                                    <strong>Kafka UI 도입</strong>으로 블랙박스였던 Consumer Lag을 시각화.<br />
+                                    'Lag 지속 증가' 시 즉시 스케일 아웃하는 정책을 수립하여 트래픽 스파이크에 대응.
                                 </div>
                             </li>
                             <li>
                                 <strong>Hybrid Proxy 및 사내 유휴 장비 활용:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    MacStudio 온프레미스 팜 구축으로 클라우드 비용을 최소화하고,<br />Tor 쏠림 현상을
-                                    Hybrid Proxy(주거용+무료)로 분산 처리하는 하이브리드 네트워크 설계.
+                                    MacStudio 온프레미스 팜 구축으로 클라우드 비용 최소화.<br />
+                                    <strong>Hybrid Proxy(주거용+무료)</strong> 분산 설계로 Tor 프로세스 프리징 빈도
+                                    획기적 감소.
                                 </div>
                             </li>
                         </ul>
@@ -160,8 +158,8 @@
                             <li>
                                 <strong>데이터 유실률 0% 및 파이프라인 가시성 100% 확보:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    '처리 중 유실'을 완벽하게 방지하고, Consumer Lag 모니터링을 통해<br />장애 상황을
-                                    즉각 감지할 수 있는 안정적인 파이프라인 구축. (Tor 프로세스 프리징 빈도 최소화)
+                                    '처리 중 유실'을 원천 차단하고, Lag 모니터링으로 장애 감지 체계 완성.<br />
+                                    (Tor 프리징 빈도 감소로 안정성 추가 확보)
                                 </div>
                             </li>
                             <li>
@@ -181,7 +179,7 @@
             <div class="company-block">
                 <div class="company-header" style="border-bottom: 1px dashed #e5e7eb; margin-bottom: 20px">
                     <div>
-                        <span class="company-name" style="font-size: 16px; color: #4b5563">Pocask E&M (Cont.)</span>
+                        <span class="company-name" style="font-size: 16px; color: #4b5563">Pocask E&M </span>
                     </div>
                 </div>
 
@@ -215,12 +213,12 @@
                         </div>
                         <ul class="solution-list" style="margin-left: 0">
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>비효율적인 주간 보고 프로세스:</strong> 개발자들이 매주 목요일마다 모든
-                                리포지토리의 커밋 내역을 수동으로 취합하고 요약<br />➡ 불필요한 행정 리소스가 낭비됨.
+                                <strong>주간 보고 비효율:</strong> 개발자들이 매주 모든 리포지토리 커밋을 수동
+                                취합/요약하며 행정 리소스 낭비.
                             </li>
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>경쟁사 데이터 부재:</strong> 타사 광고 상품의 순위 로직과 효율을 파악할 수 있는
-                                정량적 지표가 없어<br />경험에 의존한 광고 집행이 이루어짐.
+                                <strong>경쟁사 데이터 부재:</strong> 타사 상품의 노출 로직과 효율을 판단할 정량 지표가
+                                없어 경험에 의존.
                             </li>
                         </ul>
                     </div>
@@ -232,17 +230,16 @@
                             <li>
                                 <strong>GitHub + LLM 기반 주간 보고 자동화 (n8n):</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    n8n, GitHub API, Google Sheets를 연동하여 사내 모든 Git 커밋 히스토리를 자동
-                                    추출,<br />로컬 LLM(AI)이 개발자별 금주 작업 요약 및 차주 예정 업무를 제안하는 완전
-                                    자동화 파이프라인 구축.
+                                    n8n, GitHub API, Google Sheets를 연동하여 커밋 내역 자동 추출.<br />
+                                    로컬 LLM이 주간 업무 요약 및 차주 계획을 제안하는
+                                    <strong>완전 자동화 파이프라인</strong> 구축.
                                 </div>
                             </li>
                             <li>
                                 <strong>경쟁사 순위 추적 및 키워드 효율 분석:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    자사 크롤링 인프라와 연계하여 경쟁사의 네이버 스마트스토어/플레이스 노출 순위와
-                                    키워드를 지속적으로 트래킹.<br />"특정 로직 송출 시 효율"을 역산출하여 자사 광고
-                                    캠페인 전략 수립의 근거 데이터로 활용.
+                                    경쟁사 노출 순위/키워드를 트래킹하고 효율을 역산출하는 시스템 구축.<br />
+                                    데이터 기반의 광고 캠페인 전략 수립 지원.
                                 </div>
                             </li>
                         </ul>
@@ -270,7 +267,7 @@
             <div class="company-block">
                 <div class="company-header" style="border-bottom: 1px dashed #e5e7eb; margin-bottom: 20px">
                     <div>
-                        <span class="company-name" style="font-size: 16px; color: #4b5563">Pocask E&M (Cont.)</span>
+                        <span class="company-name" style="font-size: 16px; color: #4b5563">Pocask E&M </span>
                     </div>
                 </div>
 
@@ -306,22 +303,20 @@
                         </div>
                         <ul class="solution-list" style="margin-left: 0">
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>Role & Collaboration (Team Lead 부재 시 대행):</strong>
+                                <strong>Role & Collaboration (Legacy & Agile):</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    백엔드 6인 조직에서 최다 도메인 지식 보유자로 성능 최적화를 전담. 동료 개발자들의
-                                    리팩토링 코드 리뷰를 주도하고,<br />팀장 부재 시 광고주 커뮤니케이션을 전담하여
-                                    프로젝트 안정성을 확보.
+                                    문서가 부재한 레거시 코드를 역분석하여 <strong>도메인 지식의 공백</strong>을
+                                    메꾸고,<br />
+                                    빈번한 광고주 요구사항 변경에 맞춰 팀 리드와 유연한 기술 대안을 수립해야 하는 과제.
                                 </div>
                             </li>
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>로직 결합으로 인한 Deadlock:</strong> 광고 적립 로직 내에 전환율(CVR) 집계
-                                미들웨어가 강하게 결합되어<br />동시 다발적인 적립 요청 시 다수 테이블에 대한 락 경합 및
-                                데드락 빈번 발생.
+                                <strong>강결합으로 인한 Deadlock:</strong> 적립 로직 내 통계 집계가 강하게 결합되어 동시
+                                요청 시 DB 락 경합 빈발.
                             </li>
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>병렬 개별 Upsert의 비효율성:</strong> 수천 건의 키워드 데이터를 `Promise.all`
-                                기반의 개별 Upsert로 처리하며<br />DB Connection Pool 고갈 및 인스턴스 부하 초래(CPU
-                                사용률 상시 90%).
+                                <strong>병렬 개별 Upsert 부하:</strong> 수천 건의 데이터를 개별 `Promise.all`로 처리하여
+                                Connection Pool 고갈.
                             </li>
                         </ul>
                     </div>
@@ -332,24 +327,22 @@
                             <li>
                                 <strong>Native Redis Queue(Pub/Sub) 구현을 통한 책임 분리:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    차세대 서버로의 이관이 예정된 과도기적 상황임을 고려, BullMQ 등 외부 라이브러리 도입
-                                    비용을<br />
-                                    최소화하기 위해 <strong>Custom Queue(Pub/Sub)</strong>를 직접 구현하여 시스템
-                                    복잡도를 낮춤.
+                                    시스템 이관 과도기임을 고려, 외부 라이브러리(BullMQ) 대신
+                                    <strong>Custom Queue를 직접 구현</strong>.<br />
+                                    오버엔지니어링을 피하고 적립과 집계의 책임을 명확히 분리함.
                                 </div>
                             </li>
                             <li>
                                 <strong>100건 단위 Chunked Bulk Upsert 도입:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    기존의 병렬 개별 요청 방식을 최적의 성능 지표인 100건 단위 벌크 처리로 전환.<br />
-                                    DB RTT 및 I/O 오버헤드를 구조적으로 개선.
+                                    개별 요청 방식을 <strong>100건 단위 Chunked Bulk 처리</strong>로 전환.<br />
+                                    DB RTT 및 I/O 오버헤드를 획기적으로 개선.
                                 </div>
                             </li>
                             <li>
                                 <strong>레거시 쿼리 튜닝 및 불필요한 Join 제거:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    성능 저하의 원인이 된 불필요한 Join 및 미사용 로직을 제거하여 쿼리 수준의 최적화
-                                    진행.
+                                    성능 저하를 유발하는 불필요한 Join 제거 및 로직 최적화.
                                 </div>
                             </li>
                         </ul>
@@ -361,15 +354,14 @@
                             <li>
                                 <strong>DB 인프라 비용 50% 절감 및 시스템 안정성 극대화:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    CPU 사용률을 상시 90%에서 피크 시 30% 미만으로 안정화.<br />이를 통해 클러스터링된
-                                    DB 인스턴스 수를 6대에서 3대로 축소하여 고정 비용 절감에 기여함.
+                                    CPU 사용률 안정화(90% → 30%) 및 DB 노드 축소(6대 → 3대)로
+                                    <strong>비용 50% 절감</strong>.
                                 </div>
                             </li>
                             <li>
                                 <strong>기술 부채 해소 및 유지보수 효율 증대:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    책임 분리를 통해 로직의 복잡도를 낮추고, 모니터링 가능한 구조로 개편<br />운영 및
-                                    신규 기능 추가의 용이성 확보.
+                                    책임 분리를 통해 시스템 복잡도를 낮추고 유지보수 용이성 확보.
                                 </div>
                             </li>
                         </ul>
@@ -383,7 +375,7 @@
             <div class="company-block">
                 <div class="company-header" style="border-bottom: 1px dashed #e5e7eb; margin-bottom: 20px">
                     <div>
-                        <span class="company-name" style="font-size: 16px; color: #4b5563">Pocask E&M (Cont.)</span>
+                        <span class="company-name" style="font-size: 16px; color: #4b5563">Pocask E&M </span>
                     </div>
                 </div>
 
@@ -416,20 +408,19 @@
                         </div>
                         <ul class="solution-list" style="margin-left: 0">
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>Role & Collaboration (Co-Architecture):</strong>
+                                <strong>Role & Collaboration (High-Risk Domain):</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    8년차 시니어 개발자와 2인 팀으로 DB 및 아키텍처 공동 설계. 인증/보안 등 기반 모듈
-                                    구성을 전담하고,<br />복잡한 정산 로직은 시니어와 R&R을 분담하여 효율적으로 개발.
+                                    현금성 자산(포인트)을 다루는 만큼, 시니어와의 공동 아키텍처 설계 과정에서 작은
+                                    오차도 허용되지 않는 엄격한 정합성 요구.
                                 </div>
                             </li>
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>초기 아키텍처 수립의 난이도:</strong> '앱인토스(외부 크레딧)'와 '자사 앱(내부
-                                DB)'이라는 상이한 환경을 동시에 지원해야 하는<br />복잡한 요구사항을 MVP 단계에서
-                                효율적으로 풀어낼 수 있는 설계 필요.
+                                <strong>이중 포인트 시스템:</strong> '앱인토스(외부 크레딧)'와 '내부 DB'를 동시에
+                                지원해야 하는 복잡한 요구사항.
                             </li>
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>확장성을 고려한 선제적 설계:</strong> 향후 다양한 외부 제휴처(NPay 등) 연동이
-                                예정되어 있어,<br />초기 단계부터 유연한 확장이 가능한 구조(Interface/Adapter)가 요구됨.
+                                <strong>확장성 대책:</strong> 향후 다양한 제휴처(NPay 등) 연동을 대비한 유연한 구조
+                                필요.
                             </li>
                         </ul>
                     </div>
@@ -440,22 +431,21 @@
                             <li>
                                 <strong>포인트 적립 시스템 이원화 설계:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    '앱인토스'는 별도 충전된 크레딧 소진(API), '자사 앱'은 내부 DB 갱신으로 분리
-                                    설계하여 각 플랫폼 최적화.
+                                    '앱인토스(API)'와 '자사 앱(DB)'의 처리 방식을 이원화하여 각 플랫폼에 최적화된 로직
+                                    적용.
                                 </div>
                             </li>
                             <li>
                                 <strong>외부 연동 안정성 확보 (Transaction & Retry):</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    트랜잭션 롤백 및 재시도(Retry) 큐 메커니즘을 구현하여 자산 소실 위험 차단 (개발 완료
-                                    및 테스트 단계).
+                                    트랜잭션 롤백 및 큐 기반 <strong>Retry 메커니즘</strong>으로 외부 연동 시 자산 소실
+                                    위험 차단.
                                 </div>
                             </li>
                             <li>
                                 <strong>MVP 단계의 효율적인 확장성 고려:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    복잡한 패턴(Over-engineering) 없이 Interface 수준의 추상화만 적용하여 개발 속도와
-                                    유연성 확보.
+                                    복잡한 패턴 없이 Interface 수준의 추상화만 적용하여 개발 속도와 유연성 동시 확보.
                                 </div>
                             </li>
                         </ul>
@@ -467,8 +457,7 @@
                             <li>
                                 <strong>성공적인 플랫폼 확장 및 매출 증대:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    토스 미니앱 입점을 완벽하게 지원하여 신규 유입 트래픽을 안정적으로 소화, 포인트 교환
-                                    활성화를 통한 매출 증대 기여.
+                                    토스 미니앱 입점을 완벽 지원하여 신규 트래픽 소화 및 매출 증대 기여.
                                 </div>
                             </li>
                         </ul>
@@ -528,21 +517,19 @@
                         </div>
                         <ul class="solution-list" style="margin-left: 0">
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>Role & Collaboration (Tech Lead Support):</strong>
+                                <strong>Role & Collaboration (Tech Standard Sync):</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    16년차 테크 리더의 마이그레이션 전략을 충실히 이행하는 핵심 서포터 역할.<br />
-                                    기존 파편화된 시스템의 히스토리를 공유하고, NestJS 표준화 작업을 실무 레벨에서 완수.
+                                    16년차 Tech Lead의 고도화된 설계를 주니어 레벨에서 오차 없이 구현해내야 하는 기술적
+                                    챌린지 및 학습 곡선.
                                 </div>
                             </li>
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>파편화된 서버 구조와 생산성 저하:</strong> Admin(Express), User/Data(Hapi) 등
-                                3개의 서버가 상이한 기술 스택과<br />순수 JS로 파편화로직 공유가 불가능하고 유지보수가
-                                난해함.
+                                <strong>파편화된 서버 구조:</strong> 3개 서버(Express/Hapi 등)가 상이한 스택으로
+                                파편화되어 로직 공유 불가 및 유지보수 난해.
                             </li>
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>비효율적인 데이터 구조로 인한 성능 이슈:</strong> 기업 전체 재무 데이터를 S3 내
-                                단일 JSON 파일(MB 단위)로 관리<br />요청 시마다 파일 다운로드 및 파싱으로 3초 이상의
-                                지연 발생.
+                                <strong>비효율적 데이터 구조:</strong> 재무 데이터를 S3 단일 JSON(MB 단위)으로 관리하여
+                                요청 시마다 파싱 오버헤드(3초+ 지연) 발생.
                             </li>
                         </ul>
                     </div>
@@ -553,28 +540,24 @@
                             <li>
                                 <strong>재무 데이터 정규화(Normalization) 및 API 설계:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    S3 JSON 통신 방식을 폐기하고, 재무제표/주가 정보를 RDBMS 테이블로 완전 정규화
-                                    구축.<br />
-                                    필요한 섹터 데이터만 조회하는 API를 설계하여 전송 효율 최적화.
+                                    S3 JSON 폐기 및 RDBMS 정규화 도입. 필요한 데이터만 조회하는 API 설계로 전송 효율
+                                    최적화.
                                 </div>
                             </li>
                             <li>
                                 <strong>NestJS 통합 및 Entity 공통 모듈화 (GitHub Packages):</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    Express/JS 대비 <strong>엄격한 모듈 구조(DI)와 TypeScript 지원</strong>으로 가독성
-                                    및 유지보수성 확보.<br />
-                                    핵심 TypeORM Entity를 GitHub Packages로 분리하여 코드 재사용성을 높이고 순환 참조
-                                    이슈를 방지.
+                                    Express/JS 대비 <strong>엄격한 모듈 구조(DI)와 Type Safety</strong>를 위해 NestJS
+                                    도입.<br />
+                                    핵심 Entity를 GitHub Packages로 분리하여 재사용성 증대 및 순환 참조 방지.
                                 </div>
                             </li>
                             <li>
                                 <strong>시스템 안정성을 위한 단계적 전환 (3개월):</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    기존 시스템을 일시에 교체하는 위험을 배제하고, 3단계에 걸쳐 안정적으로 이관함.<br />
-                                    1) <strong>초기:</strong> 레거시 유지 & 신규 서버 개발 (DB 미러링)<br />
-                                    2) <strong>중기:</strong> API 라우팅을 통해 트래픽 일부를 신규 서버로 전환 및
-                                    검증<br />
-                                    3) <strong>후기:</strong> 레거시 셧다운 및 신규 DB Source로 완전 전환
+                                    일시 교체 위험을 배제한 3단계 이관 전략(3개월):<br />
+                                    1) 레거시 유지 & 신규 개발 → 2) 트래픽 부분 전환(검증) → 3) 완전 전환 및 레거시
+                                    종료.
                                 </div>
                             </li>
                         </ul>
@@ -586,14 +569,14 @@
                             <li>
                                 <strong>API 응답 속도 혁신 (3s → 100ms):</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    데이터 정규화 및 Payload 경량화를 통해 응답 속도를 96% 단축하고 사용자 경험 개선.
+                                    데이터 정규화 및 Payload 경량화를 통해 <strong>응답 속도를 96% 단축</strong>하고
+                                    사용자 경험 개선.
                                 </div>
                             </li>
                             <li>
                                 <strong>운영 효율성 극대화 (Entity 라이브러리화):</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    스키마 변경 시 코드 수정 없이 단순 패키지 버전 업데이트만으로 대응 가능한 구조를
-                                    완성<br />추후 모노레포 도입의 기반을 마련함.
+                                    Entity 패키지화로 스키마 변경 시 버전 업데이트만으로 대응 가능한 구조 완성.
                                 </div>
                             </li>
                         </ul>
@@ -606,7 +589,7 @@
             <div class="company-block">
                 <div class="company-header" style="border-bottom: 1px dashed #e5e7eb; margin-bottom: 20px">
                     <div>
-                        <span class="company-name" style="font-size: 16px; color: #4b5563">Growing Lab (Cont.)</span>
+                        <span class="company-name" style="font-size: 16px; color: #4b5563">Growing Lab </span>
                     </div>
                 </div>
 
@@ -637,16 +620,15 @@
                         </div>
                         <ul class="solution-list" style="margin-left: 0">
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>Role & Collaboration (1인 2역):</strong>
+                                <strong>Role & Collaboration (Extreme Efficiency):</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    스타트업 비용 효율화를 위해 백엔드 업무와 병행하여 앱 개발 전담.<br />
-                                    과거 크로스플랫폼 경험을 살려 웹뷰 기반 하이브리드 앱을 설계하여 추가 채용 없이 MVP
-                                    런칭 성공.
+                                    앱 개발자 채용이 불가능한 상황에서, 웹 개발자가 한정된 리소스만으로 네이티브 수준의
+                                    앱 경험을 구현해야 하는 제약.
                                 </div>
                             </li>
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>모바일 전용 기능의 부재:</strong> 웹 서비스만으로는 푸시 알림이나 생체 인증 같은
-                                모바일 네이티브 기능을 제공할 수 없어<br />사용자 리텐션 확보에 한계가 있음.
+                                <strong>모바일 기능 부재:</strong> 웹만으로는 푸시 알림, 생체 인증 등 네이티브 기능 제공
+                                불가하여 리텐션 확보 한계.
                             </li>
                         </ul>
                     </div>
@@ -657,22 +639,20 @@
                             <li>
                                 <strong>React Native 하이브리드 앱 구축:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    기존 웹 리소스를 최대한 활용하기 위해 Webview Wrapper 방식으로 앱을 개발하여 개발
-                                    공수를 최소화<br />네이티브 기능(Push, Login)만 RN으로 구현.
+                                    Webview Wrapper 방식으로 기존 웹 리소스 활용 극대화. 네이티브 기능(Push, Login)만
+                                    RN으로 구현하여 공수 최소화.
                                 </div>
                             </li>
                             <li>
                                 <strong>푸시 알림 시스템(FCM) 도입:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    FCM을 연동하여 마케팅 및 알림 채널을 확보<br />(초기 유저 2~3만 명 대상 리텐션
-                                    마케팅 기반 마련)
+                                    FCM 연동으로 마케팅 및 알림 채널 확보 (리텐션 마케팅 기반 마련).
                                 </div>
                             </li>
                             <li>
                                 <strong>CodePush를 통한 배포 파이프라인 최적화:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    앱 스토어 심사 없이 변경 사항을 즉시 배포할 수 있는 CodePush를 도입<br />긴급 버그
-                                    수정 및 기능 업데이트 속도를 획기적으로 개선.
+                                    스토어 심사 없는 즉시 배포(CodePush) 도입으로 긴급 수정 및 업데이트 속도 개선.
                                 </div>
                             </li>
                         </ul>
@@ -684,8 +664,7 @@
                             <li>
                                 <strong>성공적인 모바일 시장 진입:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    안드로이드/iOS 스토어 런칭을 통해 사용자 접점을 확대<br />푸시 알림을 통한 리텐션
-                                    증대 기반 마련.
+                                    양대 마켓(iOS/Android) 런칭으로 사용자 접점 확대. 푸시 알림을 통한 리텐션 증대.
                                 </div>
                             </li>
                         </ul>
@@ -745,17 +724,15 @@
                         </div>
                         <ul class="solution-list" style="margin-left: 0">
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>Role & Collaboration (iOS & Backend Support):</strong>
+                                <strong>Role & Collaboration (Pivot Chaos):</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    초기 스타트업(주니어 3인) 환경에서 iOS 앱 출시와 백엔드 보조를 담당.<br />
-                                    동료(Android)와 5:5로 앱 기능을 분담 개발하고, 피벗 결정에 맞춰 애자일하게 기능을
-                                    전환.
+                                    비즈니스 방향이 수시로 바뀌는 초기 스타트업 환경에서, 기반 인프라 없이 빠르게 영상
+                                    처리 로직을 구현해야 하는 부담.
                                 </div>
                             </li>
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>비즈니스 피벗 및 비용 효율화 이슈:</strong> 일반 숏폼에서 반려동물 입양
-                                플랫폼으로 피벗(Pivot)하는 과정에서,<br />초기 유저 규모(100명 미만) 대비 과도한 서버
-                                트랜스코딩 비용이 발생하여 스타트업에 맞는 효율적 아키텍처가 절실함.
+                                <strong>비용 이슈:</strong> 입양 플랫폼으로 피벗 중, 과도한 서버 트랜스코딩 비용 발생.
+                                효율적 아키텍처 필요.
                             </li>
                         </ul>
                     </div>
@@ -766,17 +743,14 @@
                             <li>
                                 <strong>App-Side Encoding & CloudFlare CDN 활용:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    고비용의 미디어 서버 대신, 모바일 앱(FFmpeg)에서 영상을 압축/청크로 분할하여
-                                    업로드하는 방식을 채택.<br />
-                                    <strong>CloudFlare CDN</strong>을 도입하여 캐싱 효율을 높이고 트래픽 비용을
-                                    최소화함.
+                                    고비용 미디어 서버 대신
+                                    <strong>모바일(FFmpeg) 압축 & CloudFlare CDN</strong> 활용으로 비용 최소화.
                                 </div>
                             </li>
                             <li>
                                 <strong>React Query 기반의 Infinite Scroll & Prefetching:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    끊김 없는 시청 경험을 위해 뷰포트의 3/4 지점에서 다음 영상을 미리 로딩(Prefetch)하고
-                                    캐싱 처리.<br />썸네일 우선 노출 전략을 병행하여 초기 로딩 체감 속도를 개선.
+                                    다음 영상 Prefetching 및 썸네일 우선 노출로 끊김 없는 시청 경험 제공.
                                 </div>
                             </li>
                         </ul>
@@ -788,8 +762,7 @@
                             <li>
                                 <strong>운영 비용 최적화 및 고품질 스트리밍 구현:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    별도의 스트리밍 서버 없이 S3 스토리지 비용만으로 HLS 스트리밍 환경을 구축하여 비용을
-                                    70% 이상 절감.<br />(서비스 종료로 입양 기능은 미구현)
+                                    별도 스트리밍 서버 없이 S3 비용만으로 HLS 환경 구축. 비용 70% 절감.
                                 </div>
                             </li>
                         </ul>
@@ -848,14 +821,12 @@
                             <li style="padding-left: 12px; margin-bottom: 4px">
                                 <strong>Role & Collaboration (Solo Implementation):</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    PM/디자이너와 원팀으로 협업하며, 확정된 기획/디자인 명세를 오차 없이 구현하는 데
-                                    집중.<br />현장 특수성(통신 단절)을 고려한 기술적 솔루션을 제안하여 고객사 신뢰
-                                    확보.
+                                    PM/디자이너와 확정된 명세를 오차 없이 구현. 현장 특수성(통신 단절)을 고려한 기술
+                                    솔루션 제안.
                                 </div>
                             </li>
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>터널 막장(Blind End)의 통신 단절:</strong> LTE/WiFi 신호가 닿지 않는 지하 깊은
-                                곳에서 작업이 이루어지는 특이성<br />실시간 데이터 전송이 불가능함.
+                                <strong>터널 내 통신 단절:</strong> LTE/WiFi 불가 지역 작업으로 실시간 데이터 전송 불가.
                             </li>
                         </ul>
                     </div>
@@ -866,16 +837,14 @@
                             <li>
                                 <strong>Offline-First 동기화 아키텍처 (SQLite):</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    SharedPreferences 대신 <strong>SQLite(RDB)</strong>를 도입하여 서버 데이터베이스와의
-                                    스키마 규약을 통일.<br />
-                                    복잡한 동기화(Sync) 로직 구현의 용이성을 확보하고 데이터 정합성 이슈를 최소화함.
+                                    SharedPreferences 대신 <strong>SQLite</strong>를 도입하여 서버와 스키마 통일. 동기화
+                                    로직 용이성 및 정합성 확보.
                                 </div>
                             </li>
                             <li>
                                 <strong>Native 이미지 압축 프로세싱:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    고해상도 현장 사진의 효율적 업로드를 위해 Android Native 레벨에서 리사이징 및 압축을
-                                    적용<br />제한된 네트워크 환경에서의 전송 성공률 제고.
+                                    Android Native 레벨 리사이징/압축으로 제한된 네트워크에서의 전송 성공률 제고.
                                 </div>
                             </li>
                         </ul>
@@ -887,8 +856,7 @@
                             <li>
                                 <strong>현장 맞춤형 솔루션 구축:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    네트워크 제약을 극복한 앱 개발로 현장 작업 리포팅 시간을 단축하고 안전 데이터의
-                                    정합성을 확보. (1인 풀스택 개발)
+                                    네트워크 제약을 극복하고 현장 리포팅 시간 단축 및 안전 데이터 정합성 확보.
                                 </div>
                             </li>
                         </ul>
@@ -926,14 +894,11 @@
                             <li style="padding-left: 12px; margin-bottom: 4px">
                                 <strong>Role & Collaboration (Enterprise Process Adaptation):</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    대기업의 엄격한 보안 및 배포 프로세스(Jira/Jenkins/망분리)를 처음 경험하며 현업
-                                    담당자와 소통.<br />
-                                    난해한 레거시 API 규격(HashMap DTO, 식별 불가능한 URL)을 디버깅하며 UI를 연동.
+                                    엄격한 배포 프로세스(망분리) 적응 및 난해한 레거시 API 규격 디버깅/연동.
                                 </div>
                             </li>
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>보안 규정에 따른 온사이트 개발:</strong> 외부 접속이 차단된 대기업 폐쇄망 환경
-                                이슈<br />베트남 개발센터와의 협업이 불가능하여 긴급 파견 투입.
+                                <strong>온사이트 개발:</strong> 폐쇄망 특성상 외부 접속 불가로 긴급 파견 투입.
                             </li>
                         </ul>
                     </div>
@@ -944,8 +909,8 @@
                             <li>
                                 <strong>UI 퍼블리싱 및 API 연동 (파견 지원):</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    보안상 폐쇄된 환경에서 디자인 가이드라인을 준수한 UI 화면을 구현하고, 백엔드 API와의
-                                    바인딩 작업을 수행.<br />대규모 프로젝트의 협업 프로세스(Git Flow, QA)를 경험.
+                                    폐쇄된 환경에서 가이드라인 준수 UI 구현 및 API 바인딩. 대규모 협업 프로세스(Git
+                                    Flow) 경험.
                                 </div>
                             </li>
                         </ul>
@@ -957,7 +922,7 @@
                             <li>
                                 <strong>프로젝트 안정화 기여:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    급박한 일정 속에서 할당된 UI 모듈 개발을 완수하여 전체 프로젝트 일정 준수에 기여.
+                                    급박한 일정 내 UI 모듈 개발 완수 및 전체 프로젝트 안정화 기여.
                                 </div>
                             </li>
                         </ul>
