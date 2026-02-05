@@ -108,13 +108,18 @@
                         <div class="detail-label" style="color: #4b5563; margin-bottom: 6px">상황 및 문제점</div>
                         <ul class="solution-list" style="margin-left: 0">
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>비용 효율화의 기술적 과제:</strong> 단순 기능 구현을 넘어
-                                <strong>비용 절감과 데이터 정합성</strong>이라는 두가지 목표를<br />동시에 달성하는
-                                아키텍처 고도화 과제.
+                                <strong>비용 효율화의 기술적 과제</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    단순 기능 구현을 넘어 <strong>비용 절감과 데이터 정합성</strong>이라는 두가지
+                                    목표를<br />동시에 달성하는 아키텍처 고도화 과제.
+                                </div>
                             </li>
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>이중 버퍼링으로 인한 복잡성:</strong> Kafka와 별도로 컨슈머 내부에서 BullMQ를
-                                사용하여 메시지 흐름이 분산됨.<br />장애 추적이 난해한 구조.
+                                <strong>이중 버퍼링으로 인한 복잡성</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    Kafka와 별도로 컨슈머 내부에서 BullMQ를 사용하여 메시지 흐름이 분산됨.<br />장애
+                                    추적이 난해한 구조.
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -124,7 +129,7 @@
                         <div class="detail-label">의사결정 및 해결과정</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>브로커 중심의 아키텍처 재설계:</strong>
+                                <strong>브로커 중심의 아키텍처 재설계</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     불필요한 미들웨어(BullMQ)를 제거하고 메시지 전달 방식을
                                     <strong>Event Emit에서 Send로 전환</strong>.<br />이를 통해 Consumer Lag 집계가
@@ -132,14 +137,14 @@
                                 </div>
                             </li>
                             <li>
-                                <strong>Observability 확보 및 스케일링 전략 수립:</strong>
+                                <strong>Observability 확보 및 스케일링 전략 수립</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     <strong>Kafka UI 도입</strong>으로 블랙박스였던 Consumer Lag을 시각화.<br />
                                     'Lag 지속 증가' 시 즉시 스케일 아웃하는 정책을 수립하여 트래픽 스파이크에 대응.
                                 </div>
                             </li>
                             <li>
-                                <strong>Hybrid Proxy 및 사내 유휴 장비 활용:</strong>
+                                <strong>Hybrid Proxy 및 사내 유휴 장비 활용</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     사내 유휴 Mac장비를 온프레미스서버로 활용해 클라우드 비용 최소화.<br />
                                     <strong>주거용 및 무료 프록시</strong> 분산 설계로 Tor 프로세스 프리징 빈도
@@ -154,7 +159,7 @@
                         <div class="detail-label">성과 및 결과</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>파이프라인 가시성 확보 및 데이터 정합성 개선:</strong>
+                                <strong>파이프라인 가시성 확보 및 데이터 정합성 개선</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     중복 버퍼링 제거로 '처리 중 유실' 가능성을 차단하고, 장애 발생 지점을 명확히 파악할
                                     수 있는 환경 구축.<br />
@@ -162,7 +167,7 @@
                                 </div>
                             </li>
                             <li>
-                                <strong>운영 비용 62% 절감 ($3,308 → $1,246):</strong>
+                                <strong>운영 비용 62% 절감 ($3,308 → $1,246)</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     인프라 최적화 및 안정화된 수집 로직을 통해 비용 효율성과 운영 안정성을 동시에 달성.
                                 </div>
@@ -210,12 +215,16 @@
                         <div class="detail-label" style="color: #4b5563; margin-bottom: 6px">상황 및 문제점</div>
                         <ul class="solution-list" style="margin-left: 0">
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>주간 보고 비효율:</strong> 개발자들이 매주 모든 리포지토리 커밋을 수동
-                                취합/요약하며 행정 리소스 낭비.
+                                <strong>주간 보고 비효율</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    개발자들이 매주 모든 리포지토리 커밋을 수동 취합/요약하며 행정 리소스 낭비.
+                                </div>
                             </li>
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>경쟁사 데이터 부재:</strong> 타사 상품의 노출 로직과 효율을 판단할 정량 지표가
-                                없어 경험에 의존.
+                                <strong>경쟁사 데이터 부재</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    타사 상품의 노출 로직과 효율을 판단할 정량 지표가 없어 경험에 의존.
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -225,7 +234,7 @@
                         <div class="detail-label">의사결정 및 해결과정</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>n8n 및 LLM을 활용한 주간 보고 자동화:</strong>
+                                <strong>n8n 및 LLM을 활용한 주간 보고 자동화</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     n8n, GitHub API, Google Sheets를 연동하여 커밋 내역 자동 추출.<br />
                                     로컬 LLM이 주간 업무 요약 및 차주 계획을 제안하는
@@ -233,7 +242,7 @@
                                 </div>
                             </li>
                             <li>
-                                <strong>경쟁사 순위 추적 및 키워드 효율 분석:</strong>
+                                <strong>경쟁사 순위 추적 및 키워드 효율 분석</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     경쟁사 노출 순위/키워드를 트래킹하고 효율을 역산출하는 시스템 구축.<br />
                                     데이터 기반의 광고 캠페인 전략 수립 지원.
@@ -247,7 +256,7 @@
                         <div class="detail-label">성과 및 결과</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>업무 효율성 및 전략 수립 지원:</strong>
+                                <strong>업무 효율성 및 전략 수립 지원</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     개발팀의 단순 반복 행정 업무를 제거하여 본연의 개발에 집중할 수 있는 환경을
                                     조성하고,<br />데이터 기반의 광고 전략 수립 프로세스를 정착시킴.
@@ -298,7 +307,7 @@
                         <div class="detail-label" style="color: #4b5563; margin-bottom: 6px">상황 및 문제점</div>
                         <ul class="solution-list" style="margin-left: 0">
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>레거시 분석 및 유연한 대응:</strong>
+                                <strong>레거시 분석 및 유연한 대응</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     문서가 부재한 레거시 코드를 역분석하여 <strong>도메인 지식의 공백</strong>을
                                     메꾸고,<br />
@@ -306,12 +315,16 @@
                                 </div>
                             </li>
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>강결합으로 인한 Deadlock:</strong> 적립 로직 내 통계 집계가 강하게 결합되어 동시
-                                요청 시 DB 락 경합 빈발.
+                                <strong>강결합으로 인한 Deadlock</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    적립 로직 내 통계 집계가 강하게 결합되어 동시 요청 시 DB 락 경합 빈발.
+                                </div>
                             </li>
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>병렬 개별 Upsert 부하:</strong> 수천 건의 데이터를 개별 `Promise.all`로 처리하여
-                                Connection Pool 고갈.
+                                <strong>병렬 개별 Upsert 부하</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    수천 건의 데이터를 개별 `Promise.all`로 처리하여 Connection Pool 고갈.
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -320,7 +333,7 @@
                         <div class="detail-label">의사결정 및 해결과정</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>Redis Pub/Sub을 활용한 자체 큐(Queue) 구현:</strong>
+                                <strong>Redis Pub/Sub을 활용한 자체 큐(Queue) 구현</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     시스템 이관 과도기임을 고려, 외부 라이브러리(BullMQ) 대신
                                     <strong>자체 큐를 직접 구현</strong>.<br />
@@ -328,14 +341,14 @@
                                 </div>
                             </li>
                             <li>
-                                <strong>청크(Chunk) 단위의 벌크 업서트 도입:</strong>
+                                <strong>청크(Chunk) 단위의 벌크 업서트 도입</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     개별 요청 방식을 <strong>100건 단위 청크 벌크 처리</strong>로 전환.<br />
                                     DB RTT 및 I/O 오버헤드를 개선.
                                 </div>
                             </li>
                             <li>
-                                <strong>레거시 쿼리 튜닝 및 불필요한 Join 제거:</strong>
+                                <strong>레거시 쿼리 튜닝 및 불필요한 Join 제거</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     성능 저하를 유발하는 불필요한 Join 제거 및 로직 최적화.
                                 </div>
@@ -347,14 +360,14 @@
                         <div class="detail-label">성과 및 결과</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>DB 인프라 비용 50% 절감 및 시스템 안정성 확보:</strong>
+                                <strong>DB 인프라 비용 50% 절감 및 시스템 안정성 확보</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     CPU 사용률 안정화(90% → 30%) 및 DB 노드 축소(6대 → 3대)로
                                     <strong>비용 50% 절감</strong>.
                                 </div>
                             </li>
                             <li>
-                                <strong>기술 부채 해소 및 유지보수 효율 증대:</strong>
+                                <strong>기술 부채 해소 및 유지보수 효율 증대</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     책임 분리를 통해 시스템 복잡도를 낮추고 유지보수 용이성 확보.
                                 </div>
@@ -408,12 +421,16 @@
                                 </div>
                             </li>
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>이중 포인트 시스템:</strong> '앱인토스(외부 크레딧)'와 '내부 DB'를 동시에
-                                지원해야 하는 복잡한 요구사항.
+                                <strong>이중 포인트 시스템</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    '앱인토스(외부 크레딧)'와 '내부 DB'를 동시에 지원해야 하는 복잡한 요구사항.
+                                </div>
                             </li>
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>확장성 대책:</strong> 향후 다양한 제휴처(NPay 등) 연동을 대비한 유연한 구조
-                                필요.
+                                <strong>확장성 대책</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    향후 다양한 제휴처(NPay 등) 연동을 대비한 유연한 구조 필요.
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -422,21 +439,21 @@
                         <div class="detail-label">의사결정 및 해결과정</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>포인트 적립 시스템 이원화 설계:</strong>
+                                <strong>포인트 적립 시스템 이원화 설계</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     '앱인토스(API)'와 '자사 앱(DB)'의 처리 방식을 이원화하여 각 플랫폼에 최적화된 로직
                                     적용.
                                 </div>
                             </li>
                             <li>
-                                <strong>외부 연동 안정성 확보 (트랜잭션 및 재시도):</strong>
+                                <strong>외부 연동 안정성 확보 (트랜잭션 및 재시도)</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     트랜잭션 롤백 및 큐 기반 <strong>재시도(Retry) 메커니즘</strong>으로 외부 연동 시
                                     자산 소실 위험 차단.
                                 </div>
                             </li>
                             <li>
-                                <strong>MVP 단계의 효율적인 확장성 고려:</strong>
+                                <strong>MVP 단계의 효율적인 확장성 고려</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     복잡한 패턴 없이 Interface 수준의 추상화만 적용하여 개발 속도와 유연성 동시 고려.
                                 </div>
@@ -448,7 +465,7 @@
                         <div class="detail-label">성과 및 결과</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>플랫폼 확장 및 매출 기여:</strong>
+                                <strong>플랫폼 확장 및 매출 기여</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     토스 미니앱 입점을 지원하여 신규 트래픽 소화 및 매출 증대 기여.
                                 </div>
@@ -508,19 +525,25 @@
                         <div class="detail-label" style="color: #4b5563; margin-bottom: 6px">상황 및 문제점</div>
                         <ul class="solution-list" style="margin-left: 0">
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>기술 표준 동기화:</strong>
+                                <strong>기술 표준 동기화</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     Tech Lead의 아키텍처 설계를 주니어 레벨에서 정확하게 구현해내야 하는 기술적 챌린지
                                     및 학습 곡선.
                                 </div>
                             </li>
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>파편화된 서버 구조:</strong> 3개 서버(Express/Hapi 등)가 상이한 스택으로
-                                파편화되어 로직 공유 불가 및 유지보수 난해.
+                                <strong>파편화된 서버 구조</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    3개 서버(Express/Hapi 등)가 상이한 스택으로 파편화되어 로직 공유 불가 및 유지보수
+                                    난해.
+                                </div>
                             </li>
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>비효율적 데이터 구조:</strong> 재무 데이터를 S3 단일 JSON(MB 단위)으로 관리하여
-                                요청 시마다 파싱 오버헤드(3초+ 지연) 발생.
+                                <strong>비효율적 데이터 구조</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    재무 데이터를 S3 단일 JSON(MB 단위)으로 관리하여 요청 시마다 파싱 오버헤드(3초+
+                                    지연) 발생.
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -529,14 +552,14 @@
                         <div class="detail-label">의사결정 및 해결과정</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>재무 데이터 정규화 및 API 설계:</strong>
+                                <strong>재무 데이터 정규화 및 API 설계</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     S3 JSON 폐기 및 RDBMS 정규화 도입. 필요한 데이터만 조회하는 API 설계로 전송 효율
                                     최적화.
                                 </div>
                             </li>
                             <li>
-                                <strong>NestJS 통합 및 Entity 공통 모듈화:</strong>
+                                <strong>NestJS 통합 및 Entity 공통 모듈화</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     Express/JS 대비 <strong>엄격한 모듈 구조(의존성 주입)와 타입 안정성</strong>을 위해
                                     NestJS 도입.<br />
@@ -544,7 +567,7 @@
                                 </div>
                             </li>
                             <li>
-                                <strong>시스템 안정성을 위한 단계적 전환 (3개월):</strong>
+                                <strong>시스템 안정성을 위한 단계적 전환 (3개월)</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     일시 교체 위험을 배제한 3단계 이관 전략(3개월):<br />
                                     1) 레거시 유지 & 신규 개발 → 2) 트래픽 부분 전환(검증) → 3) 완전 전환 및 레거시
@@ -558,14 +581,14 @@
                         <div class="detail-label">성과 및 결과</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>API 응답 속도 개선 (3s → 100ms):</strong>
+                                <strong>API 응답 속도 개선 (3s → 100ms)</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     데이터 정규화 및 Payload 경량화를 통해 <strong>응답 속도를 96% 단축</strong>하고
                                     사용자 경험 개선.
                                 </div>
                             </li>
                             <li>
-                                <strong>운영 효율성 개선 (Entity 라이브러리화):</strong>
+                                <strong>운영 효율성 개선 (Entity 라이브러리화)</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     Entity 패키지화로 스키마 변경 시 버전 업데이트만으로 대응 가능한 구조 구축.
                                 </div>
@@ -609,15 +632,17 @@
                         <div class="detail-label" style="color: #4b5563; margin-bottom: 6px">상황 및 문제점</div>
                         <ul class="solution-list" style="margin-left: 0">
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>리소스 최적화:</strong>
+                                <strong>리소스 최적화</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     앱 개발자 채용이 불가능한 상황에서, 웹 개발자가 한정된 리소스만으로 네이티브 수준의
                                     앱 경험을 구현해야 하는 제약.
                                 </div>
                             </li>
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>모바일 기능 부재:</strong> 웹만으로는 푸시 알림, 생체 인증 등 네이티브 기능 제공
-                                불가하여 리텐션 확보 한계.
+                                <strong>모바일 기능 부재</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    웹만으로는 푸시 알림, 생체 인증 등 네이티브 기능 제공 불가하여 리텐션 확보 한계.
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -626,20 +651,20 @@
                         <div class="detail-label">의사결정 및 해결과정</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>React Native 하이브리드 앱 구축:</strong>
+                                <strong>React Native 하이브리드 앱 구축</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     Webview Wrapper 방식으로 기존 웹 리소스 활용. 네이티브 기능(Push, Login)만 RN으로
                                     구현하여 공수 최소화.
                                 </div>
                             </li>
                             <li>
-                                <strong>푸시 알림 시스템(FCM) 도입:</strong>
+                                <strong>푸시 알림 시스템(FCM) 도입</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     FCM 연동으로 마케팅 및 알림 채널 확보 (리텐션 마케팅 기반 마련).
                                 </div>
                             </li>
                             <li>
-                                <strong>CodePush를 통한 배포 파이프라인 최적화:</strong>
+                                <strong>CodePush를 통한 배포 파이프라인 최적화</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     스토어 심사 없는 즉시 배포(CodePush) 도입으로 긴급 수정 및 업데이트 속도 개선.
                                 </div>
@@ -651,7 +676,7 @@
                         <div class="detail-label">성과 및 결과</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>모바일 앱 런칭:</strong>
+                                <strong>모바일 앱 런칭</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     양대 마켓(iOS/Android) 런칭으로 사용자 접점 확대. 푸시 알림을 통한 리텐션 증대.
                                 </div>
@@ -711,15 +736,17 @@
                         <div class="detail-label" style="color: #4b5563; margin-bottom: 6px">상황 및 문제점</div>
                         <ul class="solution-list" style="margin-left: 0">
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>기민한 환경:</strong>
+                                <strong>기민한 환경</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     비즈니스 방향이 수시로 바뀌는 초기 스타트업 환경에서, 기반 인프라 없이 빠르게 영상
                                     처리 로직을 구현해야 하는 부담.
                                 </div>
                             </li>
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>비용 이슈:</strong> 입양 플랫폼으로 피벗 중, 과도한 서버 트랜스코딩 비용 발생.
-                                효율적 아키텍처 필요.
+                                <strong>비용 이슈</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    입양 플랫폼으로 피벗 중, 과도한 서버 트랜스코딩 비용 발생. 효율적 아키텍처 필요.
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -728,14 +755,14 @@
                         <div class="detail-label">의사결정 및 해결과정</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>앱 내부 인코딩 및 CloudFlare CDN 활용:</strong>
+                                <strong>앱 내부 인코딩 및 CloudFlare CDN 활용</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     고비용 미디어 서버 대신
                                     <strong>모바일(FFmpeg) 압축 & CloudFlare CDN</strong> 활용으로 비용 최소화.
                                 </div>
                             </li>
                             <li>
-                                <strong>React Query 기반의 무한 스크롤 및 프리패칭:</strong>
+                                <strong>React Query 기반의 무한 스크롤 및 프리패칭</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     다음 영상 Prefetching 및 썸네일 우선 노출로 끊김 없는 시청 경험 제공.
                                 </div>
@@ -747,7 +774,7 @@
                         <div class="detail-label">성과 및 결과</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>운영 비용 최적화 및 스트리밍 환경 구현:</strong>
+                                <strong>운영 비용 최적화 및 스트리밍 환경 구현</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     별도 스트리밍 서버 없이 S3 비용만으로 HLS 환경 구축. 비용 70% 절감.
                                 </div>
@@ -804,14 +831,14 @@
                         <div class="detail-label" style="color: #4b5563; margin-bottom: 6px">상황 및 문제점</div>
                         <ul class="solution-list" style="margin-left: 0">
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>1인 개발:</strong>
+                                <strong>1인 개발</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     PM/디자이너와 확정된 명세를 오차 없이 구현. 현장 특수성(통신 단절)을 고려한 기술
                                     솔루션 제안.
                                 </div>
                             </li>
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>터널 내 통신 단절:</strong>
+                                <strong>터널 내 통신 단절</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     LTE/WiFi 불가 지역 작업으로 실시간 데이터 전송 불가.
                                 </div>
@@ -823,14 +850,14 @@
                         <div class="detail-label">의사결정 및 해결과정</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>Offline-First 동기화 아키텍처 (SQLite):</strong>
+                                <strong>Offline-First 동기화 아키텍처 (SQLite)</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    SharedPreferences 대신 <strong>SQLite</strong>를 도입하여 서버와 스키마 통일. 동기화
-                                    로직 용이성 및 정합성 확보.
+                                    <strong>SQLite</strong> 내장DB 기반으로 동작하는 앱과 클라우드 DB간 동기화 로직
+                                    구현으로 데이터 정합성 확보.
                                 </div>
                             </li>
                             <li>
-                                <strong>Native 이미지 압축 프로세싱:</strong>
+                                <strong>Native 이미지 압축 프로세싱</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     Android Native 레벨 리사이징/압축으로 제한된 네트워크에서의 전송 성공률 제고.
                                 </div>
@@ -842,7 +869,7 @@
                         <div class="detail-label">성과 및 결과</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>현장 맞춤형 솔루션 구축:</strong>
+                                <strong>현장 맞춤형 솔루션 구축</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     네트워크 제약을 극복하고 현장 리포팅 시간 단축 및 안전 데이터 정합성 확보.
                                 </div>
@@ -878,13 +905,16 @@
                         <div class="detail-label" style="color: #4b5563; margin-bottom: 6px">상황 및 문제점</div>
                         <ul class="solution-list" style="margin-left: 0">
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>Enterprise Process Adaptation:</strong>
+                                <strong>레거시 환경</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     엄격한 배포 프로세스(망분리) 적응 및 난해한 레거시 API 규격 디버깅/연동.
                                 </div>
                             </li>
                             <li style="padding-left: 12px; margin-bottom: 4px">
-                                <strong>온사이트 개발:</strong> 폐쇄망 특성상 외부 접속 불가로 긴급 파견 투입.
+                                <strong>온사이트 개발</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    폐쇄망 특성상 외부 접속 불가로 긴급 파견 투입.
+                                </div>
                             </li>
                         </ul>
                     </div>
@@ -893,7 +923,7 @@
                         <div class="detail-label">의사결정 및 해결과정</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>UI 퍼블리싱 및 API 연동 (파견 지원):</strong>
+                                <strong>UI 퍼블리싱 및 API 연동 (파견 지원)</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     폐쇄된 환경에서 가이드라인 준수 UI 구현 및 API 바인딩. 대규모 협업 프로세스(Git
                                     Flow) 경험.
@@ -906,7 +936,7 @@
                         <div class="detail-label">성과 및 결과</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>프로젝트 안정화 기여:</strong>
+                                <strong>프로젝트 안정화 기여</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
                                     급박한 일정 내 UI 모듈 개발 완수 및 전체 프로젝트 안정화 기여.
                                 </div>
