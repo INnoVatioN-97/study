@@ -37,7 +37,7 @@ body {
     height: var(--a4-height);
     background-color: white;
     margin-bottom: 20px;
-    padding: 15mm; /* Internal Padding */
+    padding: 10mm; /* Internal Padding Reduced (15mm -> 10mm) */
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
     overflow: hidden; /* Ensure content fits */
     display: flex;
@@ -46,10 +46,12 @@ body {
 
 /* Header (Compact) */
 /* Header (Compact) */
+/* Header (Compact) */
+/* Header (Compact) */
 header {
-    margin-bottom: 15px;
+    margin-bottom: 10px; /* Reduced from 15px */
     border-bottom: 2px solid var(--color-text-primary);
-    padding-bottom: 10px;
+    padding-bottom: 8px; /* Reduced from 10px */
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -87,8 +89,8 @@ header {
     font-weight: 700;
     color: var(--color-accent);
     border-bottom: 1px solid var(--color-border);
-    padding-bottom: 8px;
-    margin-bottom: 15px;
+    padding-bottom: 6px; /* Reduced */
+    margin-bottom: 10px; /* Reduced from 15px */
     letter-spacing: -0.01em;
 }
 
@@ -102,7 +104,7 @@ header {
 
 /* Experience Layout */
 .company-block {
-    margin-bottom: 15px;
+    margin-bottom: 12px; /* Reduced from 15px */
 }
 
 .company-header {
@@ -133,7 +135,7 @@ header {
 
 /* Project Item - Tighter for fitting */
 .project-item {
-    margin-bottom: 15px;
+    margin-bottom: 12px; /* Reduced from 15px */
     padding-left: 10px;
 }
 
@@ -166,10 +168,10 @@ header {
 /* Details */
 .context-box {
     background-color: #f8fafc;
-    padding: 10px 12px;
+    padding: 6px 10px; /* Reduced padding (10px 12px -> 6px 10px) */
     border-radius: 4px;
     border-left: 3px solid #cbd5e1;
-    margin-bottom: 12px;
+    margin-bottom: 8px; /* Reduced from 12px */
     /* margin-left removed to allow utility usage or default 0 */
 }
 
@@ -179,7 +181,7 @@ header {
 }
 
 .detail-section {
-    margin-bottom: 12px;
+    margin-bottom: 8px; /* Reduced from 12px */
     padding-left: 13px;
 }
 
