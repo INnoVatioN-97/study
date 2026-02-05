@@ -84,7 +84,10 @@
                 <!-- Project 1: Infra & Data -->
                 <div class="project-item">
                     <div class="project-title">AdTech 인프라 비용 절감 및 데이터 파이프라인 구축</div>
-                    <div class="project-meta">2024.11 - 2025.01 | 기여도: 70% (Solo)</div>
+                    <div class="project-meta">
+                        2024.11 - 2025.01 | 기여도: 70%<br />
+                        <span style="color: #6b7280; font-size: 0.95em">Backend 1 (Self) / Advisory: Team Lead</span>
+                    </div>
 
                     <!-- Metrics -->
                     <div class="metrics-grid" style="margin-left: 0">
@@ -126,9 +129,10 @@
                             <li>
                                 <strong>Kafka 컨슈머 아키텍처 재설계 (Reliability & Performance):</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    데이터 정합성을 위해 <strong>Manual Commit(처리 후 커밋)</strong> 방식으로 전환하여
-                                    유실을 원천 차단. 이로 인한 처리량 감소(Throughput)는 무거운 Puppeteer 로직을
-                                    경량화된 <strong>cURL/API 방식</strong>으로 최적화하여 상쇄함.
+                                    기존 인프라(Kafka)를 유지하되, 메시지 발행 구조상 멱등성 보장이 불가하여
+                                    <strong>Manual Commit</strong>을 채택.<br />
+                                    크롤링 실패 시에도 결과 리포팅이 필수적인 로직 특성을 반영하여 오토 커밋의 유실
+                                    위험을 방지함.
                                 </div>
                             </li>
                             <li>
@@ -185,7 +189,10 @@
                 <!-- Project 2: Automation & Analysis -->
                 <div class="project-item">
                     <div class="project-title">사내 업무 자동화 및 경쟁사 분석 시스템 구축</div>
-                    <div class="project-meta">2024.11 - 2025.01 | 기여도: 100% (Solo)</div>
+                    <div class="project-meta">
+                        2024.11 - 2025.01 | 기여도: 100%<br />
+                        <span style="color: #6b7280; font-size: 0.95em">Backend 1 (Solo)</span>
+                    </div>
 
                     <!-- Metrics -->
                     <div class="metrics-grid" style="margin-left: 0">
@@ -273,7 +280,12 @@
                 <!-- Project 3: Point Crush -->
                 <div class="project-item">
                     <div class="project-title">광고 솔루션 'Point Crush' 트래픽 제어 및 안정화</div>
-                    <div class="project-meta">2024.11 - 2025.01 | 기여도: 100% (Backend)</div>
+                    <div class="project-meta">
+                        2024.11 - 2025.01 | 기여도: 100% (Backend)<br />
+                        <span style="color: #6b7280; font-size: 0.95em"
+                            >Team Lead 1, Full Stack 4~6, Planner 1, Designer 1</span
+                        >
+                    </div>
 
                     <div class="metrics-grid" style="margin-left: 0">
                         <div class="metric-card">
@@ -294,6 +306,14 @@
                         </div>
                         <ul class="solution-list" style="margin-left: 0">
                             <li style="padding-left: 12px; margin-bottom: 4px">
+                                <strong>Role & Collaboration (Team Lead 부재 시 대행):</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    백엔드 6인 조직에서 최다 도메인 지식 보유자로 성능 최적화를 전담. 동료 개발자들의
+                                    리팩토링 코드 리뷰를 주도하고,<br />팀장 부재 시 광고주 커뮤니케이션을 전담하여
+                                    프로젝트 안정성을 확보.
+                                </div>
+                            </li>
+                            <li style="padding-left: 12px; margin-bottom: 4px">
                                 <strong>로직 결합으로 인한 Deadlock:</strong> 광고 적립 로직 내에 전환율(CVR) 집계
                                 미들웨어가 강하게 결합되어<br />동시 다발적인 적립 요청 시 다수 테이블에 대한 락 경합 및
                                 데드락 빈번 발생.
@@ -312,9 +332,10 @@
                             <li>
                                 <strong>Native Redis Queue(Pub/Sub) 구현을 통한 책임 분리:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    코어 적립 로직은 '적립'만 담당하도록 단순화하고, 무거운 집계/리포팅 작업은 직접
-                                    구현한 Redis Queue를 이용하여<br />비동기로 분리. 시스템 간 강결합을 해소하여 트래픽
-                                    스파이크 시에도 핵심 기능의 가용성 유지.
+                                    차세대 서버로의 이관이 예정된 과도기적 상황임을 고려, BullMQ 등 외부 라이브러리 도입
+                                    비용을<br />
+                                    최소화하기 위해 <strong>Custom Queue(Pub/Sub)</strong>를 직접 구현하여 시스템
+                                    복잡도를 낮춤.
                                 </div>
                             </li>
                             <li>
@@ -369,7 +390,12 @@
                 <!-- Project 3: Pokit -->
                 <div class="project-item">
                     <div class="project-title">리워드 앱 'Pokit' 포인트 시스템 및 교환 모듈 개발</div>
-                    <div class="project-meta">2024.11 - 2025.01 | 기여도: 40% (System Design)</div>
+                    <div class="project-meta">
+                        2024.11 - 2025.01 | 기여도: 40% (System Design)<br />
+                        <span style="color: #6b7280; font-size: 0.95em"
+                            >Team Lead 1, Full Stack 2, Planner 1, Designer 1</span
+                        >
+                    </div>
 
                     <div class="metrics-grid" style="margin-left: 0">
                         <div class="metric-card">
@@ -389,6 +415,13 @@
                             주요 과제 및 요구사항 (Key Challenges & Requirements)
                         </div>
                         <ul class="solution-list" style="margin-left: 0">
+                            <li style="padding-left: 12px; margin-bottom: 4px">
+                                <strong>Role & Collaboration (Co-Architecture):</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    8년차 시니어 개발자와 2인 팀으로 DB 및 아키텍처 공동 설계. 인증/보안 등 기반 모듈
+                                    구성을 전담하고,<br />복잡한 정산 로직은 시니어와 R&R을 분담하여 효율적으로 개발.
+                                </div>
+                            </li>
                             <li style="padding-left: 12px; margin-bottom: 4px">
                                 <strong>초기 아키텍처 수립의 난이도:</strong> '앱인토스(외부 크레딧)'와 '자사 앱(내부
                                 DB)'이라는 상이한 환경을 동시에 지원해야 하는<br />복잡한 요구사항을 MVP 단계에서
@@ -469,7 +502,12 @@
                 <!-- Project 1: App Launch -->
                 <div class="project-item">
                     <div class="project-title">서비스 고도화 및 레거시 시스템 마이그레이션</div>
-                    <div class="project-meta">2023.04 - 2024.08 | 기여도: 50%</div>
+                    <div class="project-meta">
+                        2023.04 - 2024.08 | 기여도: 50%<br />
+                        <span style="color: #6b7280; font-size: 0.95em"
+                            >Tech Lead 1, Backend 1 (Self), Frontend 1, Planner 1, Designer 1</span
+                        >
+                    </div>
 
                     <div class="metrics-grid" style="margin-left: 0">
                         <div class="metric-card">
@@ -489,6 +527,13 @@
                             상황 및 문제점 (Context & Problem)
                         </div>
                         <ul class="solution-list" style="margin-left: 0">
+                            <li style="padding-left: 12px; margin-bottom: 4px">
+                                <strong>Role & Collaboration (Tech Lead Support):</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    16년차 테크 리더의 마이그레이션 전략을 충실히 이행하는 핵심 서포터 역할.<br />
+                                    기존 파편화된 시스템의 히스토리를 공유하고, NestJS 표준화 작업을 실무 레벨에서 완수.
+                                </div>
+                            </li>
                             <li style="padding-left: 12px; margin-bottom: 4px">
                                 <strong>파편화된 서버 구조와 생산성 저하:</strong> Admin(Express), User/Data(Hapi) 등
                                 3개의 서버가 상이한 기술 스택과<br />순수 JS로 파편화로직 공유가 불가능하고 유지보수가
@@ -516,8 +561,10 @@
                             <li>
                                 <strong>NestJS 통합 및 Entity 공통 모듈화 (GitHub Packages):</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    3개 서버를 NestJS로 통일하고, 핵심 TypeORM Entity를<br />GitHub Packages 기반의 NPM
-                                    라이브러리로 분리하여 패키지화.
+                                    Express/JS 대비 <strong>엄격한 모듈 구조(DI)와 TypeScript 지원</strong>으로 가독성
+                                    및 유지보수성 확보.<br />
+                                    핵심 TypeORM Entity를 GitHub Packages로 분리하여 코드 재사용성을 높이고 순환 참조
+                                    이슈를 방지.
                                 </div>
                             </li>
                             <li>
@@ -566,7 +613,12 @@
                 <!-- Project 2 (App Launch) -->
                 <div class="project-item">
                     <div class="project-title">버틀러 하이브리드 앱 런칭 (iOS/Android)</div>
-                    <div class="project-meta">2023.04 - 2024.08 | 기여도: 100%</div>
+                    <div class="project-meta">
+                        2023.04 - 2024.08 | 기여도: 100%<br />
+                        <span style="color: #6b7280; font-size: 0.95em"
+                            >App Dev 1 (Self) / Collaboration: Planner 1</span
+                        >
+                    </div>
 
                     <div class="metrics-grid" style="margin-left: 0">
                         <div class="metric-card">
@@ -586,6 +638,14 @@
                             상황 및 문제점 (Context & Problem)
                         </div>
                         <ul class="solution-list" style="margin-left: 0">
+                            <li style="padding-left: 12px; margin-bottom: 4px">
+                                <strong>Role & Collaboration (1인 2역):</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    스타트업 비용 효율화를 위해 백엔드 업무와 병행하여 앱 개발 전담.<br />
+                                    과거 크로스플랫폼 경험을 살려 웹뷰 기반 하이브리드 앱을 설계하여 추가 채용 없이 MVP
+                                    런칭 성공.
+                                </div>
+                            </li>
                             <li style="padding-left: 12px; margin-bottom: 4px">
                                 <strong>모바일 전용 기능의 부재:</strong> 웹 서비스만으로는 푸시 알림이나 생체 인증 같은
                                 모바일 네이티브 기능을 제공할 수 없어<br />사용자 리텐션 확보에 한계가 있음.
@@ -661,7 +721,12 @@
 
                 <div class="project-item">
                     <div class="project-title">반려동물 입양 숏폼 플랫폼 개발</div>
-                    <div class="project-meta">2022.06 - 2023.04 | 기여도: 50%</div>
+                    <div class="project-meta">
+                        2022.06 - 2023.04 | 기여도: 50%<br />
+                        <span style="color: #6b7280; font-size: 0.95em"
+                            >App 2 (incl. Self), Backend 1, Designer 1 (CEO)</span
+                        >
+                    </div>
 
                     <div class="metrics-grid" style="margin-left: 0">
                         <div class="metric-card">
@@ -682,6 +747,14 @@
                         </div>
                         <ul class="solution-list" style="margin-left: 0">
                             <li style="padding-left: 12px; margin-bottom: 4px">
+                                <strong>Role & Collaboration (iOS & Backend Support):</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    초기 스타트업(주니어 3인) 환경에서 iOS 앱 출시와 백엔드 보조를 담당.<br />
+                                    동료(Android)와 5:5로 앱 기능을 분담 개발하고, 피벗 결정에 맞춰 애자일하게 기능을
+                                    전환.
+                                </div>
+                            </li>
+                            <li style="padding-left: 12px; margin-bottom: 4px">
                                 <strong>비즈니스 피벗 및 비용 효율화 이슈:</strong> 일반 숏폼에서 반려동물 입양
                                 플랫폼으로 피벗(Pivot)하는 과정에서,<br />초기 유저 규모(100명 미만) 대비 과도한 서버
                                 트랜스코딩 비용이 발생하여 스타트업에 맞는 효율적 아키텍처가 절실함.
@@ -693,10 +766,12 @@
                         <div class="detail-label">의사결정 및 해결과정 (Decision & Solution)</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>Client-Side 분산 트랜스코딩 (Mobile FFmpeg):</strong>
+                                <strong>App-Side Encoding & CloudFlare CDN 활용:</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    모바일 기기의 컴퓨팅 파워를 활용, 클라이언트단에서 HLS 변환 후 S3로 업로드하는
-                                    'Serverless Video Pipeline'을 구축.
+                                    고비용의 미디어 서버 대신, 모바일 앱(FFmpeg)에서 영상을 압축/청크로 분할하여
+                                    업로드하는 방식을 채택.<br />
+                                    <strong>CloudFlare CDN</strong>을 도입하여 캐싱 효율을 높이고 트래픽 비용을
+                                    최소화함.
                                 </div>
                             </li>
                             <li>
@@ -749,7 +824,10 @@
                 <!-- Project 1: Smart RMR -->
                 <div class="project-item">
                     <div class="project-title">터널 안전 관제 솔루션 'Smart RMR' 개발</div>
-                    <div class="project-meta">2022.01 - 2022.06 | 기여도: 100% (Solo Full Stack)</div>
+                    <div class="project-meta">
+                        2022.01 - 2022.06 | 기여도: 100% (Solo Full Stack)<br />
+                        <span style="color: #6b7280; font-size: 0.95em">Developer 1 (Self), Planner 1, Designer 1</span>
+                    </div>
 
                     <div class="metrics-grid" style="margin-left: 0">
                         <div class="metric-card">
@@ -770,6 +848,14 @@
                         </div>
                         <ul class="solution-list" style="margin-left: 0">
                             <li style="padding-left: 12px; margin-bottom: 4px">
+                                <strong>Role & Collaboration (Solo Implementation):</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    PM/디자이너와 원팀으로 협업하며, 확정된 기획/디자인 명세를 오차 없이 구현하는 데
+                                    집중.<br />현장 특수성(통신 단절)을 고려한 기술적 솔루션을 제안하여 고객사 신뢰
+                                    확보.
+                                </div>
+                            </li>
+                            <li style="padding-left: 12px; margin-bottom: 4px">
                                 <strong>터널 막장(Blind End)의 통신 단절:</strong> LTE/WiFi 신호가 닿지 않는 지하 깊은
                                 곳에서 작업이 이루어지는 특이성<br />실시간 데이터 전송이 불가능함.
                             </li>
@@ -782,8 +868,9 @@
                             <li>
                                 <strong>Offline-First 동기화 아키텍처 (SQLite):</strong>
                                 <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
-                                    작업 데이터를 단말기 내부 SQLite에 우선 저장하고, 통신 가능 구역 진입 시<br />백그라운드
-                                    폴링(Polling)을 통해 서버(RDS)와 데이터를 동기화하여 유실을 원천 차단.
+                                    SharedPreferences 대신 <strong>SQLite(RDB)</strong>를 도입하여 서버 데이터베이스와의
+                                    스키마 규약을 통일.<br />
+                                    복잡한 동기화(Sync) 로직 구현의 용이성을 확보하고 데이터 정합성 이슈를 최소화함.
                                 </div>
                             </li>
                             <li>
@@ -813,7 +900,12 @@
                 <!-- Project 2: iTOO -->
                 <div class="project-item" style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px">
                     <div class="project-title">롯데홈쇼핑 차세대 플랫폼 'iTOO' 구축 파견</div>
-                    <div class="project-meta">2022.01 - 2022.06 | 기여도: 30% (Frontend Support)</div>
+                    <div class="project-meta">
+                        2022.01 - 2022.06 | 기여도: 30% (Frontend Support)<br />
+                        <span style="color: #6b7280; font-size: 0.95em"
+                            >Dispatch Team: Dev 2, Designer 1 / Co-work: Client side</span
+                        >
+                    </div>
 
                     <div class="metrics-grid" style="margin-left: 0">
                         <div class="metric-card">
@@ -833,6 +925,14 @@
                             상황 및 문제점 (Context & Problem)
                         </div>
                         <ul class="solution-list" style="margin-left: 0">
+                            <li style="padding-left: 12px; margin-bottom: 4px">
+                                <strong>Role & Collaboration (Enterprise Process Adaptation):</strong>
+                                <div style="font-size: 13px; color: #6b7280; margin-top: 2px">
+                                    대기업의 엄격한 보안 및 배포 프로세스(Jira/Jenkins/망분리)를 처음 경험하며 현업
+                                    담당자와 소통.<br />
+                                    난해한 레거시 API 규격(HashMap DTO, 식별 불가능한 URL)을 디버깅하며 UI를 연동.
+                                </div>
+                            </li>
                             <li style="padding-left: 12px; margin-bottom: 4px">
                                 <strong>보안 규정에 따른 온사이트 개발:</strong> 외부 접속이 차단된 대기업 폐쇄망 환경
                                 이슈<br />베트남 개발센터와의 협업이 불가능하여 긴급 파견 투입.
