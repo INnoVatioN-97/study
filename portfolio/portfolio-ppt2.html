@@ -140,6 +140,28 @@
                                 >Sequelize</span
                             >
                             <span class="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-xs font-bold">JPA</span>
+                            <span class="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-xs font-bold"
+                                >QueryDSL</span
+                            >
+                            <span class="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-xs font-bold">Dart</span>
+                            <span class="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-xs font-bold"
+                                >Flutter</span
+                            >
+                            <span class="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-xs font-bold"
+                                >Docker Compose</span
+                            >
+                            <span class="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-xs font-bold"
+                                >Kafka</span
+                            >
+                            <span class="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-xs font-bold"
+                                >Nginx</span
+                            >
+                            <span class="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-xs font-bold"
+                                >SQLite</span
+                            >
+                            <span class="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-xs font-bold"
+                                >H2Database</span
+                            >
                         </div>
                     </div>
                 </div>
@@ -329,8 +351,12 @@
                             <li>
                                 일 50만 건 이상의 광고 트래픽 처리 중 발생하던 <strong>DB Deadlock 이슈 해결</strong>
                             </li>
-                            <li><strong>Redis Queue</strong>를 도입하여 트래픽 스파이크를 제어하고 처리 순서를 보장</li>
-                            <li>동기식 로직을 <strong>비동기 Bulk Insert</strong>로 전환하여 DB 부하 감소</li>
+                            <li>
+                                <strong>Redis Pub/Sub 자체 큐</strong>를 구현하여 적립/집계 책임 분리 및 트래픽 제어
+                            </li>
+                            <li>
+                                청크 단위 <strong>벌크 업서트</strong> 전환으로 DB CPU 90%→30% 안정화, 노드 6대→3대 축소
+                            </li>
                         </ul>
                     </div>
 
@@ -343,7 +369,7 @@
                             >
                             <span
                                 class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
-                                >Redis (Queue)</span
+                                >Redis (Pub/Sub)</span
                             >
                             <span
                                 class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
@@ -355,9 +381,9 @@
                     <div class="mt-auto">
                         <h4 class="text-xs font-bold text-brand mb-3 uppercase tracking-wider">Contribution</h4>
                         <div class="progress-item">
-                            <span class="progress-label">Backend Lead</span>
-                            <div class="progress-track"><div class="progress-fill" style="width: 100%"></div></div>
-                            <span class="progress-val">100</span>
+                            <span class="progress-label">Backend</span>
+                            <div class="progress-track"><div class="progress-fill" style="width: 80%"></div></div>
+                            <span class="progress-val">80</span>
                         </div>
                     </div>
                 </div>
@@ -401,7 +427,7 @@
                     </div>
 
                     <h2 class="project-title text-4xl mb-2">Pokit</h2>
-                    <h3 class="project-subtitle text-xl mb-6">리워드 앱 포인트 시스템 침 포인트 교환</h3>
+                    <h3 class="project-subtitle text-xl mb-6">리워드 앱 포인트 시스템 및 포인트 교환</h3>
 
                     <div class="project-desc text-sm leading-relaxed mb-6">
                         <p class="mb-3">
@@ -440,7 +466,7 @@
                     <div class="mt-auto">
                         <h4 class="text-xs font-bold text-brand mb-3 uppercase tracking-wider">Contribution</h4>
                         <div class="progress-item">
-                            <span class="progress-label">System Design (Team Lead)</span>
+                            <span class="progress-label">Backend</span>
                             <div class="progress-track"><div class="progress-fill" style="width: 40%"></div></div>
                             <span class="progress-val">40</span>
                         </div>
@@ -494,7 +520,7 @@
                             <strong>62% 절감 (월 480만 → 180만)</strong>했습니다.
                         </p>
                         <ul class="list-disc list-inside space-y-1 text-gray-600">
-                            <li><strong>AWS & MacStudio 하이브리드 클러스터</strong> 구축 (비용 절감)</li>
+                            <li><strong>Tencent Cloud & MacStudio 하이브리드 클러스터</strong> 구축 (비용 절감)</li>
                             <li><strong>Tor Network</strong> 기반 IP 로테이션 시스템 구축으로 차단 우회</li>
                             <li><strong>NestJS & Kafka</strong> 기반 비동기 파이프라인</li>
                         </ul>
@@ -521,7 +547,7 @@
                             >
                             <span
                                 class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
-                                >AWS ECS</span
+                                >Tencent Cloud</span
                             >
                         </div>
                     </div>
@@ -529,7 +555,7 @@
                     <div class="mt-auto">
                         <h4 class="text-xs font-bold text-brand mb-3 uppercase tracking-wider">Contribution</h4>
                         <div class="progress-item">
-                            <span class="progress-label">Infra Architecture (Advisory Lead)</span>
+                            <span class="progress-label">Infra Architecture</span>
                             <div class="progress-track"><div class="progress-fill" style="width: 70%"></div></div>
                             <span class="progress-val">70</span>
                         </div>
@@ -609,7 +635,7 @@
                     <div class="mt-auto">
                         <h4 class="text-xs font-bold text-brand mb-3 uppercase tracking-wider">Contribution</h4>
                         <div class="progress-item">
-                            <span class="progress-label">Backend 1 (Solo)</span>
+                            <span class="progress-label">Backend</span>
                             <div class="progress-track"><div class="progress-fill" style="width: 100%"></div></div>
                             <span class="progress-val">100</span>
                         </div>
@@ -802,7 +828,7 @@
                             >
                             <span
                                 class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
-                                >PostgreSQL</span
+                                >MySQL</span
                             >
                             <span
                                 class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
@@ -955,7 +981,7 @@
                         <p class="mb-3">동영상 소셜 앱의 트래픽 비용 문제를 해결하고 배포 파이프라인을 구축했습니다.</p>
                         <ul class="list-disc list-inside space-y-1 text-gray-600">
                             <li>
-                                HLS 스트리밍 & CloudFront 도입으로 인프라 비용 <strong>76% 절감 (60→14만원)</strong>
+                                HLS 스트리밍 & CloudFlare CDN 도입으로 인프라 비용 <strong>76% 절감 (60→14만원)</strong>
                             </li>
                             <li><strong>GitHub Actions</strong> 기반의 CI/CD 및 CodePush 배포 자동화</li>
                         </ul>
@@ -1044,19 +1070,16 @@
                         <span>SI Project</span>
                     </div>
                     <h2 class="project-title text-4xl mb-2">롯데홈쇼핑 iTOO</h2>
-                    <h3 class="project-subtitle text-xl mb-6">iTOO 런칭 QA 및 레거시 API 이식</h3>
+                    <h3 class="project-subtitle text-xl mb-6">iTOO 런칭 지원 및 API 이식</h3>
                     <div class="project-desc text-sm leading-relaxed mb-6">
                         <p class="mb-3">
-                            차세대 쇼핑 플랫폼 iTOO의 런칭 직전 단계에 투입되어, 기존 서비스(Wyd)의 기능을 이식하고
+                            차세대 쇼핑 플랫폼 iTOO의 런칭 직전 단계에 파견 투입되어, 기존 서비스(Wyd)의 기능을 이식하고
                             안정적인 오픈을 지원했습니다.
                         </p>
                         <ul class="list-disc list-inside space-y-1 text-gray-600">
-                            <li>기존 라이브커머스 <strong>Wyd의 API를 iTOO로 이식</strong> 및 최적화</li>
-                            <li>
-                                런칭 대비 <strong>QA 버그 수정</strong> 및 잔여 페이지
-                                <strong>퍼블리싱/API 연동</strong>
-                            </li>
-                            <li>대규모 트래픽 대비 주문/결제 프로세스 이식 및 운영 핫픽스 대응</li>
+                            <li>잔여 페이지 <strong>UI 퍼블리싱</strong> (HTML 마크업 작업)</li>
+                            <li>기존 라이브커머스 <strong>Wyd의 커머스 관련 주요 API를 iTOO로 이식</strong></li>
+                            <li>운영 배포 및 서비스 직후 <strong>긴급 핫픽스</strong> 대응</li>
                         </ul>
                     </div>
                     <div class="mb-6">
@@ -1079,7 +1102,7 @@
                     <div class="mt-auto">
                         <h4 class="text-xs font-bold text-brand mb-3 uppercase tracking-wider">Contribution</h4>
                         <div class="progress-item">
-                            <span class="progress-label">API Migration & QA</span>
+                            <span class="progress-label">Publishing & API Migration</span>
                             <div class="progress-track"><div class="progress-fill" style="width: 30%"></div></div>
                             <span class="progress-val">30</span>
                         </div>
@@ -1142,14 +1165,14 @@
                             >
                             <span
                                 class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
-                                >PostgreSQL</span
+                                >MySQL</span
                             >
                         </div>
                     </div>
                     <div class="mt-auto">
                         <h4 class="text-xs font-bold text-brand mb-3 uppercase tracking-wider">Contribution</h4>
                         <div class="progress-item">
-                            <span class="progress-label">Solo Development</span>
+                            <span class="progress-label">Fullstack</span>
                             <div class="progress-track"><div class="progress-fill" style="width: 100%"></div></div>
                             <span class="progress-val">100</span>
                         </div>
