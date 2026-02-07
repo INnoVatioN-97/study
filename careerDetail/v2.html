@@ -85,7 +85,7 @@
 
                 <!-- Project 1: Infra & Data -->
                 <div class="project-item">
-                    <div class="project-title">AdTech 인프라 비용 절감 및 데이터 파이프라인 고도화</div>
+                    <div class="project-title">전사 인프라 최적화 및 운영 효율 고도화</div>
                     <div class="project-meta">
                         2024.11 - 2025.01 | 기여도: 70%<br />
                         <span style="color: #6b7280; font-size: 0.95em">Backend 1 / Team Lead 1</span>
@@ -95,8 +95,8 @@
                     <!-- <div class="metrics-grid" style="margin-left: 0">
                         <div class="metric-card">
                             <div class="metric-label">Infra Cost</div>
-                            <div class="metric-value">월 480만원 → 180만원</div>
-                            <div class="metric-change">▼ 62% 절감</div>
+                            <div class="metric-value">월 4,200만원 → 800만원</div>
+                            <div class="metric-change">▼ 81% 절감</div>
                         </div>
                         <div class="metric-card">
                             <div class="metric-label">Reliability</div>
@@ -110,17 +110,104 @@
                         <div class="detail-label">상황 및 문제점</div>
                         <ul class="solution-list">
                             <li class="solution-item">
-                                <strong>비용 효율화의 기술적 과제</strong>
+                                <strong>레거시 인프라의 비효율성</strong>
                                 <div class="solution-desc">
-                                    단순 기능 구현을 넘어 <strong>비용 절감과 데이터 정합성</strong>이라는 두가지
-                                    목표를<br />동시에 달성하는 아키텍처 고도화 과제.
+                                    초기 스케일업 단계에서 과도하게 프로비저닝된 인프라 리소스가 서비스 안정화
+                                    단계에서도 유지되며 불필요한 비용(OpEx) 발생.
                                 </div>
                             </li>
                             <li class="solution-item">
-                                <strong>이중 버퍼링으로 인한 복잡성</strong>
+                                <strong>서비스 복잡도 증가</strong>
+                                <div class="solution-desc">
+                                    레거시 시스템과 신규 시스템의 혼재로 인한 유지보수 복잡성 증대 및 데이터 파이프라인
+                                    분산.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Decision & Solution -->
+                    <!-- Decision & Solution -->
+                    <div class="detail-section" style="padding-left: 0">
+                        <div class="detail-label">의사결정 및 해결과정</div>
+                        <ul class="solution-list">
+                            <li class="solution-item">
+                                <strong>인프라 Right-Sizing 및 리소스 최적화</strong>
+                                <div class="solution-desc">
+                                    트래픽 추이(최대 300만 → 안정화)에 맞춰 과잉 프로비저닝된 리소스를 재조정하고, 병목
+                                    쿼리 튜닝 및 인덱스 추가로 DB 부하를 감소시킴.<br />
+                                    또한 크롤러 파이프라인을
+                                    <strong>하이브리드 인프라(On-premise + Cloud)로 전환</strong>하여 비용을 절감함.
+                                </div>
+                            </li>
+                            <li class="solution-item">
+                                <strong>파편화된 레거시 서버 통합</strong>
+                                <div class="solution-desc">
+                                    유지보수가 불가능한 구형 PHP 서버를 셧다운하고,
+                                    <strong>운영 중인 Node.js 레거시 프로젝트로 로직을 이관 및 통합</strong>.<br />
+                                    관리 리소스를 현행 프로젝트로 집중시켜 운영 효율을 확보함.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Result -->
+                    <div class="detail-section" style="padding-left: 0">
+                        <div class="detail-label">성과 및 결과</div>
+                        <ul class="solution-list">
+                            <li>
+                                <strong>전사 인프라 비용 81% 절감 (월 4,200만 → 800만)</strong>
+                                <div class="solution-desc">
+                                    단순 감축이 아닌, 트래픽 대비 비용 효율(ROI)을 극대화하여 지속 가능한 인프라 구조
+                                    확립.
+                                </div>
+                            </li>
+                            <li>
+                                <strong>데이터 파이프라인 가시성 및 안정성 확보</strong>
+                                <div class="solution-desc">
+                                    중복 버퍼링 제거 및 모니터링 체계(Kafka UI) 구축으로 장애 대응 속도와 데이터 신뢰도
+                                    향상.
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 1.5: Pocask (Kafka & Crawler) -->
+        <section class="page">
+            <div class="company-block">
+                <div class="company-header" style="border-bottom: 1px dashed #e5e7eb; margin-bottom: 20px">
+                    <div>
+                        <span class="company-name" style="font-size: 16px; color: #4b5563">Pocask E&M </span>
+                    </div>
+                </div>
+
+                <!-- Project 2: Kafka & Crawler Optimization (Restored) -->
+                <div class="project-item">
+                    <div class="project-title">Kafka 기반 크롤링 인프라 최적화 및 고도화</div>
+                    <div class="project-meta">
+                        2024.11 - 2025.01 | 기여도: 100%<br />
+                        <span style="color: #6b7280; font-size: 0.95em">Backend Lead / DevOps</span>
+                    </div>
+
+                    <!-- Context & Problem -->
+                    <div class="detail-section" style="padding-left: 0">
+                        <div class="detail-label">상황 및 문제점</div>
+                        <ul class="solution-list">
+                            <li class="solution-item">
+                                <strong>이중 버퍼링으로 인한 복잡성 및 데이터 정합성 이슈</strong>
                                 <div class="solution-desc">
                                     Kafka와 별도로 컨슈머 내부에서 BullMQ를 사용하여 메시지 흐름이 분산됨.<br />장애
-                                    추적이 난해한 구조.
+                                    발생 시 원인 파악이 어렵고 데이터 유실 위험이 존재함.
+                                </div>
+                            </li>
+                            <li class="solution-item">
+                                <strong>크롤링 인프라 비용 부담</strong>
+                                <div class="solution-desc">
+                                    고비용 클라우드 인스턴스에 의존하는 구조로, 전체 인프라 비용의 상당 부분(월
+                                    480만원)을 차지함.
                                 </div>
                             </li>
                         </ul>
@@ -134,7 +221,7 @@
                                 <strong>브로커 중심의 아키텍처 재설계</strong>
                                 <div class="solution-desc">
                                     불필요한 미들웨어(BullMQ)를 제거하고 메시지 전달 방식을
-                                    <strong>Event Emit에서 Send로 전환.</strong><br />이를 통해 Consumer Lag 집계가
+                                    <strong>Event Emit에서 Send로 전환</strong>.<br />이를 통해 Consumer Lag 집계가
                                     가능해짐.
                                 </div>
                             </li>
@@ -169,7 +256,7 @@
                                 </div>
                             </li>
                             <li>
-                                <strong>전체 운영 비용 62% 절감 (월 480만 → 180만)</strong>
+                                <strong>크롤러 운영 비용 62% 절감 (월 480만 → 180만)</strong>
                                 <div class="solution-desc">
                                     인프라 최적화 및 안정화된 수집 로직을 통해 비용 효율성과 운영 안정성을 동시에
                                     달성.<br />
