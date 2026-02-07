@@ -511,18 +511,87 @@
                         <span>Infrastructure</span>
                     </div>
 
-                    <h2 class="project-title text-4xl mb-2">Infra & Data</h2>
-                    <h3 class="project-subtitle text-xl mb-6">하이브리드 크롤링 파이프라인</h3>
+                    <h2 class="project-title text-4xl mb-2">Structure Cost Optimization</h2>
+                    <h3 class="project-subtitle text-xl mb-6">전사 인프라 비용 효율화</h3>
 
                     <div class="project-desc text-sm leading-relaxed mb-6">
                         <p class="mb-3">
-                            월 480만 원에 달하던 클라우드 비용을 유휴 장비를 활용한 하이브리드 인프라 구축으로<br />
-                            <strong>62% 절감 (월 480만 → 180만)</strong>했습니다.
+                            월 4,200만 → 800만 원으로 <strong>인프라 비용을 81% 절감</strong>하고<br />
+                            지속 가능한 운영 환경을 구축했습니다.
                         </p>
                         <ul class="list-disc list-inside space-y-1 text-gray-600">
-                            <li><strong>Tencent Cloud & MacStudio 하이브리드 클러스터</strong> 구축 (비용 절감)</li>
-                            <li><strong>Tor Network</strong> 기반 IP 로테이션 시스템 구축으로 차단 우회</li>
-                            <li><strong>NestJS & Kafka</strong> 기반 비동기 파이프라인</li>
+                            <li><strong>노후 서버 정리</strong> 및 유지보수 불가능한 PHP 레거시 현행 서비스에 통합</li>
+                            <li><strong>서버 스펙 최적화(Right-Sizing)</strong> 및 DB 튜닝</li>
+                            <li><strong>비용 효율 중심</strong>의 인프라 운영 정책 수립</li>
+                        </ul>
+                    </div>
+
+                    <div class="mb-6">
+                        <h4 class="text-xs font-bold text-gray-400 mb-3 uppercase tracking-wider">Tech Stack</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
+                                >Tencent Cloud</span
+                            >
+                            <span
+                                class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
+                                >PM2</span
+                            >
+                        </div>
+                    </div>
+
+                    <div class="mt-auto">
+                        <h4 class="text-xs font-bold text-brand mb-3 uppercase tracking-wider">Contribution</h4>
+                        <div class="progress-item">
+                            <span class="progress-label">Infra Architecture</span>
+                            <div class="progress-track"><div class="progress-fill" style="width: 70%"></div></div>
+                            <span class="progress-val">70</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="h-full flex flex-col gap-4">
+                    <div
+                        class="visual-box flex-1 bg-gray-50 flex flex-row gap-4 p-8 w-full h-full items-center justify-center"
+                    >
+                        <div
+                            class="flex-1 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center justify-center h-full p-8 group"
+                        >
+                            <img
+                                src="../images/tencent_cloud_logo.svg"
+                                alt="Tencent Cloud"
+                                class="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Kafka & Crawler (New) -->
+        <section class="ppt-slide type-content">
+            <div class="content-grid-2">
+                <div class="flex flex-col justify-center h-full">
+                    <div class="flex items-center gap-2 mb-4 text-sm text-gray-500 font-medium">
+                        <span class="text-brand">Pocask E&M</span>
+                        <span>/</span>
+                        <span>Backend Tech</span>
+                    </div>
+
+                    <h2 class="project-title text-3xl mb-2">High Performance Crawler</h2>
+                    <h3 class="project-subtitle text-xl mb-6">Kafka 기반 고성능 크롤러 파이프라인</h3>
+
+                    <div class="project-desc text-sm leading-relaxed mb-6">
+                        <p class="mb-3">
+                            <strong>Redis(BullMQ)와 Kafka의 이중 큐 구조</strong>를 Kafka 단일 파이프라인으로
+                            통합하여<br />
+                            데이터 처리의 복잡도를 낮추고 안정성을 확보했습니다.
+                        </p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-600">
+                            <li><strong>Kafka 단일 채널</strong>로 데이터 정합성 보장 (이중 버퍼링 제거)</li>
+                            <li><strong>Mac Studio와 Tor</strong>를 결합한 하이브리드 프록시로 비용 절감</li>
+                            <li><strong>Kafka UI 도입</strong> 및 파이프라인 모니터링 환경 구축</li>
+                            <li><strong>크롤러 운영 비용 62% 절감</strong> (월 480만 → 180만)</li>
                         </ul>
                     </div>
 
@@ -539,15 +608,11 @@
                             >
                             <span
                                 class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
-                                >Tor</span
+                                >Tor Network</span
                             >
                             <span
                                 class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
-                                >Docker</span
-                            >
-                            <span
-                                class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
-                                >Tencent Cloud</span
+                                >Mac Studio</span
                             >
                         </div>
                     </div>
@@ -555,9 +620,9 @@
                     <div class="mt-auto">
                         <h4 class="text-xs font-bold text-brand mb-3 uppercase tracking-wider">Contribution</h4>
                         <div class="progress-item">
-                            <span class="progress-label">Infra Architecture</span>
-                            <div class="progress-track"><div class="progress-fill" style="width: 70%"></div></div>
-                            <span class="progress-val">70</span>
+                            <span class="progress-label">Architecture & DevOps</span>
+                            <div class="progress-track"><div class="progress-fill" style="width: 100%"></div></div>
+                            <span class="progress-val">100</span>
                         </div>
                     </div>
                 </div>
@@ -589,7 +654,7 @@
             </div>
         </section>
 
-        <!-- Slide 6b: Automation & Analysis -->
+        <!-- Slide 8: Automation & Analysis -->
         <section class="ppt-slide type-content">
             <div class="content-grid-2">
                 <div class="flex flex-col justify-center h-full">
