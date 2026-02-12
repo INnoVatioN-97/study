@@ -70,7 +70,7 @@
                         <span class="tech-tag">NestJS</span>
                         <span class="tech-tag">Spring Boot</span>
                         <span class="tech-tag">TypeORM</span>
-                        <span class="tech-tag">Express (Node.js)</span>
+                        <span class="tech-tag">Express</span>
                         <span class="tech-tag">Redis</span>
                         <span class="tech-tag">MySQL</span>
                         <span class="tech-tag">Docker</span>
@@ -85,7 +85,7 @@
 
                 <!-- Project 1: Infra & Data -->
                 <div class="project-item">
-                    <div class="project-title">전사 인프라 최적화 및 운영 효율 고도화</div>
+                    <div class="project-title">전사 인프라 최적화 및 운영 효율 개선</div>
                     <div class="project-meta">
                         2024.11 - 2025.01 | 기여도: 70%<br />
                         <span style="color: #6b7280; font-size: 0.95em">Backend 1 / Team Lead 1</span>
@@ -112,8 +112,8 @@
                             <li class="solution-item">
                                 <strong>레거시 인프라의 비효율성</strong>
                                 <div class="solution-desc">
-                                    초기 스케일업 단계에서 과도하게 프로비저닝된 인프라 리소스가 서비스 안정화
-                                    단계에서도 유지되며 불필요한 비용(OpEx) 발생.
+                                    초기 확장 단계에서 과하게 잡아둔 인프라 리소스가 서비스 안정화 이후에도 유지되어
+                                    불필요한 운영 비용 발생.
                                 </div>
                             </li>
                             <li class="solution-item">
@@ -132,12 +132,12 @@
                         <div class="detail-label">의사결정 및 해결과정</div>
                         <ul class="solution-list">
                             <li class="solution-item">
-                                <strong>인프라 Right-Sizing 및 리소스 최적화</strong>
+                                <strong>인프라 리소스 재조정 및 최적화</strong>
                                 <div class="solution-desc">
-                                    트래픽 추이(최대 300만 → 안정화)에 맞춰 과잉 프로비저닝된 리소스를 재조정하고, 병목
-                                    쿼리 튜닝 및 인덱스 추가로 DB 부하를 감소시킴.<br />
+                                    트래픽 추이(최대 300만 → 안정화)에 맞춰 과하게 잡힌 리소스를 재조정하고, 병목 쿼리
+                                    튜닝 및 인덱스 추가로 DB 부하를 감소시킴.<br />
                                     또한 크롤러 파이프라인을
-                                    <strong>하이브리드 인프라(On-premise + Cloud)로 전환</strong>하여 비용을 절감함.
+                                    <strong>온프레미스와 클라우드를 함께 쓰는 구조로 전환</strong>해 비용을 줄임.
                                 </div>
                             </li>
                             <li class="solution-item">
@@ -158,15 +158,14 @@
                             <li>
                                 <strong>전사 인프라 비용 81% 절감 (월 4,200만 → 800만)</strong>
                                 <div class="solution-desc">
-                                    단순 감축이 아닌, 트래픽 대비 비용 효율(ROI)을 극대화하여 지속 가능한 인프라 구조
-                                    확립.
+                                    트래픽 규모 변화에 맞춰 리소스/비용 구조를 재조정한 결과.
                                 </div>
                             </li>
                             <li>
-                                <strong>데이터 파이프라인 가시성 및 안정성 확보</strong>
+                                <strong>데이터 파이프라인 가시성 및 운영 점검 기반 확보</strong>
                                 <div class="solution-desc">
-                                    중복 버퍼링 제거 및 모니터링 체계(Kafka UI) 구축으로 장애 대응 속도와 데이터 신뢰도
-                                    향상.
+                                    중복 버퍼링 제거 및 모니터링 체계 Kafka UI 구축으로 장애 지점 파악 시간을 단축하고
+                                    운영 점검 기준을 정리.
                                 </div>
                             </li>
                         </ul>
@@ -186,10 +185,10 @@
 
                 <!-- Project 2: Kafka & Crawler Optimization (Restored) -->
                 <div class="project-item">
-                    <div class="project-title">Kafka 기반 크롤링 인프라 최적화 및 고도화</div>
+                    <div class="project-title">Kafka 기반 크롤링 인프라 개선</div>
                     <div class="project-meta">
                         2024.11 - 2025.01 | 기여도: 100%<br />
-                        <span style="color: #6b7280; font-size: 0.95em">Backend Lead / DevOps</span>
+                        <span style="color: #6b7280; font-size: 0.95em">Solo</span>
                     </div>
 
                     <!-- Context & Problem -->
@@ -224,24 +223,24 @@
                         <div class="detail-label">의사결정 및 해결과정</div>
                         <ul class="solution-list">
                             <li class="solution-item">
-                                <strong>브로커 중심의 아키텍처 재설계</strong>
+                                <strong>브로커 중심 구조로 재설계</strong>
                                 <div class="solution-desc">
-                                    불필요한 미들웨어(BullMQ)를 제거하고 메시지 전달 방식을
-                                    <strong>Event Emit에서 Send로 전환</strong>.<br />이를 통해 Consumer Lag 집계가
-                                    가능해짐.
+                                    불필요한 중간 큐 도구 BullMQ를 제거하고 메시지 전달 방식을
+                                    <strong>이벤트 발행 방식에서 메시지 전송 방식으로 전환</strong>.<br />이를 통해
+                                    Consumer Lag 집계가 가능해짐.
                                 </div>
                             </li>
                             <li class="solution-item">
-                                <strong>Observability 확보 및 스케일링 전략 수립</strong>
+                                <strong>모니터링 가시성 확보 및 확장 전략 수립</strong>
                                 <div class="solution-desc">
                                     <strong>Kafka UI 도입</strong>으로 블랙박스였던 Consumer Lag을 시각화.<br />
-                                    'Lag 지속 증가' 시 즉시 스케일 아웃하는 정책을 수립하여 트래픽 스파이크에 대응.
+                                    'Lag 지속 증가' 시 즉시 서버를 늘리는 정책을 수립해 트래픽 급증에 대응.
                                 </div>
                             </li>
                             <li class="solution-item">
-                                <strong>Hybrid Proxy 및 사내 유휴 장비 활용</strong>
+                                <strong>혼합 프록시 구성 및 사내 유휴 장비 활용</strong>
                                 <div class="solution-desc">
-                                    사내 유휴 Mac장비를 온프레미스서버로 활용해 클라우드 비용 최소화.<br />
+                                    사내 유휴 Mac 장비를 온프레미스 서버로 활용해 클라우드 비용을 줄임.<br />
                                     <strong>주거용 및 무료 프록시</strong> 분산 설계로 Tor 프로세스 관련 프리징 빈도
                                     유의미하게 감소.
                                 </div>
@@ -254,20 +253,19 @@
                         <div class="detail-label">성과 및 결과</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>파이프라인 가시성 확보 및 데이터 정합성 개선</strong>
+                                <strong>파이프라인 가시성 개선 및 데이터 정합성 점검 기반 마련</strong>
                                 <div class="solution-desc">
-                                    중복 버퍼링 제거로 '처리 중 유실' 가능성을 차단하고, 장애 발생 지점을 명확히 파악할
-                                    수 있는 환경 구축.<br />
-                                    (Tor 프리징 빈도 감소로 안정성 추가 확보)
+                                    중복 버퍼링 제거로 '처리 중 유실' 가능성을 낮추고, 장애 발생 지점을 추적 가능한
+                                    상태로 변경.<br />
+                                    Tor 프리징 빈도 감소는 운영 로그 기준 관측.
                                 </div>
                             </li>
                             <li>
                                 <strong>크롤러 운영 비용 62% 절감 (월 480만 → 180만)</strong>
                                 <div class="solution-desc">
-                                    인프라 최적화 및 안정화된 수집 로직을 통해 비용 효율성과 운영 안정성을 동시에
-                                    달성.<br />
-                                    특히 고비용의 <strong>크롤러 파이프라인을 하이브리드 인프라로 전환</strong>하여 핵심
-                                    비용을 대폭 절감.
+                                    인프라 재구성과 수집 로직 정비를 통해 비용과 운영 부담을 함께 완화.<br />
+                                    고비용 크롤러 파이프라인을 <strong>온프레미스+클라우드 혼합 구조로 전환</strong>해
+                                    주요 비용 항목을 축소.
                                 </div>
                             </li>
                         </ul>
@@ -288,10 +286,10 @@
                 <!-- Project 2: Point Crush -->
                 <!-- Project 2: Automation & Analysis -->
                 <div class="project-item">
-                    <div class="project-title">사내 업무 자동화 및 경쟁사 분석 시스템 구축</div>
+                    <div class="project-title">사내 업무 자동화 및 경쟁사 분석 보조 시스템 구축</div>
                     <div class="project-meta">
                         2024.11 - 2025.01 | 기여도: 100%<br />
-                        <span style="color: #6b7280; font-size: 0.95em">Backend 1 (Solo)</span>
+                        <span style="color: #6b7280; font-size: 0.95em">Solo</span>
                     </div>
 
                     <!-- Metrics -->
@@ -343,7 +341,7 @@
                                 <strong>경쟁사 순위 추적 및 키워드 효율 분석</strong>
                                 <div class="solution-desc">
                                     경쟁사 노출 순위/키워드를 트래킹하고 효율을 역산출하는 시스템 구축.<br />
-                                    데이터 기반의 광고 캠페인 전략 수립 지원.
+                                    데이터 기반 캠페인 전략 논의 자료로 활용.
                                 </div>
                             </li>
                         </ul>
@@ -354,10 +352,10 @@
                         <div class="detail-label">성과 및 결과</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>업무 효율성 및 전략 수립 지원</strong>
+                                <strong>업무 반복 감소 및 전략 논의 지원</strong>
                                 <div class="solution-desc">
-                                    개발팀의 단순 반복 행정 업무를 제거하여 본연의 개발에 집중할 수 있는 환경을
-                                    조성하고,<br />데이터 기반의 광고 전략 수립 프로세스를 정착시킴.
+                                    개발팀의 반복 행정 작업을 줄여 개발 업무 집중 시간을 확보하고,<br />경쟁사 지표를
+                                    정리해 주간 논의에 활용.
                                 </div>
                             </li>
                         </ul>
@@ -432,18 +430,18 @@
                         <div class="detail-label">의사결정 및 해결과정</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>Redis Pub/Sub을 활용한 자체 큐(Queue) 구현</strong>
+                                <strong>Redis Pub/Sub 기반 자체 큐 구현</strong>
                                 <div class="solution-desc">
-                                    시스템 이관 과도기임을 고려, 외부 라이브러리(BullMQ) 대신
+                                    시스템 이관 과도기임을 고려해 외부 라이브러리 BullMQ 대신
                                     <strong>자체 큐를 직접 구현</strong>.<br />
                                     오버엔지니어링을 피하고 적립과 집계의 책임을 명확히 분리함.
                                 </div>
                             </li>
                             <li>
-                                <strong>청크(Chunk) 단위의 Bulk Upsert 도입</strong>
+                                <strong>100건 단위 Bulk Upsert 도입</strong>
                                 <div class="solution-desc">
                                     개별 요청 방식을 <strong>100건 단위 청크 벌크 처리</strong>로 전환.<br />
-                                    DB 연결 빈도를 최소화하여 대용량 데이터 처리 성능을 획기적으로 개선.
+                                    DB 연결 빈도를 최소화하여 대용량 데이터 처리 병목을 완화.
                                 </div>
                             </li>
                             <li>
@@ -464,7 +462,7 @@
                                 </div>
                             </li>
                             <li>
-                                <strong>기술 부채 해소 및 유지보수 효율 증대</strong>
+                                <strong>기술 부채 완화 및 유지보수 효율 개선</strong>
                                 <div class="solution-desc">
                                     책임 분리를 통해 시스템 복잡도를 낮추고 유지보수 용이성 확보.
                                 </div>
@@ -486,12 +484,10 @@
 
                 <!-- Project 3: Pokit -->
                 <div class="project-item">
-                    <div class="project-title">리워드 앱 'Pokit' 포인트 시스템 및 교환 모듈 개발</div>
+                    <div class="project-title">리워드 앱 'Pokit' 포인트 시스템 및 교환 모듈 개발 (진행중)</div>
                     <div class="project-meta">
-                        2024.11 - 2025.01 | 기여도: 40% (System Design)<br />
-                        <span style="color: #6b7280; font-size: 0.95em"
-                            >Team Lead 1, Full Stack 2, PM 1, Designer 1</span
-                        >
+                        2024.11 - 현재 | 기여도: 40% (진행 중)<br />
+                        <span style="color: #6b7280; font-size: 0.95em">팀 리드 1, 풀스택 2, PM 1, 디자이너 1</span>
                     </div>
 
                     <!-- <div class="metrics-grid" style="margin-left: 0">
@@ -524,9 +520,9 @@
                                 </div>
                             </li>
                             <li class="solution-item">
-                                <strong>확장성 대책</strong>
+                                <strong>향후 연동 대비 구조 검토</strong>
                                 <div class="solution-desc">
-                                    향후 다양한 제휴처(NPay 등) 연동을 대비한 유연한 구조 필요.
+                                    향후 다양한 제휴처(네이버페이 등) 연동을 대비한 유연한 구조 필요.
                                 </div>
                             </li>
                         </ul>
@@ -536,23 +532,24 @@
                         <div class="detail-label">의사결정 및 해결과정</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>포인트 적립 시스템 이원화 설계</strong>
+                                <strong>포인트 적립 처리 분리 설계 (진행중)</strong>
                                 <div class="solution-desc">
-                                    '앱인토스(API)'와 '자사 앱(DB)'의 처리 방식을 이원화하여 각 플랫폼에 최적화된 로직
-                                    적용.
+                                    기존 Point Crush 스키마를 기반으로 회원정보/포인트 적립 구조를 팀 단위로 설계하고
+                                    구현 중.
                                 </div>
                             </li>
                             <li>
-                                <strong>외부 연동 안정성 확보 (트랜잭션 및 재시도)</strong>
+                                <strong>외부 교환 연동의 트랜잭션 경계 정리 (초안 단계)</strong>
                                 <div class="solution-desc">
-                                    트랜잭션 롤백 및 큐 기반 <strong>재시도(Retry) 메커니즘</strong>으로 외부 연동 시
-                                    자산 소실 위험 차단.
+                                    외부 API 호출 구간의 롤백 책임과 재시도 정책을 정리 중이며, 운영 환경 검증은 아직
+                                    진행 전.
                                 </div>
                             </li>
                             <li>
-                                <strong>MVP 단계의 효율적인 확장성 고려</strong>
+                                <strong>교환처 공통 인터페이스 최소 정의</strong>
                                 <div class="solution-desc">
-                                    복잡한 패턴 없이 Interface 수준의 추상화만 적용하여 개발 속도와 유연성 동시 고려.
+                                    MVP 단계에서는 복잡한 패턴 대신 인터페이스 최소 정의 수준으로 확장 여지를 남기는
+                                    방향을 선택.
                                 </div>
                             </li>
                         </ul>
@@ -562,12 +559,11 @@
                         <div class="detail-label">성과 및 결과</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>플랫폼 확장 및 매출 기여</strong>
+                                <strong>현재 단계: 설계/연동 개발 진행</strong>
                                 <div class="solution-desc">
-                                    토스 미니앱에 입점하여 신규 트래픽 소화 및 매출 증대 기여.
-                                    <br />
-                                    이를 통해 기존에 없던 매체로 유입된 새로운 모수 공급을 통해 송출 광고에 대한 효율
-                                    소폭 상승
+                                    토스 미니앱 연동을 전제로 포인트 적립/교환 플로우를 구현 중.<br />
+                                    운영 배포, 라이브 테스트, 장애 대응 시나리오 검증은 미완료 상태이며 관련 수치
+                                    기여도는 운영 데이터 확보 후 갱신 예정.
                                 </div>
                             </li>
                         </ul>
@@ -604,7 +600,7 @@
                     <div class="project-meta">
                         2023.04 - 2024.08 | 기여도: 50%<br />
                         <span style="color: #6b7280; font-size: 0.95em"
-                            >Tech Lead 1, Backend 1 (Self), Frontend 1, PM 1, Designer 1</span
+                            >Tech Lead 1, Backend 1, Frontend 1, PM 1, Designer 1</span
                         >
                     </div>
 
@@ -627,22 +623,21 @@
                             <li class="solution-item">
                                 <strong>기술 표준 동기화</strong>
                                 <div class="solution-desc">
-                                    Tech Lead의 아키텍처 설계를 주니어 레벨에서 정확하게 구현해내야 하는 기술적 챌린지
-                                    및 학습 곡선.
+                                    테크리더의 아키텍처 설계를 구현하면서 도메인/구조를 빠르게 따라잡아야 하는 과제.
                                 </div>
                             </li>
                             <li class="solution-item">
                                 <strong>파편화된 서버 구조</strong>
                                 <div class="solution-desc">
-                                    3개 서버(Express/Hapi 등)가 상이한 스택으로 파편화되어 로직 공유 불가 및 유지보수
-                                    난해.
+                                    3개 서버(Express, Hapi 등)가 서로 다른 스택으로 파편화되어 로직 공유 불가 및
+                                    유지보수 난해.
                                 </div>
                             </li>
                             <li class="solution-item">
                                 <strong>비효율적 데이터 구조</strong>
                                 <div class="solution-desc">
-                                    재무 데이터를 S3 단일 JSON(MB 단위)으로 관리하여 요청 시마다 파싱 오버헤드(3초+
-                                    지연) 발생.
+                                    재무 데이터를 S3 단일 JSON(수 MB 단위)으로 관리해 요청마다 파싱 부담(3초 이상
+                                    지연)이 발생.
                                 </div>
                             </li>
                         </ul>
@@ -663,14 +658,14 @@
                                 <div class="solution-desc">
                                     Express/JS 대비 <strong>엄격한 모듈 구조(의존성 주입)와 타입 안정성</strong>을 위해
                                     NestJS 도입.<br />
-                                    핵심 Entity를 GitHub Packages로 분리하여 재사용성 증대 및 순환 참조 방지.
+                                    핵심 엔티티를 GitHub Packages로 분리해 재사용성을 높이고 순환 참조를 방지.
                                 </div>
                             </li>
                             <li>
                                 <strong>시스템 안정성을 위한 단계적 전환 (3개월)</strong>
                                 <div class="solution-desc">
                                     일시 교체 위험을 배제한 3단계 이관 전략(3개월):<br />
-                                    1) 레거시 유지 & 신규 개발 → 2) 트래픽 부분 전환(검증) → 3) 완전 전환 및 레거시
+                                    1) 레거시 유지 & 신규 개발 → 2) 트래픽 부분 전환(검증) → 3) 전체 전환 및 레거시
                                     종료.
                                 </div>
                             </li>
@@ -683,14 +678,14 @@
                             <li>
                                 <strong>API 응답 속도 개선 (3s → 100ms)</strong>
                                 <div class="solution-desc">
-                                    데이터 정규화 및 Payload 경량화를 통해 <strong>응답 속도를 96% 단축</strong>하고
+                                    데이터 정규화 및 응답 데이터 경량화를 통해 <strong>응답 속도를 96% 단축</strong>하고
                                     사용자 경험 개선.
                                 </div>
                             </li>
                             <li>
-                                <strong>운영 효율성 개선 (Entity 라이브러리화)</strong>
+                                <strong>운영 효율성 개선 (엔티티 공통 모듈화)</strong>
                                 <div class="solution-desc">
-                                    Entity 패키지화로 스키마 변경 시 버전 업데이트만으로 대응 가능한 구조 구축.
+                                    엔티티 패키지화로 스키마 변경 시 버전 업데이트만으로 대응 가능한 구조 구축.
                                 </div>
                             </li>
                         </ul>
@@ -709,10 +704,10 @@
 
                 <!-- Project 2 (App Launch) -->
                 <div class="project-item">
-                    <div class="project-title">버틀러 하이브리드 앱 런칭 (iOS/Android)</div>
+                    <div class="project-title">버틀러 하이브리드 앱 출시 (iOS, Android)</div>
                     <div class="project-meta">
                         2023.04 - 2024.08 | 기여도: 100%<br />
-                        <span style="color: #6b7280; font-size: 0.95em">App Dev 1 (Self) / Collaboration: PM 1</span>
+                        <span style="color: #6b7280; font-size: 0.95em">App 1 / PO 1</span>
                     </div>
 
                     <!-- <div class="metrics-grid" style="margin-left: 0">
@@ -751,22 +746,22 @@
                         <div class="detail-label">의사결정 및 해결과정</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>React Native 하이브리드 앱 구축</strong>
+                                <strong>React Native 기반 하이브리드 앱 구축</strong>
                                 <div class="solution-desc">
-                                    Webview Wrapper 방식으로 기존 웹 리소스 활용. 네이티브 기능(Push, Login)만 RN으로
+                                    웹뷰 래퍼 방식으로 기존 웹 리소스를 활용하고, 네이티브 기능(푸시, 로그인)만 RN으로
                                     구현하여 공수 최소화.
                                 </div>
                             </li>
                             <li>
-                                <strong>푸시 알림 시스템(FCM) 도입</strong>
+                                <strong>FCM을 통한 푸시 알림 도입</strong>
                                 <div class="solution-desc">
                                     FCM 연동으로 마케팅 및 알림 채널 확보 (리텐션 마케팅 기반 마련).
                                 </div>
                             </li>
                             <li>
-                                <strong>CodePush를 통한 배포 파이프라인 최적화</strong>
+                                <strong>CodePush를 통한 배포 절차 단축</strong>
                                 <div class="solution-desc">
-                                    스토어 심사 없는 즉시 배포(CodePush) 도입으로 긴급 수정 및 업데이트 속도 개선.
+                                    스토어 심사 없는 즉시 배포로 긴급 수정 및 업데이트 속도 개선.
                                 </div>
                             </li>
                         </ul>
@@ -778,7 +773,8 @@
                             <li>
                                 <strong>모바일 앱 런칭</strong>
                                 <div class="solution-desc">
-                                    양대 마켓(iOS/Android) 런칭으로 사용자 접점 확대. 푸시 알림을 통한 리텐션 증대.
+                                    양대 마켓(iOS, Android) 출시로 사용자 접점을 확대하고, 푸시 채널 기반 리텐션 개선
+                                    실험 환경을 마련.
                                 </div>
                             </li>
                         </ul>
@@ -814,9 +810,7 @@
                     <div class="project-title">반려동물 입양 숏폼 플랫폼 개발</div>
                     <div class="project-meta">
                         2022.06 - 2023.04 | 기여도: 50%<br />
-                        <span style="color: #6b7280; font-size: 0.95em"
-                            >App 2 (incl. Self), Backend 1, Designer 1 (CEO)</span
-                        >
+                        <span style="color: #6b7280; font-size: 0.95em">App 2, Backend 1, Designer 1 (CEO)</span>
                     </div>
 
                     <!-- <div class="metrics-grid" style="margin-left: 0">
@@ -892,13 +886,13 @@
                     <div style="width: 100%; display: flex; justify-content: space-between; margin-bottom: 8px">
                         <div>
                             <span class="company-name">BrickMate (브릭메이트)</span>
-                            <span class="company-role">Development Dept. / Developer</span>
+                            <span class="company-role">PM3팀 / Java Developer</span>
                         </div>
                         <span class="company-period">2022.01 - 2022.06</span>
                     </div>
                     <div class="tech-stack" style="margin: 0; width: 100%">
                         <span class="tech-tag">Spring Boot</span>
-                        <span class="tech-tag">React(CRA)</span>
+                        <span class="tech-tag">React</span>
                         <span class="tech-tag">Android (Java)</span>
                         <span class="tech-tag">MySQL</span>
                         <span class="tech-tag">SQLite</span>
@@ -910,8 +904,8 @@
                 <div class="project-item">
                     <div class="project-title">터널 안전 관제 솔루션 'Smart RMR' 개발</div>
                     <div class="project-meta">
-                        2022.01 - 2022.06 | 기여도: 100% (Solo Full Stack)<br />
-                        <span style="color: #6b7280; font-size: 0.95em">Developer 1 (Self), PM 1, Designer 1</span>
+                        2022.01 - 2022.06 | 기여도: 100%<br />
+                        <span style="color: #6b7280; font-size: 0.95em">Fullstack 1, PM 1, Designer 1</span>
                     </div>
 
                     <!-- <div class="metrics-grid" style="margin-left: 0">
@@ -933,8 +927,8 @@
                             <li class="solution-item">
                                 <strong>1인 개발</strong>
                                 <div class="solution-desc">
-                                    PM/디자이너와 확정된 명세를 오차 없이 구현. 현장 특수성(통신 단절)을 고려한 기술
-                                    솔루션 제안.
+                                    PM/디자이너와 확정된 명세 기준으로 구현. 현장 특수성(통신 단절)을 고려한 기술 솔루션
+                                    제안.
                                 </div>
                             </li>
                             <li class="solution-item">
@@ -948,14 +942,14 @@
                         <div class="detail-label">의사결정 및 해결과정</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>Offline-First 동기화 아키텍처 (SQLite)</strong>
+                                <strong>오프라인 우선 동기화 구조 (SQLite)</strong>
                                 <div class="solution-desc">
                                     <strong>SQLite</strong> 내장DB 기반으로 동작하는 앱과 클라우드 DB간 동기화 로직
                                     구현으로 데이터 정합성 확보.
                                 </div>
                             </li>
                             <li>
-                                <strong>Native 이미지 압축 프로세싱</strong>
+                                <strong>네이티브 이미지 압축 처리</strong>
                                 <div class="solution-desc">
                                     Android Native 레벨 리사이징/압축으로 제한된 네트워크에서의 전송 성공률 제고.
                                 </div>
@@ -980,10 +974,8 @@
                 <div class="project-item" style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px">
                     <div class="project-title">롯데홈쇼핑 차세대 플랫폼 'iTOO' 구축 파견</div>
                     <div class="project-meta">
-                        2022.01 - 2022.06 | 기여도: 30% (Publishing & API Migration)<br />
-                        <span style="color: #6b7280; font-size: 0.95em"
-                            >Dispatch Team: Dev 2, Designer 1 / Co-work: Client side</span
-                        >
+                        2022.01 - 2022.06 | 기여도: 30% (퍼블리싱, API 이관)<br />
+                        <span style="color: #6b7280; font-size: 0.95em">Backend 2, Designer 1</span>
                     </div>
 
                     <!-- <div class="metrics-grid" style="margin-left: 0">
@@ -1033,10 +1025,10 @@
                         <div class="detail-label">성과 및 결과</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>프로젝트 안정화 기여</strong>
+                                <strong>담당 범위 일정 대응 기여</strong>
                                 <div class="solution-desc">
-                                    급박한 일정 내 UI 퍼블리싱, API 이식 및 운영 핫픽스 대응으로 전체 프로젝트 안정화
-                                    기여.
+                                    급박한 일정 내 UI 퍼블리싱, API 이식 및 운영 핫픽스 대응으로 담당 범위 릴리스 일정
+                                    준수에 기여.
                                 </div>
                             </li>
                         </ul>
