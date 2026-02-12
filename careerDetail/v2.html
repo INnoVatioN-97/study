@@ -484,10 +484,12 @@
 
                 <!-- Project 3: Pokit -->
                 <div class="project-item">
-                    <div class="project-title">리워드 앱 'Pokit' 포인트 시스템 및 교환 모듈 개발 (진행중)</div>
+                    <div class="project-title">리워드 앱 'Pokit' 백엔드 서비스 개발 (진행중)</div>
                     <div class="project-meta">
                         2024.11 - 현재 | 기여도: 40% (진행 중)<br />
-                        <span style="color: #6b7280; font-size: 0.95em">PM 1, Team Lead 1, Full Stack 2, Designer 1</span>
+                        <span style="color: #6b7280; font-size: 0.95em"
+                            >PM 1, Team Lead 1, Full Stack 2, Designer 1</span
+                        >
                     </div>
 
                     <!-- <div class="metrics-grid" style="margin-left: 0">
@@ -507,22 +509,16 @@
                         <div class="detail-label">주요 과제 및 요구사항</div>
                         <ul class="solution-list">
                             <li class="solution-item">
-                                <strong>고위험 도메인</strong>
+                                <strong>앱인토스 입점 일정 대응</strong>
                                 <div class="solution-desc">
-                                    현금성 자산(포인트)을 다루는 만큼, 시니어와의 공동 아키텍처 설계 과정에서 높은
-                                    수준의 정합성 요구.
+                                    앱인토스 입점 일정에 맞춰 백엔드 API 연동 범위를 빠르게 확정하고 개발해야 하는 과제.
                                 </div>
                             </li>
                             <li class="solution-item">
-                                <strong>이중 포인트 시스템</strong>
+                                <strong>토스 API 기반 포인트 처리</strong>
                                 <div class="solution-desc">
-                                    '앱인토스(외부 크레딧)'와 '내부 DB'를 동시에 지원해야 하는 복잡한 요구사항.
-                                </div>
-                            </li>
-                            <li class="solution-item">
-                                <strong>향후 연동 대비 구조 검토</strong>
-                                <div class="solution-desc">
-                                    향후 다양한 제휴처(네이버페이 등) 연동을 대비한 유연한 구조 필요.
+                                    포인트 사용/적립을 앱인토스 포인트 정책과 토스 API 호출 기준으로 처리해야 하는
+                                    요구사항.
                                 </div>
                             </li>
                         </ul>
@@ -532,24 +528,16 @@
                         <div class="detail-label">의사결정 및 해결과정</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>포인트 적립 처리 분리 설계 (진행중)</strong>
+                                <strong>외부 API 호출 구간의 처리 경계 정리</strong>
                                 <div class="solution-desc">
-                                    기존 Point Crush 스키마를 기반으로 회원정보/포인트 적립 구조를 팀 단위로 설계하고
-                                    구현 중.
+                                    API 호출 성공/실패에 따라 내부 처리 범위와 재시도 조건을 분리해 예외 처리 기준을
+                                    정리.
                                 </div>
                             </li>
                             <li>
-                                <strong>외부 교환 연동의 트랜잭션 경계 정리 (초안 단계)</strong>
+                                <strong>입점 우선 범위로 기능 축소</strong>
                                 <div class="solution-desc">
-                                    외부 API 호출 구간의 롤백 책임과 재시도 정책을 정리 중이며, 운영 환경 검증은 아직
-                                    진행 전.
-                                </div>
-                            </li>
-                            <li>
-                                <strong>교환처 공통 인터페이스 최소 정의</strong>
-                                <div class="solution-desc">
-                                    MVP 단계에서는 복잡한 패턴 대신 인터페이스 최소 정의 수준으로 확장 여지를 남기는
-                                    방향을 선택.
+                                    자체 포인트/확장 기능은 제외하고 앱인토스 입점에 필요한 기능부터 우선 개발.
                                 </div>
                             </li>
                         </ul>
@@ -559,11 +547,17 @@
                         <div class="detail-label">성과 및 결과</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>현재 단계: 설계/연동 개발 진행</strong>
+                                <strong>디자인-TDS 간극 축소를 위한 백엔드 보정 진행</strong>
                                 <div class="solution-desc">
-                                    토스 미니앱 연동을 전제로 포인트 적립/교환 플로우를 구현 중.<br />
-                                    운영 배포, 라이브 테스트, 장애 대응 시나리오 검증은 미완료 상태이며 관련 수치
-                                    기여도는 운영 데이터 확보 후 갱신 예정.
+                                    토스 TDS 기준에 맞춰 요청/응답 규격과 처리 흐름을 조정하면서 입점 연동 안정성을
+                                    높임.
+                                </div>
+                            </li>
+                            <li>
+                                <strong>일 소진률 증가</strong>
+                                <div class="solution-desc">
+                                    런칭 이후 리워드 미션 소진량의 약 40% 가량이 앱인토스에서 소화되어 일자별 미소진률이
+                                    거의 0에 수렴하도록 개선됨.
                                 </div>
                             </li>
                         </ul>
