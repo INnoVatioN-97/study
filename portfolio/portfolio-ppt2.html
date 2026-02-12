@@ -60,8 +60,8 @@
                     <div class="text-gray-600 leading-relaxed">
                         <p class="mb-2">"불필요한 복잡함을 걷어내고, 비즈니스의 본질에 집중합니다."</p>
                         <p>
-                            최소한의 인프라로 최대한의 효율을 만들어내는 미니멀리즘을 지향하며,<br />레거시 청산과
-                            집요한 최적화로 성장을 견인합니다.
+                            최소한의 인프라로 효율을 만드는 방향을 지향하며,<br />레거시 정리와 운영 개선을 통해
+                            서비스 품질을 높여왔습니다.
                         </p>
                     </div>
 
@@ -264,15 +264,12 @@
                 <!-- Left: Title Area -->
                 <div class="flex flex-col justify-center">
                     <h2 class="project-title text-brand">Key Metrics</h2>
-                    <p class="project-subtitle text-gray-500 mb-8">
-                        비즈니스 임팩트를 증명하는<br />핵심 성과 지표입니다.
-                    </p>
+                    <p class="project-subtitle text-gray-500 mb-8">주요 프로젝트에서 확인한<br />운영 지표입니다.</p>
                     <div class="space-y-4 text-brand">
                         <p>
-                            단순한 기능 구현을 넘어,
+                            프로젝트 운영 과정에서
                             <strong class="text-brand">비용 절감</strong>과
-                            <strong class="text-brand">성능 최적화</strong>를 통해 비즈니스의 성장에 직접적으로
-                            기여합니다.
+                            <strong class="text-brand">성능 개선</strong>이 확인된 항목들입니다.
                         </p>
                     </div>
                 </div>
@@ -295,8 +292,8 @@
                     <!-- Metric 3 -->
                     <div class="border border-gray-200 p-8 rounded-lg hover:border-brand transition-colors">
                         <p class="text-gray-500 text-sm mb-2">System Stability</p>
-                        <h3 class="text-5xl font-bold text-brand mb-2">0건</h3>
-                        <p class="font-bold text-black">Deadlock 발생</p>
+                        <h3 class="text-5xl font-bold text-brand mb-2">개선</h3>
+                        <p class="font-bold text-black">Deadlock 이슈 완화</p>
                     </div>
                     <!-- Metric 4 -->
                     <div class="border border-gray-200 p-8 rounded-lg hover:border-brand transition-colors">
@@ -344,21 +341,19 @@
                     </div>
 
                     <h2 class="project-title text-4xl mb-2">Point Crush</h2>
-                    <h3 class="project-subtitle text-xl mb-6">광고 솔루션 안정화 & 트래픽 제어</h3>
+                    <h3 class="project-subtitle text-xl mb-6">광고 솔루션 트래픽 제어 및 운영 개선</h3>
 
                     <div class="project-desc text-sm leading-relaxed mb-6">
-                        <p class="mb-3">
-                            포인트 적립을 위한 광고 솔루션 'Point Crush'의 백엔드 안정화 작업을 주도했습니다.
-                        </p>
+                        <p class="mb-3">광고 솔루션 'Point Crush'에서 트래픽 구간 병목을 줄이고 운영 안정화를 진행했습니다.</p>
                         <ul class="list-disc list-inside space-y-1 text-gray-600">
                             <li>
-                                일 50만 건 이상의 광고 트래픽 처리 중 발생하던 <strong>DB Deadlock 이슈 해결</strong>
+                                동시 요청 구간에서 반복되던 <strong>DB Deadlock 이슈 완화</strong>
                             </li>
                             <li>
                                 <strong>Redis Pub/Sub 자체 큐</strong>를 구현하여 적립/집계 책임 분리 및 트래픽 제어
                             </li>
                             <li>
-                                청크 단위 <strong>Bulk Upsert</strong> 전환으로 DB CPU 90%→30% 안정화, 노드 6대→3대 축소
+                                청크 단위 <strong>Bulk Upsert</strong> 전환으로 DB CPU 90%→30%, 노드 6대→3대 조정
                             </li>
                         </ul>
                     </div>
@@ -430,17 +425,16 @@
                     </div>
 
                     <h2 class="project-title text-4xl mb-2">Pokit</h2>
-                    <h3 class="project-subtitle text-xl mb-6">리워드 앱 포인트 시스템 및 포인트 교환</h3>
+                    <h3 class="project-subtitle text-xl mb-6">앱인토스 입점용 백엔드 연동 (진행 중)</h3>
 
                     <div class="project-desc text-sm leading-relaxed mb-6">
                         <p class="mb-3">
-                            자사 리워드 앱 'Pokit'의 앱인토스 입점과 함께 폭증한 트래픽 및<br />포인트 트랜잭션을
-                            처리하기 위한 시스템을 개발했습니다.
+                            Pokit의 앱인토스 입점 일정에 맞춰 토스 API 기반 포인트 사용/적립 백엔드 연동을 진행했습니다.
                         </p>
                         <ul class="list-disc list-inside space-y-1 text-gray-600">
-                            <li><strong>포인트 적립 시스템 이원화</strong> (자사 앱 vs 미니앱) 설계 및 구현</li>
-                            <li>외부 제휴처(NPay 등) 포인트 교환 모듈 개발 및 연동</li>
-                            <li>트랜잭션 락을 활용한 포인트 동시성 제어</li>
+                            <li>외부 API 호출 구간의 <strong>처리 경계/재시도 기준</strong> 정리</li>
+                            <li>디자인안과 토스 TDS 정책 간극을 줄이기 위한 <strong>백엔드 규격 보정</strong></li>
+                            <li>출시 이후 앱인토스 채널에서 일 소진량 약 40% 소화, 미소진률 개선</li>
                         </ul>
                     </div>
 
@@ -449,11 +443,7 @@
                         <div class="flex flex-wrap gap-2">
                             <span
                                 class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
-                                >Spring Boot</span
-                            >
-                            <span
-                                class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
-                                >JPA / QueryDSL</span
+                                >NestJS</span
                             >
                             <span
                                 class="px-3 py-1 bg-gray-100 text-gray-700 rounded text-xs font-bold border border-gray-200"
@@ -514,18 +504,15 @@
                         <span>Infrastructure</span>
                     </div>
 
-                    <h2 class="project-title text-4xl mb-2">Structure Cost Optimization</h2>
+                    <h2 class="project-title text-4xl mb-2">Infrastructure Cost Optimization</h2>
                     <h3 class="project-subtitle text-xl mb-6">전사 인프라 비용 효율화</h3>
 
                     <div class="project-desc text-sm leading-relaxed mb-6">
-                        <p class="mb-3">
-                            월 4,200만 → 800만 원으로 <strong>인프라 비용을 81% 절감</strong>하고<br />
-                            지속 가능한 운영 환경을 구축했습니다.
-                        </p>
+                        <p class="mb-3">월 4,200만 → 800만 원으로 <strong>인프라 비용을 81% 절감</strong>했습니다.</p>
                         <ul class="list-disc list-inside space-y-1 text-gray-600">
                             <li><strong>노후 서버 정리</strong> 및 유지보수 불가능한 PHP 레거시 현행 서비스에 통합</li>
-                            <li><strong>서버 스펙 최적화(Right-Sizing)</strong> 및 DB 튜닝</li>
-                            <li><strong>비용 효율 중심</strong>의 인프라 운영 정책 수립</li>
+                            <li>트래픽 추이에 맞춘 <strong>리소스 재조정</strong> 및 DB 튜닝</li>
+                            <li>크롤러 파이프라인을 <strong>온프레미스+클라우드 혼합 구조</strong>로 전환</li>
                         </ul>
                     </div>
 
@@ -581,22 +568,21 @@
                         <span>Backend Tech</span>
                     </div>
 
-                    <h2 class="project-title text-3xl mb-2">High Performance Crawler</h2>
-                    <h3 class="project-subtitle text-xl mb-6">Kafka 기반 고성능 크롤러 파이프라인</h3>
+                    <h2 class="project-title text-3xl mb-2">Kafka Crawler Pipeline</h2>
+                    <h3 class="project-subtitle text-xl mb-6">Kafka 기반 크롤링 인프라 개선</h3>
 
                     <div class="project-desc text-sm leading-relaxed mb-6">
                         <p class="mb-3">
-                            <strong>Redis(BullMQ)와 Kafka의 이중 큐 구조</strong>를 Kafka 단일 파이프라인으로
-                            통합하여<br />
-                            데이터 처리의 복잡도를 낮추고 안정성을 확보했습니다.
+                            <strong>Redis(BullMQ)와 Kafka 이중 큐 구조</strong>를 Kafka 중심 파이프라인으로 정리해
+                            운영 복잡도를 줄였습니다.
                         </p>
                         <ul class="list-disc list-inside space-y-1 text-gray-600">
-                            <li><strong>Kafka 단일 채널</strong>로 데이터 정합성 보장 (이중 버퍼링 제거)</li>
+                            <li><strong>이중 버퍼링 제거</strong>로 파이프라인 가시성 및 정합성 점검 기반 확보</li>
                             <li>
                                 <strong>Mac Studio</strong>와 유휴 장비를 활용한 <strong>온프레미스 인프라 구축</strong>
                             </li>
-                            <li><strong>주거용/무료 프록시 분산</strong> 설계로 차단 우회 및 비용 절감</li>
-                            <li><strong>Kafka UI 도입</strong> 및 파이프라인 모니터링 환경 구축</li>
+                            <li><strong>주거용/무료 프록시 분산</strong> 구성으로 프리징 빈도 감소</li>
+                            <li><strong>Kafka UI 도입</strong>으로 Consumer Lag 모니터링 체계 구축</li>
                             <li><strong>크롤러 운영 비용 62% 절감</strong> (월 480만 → 180만)</li>
                         </ul>
                     </div>
@@ -671,17 +657,16 @@
                     </div>
 
                     <h2 class="project-title text-4xl mb-2">Automation</h2>
-                    <h3 class="project-subtitle text-xl mb-6">업무 자동화 및 데이터 분석</h3>
+                    <h3 class="project-subtitle text-xl mb-6">업무 자동화 및 분석 보조</h3>
 
                     <div class="project-desc text-sm leading-relaxed mb-6">
                         <p class="mb-3">
-                            반복적인 행정 업무를 자동화하고, 경쟁사 데이터를 분석하여<br />
-                            <strong>데이터 기반의 의사결정</strong>을 지원하는 시스템을 구축했습니다.
+                            반복적인 행정 업무를 자동화하고, 경쟁사 데이터를 정리해 주간 전략 논의 자료로 활용했습니다.
                         </p>
                         <ul class="list-disc list-inside space-y-1 text-gray-600">
                             <li><strong>n8n & LLM</strong> 기반 주간 업무 보고 자동화 (행정 리소스 절감)</li>
                             <li>경쟁사 노출 순위 및 키워드 효율 <strong>역산출 분석 시스템</strong> 개발</li>
-                            <li>사내 업무 효율성 증대 및 마케팅 전략 수립 지원</li>
+                            <li>반복 행정 작업 감소 및 주간 논의 프로세스 지원</li>
                         </ul>
                     </div>
 
@@ -874,16 +859,15 @@
                         <span>Backend Engineering</span>
                     </div>
                     <h2 class="project-title text-4xl mb-2">Service Migration</h2>
-                    <h3 class="project-subtitle text-xl mb-6">레거시 청산 및 성능 최적화</h3>
+                    <h3 class="project-subtitle text-xl mb-6">서비스 개선 및 레거시 마이그레이션</h3>
                     <div class="project-desc text-sm leading-relaxed mb-6">
                         <p class="mb-3">
-                            Express/Hapi 기반의 레거시 시스템을 <strong>NestJS + TypeORM</strong> 아키텍처로<br />
-                            마이그레이션하여 유지보수성을 확보했습니다.
+                            Express/Hapi 기반 레거시를 단계적으로 정리하고 NestJS 중심 구조로 마이그레이션했습니다.
                         </p>
                         <ul class="list-disc list-inside space-y-1 text-gray-600">
-                            <li>분산된 비즈니스 로직을 Layered Architecture로 재설계</li>
-                            <li>대용량 조회 API 쿼리 튜닝으로 응답속도 <strong>96% 단축 (3s → 100ms)</strong></li>
-                            <li>테스트 코드 도입 및 CI/CD 파이프라인 구축</li>
+                            <li>재무 데이터 <strong>S3 JSON -> RDB 정규화</strong>로 조회 구조 개선</li>
+                            <li>대용량 조회 API 튜닝으로 응답 속도 <strong>96% 단축 (3s → 100ms)</strong></li>
+                            <li>3단계 이관(유지/부분전환/전체전환)으로 서비스 전환 리스크 관리</li>
                         </ul>
                     </div>
                     <div class="mb-6">
@@ -943,15 +927,15 @@
                         <span>Mobile App</span>
                     </div>
                     <h2 class="project-title text-4xl mb-2">Hybrid App Launch</h2>
-                    <h3 class="project-subtitle text-xl mb-6">서비스 앱 전환 및 확장</h3>
+                    <h3 class="project-subtitle text-xl mb-6">서비스 앱 전환</h3>
                     <div class="project-desc text-sm leading-relaxed mb-6">
                         <p class="mb-3">
-                            웹 페이지만 존재하던 버틀러 서비스를 <strong>React Native</strong> 기반의<br />하이브리드
-                            앱으로 개발하여 iOS/Android 스토어에 런칭했습니다.
+                            웹 중심 버틀러 서비스를 <strong>React Native</strong> 기반 하이브리드 앱으로 개발해
+                            iOS/Android 스토어에 출시했습니다.
                         </p>
                         <ul class="list-disc list-inside space-y-1 text-gray-600">
                             <li>웹뷰(WebView)와 네이티브 모듈 하이브리드 통신 구현</li>
-                            <li><strong>CodePush</strong> 도입으로 앱 심사 없이 즉각적인 핫픽스 대응 체계 마련</li>
+                            <li><strong>CodePush</strong> 도입으로 앱 심사 없이 긴급 수정 대응</li>
                             <li>앱 전용 푸시 알림 및 딥링크 시스템 구축</li>
                         </ul>
                         <div class="mt-4">
@@ -1024,7 +1008,7 @@
                     2022.06 - 2023.04
                 </div>
                 <h2 class="section-title text-8xl mb-4">Concent CO.</h2>
-                <p class="section-desc">Social Media Platform 'PerMirth'</p>
+                <p class="section-desc">Social Media Platform 'PetMirth'</p>
             </div>
             <div class="absolute right-16 top-1/2 -translate-y-1/2 text-[15rem] font-thin opacity-20 select-none">
                 03
@@ -1046,15 +1030,15 @@
                         <span>/</span>
                         <span>Infrastructure</span>
                     </div>
-                    <h2 class="project-title text-4xl mb-2">PerMirth</h2>
-                    <h3 class="project-subtitle text-xl mb-6">인프라 최적화 & 비용 절감</h3>
+                    <h2 class="project-title text-4xl mb-2">PetMirth</h2>
+                    <h3 class="project-subtitle text-xl mb-6">영상 처리 비용 개선</h3>
                     <div class="project-desc text-sm leading-relaxed mb-6">
-                        <p class="mb-3">동영상 소셜 앱의 트래픽 비용 문제를 해결하고 배포 파이프라인을 구축했습니다.</p>
+                        <p class="mb-3">동영상 소셜 앱에서 서버 트랜스코딩 비용이 커진 문제를 줄이는 데 집중했습니다.</p>
                         <ul class="list-disc list-inside space-y-1 text-gray-600">
                             <li>
                                 HLS 스트리밍 & CloudFlare CDN 도입으로 인프라 비용 <strong>76% 절감 (60→14만원)</strong>
                             </li>
-                            <li><strong>GitHub Actions</strong> 기반의 CI/CD 및 CodePush 배포 자동화</li>
+                            <li>모바일 인코딩 + CDN 구성으로 별도 스트리밍 서버 없이 운영</li>
                         </ul>
                     </div>
                     <div class="mb-6">
@@ -1141,11 +1125,11 @@
                         <span>SI Project</span>
                     </div>
                     <h2 class="project-title text-4xl mb-2">롯데홈쇼핑 iTOO</h2>
-                    <h3 class="project-subtitle text-xl mb-6">iTOO 런칭 지원 및 API 이식</h3>
+                    <h3 class="project-subtitle text-xl mb-6">iTOO 출시 지원 및 API 이식</h3>
                     <div class="project-desc text-sm leading-relaxed mb-6">
                         <p class="mb-3">
-                            차세대 쇼핑 플랫폼 iTOO의 런칭 직전 단계에 파견 투입되어, 기존 서비스(Wyd)의 기능을 이식하고
-                            안정적인 오픈을 지원했습니다.
+                            차세대 쇼핑 플랫폼 iTOO 출시 직전 단계에 파견 투입되어 기존 서비스(Wyd) 기능 이식과
+                            운영 대응을 진행했습니다.
                         </p>
                         <ul class="list-disc list-inside space-y-1 text-gray-600">
                             <li>잔여 페이지 <strong>UI 퍼블리싱</strong> (HTML 마크업 작업)</li>
@@ -1214,13 +1198,13 @@
                         <span>Solution R&D</span>
                     </div>
                     <h2 class="project-title text-4xl mb-2">Smart RMR</h2>
-                    <h3 class="project-subtitle text-xl mb-6">터널 안전 관제 솔루션</h3>
+                    <h3 class="project-subtitle text-xl mb-6">터널 안전 관제 솔루션 개발</h3>
                     <div class="project-desc text-sm leading-relaxed mb-6">
-                        <p class="mb-3">AI 기반 터널 막장 지반 분석 솔루션을 1인 풀스택으로 개발했습니다.</p>
+                        <p class="mb-3">터널 현장의 통신 단절 환경을 고려한 관제 솔루션을 1인 풀스택으로 개발했습니다.</p>
                         <ul class="list-disc list-inside space-y-1 text-gray-600">
-                            <li>현장 작업자용 <strong>Android 앱</strong> (이미지 촬영/업로드) 개발</li>
-                            <li>관리자용 <strong>Web 대시보드</strong> (Next.js) 및 백엔드 API 서버 구축</li>
-                            <li>지반 등급 분석 데이터 시각화 및 리포팅 기능 구현</li>
+                            <li><strong>Offline-First(SQLite)</strong> 동기화 구조로 통신 단절 구간 데이터 처리</li>
+                            <li>Android 네이티브 이미지 압축으로 제한 네트워크에서 전송 성공률 개선</li>
+                            <li>현장 리포팅 시간 단축 및 안전 데이터 정합성 확보</li>
                         </ul>
                     </div>
                     <div class="mb-6">
