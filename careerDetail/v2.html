@@ -311,6 +311,14 @@
                         <div class="detail-label">상황 및 문제점</div>
                         <ul class="solution-list">
                             <li class="solution-item">
+                                <strong>사내 업무 자동화 도입 및 검증 니즈</strong>
+                                <div class="solution-desc">
+                                    반복되는 사내 업무의 비효율을 해소하고자 하는 논의 과정에서, IT/비IT 직군 모두 활용
+                                    가능한<br />
+                                    <strong>n8n의 실무 적용 가능성</strong>을 선제적으로 검증해야 했음.
+                                </div>
+                            </li>
+                            <li class="solution-item">
                                 <strong>주간 보고 비효율</strong>
                                 <div class="solution-desc">
                                     개발자들이 매주 모든 리포지토리 커밋을 수동 취합/요약하며 행정 리소스 낭비.
@@ -330,11 +338,12 @@
                         <div class="detail-label">의사결정 및 해결과정</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>n8n 및 LLM을 활용한 주간 보고 자동화</strong>
+                                <strong>확장 가능한 자동화 파이프라인 설계 및 구축</strong>
                                 <div class="solution-desc">
-                                    n8n, GitHub API, Google Sheets를 연동하여 커밋 내역 자동 추출.<br />
-                                    로컬 LLM이 주간 업무 요약 및 차주 계획을 제안하는
-                                    <strong>자동화 파이프라인</strong> 구축.
+                                    단순 스크립팅보다 <strong>워크플로우 가시성이 높은 n8n</strong>을 채택하여 향후
+                                    서비스 확장성을 고려함.<br />
+                                    동시에 GitHub API와 LLM을 연동해 번거로운 주간 보고 작업을 100% 자동화하는
+                                    파이프라인을 설계.
                                 </div>
                             </li>
                             <li>
@@ -352,10 +361,18 @@
                         <div class="detail-label">성과 및 결과</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>업무 반복 감소 및 전략 논의 지원</strong>
+                                <strong>주간 업무 보고 100% 자동화 및 리소스 절감</strong>
                                 <div class="solution-desc">
                                     개발팀의 반복 행정 작업을 줄여 개발 업무 집중 시간을 확보하고,<br />경쟁사 지표를
                                     정리해 주간 논의에 활용.
+                                </div>
+                            </li>
+                            <li>
+                                <strong>n8n 실무 검증 완료 및 구축 타당성 확보</strong>
+                                <div class="solution-desc">
+                                    복잡한 워크플로우 처리 능력과 데이터 연동 안정성을 확인하여,<br />
+                                    향후 다양한 <strong>사내 업무 자동화에 즉시 적용 가능한 기술적 토대</strong>를
+                                    마련함.
                                 </div>
                             </li>
                         </ul>
@@ -486,9 +503,9 @@
                 <div class="project-item">
                     <div class="project-title">리워드 앱 'Pokit' 백엔드 서비스 개발 (진행중)</div>
                     <div class="project-meta">
-                        2024.11 - 현재 | 기여도: 40% (진행 중)<br />
+                        2024.11 - 현재 | 진행 중<br />
                         <span style="color: #6b7280; font-size: 0.95em"
-                            >PM 1, Team Lead 1, Full Stack 2, Designer 1</span
+                            >PM 1, Team Lead 1, Backend 2, Frontend 2, Designer 1</span
                         >
                     </div>
 
@@ -506,19 +523,20 @@
                     </div> -->
 
                     <div class="detail-section" style="padding-left: 0">
-                        <div class="detail-label">주요 과제 및 요구사항</div>
+                        <div class="detail-label">상황 및 문제점</div>
                         <ul class="solution-list">
                             <li class="solution-item">
-                                <strong>앱인토스 입점 일정 대응</strong>
+                                <strong>외부 매체 의존 리스크 및 수익성 저하</strong>
                                 <div class="solution-desc">
-                                    앱인토스 입점 일정에 맞춰 백엔드 API 연동 범위를 빠르게 확정하고 개발해야 하는 과제.
+                                    주요 제휴사(Buzzvil 등)와의 계약 종료로 광고 소진 물량(Capacity)이 급감했으며,<br />
+                                    외부 매체의 높은 수수료 구조로 인해 자체 송출 지면 확보가 시급한 상황.
                                 </div>
                             </li>
                             <li class="solution-item">
-                                <strong>토스 API 기반 포인트 처리</strong>
+                                <strong>앱인토스(Apps in Toss) 시장 기회 포착</strong>
                                 <div class="solution-desc">
-                                    포인트 사용/적립을 앱인토스 포인트 정책과 토스 API 호출 기준으로 처리해야 하는
-                                    요구사항.
+                                    토스의 2,000만 MAU를 활용한 미니앱 시장의 성장세를 확인하고,<br />
+                                    이를 통해 대규모 트래픽을 저비용으로 확보할 새로운 기회로 판단.
                                 </div>
                             </li>
                         </ul>
@@ -528,16 +546,18 @@
                         <div class="detail-label">의사결정 및 해결과정</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>외부 API 호출 구간의 처리 경계 정리</strong>
+                                <strong>앱인토스 정책 동기화 및 심사 프로세스 최적화</strong>
                                 <div class="solution-desc">
-                                    API 호출 성공/실패에 따라 내부 처리 범위와 재시도 조건을 분리해 예외 처리 기준을
-                                    정리.
+                                    기존 기획을 앱인토스 플랫폼 가이드라인에 맞춰 재설계하여 반려 리스크를
+                                    최소화하고,<br />
+                                    서비스 정책의 싱크(Sync)를 맞춰 입점 안정성을 확보.
                                 </div>
                             </li>
                             <li>
-                                <strong>입점 우선 범위로 기능 축소</strong>
+                                <strong>TDS(Toss Design System) 도입 및 UX 표준화</strong>
                                 <div class="solution-desc">
-                                    자체 포인트/확장 기능은 제외하고 앱인토스 입점에 필요한 기능부터 우선 개발.
+                                    이질감 없는 사용자 경험(UX) 제공을 위해 기존 디자인을 TDS로 전면 교체하고,<br />
+                                    토스 앱 내에서의 자연스러운 동작을 보장하여 사용자 락인(Lock-in) 효과 유도.
                                 </div>
                             </li>
                         </ul>
@@ -547,17 +567,17 @@
                         <div class="detail-label">성과 및 결과</div>
                         <ul class="solution-list">
                             <li>
-                                <strong>디자인-TDS 간극 축소를 위한 백엔드 보정 진행</strong>
+                                <strong>자체 송출 지면 확보 및 수익성 개선</strong>
                                 <div class="solution-desc">
-                                    토스 TDS 기준에 맞춰 요청/응답 규격과 처리 흐름을 조정하면서 입점 연동 안정성을
-                                    높임.
+                                    외부 매체 수수료 없이 운영 가능한 자체 고효율 지면을 확보하여<br />
+                                    건당 수익성을 개선하고 채널 의존도를 획기적으로 낮춤.
                                 </div>
                             </li>
                             <li>
-                                <strong>일 소진률 증가</strong>
+                                <strong>일일 광고 소진율 99% 달성 (Capacity 회복)</strong>
                                 <div class="solution-desc">
-                                    런칭 이후 리워드 미션 소진량의 약 40% 가량이 앱인토스에서 소화되어 일자별 미소진률이
-                                    거의 0에 수렴하도록 개선됨.
+                                    런칭 직후 토스 유저 유입으로 미션 재고 소진율이 0%에 수렴할 만큼 급증,<br />
+                                    계약 종료로 인한 물량 감소분을 완벽하게 대체하고 추가 트래픽 여력 확보.
                                 </div>
                             </li>
                         </ul>
@@ -1009,7 +1029,7 @@
                                 <div class="solution-desc">
                                     잔여 페이지 HTML 마크업 작업 및 기존 라이브커머스 Wyd의 커머스 관련 주요 API를
                                     iTOO로 이식.<br />
-                                    운영 배포 및 서비스 직후 긴급 핫픽스 대응. 대규모 협업 프로세스(Git Flow) 경험.
+                                    운영 배포 및 서비스 직후 긴급 핫픽스 대응. 대기업의 협업 프로세스 경험.
                                 </div>
                             </li>
                         </ul>
