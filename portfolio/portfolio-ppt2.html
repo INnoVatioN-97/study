@@ -60,8 +60,8 @@
                     <div class="text-gray-600 leading-relaxed">
                         <p class="mb-2">"불필요한 복잡함을 걷어내고, 비즈니스의 본질에 집중합니다."</p>
                         <p>
-                            최소한의 인프라로 효율을 만드는 방향을 지향하며,<br />레거시 정리와 운영 개선을 통해
-                            서비스 품질을 높여왔습니다.
+                            최소한의 인프라로 효율을 만드는 방향을 지향하며,<br />레거시 정리와 운영 개선을 통해 서비스
+                            품질을 높여왔습니다.
                         </p>
                     </div>
 
@@ -344,17 +344,15 @@
                     <h3 class="project-subtitle text-xl mb-6">광고 솔루션 트래픽 제어 및 운영 개선</h3>
 
                     <div class="project-desc text-sm leading-relaxed mb-6">
-                        <p class="mb-3">광고 솔루션 'Point Crush'에서 트래픽 구간 병목을 줄이고 운영 안정화를 진행했습니다.</p>
+                        <p class="mb-3">
+                            광고 솔루션 'Point Crush'에서 트래픽 구간 병목을 줄이고 운영 안정화를 진행했습니다.
+                        </p>
                         <ul class="list-disc list-inside space-y-1 text-gray-600">
-                            <li>
-                                동시 요청 구간에서 반복되던 <strong>DB Deadlock 이슈 완화</strong>
-                            </li>
+                            <li>동시 요청 구간에서 반복되던 <strong>DB Deadlock 이슈 완화</strong></li>
                             <li>
                                 <strong>Redis Pub/Sub 자체 큐</strong>를 구현하여 적립/집계 책임 분리 및 트래픽 제어
                             </li>
-                            <li>
-                                청크 단위 <strong>Bulk Upsert</strong> 전환으로 DB CPU 90%→30%, 노드 6대→3대 조정
-                            </li>
+                            <li>청크 단위 <strong>Bulk Upsert</strong> 전환으로 DB CPU 90%→30%, 노드 6대→3대 조정</li>
                         </ul>
                     </div>
 
@@ -425,16 +423,18 @@
                     </div>
 
                     <h2 class="project-title text-4xl mb-2">Pokit</h2>
-                    <h3 class="project-subtitle text-xl mb-6">앱인토스 입점용 백엔드 연동 (진행 중)</h3>
+                    <h3 class="project-subtitle text-xl mb-6">자체 채널 확보 및 앱인토스 입점 전략 (진행 중)</h3>
 
                     <div class="project-desc text-sm leading-relaxed mb-6">
                         <p class="mb-3">
-                            Pokit의 앱인토스 입점 일정에 맞춰 토스 API 기반 포인트 사용/적립 백엔드 연동을 진행했습니다.
+                            주요 제휴사(Buzzvil 등) 계약 종료로 급감한 <strong>광고 소진 물량</strong>을 보완하기
+                            위해,<br />
+                            <strong>앱인토스 입점</strong>을 통한 자체 송출지면을 확보하여 위기를 기회로 전환했습니다.
                         </p>
                         <ul class="list-disc list-inside space-y-1 text-gray-600">
-                            <li>외부 API 호출 구간의 <strong>처리 경계/재시도 기준</strong> 정리</li>
-                            <li>디자인안과 토스 TDS 정책 간극을 줄이기 위한 <strong>백엔드 규격 보정</strong></li>
-                            <li>출시 이후 앱인토스 채널에서 일 소진량 약 40% 소화, 미소진률 개선</li>
+                            <li><strong>자체 송출 지면 확보</strong>로 외부 매체 의존도 완화 및 수수료 절감</li>
+                            <li><strong>일일 광고 소진율 99%</strong> (감소했던 광고 처리량 회복)</li>
+                            <li>TDS(Toss Design System) 도입 및 <strong>UX 표준화</strong></li>
                         </ul>
                     </div>
 
@@ -573,7 +573,7 @@
 
                     <div class="project-desc text-sm leading-relaxed mb-6">
                         <p class="mb-3">
-                            <strong>Redis(BullMQ)와 Kafka 이중 큐 구조</strong>를 Kafka 중심 파이프라인으로 정리해
+                            <strong>Redis(BullMQ)와 Kafka 이중 큐 구조</strong>를 Kafka 중심 파이프라인으로 정리해<br />
                             운영 복잡도를 줄였습니다.
                         </p>
                         <ul class="list-disc list-inside space-y-1 text-gray-600">
@@ -657,16 +657,21 @@
                     </div>
 
                     <h2 class="project-title text-4xl mb-2">Automation</h2>
-                    <h3 class="project-subtitle text-xl mb-6">업무 자동화 및 분석 보조</h3>
+                    <h3 class="project-subtitle text-xl mb-6">주간업무 보고 자동화 및 타사 효율 분석 워크플로우</h3>
 
                     <div class="project-desc text-sm leading-relaxed mb-6">
                         <p class="mb-3">
-                            반복적인 행정 업무를 자동화하고, 경쟁사 데이터를 정리해 주간 전략 논의 자료로 활용했습니다.
+                            산재된 데이터를 취합하는 <strong>주간 보고 자동화</strong>와 경쟁사 상품 효율을
+                            역산출하는<br />
+                            <strong>분석 시스템</strong>을 각각 구축하여 업무 효율을 높였습니다.
                         </p>
                         <ul class="list-disc list-inside space-y-1 text-gray-600">
-                            <li><strong>n8n & LLM</strong> 기반 주간 업무 보고 자동화 (행정 리소스 절감)</li>
-                            <li>경쟁사 노출 순위 및 키워드 효율 <strong>역산출 분석 시스템</strong> 개발</li>
-                            <li>반복 행정 작업 감소 및 주간 논의 프로세스 지원</li>
+                            <li>
+                                <strong>n8n + Github API + LLM 기반 주간 업무 보고 100% 자동화</strong> (행정 리소스
+                                절감)
+                            </li>
+                            <li><strong>경쟁사 지표 역산출 시스템</strong> 개발로 데이터 기반 전략 수립 지원</li>
+                            <li>반복 업무와 분석 업무를 개선하여 <strong>팀 리소스 최적화</strong></li>
                         </ul>
                     </div>
 
@@ -822,6 +827,85 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 9: Knowledge Sharing -->
+        <section class="ppt-slide type-content">
+            <div class="content-grid-2">
+                <div class="flex flex-col justify-center h-full">
+                    <div class="flex items-center gap-2 mb-4 text-sm text-gray-500 font-medium">
+                        <span class="text-brand">Pocask E&M</span>
+                        <span>/</span>
+                        <span>Culture</span>
+                    </div>
+
+                    <h2 class="project-title text-3xl mb-2">Knowledge Sharing</h2>
+                    <h3 class="project-subtitle text-xl mb-6">지식의 사일로(Silo) 제거 및 기술 역량 상향 평준화</h3>
+
+                    <div class="project-desc text-sm leading-relaxed mb-6">
+                        <p class="mb-3">
+                            특정 개인에게 의존적인 기술 지식을 팀 전체로 확산시키고,<br />
+                            누가 맡더라도 안정적으로 운영 가능한 환경을 만들기 위해 노력했습니다.
+                        </p>
+                        <ul class="list-disc list-inside space-y-3 text-gray-600">
+                            <li>
+                                <strong>사내 Kafka 기술 세미나 주최</strong><br />
+                                <span class="text-xs text-gray-500 pl-4 block mt-1">
+                                    팀 내 기술 격차를 해소하고, 모두가 동일한 아키텍처 이해도를 갖도록 지원
+                                </span>
+                            </li>
+                            <li>
+                                <strong>신규 입사자 온보딩 문서화 (Wiki)</strong><br />
+                                <span class="text-xs text-gray-500 pl-4 block mt-1">
+                                    프로젝트 담당자가 변경되더라도 즉시 업무 투입이 가능하도록 적응 비용 최소화
+                                </span>
+                            </li>
+                            <li>
+                                <strong>개발 컨벤션 표준화 및 가이드</strong><br />
+                                <span class="text-xs text-gray-500 pl-4 block mt-1">
+                                    협업 기준을 통일하여 코드 리뷰 및 유지보수 효율 증대
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="mt-4">
+                        <a
+                            href="https://innovation-97.github.io/study/seminar/apacheKafka/kafka-ppt.html"
+                            target="_blank"
+                            class="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-brand hover:text-white rounded text-sm font-bold text-gray-700 transition-colors"
+                        >
+                            <span>📄 Kafka 세미나 발표자료 보기</span>
+                        </a>
+                    </div>
+
+                    <div class="mt-auto">
+                        <h4 class="text-xs font-bold text-brand mb-3 uppercase tracking-wider">Contribution</h4>
+                        <div class="progress-item">
+                            <span class="progress-label">Knowledge Sharing</span>
+                            <div class="progress-track"><div class="progress-fill" style="width: 100%"></div></div>
+                            <span class="progress-val">100</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="h-full flex flex-col gap-4">
+                    <div
+                        class="visual-box flex-1 bg-gray-50 flex flex-col items-center justify-center p-8 w-full h-full"
+                    >
+                        <!-- visual for culture: Kafka Logo -->
+                        <div
+                            class="w-48 h-48 bg-white rounded-xl flex items-center justify-center shadow-sm border border-gray-100 group hover:scale-105 transition-transform duration-500 p-8"
+                        >
+                            <img
+                                src="../images/kafka_logo.svg"
+                                alt="Kafka Seminar"
+                                class="w-full h-full object-contain"
+                            />
                         </div>
                     </div>
                 </div>
@@ -1033,7 +1117,9 @@
                     <h2 class="project-title text-4xl mb-2">PetMirth</h2>
                     <h3 class="project-subtitle text-xl mb-6">영상 처리 비용 개선</h3>
                     <div class="project-desc text-sm leading-relaxed mb-6">
-                        <p class="mb-3">동영상 소셜 앱에서 서버 트랜스코딩 비용이 커진 문제를 줄이는 데 집중했습니다.</p>
+                        <p class="mb-3">
+                            동영상 소셜 앱에서 서버 트랜스코딩 비용이 커진 문제를 줄이는 데 집중했습니다.
+                        </p>
                         <ul class="list-disc list-inside space-y-1 text-gray-600">
                             <li>
                                 HLS 스트리밍 & CloudFlare CDN 도입으로 인프라 비용 <strong>76% 절감 (60→14만원)</strong>
@@ -1128,8 +1214,8 @@
                     <h3 class="project-subtitle text-xl mb-6">iTOO 출시 지원 및 API 이식</h3>
                     <div class="project-desc text-sm leading-relaxed mb-6">
                         <p class="mb-3">
-                            차세대 쇼핑 플랫폼 iTOO 출시 직전 단계에 파견 투입되어 기존 서비스(Wyd) 기능 이식과
-                            운영 대응을 진행했습니다.
+                            차세대 쇼핑 플랫폼 iTOO 출시 직전 단계에 파견 투입되어 기존 서비스(Wyd) 기능 이식과 운영
+                            대응을 진행했습니다.
                         </p>
                         <ul class="list-disc list-inside space-y-1 text-gray-600">
                             <li>잔여 페이지 <strong>UI 퍼블리싱</strong> (HTML 마크업 작업)</li>
@@ -1200,7 +1286,9 @@
                     <h2 class="project-title text-4xl mb-2">Smart RMR</h2>
                     <h3 class="project-subtitle text-xl mb-6">터널 안전 관제 솔루션 개발</h3>
                     <div class="project-desc text-sm leading-relaxed mb-6">
-                        <p class="mb-3">터널 현장의 통신 단절 환경을 고려한 관제 솔루션을 1인 풀스택으로 개발했습니다.</p>
+                        <p class="mb-3">
+                            터널 현장의 통신 단절 환경을 고려한 관제 솔루션을 1인 풀스택으로 개발했습니다.
+                        </p>
                         <ul class="list-disc list-inside space-y-1 text-gray-600">
                             <li><strong>Offline-First(SQLite)</strong> 동기화 구조로 통신 단절 구간 데이터 처리</li>
                             <li>Android 네이티브 이미지 압축으로 제한 네트워크에서 전송 성공률 개선</li>
