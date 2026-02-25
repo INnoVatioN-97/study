@@ -1,0 +1,69 @@
+name: Strict Content Review
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "**/*.html"
+      - "**/*.css"
+
+permissions:
+  contents: read
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Determine changed files
+        id: changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          BEFORE="${{ github.event.before }}"
+          AFTER="${{ github.sha }}"
+
+          if [[ "$BEFORE" == "0000000000000000000000000000000000000000" ]]; then
+            git ls-files '*.html' '*.css' > changed_files.txt
+          else
+            git diff --name-only "$BEFORE" "$AFTER" -- '*.html' '*.css' > changed_files.txt
+          fi
+
+          COUNT=$(grep -c . changed_files.txt || true)
+          echo "count=$COUNT" >> "$GITHUB_OUTPUT"
+          echo "Changed files ($COUNT):"
+          cat changed_files.txt || true
+
+      - name: Run strict review
+        if: steps.changes.outputs.count != '0'
+        shell: bash
+        run: |
+          python3 .github/scripts/strict_resume_review.py --files-file changed_files.txt --output review-report.md
+
+      - name: No changed files
+        if: steps.changes.outputs.count == '0'
+        shell: bash
+        run: |
+          cat > review-report.md <<'EOF'
+          # 🔎 Strict Content Review
+
+          이번 push에서 HTML/CSS 변경사항이 없어 리뷰를 건너뜀.
+          EOF
+
+      - name: Publish summary
+        if: always()
+        shell: bash
+        run: |
+          cat review-report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload report artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: strict-content-review-report
+          path: review-report.md
