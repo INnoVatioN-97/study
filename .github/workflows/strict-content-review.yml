@@ -6,7 +6,6 @@ on:
     paths:
       - "**/*.html"
       - "**/*.css"
-  workflow_dispatch:
 
 permissions:
   contents: read
